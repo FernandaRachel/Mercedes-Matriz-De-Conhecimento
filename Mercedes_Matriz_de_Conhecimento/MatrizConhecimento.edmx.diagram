@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fc626f4cc6e840ca8273d8aaa7ef8d87" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblAvaliacaoFuncXworkzoneXatividade" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblAvaliacaoFuncXworkzoneXatividadeHist" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblFuncionarios" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblGrupoTreinamentos" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblPerfilAtividade" Width="1.5" PointX="3" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblPerfilAtividadeXPerfilAtItem" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblPerfilAtivItem" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblPerfilItem" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblPerfilTreinamento" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblPerfilTreinamentoxPerfilItem" Width="1.5" PointX="8.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblStatusFuncionarioXworkzoneXtreinamento" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblTipoTreinamento" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblTreinamento" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblTreinamentoStatus" Width="1.5" PointX="3" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblWorkzone" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblWorkzoneXAtividades" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblAtividade" Width="1.5" PointX="5.25" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tblAtividadeXTreinamentos" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_tblAvaliacaoFuncXworkzoneXatividade_tblFuncionarios" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblAvaliacaoFuncXworkzoneXatividade_tblPerfilAtivItem" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblAvaliacaoFuncXworkzoneXatividade_tblWorkzoneXAtividades" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblFuncionarios" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblPerfilAtivItem" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblWorkzoneXAtividades" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblFuncionarios_tblWorkzone" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblFuncionarios" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblAtividade_tblPerfilAtividade" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtividade" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtivItem" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblPerfilTreinamentoxPerfilItem_tblPerfilItem" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblPerfilItem" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblPerfilTreinamentoxPerfilItem_tblPerfilTreinamento" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblTipoTreinamento_tblPerfilTreinamento" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblTreinamento" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblTreinamentoStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblWorkzone" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblTreinamento_tblTipoTreinamento" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblAtividadeXTreinamentos_tblTreinamento" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_tblWorkoneXAtividades_tblWorkzone" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.AtividadesDiario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

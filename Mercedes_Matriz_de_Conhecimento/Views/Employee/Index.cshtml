@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Mercedes_Matriz_de_Conhecimento.tblFuncionarios>
+
+
+<!DOCTYPE html>
+
+@section scripts{
+<script type="text/javascript">
+    var url = "Employee/RedirectToCreate";
+    $(".edit").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modal").load("Employee/Details/" + id, function () {
+            $("#modal").modal();
+        })
+    });
+
+
+    $(".remove").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modalEdit").load("Employee/Details/" + id, function () {
+            $("#modalUpdate").modal();
+        })
+    })
+
+    function openModal() {
+        $("#modal").load(url, function () {
+            $("#modal").modal();
+        })
+        //$.ajax({
+        //    url: url,
+        //    success: function (result) {
+        //        $('#myModal').modal();
+        //        $('#searchResults').html(result);
+
+        //    }
+        //});
+    }
+</script>
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2 class="text-center">Funcionários</h2>
+    <div class="container table-place">
+
+        <table class="table table-striped">
+            <thead class="text-center">
+                <tr class="table-dark">
+                    <th class="text-center">Nome</th>
+                    <th class="text-center">RE</th>
+                    <th class="text-center">Workzone</th>
+                    <th class="text-center">Identificador Auxiliar</th>
+                    <th class="text-center"> </th>
+                    <th class="text-center"> </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var employee in Model)
+            {
+                    <tr class="text-center">
+                        <td>@employee.Nome</td>
+                        <td>@employee.RE</td>
+                        <td>@employee.idWorkzone</td>
+                        <td>@employee.IdentificadorAuxiliar</td>
+                        <td> <button class="btn btn-warning edit" data-id="@employee.idfuncionario" onclick="updateEmployee()">Editar</button> </td>
+                        <td><button class="btn btn-default remove" data-id="@employee.idfuncionario">Excluir</button></td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <!-- Button trigger modal -->
+        <button id="newFunc" type="button" class="btn btn-primary btn-group-sm pull-right" data-toggle="modal" data-target="#myModal" onclick="openModal()">
+            Cadastrar Funcionário
+        </button>
+    </div>
+    <div>
+
+    </div>
+    <div id="modal">
+
+    </div>
+
+    <div id="modalEdit">
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAvaliacaoFuncXworkzoneXatividade">
+      <EntityTypeMapping TypeName="Model.tblAvaliacaoFuncXworkzoneXatividade">
+        <MappingFragment StoreEntitySet="tblAvaliacaoFuncXworkzoneXatividade">
+          <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
+          <ScalarProperty Name="idWorkzoneAtividade" ColumnName="idWorkzoneAtividade" />
+          <ScalarProperty Name="idPerfilAtivItem" ColumnName="idPerfilAtivItem" />
+          <ScalarProperty Name="FuncResponsavel" ColumnName="FuncResponsavel" />
+          <ScalarProperty Name="FuncAuxiliar" ColumnName="FuncAuxiliar" />
+          <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFuncionarios">
+      <EntityTypeMapping TypeName="Model.tblFuncionarios">
+        <MappingFragment StoreEntitySet="tblFuncionarios">
+          <ScalarProperty Name="idfuncionario" ColumnName="idfuncionario" />
+          <ScalarProperty Name="RE" ColumnName="RE" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+          <ScalarProperty Name="JustificativaNaoAtivo" ColumnName="JustificativaNaoAtivo" />
+          <ScalarProperty Name="idBu_atual" ColumnName="idBu_atual" />
+          <ScalarProperty Name="idBu_Origem" ColumnName="idBu_Origem" />
+          <ScalarProperty Name="idWorkzone" ColumnName="idWorkzone" />
+          <ScalarProperty Name="IdentificadorAuxiliar" ColumnName="IdentificadorAuxiliar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGrupoTreinamentos">
+      <EntityTypeMapping TypeName="Model.tblGrupoTreinamentos">
+        <MappingFragment StoreEntitySet="tblGrupoTreinamentos">
+          <ScalarProperty Name="IdTreinamentoPai" ColumnName="IdTreinamentoPai" />
+          <ScalarProperty Name="IdTreinamentoFilho" ColumnName="IdTreinamentoFilho" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPerfilAtividade">
+      <EntityTypeMapping TypeName="Model.tblPerfilAtividade">
+        <MappingFragment StoreEntitySet="tblPerfilAtividade">
+          <ScalarProperty Name="idPerfilAtividade" ColumnName="idPerfilAtividade" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="UsuarioCriacao" ColumnName="UsuarioCriacao" />
+          <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPerfilAtividadeXPerfilAtItem">
+      <EntityTypeMapping TypeName="Model.tblPerfilAtividadeXPerfilAtItem">
+        <MappingFragment StoreEntitySet="tblPerfilAtividadeXPerfilAtItem">
+          <ScalarProperty Name="idPerfilAtividade" ColumnName="idPerfilAtividade" />
+          <ScalarProperty Name="idPerfilAtivItem" ColumnName="idPerfilAtivItem" />
+          <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPerfilAtivItem">
+      <EntityTypeMapping TypeName="Model.tblPerfilAtivItem">
+        <MappingFragment StoreEntitySet="tblPerfilAtivItem">
+          <ScalarProperty Name="idPerfilAtivItem" ColumnName="idPerfilAtivItem" />
+          <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="LogarTransicao" ColumnName="LogarTransicao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPerfilItem">
+      <EntityTypeMapping TypeName="Model.tblPerfilItem">
+        <MappingFragment StoreEntitySet="tblPerfilItem">
+          <ScalarProperty Name="IdPerfilItem" ColumnName="IdPerfilItem" />
+          <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPerfilTreinamento">
+      <EntityTypeMapping TypeName="Model.tblPerfilTreinamento">
+        <MappingFragment StoreEntitySet="tblPerfilTreinamento">
+          <ScalarProperty Name="IdPerfilTreinamento" ColumnName="IdPerfilTreinamento" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="UsuarioCriacao" ColumnName="UsuarioCriacao" />
+          <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPerfilTreinamentoxPerfilItem">
+      <EntityTypeMapping TypeName="Model.tblPerfilTreinamentoxPerfilItem">
+        <MappingFragment StoreEntitySet="tblPerfilTreinamentoxPerfilItem">
+          <ScalarProperty Name="IdPerfilTreinamento" ColumnName="IdPerfilTreinamento" />
+          <ScalarProperty Name="IdPerfilItem" ColumnName="IdPerfilItem" />
+          <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStatusFuncionarioXworkzoneXtreinamento">
+      <EntityTypeMapping TypeName="Model.tblStatusFuncionarioXworkzoneXtreinamento">
+        <MappingFragment StoreEntitySet="tblStatusFuncionarioXworkzoneXtreinamento">
+          <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
+          <ScalarProperty Name="idTreinamento" ColumnName="idTreinamento" />
+          <ScalarProperty Name="idPerfilItem" ColumnName="idPerfilItem" />
+          <ScalarProperty Name="idStatusTreinamento" ColumnName="idStatusTreinamento" />
+          <ScalarProperty Name="idWorkzone" ColumnName="idWorkzone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTipoTreinamento">
+      <EntityTypeMapping TypeName="Model.tblTipoTreinamento">
+        <MappingFragment StoreEntitySet="tblTipoTreinamento">
+          <ScalarProperty Name="IdTipoTreinamento" ColumnName="IdTipoTreinamento" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+          <ScalarProperty Name="UsuarioCriacao" ColumnName="UsuarioCriacao" />
+          <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+          <ScalarProperty Name="UsuarioDesativacao" ColumnName="UsuarioDesativacao" />
+          <ScalarProperty Name="DataDesativacao" ColumnName="DataDesativacao" />
+          <ScalarProperty Name="TipoAtivo" ColumnName="TipoAtivo" />
+          <ScalarProperty Name="idPerfilTreinamento" ColumnName="idPerfilTreinamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTreinamento">
+      <EntityTypeMapping TypeName="Model.tblTreinamento">
+        <MappingFragment StoreEntitySet="tblTreinamento">
+          <ScalarProperty Name="IdTreinamento" ColumnName="IdTreinamento" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="UsuarioCriacao" ColumnName="UsuarioCriacao" />
+          <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+          <ScalarProperty Name="IndicaGrupoDeTreinamentos" ColumnName="IndicaGrupoDeTreinamentos" />
+          <ScalarProperty Name="idTipoTreinamento" ColumnName="idTipoTreinamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTreinamentoStatus">
+      <EntityTypeMapping TypeName="Model.tblTreinamentoStatus">
+        <MappingFragment StoreEntitySet="tblTreinamentoStatus">
+          <ScalarProperty Name="idStatusTreinamento" ColumnName="idStatusTreinamento" />
+          <ScalarProperty Name="Cor" ColumnName="Cor" />
+          <ScalarProperty Name="Denominacao" ColumnName="Denominacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblWorkzone">
+      <EntityTypeMapping TypeName="Model.tblWorkzone">
+        <MappingFragment StoreEntitySet="tblWorkzone">
+          <ScalarProperty Name="IdWorkzone" ColumnName="IdWorkzone" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="UsuarioCriacao" ColumnName="UsuarioCriacao" />
+          <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+          <ScalarProperty Name="UsuarioDesativacao" ColumnName="UsuarioDesativacao" />
+          <ScalarProperty Name="DataDesativacao" ColumnName="DataDesativacao" />
+          <ScalarProperty Name="IdCentroDeCusto" ColumnName="IdCentroDeCusto" />
+          <ScalarProperty Name="PessoasNecessarias" ColumnName="PessoasNecessarias" />
+          <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+          <ScalarProperty Name="UsuarioAlteracao" ColumnName="UsuarioAlteracao" />
+          <ScalarProperty Name="DadosUltimaAlteracao" ColumnName="DadosUltimaAlteracao" />
+          <ScalarProperty Name="MotivoUltimaAlteracao" ColumnName="MotivoUltimaAlteracao" />
+          <ScalarProperty Name="FlagAtivo" ColumnName="FlagAtivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblWorkzoneXAtividades">
+      <EntityTypeMapping TypeName="Model.tblWorkzoneXAtividades">
+        <MappingFragment StoreEntitySet="tblWorkzoneXAtividades">
+          <ScalarProperty Name="idWorkzoneAtividade" ColumnName="idWorkzoneAtividade" />
+          <ScalarProperty Name="idWorkzone" ColumnName="idWorkzone" />
+          <ScalarProperty Name="idAtividade" ColumnName="idAtividade" />
+          <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAtividade">
+      <EntityTypeMapping TypeName="Model.tblAtividade">
+        <MappingFragment StoreEntitySet="tblAtividade">
+          <ScalarProperty Name="idAtividade" ColumnName="idAtividade" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="UsuarioCriacao" ColumnName="UsuarioCriacao" />
+          <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+          <ScalarProperty Name="IndicaGrupoDeAtividades" ColumnName="IndicaGrupoDeAtividades" />
+          <ScalarProperty Name="idPerfilAtividade" ColumnName="idPerfilAtividade" />
+          <ScalarProperty Name="idTipoEquipamentoGSA" ColumnName="idTipoEquipamentoGSA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAtividadeXTreinamentos">
+      <EntityTypeMapping TypeName="Model.tblAtividadeXTreinamentos">
+        <MappingFragment StoreEntitySet="tblAtividadeXTreinamentos">
+          <ScalarProperty Name="idAtividade" ColumnName="idAtividade" />
+          <ScalarProperty Name="idTreinamento" ColumnName="idTreinamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AtividadesDiario" TypeName="Model.AtividadesDiario" StoreEntitySet="AtividadesDiario">
+      <EndProperty Name="tblFuncionarios">
+        <ScalarProperty Name="idfuncionario" ColumnName="IdFuncionario" />
+      </EndProperty>
+      <EndProperty Name="tblWorkzoneXAtividades">
+        <ScalarProperty Name="idWorkzoneAtividade" ColumnName="IdWorkzoneAtividade" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
