@@ -1,0 +1,114 @@
+﻿@model Mercedes_Matriz_de_Conhecimento.tblTreinamento
+
+@using System.Collections;
+
+<script type="text/javascript">
+
+
+</script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+
+    @*<h3 class=""></h3>*@
+    <h4>Cadastrar Workzone</h4>
+
+    <div class="row">
+
+        @using (Html.BeginForm("Edit", "Workzone", new { id = Model.IdTreinamento }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+
+            <div class="col-md-5">
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Nome, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Sigla, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(m => m.Sigla, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Descricao, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.IndicaGrupoDeTreinamentos, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-2">
+                        @Html.CheckBoxFor(m => m.IndicaGrupoDeTreinamentos, new { @class = "" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PessoasNecessarias, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.PessoasNecessarias, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MotivoUltimaAlteracao, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(m => m.MotivoUltimaAlteracao, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-11">
+                        <button type="submit" class="btn btn-success pull-right">Salvar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Funcionários Existentes</div>
+                <div class="panel-body pre-scrollable">
+                    <div class="list-group">
+                        @foreach (var func in (IEnumerable<tblFuncionarios>)ViewData["Funcionarios"])
+                        {
+                            <a type="button" class="list-group-item" href="@Url.Action("Push", "Workzone", new { id = @func.idfuncionario, idwz = Model.IdWorkzone})">@func.Nome</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-1 vertical-align">
+                <div class="col-md-6">
+                    <a href="@Url.Action("Push", "Workzone")"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                </div>
+                <a href="@Url.Action("Pop", "Workzone")"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            </div>*@
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Funcionários Adicionados</div>
+                <div class="panel-body pre-scrollable">
+                    <div class="list-group">
+                        @foreach (var funcAdd in Model.tblFuncionarios)
+                        {
+                            <a type="button" class="list-group-item" href="@Url.Action("Pop", "Workzone", new { id = @funcAdd.idfuncionario, idwz = Model.IdWorkzone})">@funcAdd.Nome</a>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <a type="button" class="btn btn-default" href="@Url.Action("Index", "Workzone")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
+    </div>
+</body>
+
+</html>

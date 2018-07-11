@@ -19,7 +19,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         {
             this.tblAvaliacaoFuncXworkzoneXatividade = new HashSet<tblAvaliacaoFuncXworkzoneXatividade>();
             this.tblAvaliacaoFuncXworkzoneXatividadeHist = new HashSet<tblAvaliacaoFuncXworkzoneXatividadeHist>();
-            this.tblFuncionarios = new HashSet<tblFuncionarios>();
+            this.AtividadesDiario = new HashSet<AtividadesDiario>();
         }
     
         public int idWorkzoneAtividade { get; set; }
@@ -27,12 +27,13 @@ namespace Mercedes_Matriz_de_Conhecimento
         public Nullable<int> idAtividade { get; set; }
         public Nullable<int> Ordem { get; set; }
     
+        public virtual tblAtividades tblAtividades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAvaliacaoFuncXworkzoneXatividade> tblAvaliacaoFuncXworkzoneXatividade { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAvaliacaoFuncXworkzoneXatividadeHist> tblAvaliacaoFuncXworkzoneXatividadeHist { get; set; }
         public virtual tblWorkzone tblWorkzone { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblFuncionarios> tblFuncionarios { get; set; }
+        public virtual ICollection<AtividadesDiario> AtividadesDiario { get; set; }
     }
 }

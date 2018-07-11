@@ -11,12 +11,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
     public class EmployeeService : IEmployeeService
     {
 
-        public DBConnection _db = new DBConnection();
+        public DbConnection _db = new DbConnection();
 
 
         public EmployeeService()
         {
-            //_db = new DBConnection();
         }
 
 
@@ -52,8 +51,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
         public tblFuncionarios CreateEmployee(tblFuncionarios Employee)
         {
-
-           
             _db.tblFuncionarios.Add(Employee);
 
             _db.SaveChanges();
@@ -85,15 +82,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
         public tblFuncionarios UpdateEmployee(tblFuncionarios Employee)
         {
+            var eup = _db.tblFuncionarios.Find(Employee.idfuncionario);
+            eup.Nome = Employee.Nome;
+            eup.RE = Employee.RE;
+            eup.idBu_atual = Employee.idBu_atual;
+            eup.idBu_Origem = Employee.idBu_Origem;
+            eup.IdentificadorAuxiliar = Employee.IdentificadorAuxiliar;
+            eup.Ativo = Employee.Ativo;
+            eup.idWorkzone = Employee.idWorkzone;
+            eup.JustificativaNaoAtivo = Employee.JustificativaNaoAtivo;
 
-
-
-            var query = from f in _db.tblFuncionarios
-                        orderby f.Nome
-                        select f;
-
-
-            _db.Entry(Employee).State = EntityState.Modified;
+            _db.Entry(eup).State = EntityState.Modified;
             _db.SaveChanges();
 
 
@@ -107,10 +106,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                         orderby f.Nome
                         select f;
 
-            if (query != null)
-                return false;
+            if (query.Count() == 1 && query.FirstOrDefault().idfuncionario != Employee.idfuncionario)
+                return true;
 
-            return true;
+            return false;
         }
+
     }
 }

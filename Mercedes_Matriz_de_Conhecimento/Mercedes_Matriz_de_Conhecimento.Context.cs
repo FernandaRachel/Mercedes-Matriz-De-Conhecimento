@@ -13,10 +13,10 @@ namespace Mercedes_Matriz_de_Conhecimento
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBConnection : DbContext
+    public partial class DbConnection : DbContext
     {
-        public DBConnection()
-            : base("name=DBConnection")
+        public DbConnection()
+            : base("name=DbConnection")
         {
         }
     
@@ -26,6 +26,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         }
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<tblAtividades> tblAtividades { get; set; }
         public virtual DbSet<tblAvaliacaoFuncXworkzoneXatividade> tblAvaliacaoFuncXworkzoneXatividade { get; set; }
         public virtual DbSet<tblAvaliacaoFuncXworkzoneXatividadeHist> tblAvaliacaoFuncXworkzoneXatividadeHist { get; set; }
         public virtual DbSet<tblFuncionarios> tblFuncionarios { get; set; }
@@ -42,7 +43,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         public virtual DbSet<tblTreinamentoStatus> tblTreinamentoStatus { get; set; }
         public virtual DbSet<tblWorkzone> tblWorkzone { get; set; }
         public virtual DbSet<tblWorkzoneXAtividades> tblWorkzoneXAtividades { get; set; }
-        public virtual DbSet<tblAtividade> tblAtividade { get; set; }
+        public virtual DbSet<AtividadesDiario> AtividadesDiario { get; set; }
         public virtual DbSet<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
     }
 }

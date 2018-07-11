@@ -21,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("Entities", throwIfV1Schema: false)
+            : base("DbConnection", throwIfV1Schema: false)
         {
         }
 

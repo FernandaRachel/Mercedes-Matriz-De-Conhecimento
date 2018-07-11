@@ -14,12 +14,6 @@ namespace Mercedes_Matriz_de_Conhecimento
     
     public partial class tblTipoTreinamento
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblTipoTreinamento()
-        {
-            this.tblTreinamento = new HashSet<tblTreinamento>();
-        }
-    
         public int IdTipoTreinamento { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
@@ -32,7 +26,5 @@ namespace Mercedes_Matriz_de_Conhecimento
         public Nullable<int> idPerfilTreinamento { get; set; }
     
         public virtual tblPerfilTreinamento tblPerfilTreinamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblTreinamento> tblTreinamento { get; set; }
     }
 }

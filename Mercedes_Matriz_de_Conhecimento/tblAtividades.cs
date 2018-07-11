@@ -12,8 +12,15 @@ namespace Mercedes_Matriz_de_Conhecimento
     using System;
     using System.Collections.Generic;
     
-    public partial class tblAtividade
+    public partial class tblAtividades
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblAtividades()
+        {
+            this.tblAtividadeXTreinamentos = new HashSet<tblAtividadeXTreinamentos>();
+            this.tblWorkzoneXAtividades = new HashSet<tblWorkzoneXAtividades>();
+        }
+    
         public int idAtividade { get; set; }
         public string Nome { get; set; }
         public string Sigla { get; set; }
@@ -25,5 +32,9 @@ namespace Mercedes_Matriz_de_Conhecimento
         public Nullable<int> idTipoEquipamentoGSA { get; set; }
     
         public virtual tblPerfilAtividade tblPerfilAtividade { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblWorkzoneXAtividades> tblWorkzoneXAtividades { get; set; }
     }
 }

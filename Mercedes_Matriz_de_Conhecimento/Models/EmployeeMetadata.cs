@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Mercedes_Matriz_de_Conhecimento.Models
 {
-    public class EmployeeModel
+    public class EmployeeMetadata
     {
         public string idFuncionario { get; set; }
 
@@ -25,7 +25,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 
         public int idBU_Origem { get; set; }
 
-        public WorkzoneModel idWorkzone { get; set; }
+        public WorkzoneMetadata idWorkzone { get; set; }
 
         [MaxLength(100)]
         public string identificadorAuxiliar { get; set; }

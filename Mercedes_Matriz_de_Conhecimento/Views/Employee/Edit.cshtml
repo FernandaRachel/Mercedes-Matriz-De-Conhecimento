@@ -1,0 +1,65 @@
+﻿@model Mercedes_Matriz_de_Conhecimento.tblFuncionarios
+
+@using System.Collections;
+
+<script type="text/javascript">
+
+</script>
+
+<h4>Editar Funcionário</h4>
+
+@using (Html.BeginForm("Edit","Employee",new { id = Model.idfuncionario}, FormMethod.Post, new { @class= "form-horizontal" }))
+{
+    <div class="row">
+        <div class="col-md-5">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Nome, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.RE, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.RE, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.idBu_atual, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.idBu_atual, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.idBu_Origem, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.idBu_Origem, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.IdentificadorAuxiliar, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.IdentificadorAuxiliar, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Workzone", new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzone"], "IdWorkzone", "Nome"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">
+                    @*<a class="btn btn-success pull-right" href="@Url.Action("Edit", "Employee", new { employee = @Model, id = Model.idfuncionario})">Salvar</a>*@
+                    
+                    <button type="submit" class="btn btn-success pull-right">Salvar2</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <a type="button" class="btn btn-default" href="@Url.Action("Index", "Employee")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
+    </div>
+}

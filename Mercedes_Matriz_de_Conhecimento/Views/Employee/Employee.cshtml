@@ -2,32 +2,26 @@
 
 @using System.Collections;
 
-<script type="text/javascript">
+<!DOCTYPE html>
 
-    function closeModal() {
-        $('#myModal').modal({
-            show: 'false'
-        });
-    }
-</script>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h4>Cadastrar Funcionário</h4>
 
-<h2>@ViewBag.Title.</h2>
-<!-- Modal -->
-<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Cadastrar Funcionário</h4>
-            </div>
-            @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    <div class="row">
+        @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                <div class="modal-body">
+            <div class="col-md-5">
                     @Html.ValidationSummary("", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(m => m.Nome, new { @class = "col-md-3 control-label" })
                         <div class="col-md-9">
                             @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Nome)
                         </div>
                     </div>
                     <div class="form-group">
@@ -57,16 +51,21 @@
                     <div class="form-group">
                         @Html.Label("Workzone", new { @class = "col-md-3 control-label" })
                         <div class="col-md-9">
-                            @Html.DropDownList("idWorkzone", new SelectList((IEnumerable)ViewData["Workzone"], "IdWorkzone", "Nome"), "Escolha a Workzone", new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzone"], "idWorkzone", "Nome"), "Escolha a Workzone", new { @class = "form-control" })
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModal()">Fechar</button>
-                    <button type="submit" class="btn btn-success">Criar</button>
-                </div>
-            }
+                    <div class="form-group">
+                        <div class="col-md-11">
+                            <button type="submit" class="btn btn-success btn-sm pull-right">Criar</button>
+                        </div>
+                    </div>
+            </div>
 
-        </div>
+        }
+
     </div>
-</div>
+</body>
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

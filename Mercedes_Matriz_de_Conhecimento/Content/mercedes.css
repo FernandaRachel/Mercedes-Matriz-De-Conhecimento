@@ -1,4 +1,18 @@
-﻿.logo-mercedes {
+﻿
+.body-container {
+    margin-top: 6vh;
+}
+
+.vertical-align {
+    vertical-align: middle;
+    padding-top: 11vw;
+}
+
+.create-container {
+    margin: 0 20vw;
+}
+
+.logo-mercedes {
     width: 10vh;
 }
 

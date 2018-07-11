@@ -11,7 +11,8 @@ namespace Mercedes_Matriz_de_Conhecimento
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblWorkzone
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,19 +24,43 @@ namespace Mercedes_Matriz_de_Conhecimento
         }
     
         public int IdWorkzone { get; set; }
+        [Required]
+        [MaxLength(100)]
+        [Display(Name = "Nome")]
         public string Nome { get; set; }
+
         public string Descricao { get; set; }
         public string UsuarioCriacao { get; set; }
+
         public System.DateTime DataCriacao { get; set; }
+
         public string UsuarioDesativacao { get; set; }
+
+        [Display(Name = "Data de Alteração")]
         public string DataDesativacao { get; set; }
+
+        [Display(Name = "Centro de Custo")]
         public Nullable<int> IdCentroDeCusto { get; set; }
+
+        [Required]
+        [Display(Name = "Pessoas Necessárias")]
         public int PessoasNecessarias { get; set; }
         public Nullable<System.DateTime> DataAlteracao { get; set; }
+
+        [MaxLength(20)]
+        [Display(Name = "Usuário Alteração")]
         public string UsuarioAlteracao { get; set; }
+
+        [MaxLength(400)]
+        [Display(Name = "Dados Ultima Alteração")]
         public string DadosUltimaAlteracao { get; set; }
+
+        [MaxLength(400)]
+        [Display(Name = "Motivo Alteração")]
         public string MotivoUltimaAlteracao { get; set; }
-        public long FlagAtivo { get; set; }
+
+        [Display(Name = "Ativo")]
+        public bool FlagAtivo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblFuncionarios> tblFuncionarios { get; set; }

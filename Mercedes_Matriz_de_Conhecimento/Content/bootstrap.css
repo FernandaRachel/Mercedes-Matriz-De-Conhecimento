@@ -1633,11 +1633,11 @@ table th[class*="col-"] {
   }
 }
 
-fieldset {
+/*fieldset {
   padding: 0;
   margin: 0;
   border: 0;
-}
+}*/
 
 legend {
   display: block;

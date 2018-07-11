@@ -17,7 +17,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblPerfilAtividade()
         {
-            this.tblAtividade = new HashSet<tblAtividade>();
+            this.tblAtividades = new HashSet<tblAtividades>();
             this.tblPerfilAtividadeXPerfilAtItem = new HashSet<tblPerfilAtividadeXPerfilAtItem>();
         }
     
@@ -27,7 +27,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         public System.DateTime DataCriacao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblAtividade> tblAtividade { get; set; }
+        public virtual ICollection<tblAtividades> tblAtividades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPerfilAtividadeXPerfilAtItem> tblPerfilAtividadeXPerfilAtItem { get; set; }
     }

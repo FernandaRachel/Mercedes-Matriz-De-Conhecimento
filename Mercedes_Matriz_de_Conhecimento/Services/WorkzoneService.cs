@@ -3,6 +3,7 @@ using Mercedes_Matriz_de_Conhecimento.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -11,7 +12,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
     public class WorkzoneService : IWorkzoneService
     {
 
-        private DBConnection _db = new DBConnection();
+        private DbConnection _db = new DbConnection();
 
 
         public WorkzoneService()
@@ -22,14 +23,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             IEnumerable<tblWorkzone> workzone;
 
-           
-                var query = from f in _db.tblWorkzone
-                            orderby f.Nome
-                            select f;
 
-                workzone = query.AsEnumerable();
+            var query = from f in _db.tblWorkzone
+                        orderby f.Nome
+                        select f;
 
-                return workzone;
+            workzone = query.AsEnumerable();
+
+            return workzone;
         }
 
         public tblWorkzone GetWorkzoneById(int id)
@@ -65,16 +66,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
         public tblWorkzone UpdateWorkzone(tblWorkzone Workzone)
         {
+            var wzToUpdate = _db.tblWorkzone.Find(Workzone.IdWorkzone);
+            wzToUpdate.Nome = Workzone.Nome;
+            wzToUpdate.MotivoUltimaAlteracao = Workzone.MotivoUltimaAlteracao;
+            wzToUpdate.PessoasNecessarias = Workzone.PessoasNecessarias;
+            wzToUpdate.UsuarioAlteracao = Workzone.UsuarioAlteracao;
+            wzToUpdate.UsuarioDesativacao = Workzone.UsuarioDesativacao;
+            wzToUpdate.MotivoUltimaAlteracao = Workzone.MotivoUltimaAlteracao;
 
-
-            var query = from f in _db.tblWorkzone
-                        orderby f.Nome
-                        select f;
-
-
-            _db.Entry(Workzone).State = EntityState.Modified;
+            _db.Entry(wzToUpdate).State = EntityState.Modified;
             _db.SaveChanges();
-
 
             return Workzone;
         }
@@ -97,17 +98,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Workzone;
         }
 
-        public long checkIfWorkzoneAlreadyExits(tblWorkzone workzone)
+        public bool checkIfWorkzoneAlreadyExits(tblWorkzone workzone)
         {
             var query = from f in _db.tblWorkzone
                         where f.Nome == workzone.Nome
                         orderby f.Nome
                         select f;
 
-            if (query != null)
-                return 1;
+            if (query.Count() == 1 && query.FirstOrDefault().IdWorkzone != workzone.IdWorkzone)
+                return true;
 
-            return 0;
+            return false;
         }
     }
+
 }

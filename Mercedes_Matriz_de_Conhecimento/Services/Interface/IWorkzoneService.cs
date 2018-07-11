@@ -19,7 +19,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         tblWorkzone DeleteWorkzone(int id);
 
-        long checkIfWorkzoneAlreadyExits(tblWorkzone Workzone);
+        bool checkIfWorkzoneAlreadyExits(tblWorkzone Workzone);
 
 
     }

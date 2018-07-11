@@ -35,7 +35,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        public ActionResult RedirectToCreate()
+        public ActionResult Create()
         {
             IEnumerable<tblWorkzone> workzone;
 
@@ -43,7 +43,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             ViewData["Workzone"] = workzone;
 
-            return PartialView("Employee");
+            return View("Employee");
         }
 
         // GET: Employee/Details/5
@@ -61,42 +61,59 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             if (employee == null)
                 return HttpNotFound("O Funcionário desejado não existe");
 
-            return PartialView("Details");
+            return View("Edit", employee);
         }
+
 
         // GET: Employee/Create
         [HttpPost]
         public ActionResult Create(tblFuncionarios employee)
         {
             var exits = _employee.checkIfUserAlreadyExits(employee);
+            employee.Ativo = true;
 
             if (ModelState.IsValid)
             {
                 if (!exits)
                 {
-                    employee.Ativo = true;
 
                     _employee.CreateEmployee(employee);
                     return RedirectToAction("Index");
-
                 }
-
             }
 
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Objeto inválido");
-
+            return View(employee);
         }
 
 
         // GET: Employee/Edit/5
-        public ActionResult Edit(int id, tblFuncionarios employee)
+        [HttpPost]
+        public ActionResult Edit(tblFuncionarios employee, int id)
         {
+            employee.idfuncionario = id;
+            var exits = _employee.checkIfUserAlreadyExits(employee);
+            employee.Ativo = true;
 
-            _employee.UpdateEmployee(employee);
+            if (ModelState.IsValid)
+            {
+                if (!exits)
+                {
 
-            return RedirectToAction("Index");
+                    _employee.UpdateEmployee(employee);
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View(employee);
         }
 
+        public ActionResult ConfirmEmployeeDelete(int id)
+        {
+            var workzoneToDelete = _workzone.GetWorkzoneById(id);
+
+            return PartialView("ConfirmDelete", workzoneToDelete);
+        }
 
         // GET: Employee/Delete/5
         public ActionResult Delete(int id)

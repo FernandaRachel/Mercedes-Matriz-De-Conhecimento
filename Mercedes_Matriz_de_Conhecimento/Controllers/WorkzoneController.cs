@@ -17,10 +17,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         private WorkzoneService _workzone;
+        private EmployeeService _employee;
 
         public WorkzoneController()
         {
             _workzone = new WorkzoneService();
+            _employee = new EmployeeService();
+
         }
 
         // GET: workzone
@@ -33,7 +36,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        public ActionResult RedirectToCreate()
+        public ActionResult Create()
         {
             IEnumerable<tblWorkzone> workzone;
 
@@ -41,34 +44,66 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             ViewData["Workzone"] = workzone;
 
-            return PartialView("workzone");
+            return View("workzone");
         }
 
-        // GET: workzone/Details/5
-        //public ActionResult Details(int id)
-        //{
+        //GET: workzone/Details/5
+        public ActionResult Details(int id)
+        {
 
-        //    IEnumerable<tblWorkzone> workzone;
+            tblWorkzone workzone;
+            workzone = _workzone.GetWorkzoneById(id);
 
-        //    workzone = _workzone.GetworkzoneById(id);
+            IEnumerable<tblFuncionarios> employee;
+            employee = _employee.GetEmployees();
+            ViewData["Funcionarios"] = employee;
 
-        //    if (workzone == null)
-        //        return HttpNotFound("O Funcionário desejado não existe");
+            if (workzone == null)
+                return View("Index");
 
-        //    return View(workzone);
-        //}
+            return View("Edit", workzone);
+        }
 
+        public ActionResult Push(int id, int idwz)
+        {
+            var employe = _employee.GetEmployeeById(id);
+            employe.idWorkzone = idwz;
+
+            _employee.UpdateEmployee(employe);
+
+            var workzone = _workzone.GetWorkzoneById(idwz);
+
+
+            return RedirectToAction("Details", new { id = idwz});
+        }
+
+        public ActionResult Pop(int id, int idwz)
+        {
+            var employe = _employee.GetEmployeeById(id);
+            employe.idWorkzone = null;
+
+            _employee.UpdateEmployee(employe);
+
+            var workzone = _workzone.GetWorkzoneById(idwz);
+
+
+            return RedirectToAction("Details", new { id = idwz });
+        }
+
+    
         // GET: workzone/Create
         [HttpPost]
         public ActionResult Create(tblWorkzone workzone)
         {
             var exits = _workzone.checkIfWorkzoneAlreadyExits(workzone);
+            workzone.UsuarioCriacao = "Teste Sem Seg";
+            workzone.DataCriacao = DateTime.Now;
 
             if (ModelState.IsValid)
             {
-                if (exits == 1)
+                if (!exits)
                 {
-                    workzone.FlagAtivo = 1;
+                    workzone.FlagAtivo = true;
 
                     _workzone.CreateWorkzone(workzone);
                     return RedirectToAction("Index");
@@ -76,19 +111,31 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
-
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Objeto inválido");
-
+            return View("workzone");
         }
 
 
         // GET: workzone/Edit/5
-        public ActionResult Edit(int id, tblWorkzone workzone)
+        [HttpPost]
+        public ActionResult Edit(tblWorkzone workzone, int id)
         {
+            workzone.IdWorkzone = id;
+            var exits = _workzone.checkIfWorkzoneAlreadyExits(workzone);
 
-            _workzone.UpdateWorkzone(workzone);
+            workzone.UsuarioAlteracao = "Usuário Teste Edit";
+            workzone.DataAlteracao = DateTime.Now;
 
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (!exits)
+                {
+                    _workzone.UpdateWorkzone(workzone);
+
+                    return RedirectToAction("Index");
+                }
+
+            }
+            return View(workzone);
         }
 
 
