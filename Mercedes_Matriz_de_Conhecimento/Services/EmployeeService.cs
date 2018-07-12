@@ -14,12 +14,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         public DbConnection _db = new DbConnection();
 
 
-        public EmployeeService()
-        {
-        }
-
-
-
         public IEnumerable<tblFuncionarios> GetEmployees()
         {
 

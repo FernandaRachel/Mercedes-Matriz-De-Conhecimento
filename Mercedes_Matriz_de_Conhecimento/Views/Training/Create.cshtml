@@ -14,13 +14,12 @@
 </head>
 <body>
 
-    @*<h3 class=""></h3>*@
-    <h4>Editar Treinamento</h4>
+    <h4 class="">Criar Treinamento</h4>
 
     <div class="row">
 
-        @using (Html.BeginForm("Edit", "Workzone", new { id = Model.IdTreinamento }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
+        @using (Html.BeginForm("Create", "Workzone", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
 
             <div class="col-md-5">
 
@@ -64,12 +63,7 @@
             </div>
 
         }
-    </div>
 
-
-    <div class="row">
-        <a type="button" class="btn btn-default" href="@Url.Action("Index", "Training")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
     </div>
 </body>
-
 </html>

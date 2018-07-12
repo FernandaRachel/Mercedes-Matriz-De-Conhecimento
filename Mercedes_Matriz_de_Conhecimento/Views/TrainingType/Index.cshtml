@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Mercedes_Matriz_de_Conhecimento.tblTreinamento>
+﻿@model IEnumerable<Mercedes_Matriz_de_Conhecimento.tblTipoTreinamento>
 
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
                     <th class="text-center">Nome</th>
                     <th class="text-center">Sigla</th>
                     <th class="text-center">Descrição</th>
-                    <th class="text-center">Tipo de Treinamento</th>
+                    <th class="text-center">Perfil de Treinamento</th>
                     <th class="text-center"></th>
                 </tr>
             </thead>
@@ -34,11 +34,11 @@
                         <td>@training.Nome</td>
                         <td>@training.Sigla</td>
                         <td>@training.Descricao</td>
-                        <td>@training.idTipoTreinamento</td> 
+                        <td>@training.tblPerfilTreinamento</td> 
                         <td>
                             <div class="btn-group" role="group">
-                                <a class="btn btn-warning btn-group-sm" href="@Url.Action("Details","Training",new { id = @training.IdTreinamento })">Editar</a>
-                                <a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","Training",  new { id = @training.IdTreinamento})">Excluir</a>
+                                <a class="btn btn-warning btn-group-sm" href="@Url.Action("Details","TrainingType",new { id = @training.IdTipoTreinamento })">Editar</a>
+                                <a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","TrainingType",  new { id = @training.IdTipoTreinamento})">Excluir</a>
                             </div>
                         </td>
                     </tr>
@@ -46,8 +46,8 @@
             </tbody>
         </table>
         <hr />
-        <a type="button" class="btn btn-primary btn-group-sm pull-right" href="@Url.Action("Create", "Training")">
-            Cadastrar Treinamento
+        <a type="button" class="btn btn-primary btn-group-sm pull-right" href="@Url.Action("Create", "TrainingType")">
+            Cadastrar Tipo de Treinamento
         </a>
     </div>
 
