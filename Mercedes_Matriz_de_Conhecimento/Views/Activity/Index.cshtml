@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Mercedes_Matriz_de_Conhecimento.tblAtividades>
+
+
+<!DOCTYPE html>
+
+<script type="text/javascript">
+
+</script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2 class="text-center">Atividades</h2>
+    <div class="container table-place">
+
+        <table class="table table-striped">
+            <thead class="text-center">
+                <tr class="table-dark">
+                    <th class="text-center">Nome</th>
+                    <th class="text-center">Sigla</th>
+                    <th class="text-center">Descrição</th>
+                    <th class="text-center">Tipo Equipamento GSA</th>
+                    <th class="text-center">Perfil Atividade</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var activity in Model)
+                {
+                    <tr class="text-center">
+                        <td>@activity.Nome</td>
+                        <td>@activity.Sigla</td>
+                        <td>@activity.Descricao</td>
+                        <td>@activity.idTipoEquipamentoGSA</td>
+                        <td>@activity.tblPerfilAtividade.nome</td> 
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-warning btn-group-sm" href="@Url.Action("Details","Activity",new { id = @activity.idAtividade })">Editar</a>
+                                <a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","Activity",  new { id = @activity.idAtividade})">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <a type="button" class="btn btn-primary btn-group-sm pull-right" href="@Url.Action("Create", "Activity")">
+            Cadastrar Atividade
+        </a>
+    </div>
+
+</body>
+</html>

@@ -26,15 +26,15 @@
             </thead>
             <tbody>
 
-                @foreach (var training in Model)
+                @foreach (var trainingProfile in Model)
                 {
                     <tr class="text-center">
-                        <td>@training.Nome</td>
-                        <td>@training.UsuarioCriacao</td>
+                        <td>@trainingProfile.Nome</td>
+                        <td>@trainingProfile.UsuarioCriacao</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a class="btn btn-warning btn-group-sm" href="@Url.Action("Details","TrainingProfile",new { id = @training.IdPerfilTreinamento })">Editar</a>
-                                <a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","TrainingProfile",  new { id = @training.IdPerfilTreinamento})">Excluir</a>
+                                <a class="btn btn-warning btn-group-sm" href="@Url.Action("Details","TrainingProfile",new { id = @trainingProfile.IdPerfilTreinamento })">Editar</a>
+                                <a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","TrainingProfile",  new { id = @trainingProfile.IdPerfilTreinamento})">Excluir</a>
                             </div>
                         </td>
                     </tr>
