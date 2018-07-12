@@ -204,6 +204,8 @@
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ProfileItemController.cs" />
+    <Compile Include="Controllers\ActivityProfileItemController.cs" />
     <Compile Include="Controllers\ActivityProfileController.cs" />
     <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\TrainingProfileController.cs" />
@@ -242,7 +244,11 @@
     <Compile Include="Models\TrainingTypeModel.cs" />
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ProfileItemService.cs" />
+    <Compile Include="Services\ActivityProfileItemService.cs" />
     <Compile Include="Services\ActivityProfileService.cs" />
+    <Compile Include="Services\Interface\IProfileItemService.cs" />
+    <Compile Include="Services\Interface\IActivityProfileItemService.cs" />
     <Compile Include="Services\Interface\IActivityProfileService.cs" />
     <Compile Include="Services\Interface\ITrainingProfileService.cs" />
     <Compile Include="Services\Interface\IActivityService.cs" />
@@ -499,6 +505,12 @@
     <Content Include="Views\ActivityProfile\Create.cshtml" />
     <Content Include="Views\ActivityProfile\Edit.cshtml" />
     <Content Include="Views\ActivityProfile\Index.cshtml" />
+    <Content Include="Views\ActivityProfileItem\Create.cshtml" />
+    <Content Include="Views\ActivityProfileItem\Edit.cshtml" />
+    <Content Include="Views\ActivityProfileItem\Index.cshtml" />
+    <Content Include="Views\ProfileItem\Create.cshtml" />
+    <Content Include="Views\ProfileItem\Edit.cshtml" />
+    <Content Include="Views\ProfileItem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
