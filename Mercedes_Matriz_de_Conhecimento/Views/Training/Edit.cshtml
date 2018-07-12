@@ -52,7 +52,14 @@
                 <div class="form-group">
                     @Html.Label("Tipo de Treinamento", new { @class = "col-md-3 control-label" })
                     <div class="col-md-9">
-                        @Html.DropDownListFor(m => m.idTipoTreinamento, new SelectList((IEnumerable)ViewData["TipoTreinamento"], "idTipoTreinamento", "Nome"), "Escolha um Tipo de Treinamento", new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.idTipoTreinamento, new SelectList((IEnumerable)ViewData["TipoTreinamento"], "idTipoTreinamento", "Nome"), "Escolha um Tipo de Treinamento",
+                        new
+                        {
+                            @class = "form-control col-md-9 selectpicker",
+                            onchange = "this.form.submit();",
+                            data_show_subtext = "true",
+                            data_live_search = "true"
+                        })
                     </div>
                 </div>
                 <div class="form-group">

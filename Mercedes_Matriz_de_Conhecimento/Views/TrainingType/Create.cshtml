@@ -51,7 +51,15 @@
                 <div class="form-group">
                     @Html.Label("Perfil de Treinamento", new { @class = "col-md-3 control-label" })
                     <div class="col-md-9">
-                        @Html.DropDownListFor(m => m.idPerfilTreinamento, new SelectList((IEnumerable)ViewData["PerfilTreinamento"], "idPerfilTreinamento", "Nome"), "Escolha um Perfil de Treinamento", new { @class = "form-control" })
+                       
+                        @Html.DropDownListFor(m => m.idPerfilTreinamento, new SelectList((IEnumerable)ViewData["PerfilTreinamento"], "idPerfilTreinamento", "Nome", 0), "Escolha um Perfil de Treinamento",
+                        new
+                        {
+                            @class = "form-control selectpicker",
+                            onchange = "this.form.submit();",
+                            data_show_subtext = "true",
+                            data_live_search = "true"
+                        })
                     </div>
                 </div>
                 <div class="form-group">
@@ -62,8 +70,14 @@
 
             </div>
 
-        }
+}
 
     </div>
+    <div class="row">
+        <a type="button" class="btn btn-default" href="@Url.Action("Index", "TrainingType")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
+    </div>
 </body>
+
+
+
 </html>
