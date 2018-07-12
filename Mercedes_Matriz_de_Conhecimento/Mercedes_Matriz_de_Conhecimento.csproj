@@ -204,6 +204,8 @@
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\TrainingTypeController.cs" />
+    <Compile Include="Controllers\TrainingController.cs" />
     <Compile Include="Controllers\WorkzoneController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -237,7 +239,11 @@
     <Compile Include="Models\TrainingTypeModel.cs" />
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interface\ITrainingTypeService.cs" />
+    <Compile Include="Services\TrainingTypeService.cs" />
+    <Compile Include="Services\TrainingService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="Services\Interface\ITrainingService.cs" />
     <Compile Include="Services\Interface\IWorkzoneService.cs" />
     <Compile Include="Services\Interface\IEmployeeService.cs" />
     <Compile Include="Services\WorkzoneService.cs" />
@@ -393,7 +399,10 @@
     <Content Include="Views\Employee\ConfirmDelete.cshtml" />
     <Content Include="Views\Training\Edit.cshtml" />
     <Content Include="Views\Training\Index.cshtml" />
-    <Content Include="Views\Training\Workzone.cshtml" />
+    <Content Include="Views\Training\Create.cshtml" />
+    <Content Include="Views\TrainingType\Create.cshtml" />
+    <Content Include="Views\TrainingType\Edit.cshtml" />
+    <Content Include="Views\TrainingType\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
