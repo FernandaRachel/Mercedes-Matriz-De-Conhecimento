@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Mercedes_Matriz_de_Conhecimento.tblPerfilAtivItem>
+
+
+<!DOCTYPE html>
+
+<script type="text/javascript">
+
+</script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2 class="text-center">Item de Perfil de Atividades</h2>
+    <div class="container table-place">
+
+        <table class="table table-striped">
+            <thead class="text-center">
+                <tr class="table-dark">
+                    <th class="text-center">Sigla</th>
+                    <th class="text-center">Descrição</th>
+                    <th class="text-center">Transição</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var activityProfileItem in Model)
+                {
+                    <tr class="text-center">
+                        <td>@activityProfileItem.Sigla</td>
+                        <td>@activityProfileItem.Descricao</td>
+                        @if (@activityProfileItem.LogarTransicao)
+                        {
+                            <td>Logar</td>
+                        }
+                        else
+                        {
+                            <td>Não Logar</td>
+                        }
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-warning btn-group-sm" href="@Url.Action("Details","ActivityProfileItem",new { id = @activityProfileItem.idPerfilAtivItem })">Editar</a>
+                                <a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","ActivityProfileItem",  new { id = @activityProfileItem.idPerfilAtivItem})">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <a type="button" class="btn btn-primary btn-group-sm pull-right" href="@Url.Action("Create", "ActivityProfileItem")">
+            Cadastrar Item de Perfil de Atividade
+        </a>
+    </div>
+
+</body>
+</html>
