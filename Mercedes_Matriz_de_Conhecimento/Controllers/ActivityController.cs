@@ -19,7 +19,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         private ActivityService _activity;
         private ActivityProfileService _activityProfile;
 
-        private TrainingTypeService _trainingType;
 
         public ActivityController()
         {

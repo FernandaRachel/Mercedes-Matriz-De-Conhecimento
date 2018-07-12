@@ -42,7 +42,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblPerfilTreinamento> trainingProile;
             trainingProile = _trainingProfile.GetTrainingProfiles();
 
+
             ViewData["PerfilTreinamento"] = trainingProile;
+            ViewBag.SelectedProfile = _trainingProfile.GetFirstProfile();
 
             return View("Create");
         }
@@ -52,6 +54,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         {
             IEnumerable<tblPerfilTreinamento> trainingProile;
             trainingProile = _trainingProfile.GetTrainingProfiles();
+
 
             ViewData["PerfilTreinamento"] = trainingProile;
 

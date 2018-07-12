@@ -3,12 +3,12 @@
 @using System.Collections;
 
 <script type="text/javascript">
-
+ 
 </script>
 
 <h4>Editar Funcionário</h4>
 
-@using (Html.BeginForm("Edit","Employee",new { id = Model.idfuncionario}, FormMethod.Post, new { @class= "form-horizontal" }))
+@using (Html.BeginForm("Edit", "Employee", new { id = Model.idfuncionario }, FormMethod.Post, new { @class = "form-horizontal" }))
 {
     <div class="row">
         <div class="col-md-5">
@@ -46,13 +46,21 @@
             <div class="form-group">
                 @Html.Label("Workzone", new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
-                    @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzone"], "IdWorkzone", "Nome"), new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzone"], "IdWorkzone", "Nome"),
+                   new
+                   {
+                       @class = "form-control col-md-9 selectpicker",
+                       @Value = @Model.idWorkzone,
+                       onchange = "this.form.submit();",
+                       data_show_subtext = "true",
+                       data_live_search = "true"
+                   })
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-11">
                     @*<a class="btn btn-success pull-right" href="@Url.Action("Edit", "Employee", new { employee = @Model, id = Model.idfuncionario})">Salvar</a>*@
-                    
+
                     <button type="submit" class="btn btn-success pull-right">Salvar2</button>
                 </div>
             </div>

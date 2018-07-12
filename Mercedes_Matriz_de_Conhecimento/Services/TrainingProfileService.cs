@@ -28,6 +28,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             return trainingProfile;
         }
+        public tblPerfilTreinamento GetFirstProfile()
+        {
+            return _db.tblPerfilTreinamento.FirstOrDefault();
+        }
 
         public IEnumerable<tblPerfilTreinamento> GetTrainingProfiles()
         {
