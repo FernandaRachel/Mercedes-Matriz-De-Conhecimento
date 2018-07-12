@@ -1,0 +1,45 @@
+﻿@model Mercedes_Matriz_de_Conhecimento.tblPerfilTreinamento
+
+@using System.Collections;
+
+<script type="text/javascript">
+
+
+</script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+
+    <h4 class="">Criar Perfil de Treinamento</h4>
+
+    <div class="row">
+
+        @using (Html.BeginForm("Create", "TrainingProfile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+
+            <div class="col-md-5">
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Nome, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-11">
+                        <button type="submit" class="btn btn-success pull-right">Salvar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+
+    </div>
+</body>
+</html>

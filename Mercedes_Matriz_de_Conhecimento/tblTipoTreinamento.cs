@@ -11,18 +11,23 @@ namespace Mercedes_Matriz_de_Conhecimento
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblTipoTreinamento
     {
         public int IdTipoTreinamento { get; set; }
+        [Required]
         public string Nome { get; set; }
+        [Required]
         public string Descricao { get; set; }
+        [Required]
         public string Sigla { get; set; }
         public string UsuarioCriacao { get; set; }
         public System.DateTime DataCriacao { get; set; }
         public string UsuarioDesativacao { get; set; }
         public Nullable<System.DateTime> DataDesativacao { get; set; }
         public bool TipoAtivo { get; set; }
+        [Required]
         public Nullable<int> idPerfilTreinamento { get; set; }
     
         public virtual tblPerfilTreinamento tblPerfilTreinamento { get; set; }
