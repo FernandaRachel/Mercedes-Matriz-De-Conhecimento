@@ -1,0 +1,635 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Mercedes-Matriz.dbo.AtividadesDiario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AtividadesDiario">
+    <Key>
+      <PropertyRef Name="IdFuncionario" />
+      <PropertyRef Name="IdWorkzoneAtividade" />
+      <PropertyRef Name="idAtividadeDiario" />
+    </Key>
+    <Property Name="IdFuncionario" Type="int" Nullable="false" />
+    <Property Name="IdWorkzoneAtividade" Type="int" Nullable="false" />
+    <Property Name="idAtividadeDiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblAtividades">
+    <Key>
+      <PropertyRef Name="idAtividade" />
+    </Key>
+    <Property Name="idAtividade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Sigla" Type="varchar" MaxLength="5" />
+    <Property Name="Descricao" Type="varchar" MaxLength="300" />
+    <Property Name="UsuarioCriacao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+    <Property Name="IndicaGrupoDeAtividades" Type="bit" Nullable="false" />
+    <Property Name="idPerfilAtividade" Type="int" />
+    <Property Name="idTipoEquipamentoGSA" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblAtividadeXTreinamentos">
+    <Key>
+      <PropertyRef Name="idAtividade" />
+      <PropertyRef Name="idTreinamento" />
+      <PropertyRef Name="idAtivTreinamento" />
+    </Key>
+    <Property Name="idAtividade" Type="int" Nullable="false" />
+    <Property Name="idTreinamento" Type="int" Nullable="false" />
+    <Property Name="idAtivTreinamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblAvaliacaoFuncXworkzoneXatividade">
+    <Key>
+      <PropertyRef Name="idFuncionario" />
+      <PropertyRef Name="idWorkzoneAtividade" />
+    </Key>
+    <Property Name="idFuncionario" Type="int" Nullable="false" />
+    <Property Name="idWorkzoneAtividade" Type="int" Nullable="false" />
+    <Property Name="idPerfilAtivItem" Type="int" Nullable="false" />
+    <Property Name="FuncResponsavel" Type="bit" Nullable="false" />
+    <Property Name="FuncAuxiliar" Type="bit" Nullable="false" />
+    <Property Name="DataRegistro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblAvaliacaoFuncXworkzoneXatividadeHist">
+    <Key>
+      <PropertyRef Name="idFuncionario" />
+      <PropertyRef Name="idWorkzoneAtividade" />
+      <PropertyRef Name="idPrincipalIdent" />
+    </Key>
+    <Property Name="idFuncionario" Type="int" Nullable="false" />
+    <Property Name="idWorkzoneAtividade" Type="int" Nullable="false" />
+    <Property Name="idPerfilAtivItem" Type="int" Nullable="false" />
+    <Property Name="idPrincipalIdent" Type="int" Nullable="false" />
+    <Property Name="FuncResponsavel" Type="bit" Nullable="false" />
+    <Property Name="FuncAuxiliar" Type="bit" Nullable="false" />
+    <Property Name="DataRegistro" Type="datetime" Nullable="false" />
+    <Property Name="AlocacaoForcada" Type="bit" />
+    <Property Name="MotivoAlocacaoForcada" Type="varchar" MaxLength="300" />
+    <Property Name="UsuarioAlocacaoForcada" Type="varchar" MaxLength="20" />
+    <Property Name="MotivoTransicao" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblFuncionarios">
+    <Key>
+      <PropertyRef Name="idfuncionario" />
+    </Key>
+    <Property Name="idfuncionario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RE" Type="varchar" MaxLength="20" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+    <Property Name="JustificativaNaoAtivo" Type="varchar" MaxLength="400" />
+    <Property Name="idBu_atual" Type="int" />
+    <Property Name="idBu_Origem" Type="int" />
+    <Property Name="idWorkzone" Type="int" />
+    <Property Name="IdentificadorAuxiliar" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblGrupoTreinamentos">
+    <Key>
+      <PropertyRef Name="IdTreinamentoPai" />
+      <PropertyRef Name="IdTreinamentoFilho" />
+    </Key>
+    <Property Name="IdTreinamentoPai" Type="int" Nullable="false" />
+    <Property Name="IdTreinamentoFilho" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPerfilAtividade">
+    <Key>
+      <PropertyRef Name="idPerfilAtividade" />
+    </Key>
+    <Property Name="idPerfilAtividade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="30" />
+    <Property Name="UsuarioCriacao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPerfilAtividadeXPerfilAtItem">
+    <Key>
+      <PropertyRef Name="idPerfilAtividade" />
+      <PropertyRef Name="idPerfilAtivItem" />
+    </Key>
+    <Property Name="idPerfilAtividade" Type="int" Nullable="false" />
+    <Property Name="idPerfilAtivItem" Type="int" Nullable="false" />
+    <Property Name="Ordem" Type="int" />
+  </EntityType>
+  <EntityType Name="tblPerfilAtivItem">
+    <Key>
+      <PropertyRef Name="idPerfilAtivItem" />
+    </Key>
+    <Property Name="idPerfilAtivItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sigla" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" MaxLength="200" />
+    <Property Name="LogarTransicao" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPerfilItem">
+    <Key>
+      <PropertyRef Name="IdPerfilItem" />
+    </Key>
+    <Property Name="IdPerfilItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sigla" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tblPerfilTreinamento">
+    <Key>
+      <PropertyRef Name="IdPerfilTreinamento" />
+    </Key>
+    <Property Name="IdPerfilTreinamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UsuarioCriacao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPerfilTreinamentoxPerfilItem">
+    <Key>
+      <PropertyRef Name="IdPerfilTreinamento" />
+      <PropertyRef Name="IdPerfilItem" />
+    </Key>
+    <Property Name="IdPerfilTreinamento" Type="int" Nullable="false" />
+    <Property Name="IdPerfilItem" Type="int" Nullable="false" />
+    <Property Name="Ordem" Type="int" />
+  </EntityType>
+  <EntityType Name="tblStatusFuncionarioXworkzoneXtreinamento">
+    <Key>
+      <PropertyRef Name="idFuncionario" />
+      <PropertyRef Name="idTreinamento" />
+      <PropertyRef Name="idPerfilItem" />
+      <PropertyRef Name="idWorkzone" />
+    </Key>
+    <Property Name="idFuncionario" Type="int" Nullable="false" />
+    <Property Name="idTreinamento" Type="int" Nullable="false" />
+    <Property Name="idPerfilItem" Type="int" Nullable="false" />
+    <Property Name="idStatusTreinamento" Type="int" Nullable="false" />
+    <Property Name="idWorkzone" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTipoTreinamento">
+    <Key>
+      <PropertyRef Name="IdTipoTreinamento" />
+    </Key>
+    <Property Name="IdTipoTreinamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" />
+    <Property Name="Descricao" Type="varchar" MaxLength="200" />
+    <Property Name="Sigla" Type="varchar" MaxLength="5" />
+    <Property Name="UsuarioCriacao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+    <Property Name="UsuarioDesativacao" Type="varchar" MaxLength="20" />
+    <Property Name="DataDesativacao" Type="datetime" />
+    <Property Name="TipoAtivo" Type="bit" Nullable="false" />
+    <Property Name="idPerfilTreinamento" Type="int" />
+  </EntityType>
+  <EntityType Name="tblTreinamento">
+    <Key>
+      <PropertyRef Name="IdTreinamento" />
+    </Key>
+    <Property Name="IdTreinamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Sigla" Type="varchar" MaxLength="5" />
+    <Property Name="Descricao" Type="varchar" MaxLength="300" />
+    <Property Name="UsuarioCriacao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+    <Property Name="IndicaGrupoDeTreinamentos" Type="bit" />
+    <Property Name="idTipoTreinamento" Type="int" />
+  </EntityType>
+  <EntityType Name="tblTreinamentoStatus">
+    <Key>
+      <PropertyRef Name="idStatusTreinamento" />
+    </Key>
+    <Property Name="idStatusTreinamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cor" Type="varchar" MaxLength="10" />
+    <Property Name="Denominacao" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tblWorkzone">
+    <Key>
+      <PropertyRef Name="IdWorkzone" />
+    </Key>
+    <Property Name="IdWorkzone" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" MaxLength="400" />
+    <Property Name="UsuarioCriacao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+    <Property Name="UsuarioDesativacao" Type="varchar" MaxLength="20" />
+    <Property Name="DataDesativacao" Type="varchar" MaxLength="20" />
+    <Property Name="IdCentroDeCusto" Type="int" />
+    <Property Name="PessoasNecessarias" Type="int" Nullable="false" />
+    <Property Name="DataAlteracao" Type="datetime" />
+    <Property Name="UsuarioAlteracao" Type="varchar" MaxLength="20" />
+    <Property Name="DadosUltimaAlteracao" Type="varchar" MaxLength="400" />
+    <Property Name="MotivoUltimaAlteracao" Type="varchar" MaxLength="400" />
+    <Property Name="FlagAtivo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblWorkzoneXAtividades">
+    <Key>
+      <PropertyRef Name="idWorkzoneAtividade" />
+    </Key>
+    <Property Name="idWorkzoneAtividade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idWorkzone" Type="int" />
+    <Property Name="idAtividade" Type="int" />
+    <Property Name="Ordem" Type="int" />
+  </EntityType>
+  <Association Name="FK_AtividadesDiario_tblFuncionarios">
+    <End Role="tblFuncionarios" Type="Self.tblFuncionarios" Multiplicity="1" />
+    <End Role="AtividadesDiario" Type="Self.AtividadesDiario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFuncionarios">
+        <PropertyRef Name="idfuncionario" />
+      </Principal>
+      <Dependent Role="AtividadesDiario">
+        <PropertyRef Name="IdFuncionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AtividadesDiario_tblWorkzoneXAtividades">
+    <End Role="tblWorkzoneXAtividades" Type="Self.tblWorkzoneXAtividades" Multiplicity="1" />
+    <End Role="AtividadesDiario" Type="Self.AtividadesDiario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWorkzoneXAtividades">
+        <PropertyRef Name="idWorkzoneAtividade" />
+      </Principal>
+      <Dependent Role="AtividadesDiario">
+        <PropertyRef Name="IdWorkzoneAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAtividade_tblPerfilAtividade">
+    <End Role="tblPerfilAtividade" Type="Self.tblPerfilAtividade" Multiplicity="0..1" />
+    <End Role="tblAtividades" Type="Self.tblAtividades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfilAtividade">
+        <PropertyRef Name="idPerfilAtividade" />
+      </Principal>
+      <Dependent Role="tblAtividades">
+        <PropertyRef Name="idPerfilAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAtividadeXTreinamentos_tblAtividade">
+    <End Role="tblAtividades" Type="Self.tblAtividades" Multiplicity="1" />
+    <End Role="tblAtividadeXTreinamentos" Type="Self.tblAtividadeXTreinamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAtividades">
+        <PropertyRef Name="idAtividade" />
+      </Principal>
+      <Dependent Role="tblAtividadeXTreinamentos">
+        <PropertyRef Name="idAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAtividadeXTreinamentos_tblTreinamento">
+    <End Role="tblTreinamento" Type="Self.tblTreinamento" Multiplicity="1" />
+    <End Role="tblAtividadeXTreinamentos" Type="Self.tblAtividadeXTreinamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTreinamento">
+        <PropertyRef Name="IdTreinamento" />
+      </Principal>
+      <Dependent Role="tblAtividadeXTreinamentos">
+        <PropertyRef Name="idTreinamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAvaliacaoFuncXworkzoneXatividade_tblFuncionarios">
+    <End Role="tblFuncionarios" Type="Self.tblFuncionarios" Multiplicity="1" />
+    <End Role="tblAvaliacaoFuncXworkzoneXatividade" Type="Self.tblAvaliacaoFuncXworkzoneXatividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFuncionarios">
+        <PropertyRef Name="idfuncionario" />
+      </Principal>
+      <Dependent Role="tblAvaliacaoFuncXworkzoneXatividade">
+        <PropertyRef Name="idFuncionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAvaliacaoFuncXworkzoneXatividade_tblPerfilAtivItem">
+    <End Role="tblPerfilAtivItem" Type="Self.tblPerfilAtivItem" Multiplicity="1" />
+    <End Role="tblAvaliacaoFuncXworkzoneXatividade" Type="Self.tblAvaliacaoFuncXworkzoneXatividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfilAtivItem">
+        <PropertyRef Name="idPerfilAtivItem" />
+      </Principal>
+      <Dependent Role="tblAvaliacaoFuncXworkzoneXatividade">
+        <PropertyRef Name="idPerfilAtivItem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAvaliacaoFuncXworkzoneXatividade_tblWorkzoneXAtividades">
+    <End Role="tblWorkzoneXAtividades" Type="Self.tblWorkzoneXAtividades" Multiplicity="1" />
+    <End Role="tblAvaliacaoFuncXworkzoneXatividade" Type="Self.tblAvaliacaoFuncXworkzoneXatividade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWorkzoneXAtividades">
+        <PropertyRef Name="idWorkzoneAtividade" />
+      </Principal>
+      <Dependent Role="tblAvaliacaoFuncXworkzoneXatividade">
+        <PropertyRef Name="idWorkzoneAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblFuncionarios">
+    <End Role="tblFuncionarios" Type="Self.tblFuncionarios" Multiplicity="1" />
+    <End Role="tblAvaliacaoFuncXworkzoneXatividadeHist" Type="Self.tblAvaliacaoFuncXworkzoneXatividadeHist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFuncionarios">
+        <PropertyRef Name="idfuncionario" />
+      </Principal>
+      <Dependent Role="tblAvaliacaoFuncXworkzoneXatividadeHist">
+        <PropertyRef Name="idFuncionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblPerfilAtivItem">
+    <End Role="tblPerfilAtivItem" Type="Self.tblPerfilAtivItem" Multiplicity="1" />
+    <End Role="tblAvaliacaoFuncXworkzoneXatividadeHist" Type="Self.tblAvaliacaoFuncXworkzoneXatividadeHist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfilAtivItem">
+        <PropertyRef Name="idPerfilAtivItem" />
+      </Principal>
+      <Dependent Role="tblAvaliacaoFuncXworkzoneXatividadeHist">
+        <PropertyRef Name="idPerfilAtivItem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblWorkzoneXAtividades">
+    <End Role="tblWorkzoneXAtividades" Type="Self.tblWorkzoneXAtividades" Multiplicity="1" />
+    <End Role="tblAvaliacaoFuncXworkzoneXatividadeHist" Type="Self.tblAvaliacaoFuncXworkzoneXatividadeHist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWorkzoneXAtividades">
+        <PropertyRef Name="idWorkzoneAtividade" />
+      </Principal>
+      <Dependent Role="tblAvaliacaoFuncXworkzoneXatividadeHist">
+        <PropertyRef Name="idWorkzoneAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblFuncionarios_tblWorkzone">
+    <End Role="tblWorkzone" Type="Self.tblWorkzone" Multiplicity="0..1" />
+    <End Role="tblFuncionarios" Type="Self.tblFuncionarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWorkzone">
+        <PropertyRef Name="IdWorkzone" />
+      </Principal>
+      <Dependent Role="tblFuncionarios">
+        <PropertyRef Name="idWorkzone" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtividade">
+    <End Role="tblPerfilAtividade" Type="Self.tblPerfilAtividade" Multiplicity="1" />
+    <End Role="tblPerfilAtividadeXPerfilAtItem" Type="Self.tblPerfilAtividadeXPerfilAtItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfilAtividade">
+        <PropertyRef Name="idPerfilAtividade" />
+      </Principal>
+      <Dependent Role="tblPerfilAtividadeXPerfilAtItem">
+        <PropertyRef Name="idPerfilAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtivItem">
+    <End Role="tblPerfilAtivItem" Type="Self.tblPerfilAtivItem" Multiplicity="1" />
+    <End Role="tblPerfilAtividadeXPerfilAtItem" Type="Self.tblPerfilAtividadeXPerfilAtItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfilAtivItem">
+        <PropertyRef Name="idPerfilAtivItem" />
+      </Principal>
+      <Dependent Role="tblPerfilAtividadeXPerfilAtItem">
+        <PropertyRef Name="idPerfilAtivItem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPerfilTreinamentoxPerfilItem_tblPerfilTreinamento">
+    <End Role="tblPerfilTreinamento" Type="Self.tblPerfilTreinamento" Multiplicity="1" />
+    <End Role="tblPerfilTreinamentoxPerfilItem" Type="Self.tblPerfilTreinamentoxPerfilItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfilTreinamento">
+        <PropertyRef Name="IdPerfilTreinamento" />
+      </Principal>
+      <Dependent Role="tblPerfilTreinamentoxPerfilItem">
+        <PropertyRef Name="IdPerfilTreinamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblFuncionarios">
+    <End Role="tblFuncionarios" Type="Self.tblFuncionarios" Multiplicity="1" />
+    <End Role="tblStatusFuncionarioXworkzoneXtreinamento" Type="Self.tblStatusFuncionarioXworkzoneXtreinamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFuncionarios">
+        <PropertyRef Name="idfuncionario" />
+      </Principal>
+      <Dependent Role="tblStatusFuncionarioXworkzoneXtreinamento">
+        <PropertyRef Name="idFuncionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblPerfilItem">
+    <End Role="tblPerfilItem" Type="Self.tblPerfilItem" Multiplicity="1" />
+    <End Role="tblStatusFuncionarioXworkzoneXtreinamento" Type="Self.tblStatusFuncionarioXworkzoneXtreinamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfilItem">
+        <PropertyRef Name="IdPerfilItem" />
+      </Principal>
+      <Dependent Role="tblStatusFuncionarioXworkzoneXtreinamento">
+        <PropertyRef Name="idPerfilItem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblTreinamento">
+    <End Role="tblTreinamento" Type="Self.tblTreinamento" Multiplicity="1" />
+    <End Role="tblStatusFuncionarioXworkzoneXtreinamento" Type="Self.tblStatusFuncionarioXworkzoneXtreinamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTreinamento">
+        <PropertyRef Name="IdTreinamento" />
+      </Principal>
+      <Dependent Role="tblStatusFuncionarioXworkzoneXtreinamento">
+        <PropertyRef Name="idTreinamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblTreinamentoStatus">
+    <End Role="tblTreinamentoStatus" Type="Self.tblTreinamentoStatus" Multiplicity="1" />
+    <End Role="tblStatusFuncionarioXworkzoneXtreinamento" Type="Self.tblStatusFuncionarioXworkzoneXtreinamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTreinamentoStatus">
+        <PropertyRef Name="idStatusTreinamento" />
+      </Principal>
+      <Dependent Role="tblStatusFuncionarioXworkzoneXtreinamento">
+        <PropertyRef Name="idStatusTreinamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblWorkzone">
+    <End Role="tblWorkzone" Type="Self.tblWorkzone" Multiplicity="1" />
+    <End Role="tblStatusFuncionarioXworkzoneXtreinamento" Type="Self.tblStatusFuncionarioXworkzoneXtreinamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWorkzone">
+        <PropertyRef Name="IdWorkzone" />
+      </Principal>
+      <Dependent Role="tblStatusFuncionarioXworkzoneXtreinamento">
+        <PropertyRef Name="idWorkzone" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTipoTreinamento_tblPerfilTreinamento">
+    <End Role="tblPerfilTreinamento" Type="Self.tblPerfilTreinamento" Multiplicity="0..1" />
+    <End Role="tblTipoTreinamento" Type="Self.tblTipoTreinamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfilTreinamento">
+        <PropertyRef Name="IdPerfilTreinamento" />
+      </Principal>
+      <Dependent Role="tblTipoTreinamento">
+        <PropertyRef Name="idPerfilTreinamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblWorkoneXAtividades_tblAtividades">
+    <End Role="tblAtividades" Type="Self.tblAtividades" Multiplicity="0..1" />
+    <End Role="tblWorkzoneXAtividades" Type="Self.tblWorkzoneXAtividades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAtividades">
+        <PropertyRef Name="idAtividade" />
+      </Principal>
+      <Dependent Role="tblWorkzoneXAtividades">
+        <PropertyRef Name="idAtividade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblWorkoneXAtividades_tblWorkzone">
+    <End Role="tblWorkzone" Type="Self.tblWorkzone" Multiplicity="0..1" />
+    <End Role="tblWorkzoneXAtividades" Type="Self.tblWorkzoneXAtividades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWorkzone">
+        <PropertyRef Name="IdWorkzone" />
+      </Principal>
+      <Dependent Role="tblWorkzoneXAtividades">
+        <PropertyRef Name="idWorkzone" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAtividades" EntityType="Self.tblAtividades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAvaliacaoFuncXworkzoneXatividade" EntityType="Self.tblAvaliacaoFuncXworkzoneXatividade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAvaliacaoFuncXworkzoneXatividadeHist" EntityType="Self.tblAvaliacaoFuncXworkzoneXatividadeHist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFuncionarios" EntityType="Self.tblFuncionarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGrupoTreinamentos" EntityType="Self.tblGrupoTreinamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPerfilAtividade" EntityType="Self.tblPerfilAtividade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPerfilAtividadeXPerfilAtItem" EntityType="Self.tblPerfilAtividadeXPerfilAtItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPerfilAtivItem" EntityType="Self.tblPerfilAtivItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPerfilItem" EntityType="Self.tblPerfilItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPerfilTreinamento" EntityType="Self.tblPerfilTreinamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPerfilTreinamentoxPerfilItem" EntityType="Self.tblPerfilTreinamentoxPerfilItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStatusFuncionarioXworkzoneXtreinamento" EntityType="Self.tblStatusFuncionarioXworkzoneXtreinamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTipoTreinamento" EntityType="Self.tblTipoTreinamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTreinamento" EntityType="Self.tblTreinamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTreinamentoStatus" EntityType="Self.tblTreinamentoStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblWorkzone" EntityType="Self.tblWorkzone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblWorkzoneXAtividades" EntityType="Self.tblWorkzoneXAtividades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AtividadesDiario" EntityType="Self.AtividadesDiario" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AtividadesDiario].[IdFuncionario] AS [IdFuncionario], 
+    [AtividadesDiario].[IdWorkzoneAtividade] AS [IdWorkzoneAtividade], 
+    [AtividadesDiario].[idAtividadeDiario] AS [idAtividadeDiario]
+    FROM [dbo].[AtividadesDiario] AS [AtividadesDiario]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tblAtividadeXTreinamentos" EntityType="Self.tblAtividadeXTreinamentos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblAtividadeXTreinamentos].[idAtividade] AS [idAtividade], 
+    [tblAtividadeXTreinamentos].[idTreinamento] AS [idTreinamento], 
+    [tblAtividadeXTreinamentos].[idAtivTreinamento] AS [idAtivTreinamento]
+    FROM [dbo].[tblAtividadeXTreinamentos] AS [tblAtividadeXTreinamentos]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_AtividadesDiario_tblFuncionarios" Association="Self.FK_AtividadesDiario_tblFuncionarios">
+      <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
+      <End Role="AtividadesDiario" EntitySet="AtividadesDiario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AtividadesDiario_tblWorkzoneXAtividades" Association="Self.FK_AtividadesDiario_tblWorkzoneXAtividades">
+      <End Role="tblWorkzoneXAtividades" EntitySet="tblWorkzoneXAtividades" />
+      <End Role="AtividadesDiario" EntitySet="AtividadesDiario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAtividade_tblPerfilAtividade" Association="Self.FK_tblAtividade_tblPerfilAtividade">
+      <End Role="tblPerfilAtividade" EntitySet="tblPerfilAtividade" />
+      <End Role="tblAtividades" EntitySet="tblAtividades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAtividadeXTreinamentos_tblAtividade" Association="Self.FK_tblAtividadeXTreinamentos_tblAtividade">
+      <End Role="tblAtividades" EntitySet="tblAtividades" />
+      <End Role="tblAtividadeXTreinamentos" EntitySet="tblAtividadeXTreinamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAtividadeXTreinamentos_tblTreinamento" Association="Self.FK_tblAtividadeXTreinamentos_tblTreinamento">
+      <End Role="tblTreinamento" EntitySet="tblTreinamento" />
+      <End Role="tblAtividadeXTreinamentos" EntitySet="tblAtividadeXTreinamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAvaliacaoFuncXworkzoneXatividade_tblFuncionarios" Association="Self.FK_tblAvaliacaoFuncXworkzoneXatividade_tblFuncionarios">
+      <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
+      <End Role="tblAvaliacaoFuncXworkzoneXatividade" EntitySet="tblAvaliacaoFuncXworkzoneXatividade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAvaliacaoFuncXworkzoneXatividade_tblPerfilAtivItem" Association="Self.FK_tblAvaliacaoFuncXworkzoneXatividade_tblPerfilAtivItem">
+      <End Role="tblPerfilAtivItem" EntitySet="tblPerfilAtivItem" />
+      <End Role="tblAvaliacaoFuncXworkzoneXatividade" EntitySet="tblAvaliacaoFuncXworkzoneXatividade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAvaliacaoFuncXworkzoneXatividade_tblWorkzoneXAtividades" Association="Self.FK_tblAvaliacaoFuncXworkzoneXatividade_tblWorkzoneXAtividades">
+      <End Role="tblWorkzoneXAtividades" EntitySet="tblWorkzoneXAtividades" />
+      <End Role="tblAvaliacaoFuncXworkzoneXatividade" EntitySet="tblAvaliacaoFuncXworkzoneXatividade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblFuncionarios" Association="Self.FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblFuncionarios">
+      <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
+      <End Role="tblAvaliacaoFuncXworkzoneXatividadeHist" EntitySet="tblAvaliacaoFuncXworkzoneXatividadeHist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblPerfilAtivItem" Association="Self.FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblPerfilAtivItem">
+      <End Role="tblPerfilAtivItem" EntitySet="tblPerfilAtivItem" />
+      <End Role="tblAvaliacaoFuncXworkzoneXatividadeHist" EntitySet="tblAvaliacaoFuncXworkzoneXatividadeHist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblWorkzoneXAtividades" Association="Self.FK_tblAvaliacaoFuncXworkzoneXatividadeHist_tblWorkzoneXAtividades">
+      <End Role="tblWorkzoneXAtividades" EntitySet="tblWorkzoneXAtividades" />
+      <End Role="tblAvaliacaoFuncXworkzoneXatividadeHist" EntitySet="tblAvaliacaoFuncXworkzoneXatividadeHist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblFuncionarios_tblWorkzone" Association="Self.FK_tblFuncionarios_tblWorkzone">
+      <End Role="tblWorkzone" EntitySet="tblWorkzone" />
+      <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtividade" Association="Self.FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtividade">
+      <End Role="tblPerfilAtividade" EntitySet="tblPerfilAtividade" />
+      <End Role="tblPerfilAtividadeXPerfilAtItem" EntitySet="tblPerfilAtividadeXPerfilAtItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtivItem" Association="Self.FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtivItem">
+      <End Role="tblPerfilAtivItem" EntitySet="tblPerfilAtivItem" />
+      <End Role="tblPerfilAtividadeXPerfilAtItem" EntitySet="tblPerfilAtividadeXPerfilAtItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPerfilTreinamentoxPerfilItem_tblPerfilTreinamento" Association="Self.FK_tblPerfilTreinamentoxPerfilItem_tblPerfilTreinamento">
+      <End Role="tblPerfilTreinamento" EntitySet="tblPerfilTreinamento" />
+      <End Role="tblPerfilTreinamentoxPerfilItem" EntitySet="tblPerfilTreinamentoxPerfilItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblFuncionarios" Association="Self.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblFuncionarios">
+      <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
+      <End Role="tblStatusFuncionarioXworkzoneXtreinamento" EntitySet="tblStatusFuncionarioXworkzoneXtreinamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblPerfilItem" Association="Self.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblPerfilItem">
+      <End Role="tblPerfilItem" EntitySet="tblPerfilItem" />
+      <End Role="tblStatusFuncionarioXworkzoneXtreinamento" EntitySet="tblStatusFuncionarioXworkzoneXtreinamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblTreinamento" Association="Self.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblTreinamento">
+      <End Role="tblTreinamento" EntitySet="tblTreinamento" />
+      <End Role="tblStatusFuncionarioXworkzoneXtreinamento" EntitySet="tblStatusFuncionarioXworkzoneXtreinamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblTreinamentoStatus" Association="Self.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblTreinamentoStatus">
+      <End Role="tblTreinamentoStatus" EntitySet="tblTreinamentoStatus" />
+      <End Role="tblStatusFuncionarioXworkzoneXtreinamento" EntitySet="tblStatusFuncionarioXworkzoneXtreinamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStatusFuncionarioXworkzoneXtreinamento_tblWorkzone" Association="Self.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblWorkzone">
+      <End Role="tblWorkzone" EntitySet="tblWorkzone" />
+      <End Role="tblStatusFuncionarioXworkzoneXtreinamento" EntitySet="tblStatusFuncionarioXworkzoneXtreinamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTipoTreinamento_tblPerfilTreinamento" Association="Self.FK_tblTipoTreinamento_tblPerfilTreinamento">
+      <End Role="tblPerfilTreinamento" EntitySet="tblPerfilTreinamento" />
+      <End Role="tblTipoTreinamento" EntitySet="tblTipoTreinamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblWorkoneXAtividades_tblAtividades" Association="Self.FK_tblWorkoneXAtividades_tblAtividades">
+      <End Role="tblAtividades" EntitySet="tblAtividades" />
+      <End Role="tblWorkzoneXAtividades" EntitySet="tblWorkzoneXAtividades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblWorkoneXAtividades_tblWorkzone" Association="Self.FK_tblWorkoneXAtividades_tblWorkzone">
+      <End Role="tblWorkzone" EntitySet="tblWorkzone" />
+      <End Role="tblWorkzoneXAtividades" EntitySet="tblWorkzoneXAtividades" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
