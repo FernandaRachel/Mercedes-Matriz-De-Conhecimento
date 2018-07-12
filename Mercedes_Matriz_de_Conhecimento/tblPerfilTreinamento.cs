@@ -11,7 +11,8 @@ namespace Mercedes_Matriz_de_Conhecimento
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblPerfilTreinamento
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         }
     
         public int IdPerfilTreinamento { get; set; }
+        [Required]
         public string Nome { get; set; }
         public string UsuarioCriacao { get; set; }
         public System.DateTime DataCriacao { get; set; }

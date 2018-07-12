@@ -15,11 +15,11 @@
 <body>
 
     @*<h3 class=""></h3>*@
-    <h4>Editar Treinamento</h4>
+    <h4>Editar Tipo de Treinamento</h4>
 
     <div class="row">
 
-        @using (Html.BeginForm("Edit", "Workzone", new { id = Model.IdTipoTreinamento }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Edit", "TrainingType", new { id = Model.IdTipoTreinamento }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
 
             <div class="col-md-5">
@@ -49,6 +49,12 @@
                             @Html.CheckBoxFor(m => m.IndicaGrupoDeTreinamentos, new { @class = "" })
                         </div>
                     </div>*@
+                <div class="form-group">
+                    @Html.Label("Tipo de Treinamento", new { @class = "col-md-3 control-label" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(m => m.idPerfilTreinamento, new SelectList((IEnumerable)ViewData["PerfilTreinamento"], "idPerfilTreinamento", "Nome"), "Escolha um Perfil de Treinamento", new { @class = "form-control" })
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-md-11">
                         <button type="submit" class="btn btn-success pull-right">Salvar</button>

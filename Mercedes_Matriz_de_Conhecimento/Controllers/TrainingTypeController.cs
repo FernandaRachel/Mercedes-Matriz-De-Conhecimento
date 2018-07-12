@@ -18,10 +18,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         private TrainingTypeService _trainingType;
+        private TrainingProfileService _trainingProfile;
 
         public TrainingTypeController()
         {
             _trainingType = new TrainingTypeService();
+            _trainingProfile = new TrainingProfileService();
 
         }
 
@@ -37,6 +39,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActionResult Create()
         {
+            IEnumerable<tblPerfilTreinamento> trainingProile;
+            trainingProile = _trainingProfile.GetTrainingProfiles();
+
+            ViewData["PerfilTreinamento"] = trainingProile;
 
             return View("Create");
         }
@@ -44,6 +50,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         //GET: training/Details/5
         public ActionResult Details(int id)
         {
+            IEnumerable<tblPerfilTreinamento> trainingProile;
+            trainingProile = _trainingProfile.GetTrainingProfiles();
+
+            ViewData["PerfilTreinamento"] = trainingProile;
 
             tblTipoTreinamento training;
             training = _trainingType.GetTrainingTypeById(id);
@@ -54,33 +64,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return View("Edit", training);
         }
 
-
-        // VERIFICAR
-        //public ActionResult Push(int id, int idwz)
-        //{
-        //    var employe = _trainingType.GetTrainingById(id);
-        //    employe.idTipoTreinamento = idwz;
-
-        //    _trainingType.UpdateTraining(employe);
-
-
-
-        //    return RedirectToAction("Details", new { id = idwz});
-        //}
-
-        // VERIFICAR
-        //public ActionResult Pop(int id, int idwz)
-        //{
-        //    var training = _trainingType.GetTrainingById(id);
-        //    training.idTipoTreinamento = null;
-
-        //    _trainingType.UpdateTraining(training);
-
-        //    //var trainingType = _trainingType.GetTrainingTypes(idwz);
-
-
-        //    return RedirectToAction("Details", new { id = idwz });
-        //}
 
     
         // GET: training/Create
@@ -101,7 +84,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
-            return View("training");
+            return View(training);
         }
 
 
