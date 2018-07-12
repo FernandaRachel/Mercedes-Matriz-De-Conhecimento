@@ -28,17 +28,17 @@
             </thead>
             <tbody>
 
-                @foreach (var training in Model)
+                @foreach (var trainingType in Model)
                 {
                     <tr class="text-center">
-                        <td>@training.Nome</td>
-                        <td>@training.Sigla</td>
-                        <td>@training.Descricao</td>
-                        <td>@training.tblPerfilTreinamento.Nome</td> 
+                        <td>@trainingType.Nome</td>
+                        <td>@trainingType.Sigla</td>
+                        <td>@trainingType.Descricao</td>
+                        <td>@trainingType.tblPerfilTreinamento.Nome</td> 
                         <td>
                             <div class="btn-group" role="group">
-                                <a class="btn btn-warning btn-group-sm" href="@Url.Action("Details","TrainingType",new { id = @training.IdTipoTreinamento })">Editar</a>
-                                <a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","TrainingType",  new { id = @training.IdTipoTreinamento})">Excluir</a>
+                                <a class="btn btn-warning btn-group-sm" href="@Url.Action("Details","TrainingType",new { id = @trainingType.IdTipoTreinamento })">Editar</a>
+                                <a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","TrainingType",  new { id = @trainingType.IdTipoTreinamento})">Excluir</a>
                             </div>
                         </td>
                     </tr>
