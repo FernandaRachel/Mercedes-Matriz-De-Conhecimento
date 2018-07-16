@@ -204,6 +204,8 @@
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HistMatrixController.cs" />
+    <Compile Include="Controllers\MatrixController.cs" />
     <Compile Include="Controllers\ProfileItemController.cs" />
     <Compile Include="Controllers\ActivityProfileItemController.cs" />
     <Compile Include="Controllers\ActivityProfileController.cs" />
@@ -217,6 +219,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HistoricoTeste.cs">
+      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
     </Compile>
     <Compile Include="Mercedes_Matriz_de_Conhecimento.Context.cs">
       <AutoGen>True</AutoGen>
@@ -239,11 +244,14 @@
     <Compile Include="Models\ItemProfileModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PartialClasses.cs" />
-    <Compile Include="Models\TrainingModel.cs" />
-    <Compile Include="Models\TrainingProfileModel.cs" />
-    <Compile Include="Models\TrainingTypeModel.cs" />
+    <Compile Include="Models\TrainingMetadata.cs" />
+    <Compile Include="Models\TrainingProfileMetada.cs" />
+    <Compile Include="Models\TrainingTypeMetada.cs" />
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HistMatrixService.cs" />
+    <Compile Include="Services\Interface\IHistMatrixService.cs" />
+    <Compile Include="Services\Interface\ITrainingGroupService.cs" />
     <Compile Include="Services\ProfileItemService.cs" />
     <Compile Include="Services\ActivityProfileItemService.cs" />
     <Compile Include="Services\ActivityProfileService.cs" />
@@ -253,6 +261,7 @@
     <Compile Include="Services\Interface\ITrainingProfileService.cs" />
     <Compile Include="Services\Interface\IActivityService.cs" />
     <Compile Include="Services\Interface\ITrainingTypeService.cs" />
+    <Compile Include="Services\TrainingGroupService.cs" />
     <Compile Include="Services\TrainingProfileService.cs" />
     <Compile Include="Services\ActivityService.cs" />
     <Compile Include="Services\TrainingTypeService.cs" />
@@ -279,6 +288,9 @@
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
     </Compile>
     <Compile Include="tblFuncionarios.cs">
+      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGrupoAtividades.cs">
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGrupoTreinamentos.cs">
@@ -511,6 +523,9 @@
     <Content Include="Views\ProfileItem\Create.cshtml" />
     <Content Include="Views\ProfileItem\Edit.cshtml" />
     <Content Include="Views\ProfileItem\Index.cshtml" />
+    <Content Include="Views\Matrix\Index.cshtml" />
+    <Content Include="Views\Training\_TrainingGroup.cshtml" />
+    <Content Include="Views\HistMatrix\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

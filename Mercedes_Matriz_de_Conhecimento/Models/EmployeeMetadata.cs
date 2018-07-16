@@ -8,7 +8,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 {
     public class EmployeeMetadata
     {
-        public string idFuncionario { get; set; }
+        public int idfuncionario { get; set; }
 
         [MaxLength(20)]
         public string RE { get; set; }
@@ -19,15 +19,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         public bool Ativo { get; set; }
 
         [MaxLength(400)]
+        [Display(Name = "Justificadtiva")]
         public string JustificativaNaoAtivo { get; set; }
 
-        public int idBU_Atual { get; set; }
+        [Display(Name = "BU Atual")]
+        public Nullable<int> idBu_atual { get; set; }
 
-        public int idBU_Origem { get; set; }
+        [Display(Name = "BU Origem")]
+        public Nullable<int> idBu_Origem { get; set; }
 
-        public WorkzoneMetadata idWorkzone { get; set; }
+        [Display(Name = "Workzone")]
+        public Nullable<int> idWorkzone { get; set; }
 
         [MaxLength(100)]
-        public string identificadorAuxiliar { get; set; }
+        [Display(Name = "Identificador Auxiliar")]
+        public string IdentificadorAuxiliar { get; set; }
+
     }
 }
