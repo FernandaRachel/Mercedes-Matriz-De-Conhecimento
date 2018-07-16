@@ -204,6 +204,7 @@
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivityXWorkzoneController.cs" />
     <Compile Include="Controllers\HistMatrixController.cs" />
     <Compile Include="Controllers\MatrixController.cs" />
     <Compile Include="Controllers\ProfileItemController.cs" />
@@ -239,6 +240,7 @@
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActivityMetadata.cs" />
     <Compile Include="Models\EmployeeMetadata.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ItemProfileModel.cs" />
@@ -249,8 +251,11 @@
     <Compile Include="Models\TrainingTypeMetada.cs" />
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\WorzoneXActivityService.cs" />
     <Compile Include="Services\HistMatrixService.cs" />
+    <Compile Include="Services\Interface\IWorzoneXActivityService.cs" />
     <Compile Include="Services\Interface\IHistMatrixService.cs" />
+    <Compile Include="Services\Interface\IActivityGroupService.cs" />
     <Compile Include="Services\Interface\ITrainingGroupService.cs" />
     <Compile Include="Services\ProfileItemService.cs" />
     <Compile Include="Services\ActivityProfileItemService.cs" />
@@ -261,6 +266,7 @@
     <Compile Include="Services\Interface\ITrainingProfileService.cs" />
     <Compile Include="Services\Interface\IActivityService.cs" />
     <Compile Include="Services\Interface\ITrainingTypeService.cs" />
+    <Compile Include="Services\ActivityGroupService.cs" />
     <Compile Include="Services\TrainingGroupService.cs" />
     <Compile Include="Services\TrainingProfileService.cs" />
     <Compile Include="Services\ActivityService.cs" />
@@ -526,6 +532,9 @@
     <Content Include="Views\Matrix\Index.cshtml" />
     <Content Include="Views\Training\_TrainingGroup.cshtml" />
     <Content Include="Views\HistMatrix\Index.cshtml" />
+    <Content Include="Views\ActivityXWorkzone\Create.cshtml" />
+    <Content Include="Views\ActivityXWorkzone\Edit.cshtml" />
+    <Content Include="Views\ActivityXWorkzone\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

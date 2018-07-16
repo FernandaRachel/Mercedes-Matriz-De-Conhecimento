@@ -85,7 +85,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return PartialView("_TrainingGroup");
         }
 
-        // VERIFICAR
         public ActionResult Push(int idDaddy, int idSon)
         {
 
@@ -100,7 +99,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return RedirectToAction("Details", new { id = idDaddy });
         }
 
-        // VERIFICAR
         public ActionResult Pop(int idDaddy, int idSon)
         {
             _trainingGroup.DeleteTrainingGroup(idDaddy, idSon);

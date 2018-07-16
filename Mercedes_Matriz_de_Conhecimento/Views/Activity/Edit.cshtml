@@ -2,10 +2,36 @@
 
 @using System.Collections;
 
-<script type="text/javascript">
+@section scripts{
+    <script type="text/javascript">
+        // Get the checkbox
+        var checkBox = document.getElementById("IndicaGrupoDeAtividades");
+        // Get the output text
+        var text = document.getElementById("container-list");
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true) {
+            text.style.display = "block";
+        } else {
+            text.style.display = "none";
+        }
+        console.log("teste");
 
+        function funcaoTeste() {
+            // Get the checkbox
+            var checkBox = document.getElementById("IndicaGrupoDeAtividades");
+            // Get the output text
+            var text = document.getElementById("container-list");
+            // If the checkbox is checked, display the output text
+            if (checkBox.checked == true) {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+            console.log("teste");
+        }
 
-</script>
+    </script>
+}
 
 <html>
 <head>
@@ -49,12 +75,12 @@
                         @Html.TextBoxFor(m => m.idTipoEquipamentoGSA, new { @class = "form-control" })
                     </div>
                 </div>
-                @*<div class="form-group">
-                        @Html.LabelFor(m => m.IndicaGrupoDeTreinamentos, new { @class = "col-md-3 control-label" })
+                <div class="form-group">
+                        @Html.LabelFor(m => m.IndicaGrupoDeAtividades, new { @class = "col-md-3 control-label" })
                         <div class="col-md-2">
-                            @Html.CheckBoxFor(m => m.IndicaGrupoDeTreinamentos, new { @class = "" })
+                            @Html.CheckBoxFor(m => m.IndicaGrupoDeAtividades, new { @class = "check", onchange = "funcaoTeste()" })
                         </div>
-                    </div>*@
+                    </div>
                 <div class="form-group">
                     @Html.Label("Perfil de Atividade", new { @class = "col-md-3 control-label" })
                     <div class="col-md-9">
@@ -69,7 +95,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-11">
+                    <div class="col-md-12">
                         <button type="submit" class="btn btn-success pull-right">Salvar</button>
                     </div>
                 </div>
@@ -77,6 +103,35 @@
             </div>
 
         }
+
+        <div id="container-list">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Treinamentos Existentes</div>
+                    <div class="panel-body pre-scrollable">
+                        <div class="list-group">
+                            @foreach (var allActivities in (IEnumerable<tblAtividades>)ViewData["TodasAtividades"])
+                            {
+                                <a type="button" class="list-group-item" href="@Url.Action("Push", "Activity", new { idDaddy = Model.idAtividade, idSon = @allActivities.idAtividade,})">@allActivities.Nome</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Treinamentos Adicionados</div>
+                    <div class="panel-body pre-scrollable">
+                        <div class="list-group">
+                            @foreach (var activitiesSon in (List<tblAtividades>)ViewData["AtividadesFilhos"])
+                            {
+                                <a type="button" class="list-group-item" href="@Url.Action("Pop", "Activity", new { idDaddy = Model.idAtividade, idSon = @activitiesSon.idAtividade })">@activitiesSon.Nome</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

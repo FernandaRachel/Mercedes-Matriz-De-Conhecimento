@@ -18,13 +18,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         private ActivityService _activity;
         private ActivityProfileService _activityProfile;
+        private ActivityGroupService _activityGroup;
 
 
         public ActivityController()
         {
             _activity = new ActivityService();
             _activityProfile = new ActivityProfileService();
-
+            _activityGroup = new ActivityGroupService();
         }
 
         // GET: activity
@@ -52,14 +53,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Details(int id)
         {
 
+            // Declaração de variaveis
             tblAtividades activity;
-            activity = _activity.GetActivityById(id);
-
             IEnumerable<tblPerfilAtividade> activityProfile;
+            IEnumerable<tblAtividades> allActivies;
+            IEnumerable<tblAtividades> activitiesGroup;
 
+            //chamadas dos métodos(no service) e assignment
+            activity = _activity.GetActivityById(id);
             activityProfile = _activityProfile.GetActivityProfiles();
+            activitiesGroup = _activityGroup.setUpActivitys(id);
+            allActivies = _activity.GetActivities();
 
             ViewData["PerfildeAtividade"] = activityProfile;
+            ViewData["TodasAtividades"] = allActivies;
+            ViewData["AtividadesFilhos"] = activitiesGroup;
 
             if (activity == null)
                 return View("Index");
@@ -67,6 +75,26 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return View("Edit", activity);
         }
 
+        public ActionResult Push(int idDaddy, int idSon)
+        {
+
+            tblGrupoAtividades training = new tblGrupoAtividades();
+            training.idAtividadePai = idDaddy;
+            training.idAtividadeFilho = idSon;
+            var exits = _activityGroup.checkIfActivityGroupAlreadyExits(training);
+
+            if (!exits)
+                _activityGroup.CreateActivityGroup(training);
+
+            return RedirectToAction("Details", new { id = idDaddy });
+        }
+
+        public ActionResult Pop(int idDaddy, int idSon)
+        {
+            _activityGroup.DeleteActivityGroup(idDaddy, idSon);
+
+            return RedirectToAction("Details", new { id = idDaddy });
+        }
 
         [HttpPost]
         public ActionResult Create(tblAtividades activity)
