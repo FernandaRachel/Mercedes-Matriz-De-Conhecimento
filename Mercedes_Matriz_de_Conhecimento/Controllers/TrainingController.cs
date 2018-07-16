@@ -17,13 +17,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         private TrainingService _training;
-
         private TrainingTypeService _trainingType;
+        private TrainingGroupService _trainingGroup;
+
 
         public TrainingController()
         {
             _training = new TrainingService();
             _trainingType = new TrainingTypeService();
+            _trainingGroup = new TrainingGroupService();
 
         }
 
@@ -51,14 +53,23 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         //GET: training/Details/5
         public ActionResult Details(int id)
         {
-
+            // Declaração de variaveis
+            IEnumerable<tblTipoTreinamento> trainingType;
             tblTreinamento training;
+            IEnumerable<tblTreinamento> allTrainings;
+            IEnumerable<tblTreinamento> trainingGroup;
+
+            //chamadas dos métodos(no service) e assignment
+            trainingType = _trainingType.GetTrainingTypes();
+            trainingGroup = _trainingGroup.setUpTrainings(id);
+            allTrainings = _training.GetTrainings();
             training = _training.GetTrainingById(id);
 
-            IEnumerable<tblTipoTreinamento> trainingType;
-            trainingType = _trainingType.GetTrainingTypes();
-
             ViewData["TipoTreinamento"] = trainingType;
+            ViewData["TreinamentosFilhos"] = trainingGroup;
+            //            ViewData["TodosTreinamentos"] = new tblTreinamento();
+            ViewData["TodosTreinamentos"] = allTrainings;
+
 
             if (training == null)
                 return View("Index");
@@ -66,35 +77,38 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return View("Edit", training);
         }
 
-
-        // VERIFICAR
-        public ActionResult Push(int id, int idwz)
+        public ActionResult checkIfGroupTagIsTrue(tblTreinamento training)
         {
-            var employe = _training.GetTrainingById(id);
-            employe.idTipoTreinamento = idwz;
+            if (training.IndicaGrupoDeTreinamentos)
+                return PartialView("_TrainingGroup");
 
-            _training.UpdateTraining(employe);
-
-
-
-            return RedirectToAction("Details", new { id = idwz});
+            return PartialView("_TrainingGroup");
         }
 
         // VERIFICAR
-        public ActionResult Pop(int id, int idwz)
+        public ActionResult Push(int idDaddy, int idSon)
         {
-            var training = _training.GetTrainingById(id);
-            training.idTipoTreinamento = null;
 
-            _training.UpdateTraining(training);
+            tblGrupoTreinamentos training = new tblGrupoTreinamentos();
+            training.IdTreinamentoPai = idDaddy;
+            training.IdTreinamentoFilho = idSon;
+            var exits = _trainingGroup.checkIfTrainingGroupAlreadyExits(training);
 
-            //var trainingType = _trainingType.GetTrainingTypes(idwz);
+            if (!exits)
+                _trainingGroup.CreateTrainingGroup(training);
 
-
-            return RedirectToAction("Details", new { id = idwz });
+            return RedirectToAction("Details", new { id = idDaddy });
         }
 
-    
+        // VERIFICAR
+        public ActionResult Pop(int idDaddy, int idSon)
+        {
+            _trainingGroup.DeleteTrainingGroup(idDaddy, idSon);
+
+            return RedirectToAction("Details", new { id = idDaddy });
+        }
+
+
         // GET: training/Create
         [HttpPost]
         public ActionResult Create(tblTreinamento training)
