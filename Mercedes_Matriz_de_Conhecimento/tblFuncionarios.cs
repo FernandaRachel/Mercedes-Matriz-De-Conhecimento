@@ -11,8 +11,7 @@ namespace Mercedes_Matriz_de_Conhecimento
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tblFuncionarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,27 +24,13 @@ namespace Mercedes_Matriz_de_Conhecimento
         }
     
         public int idfuncionario { get; set; }
-
-        [MaxLength(20)]
-        [Required]
         public string RE { get; set; }
-
-        [MaxLength(100)]
-        [Required(ErrorMessage = "Nome is required.")]
         public string Nome { get; set; }
-
         public bool Ativo { get; set; }
-
-        [MaxLength(400)]
-        [Display(Name = "Justificativa Nao Ativo")]
         public string JustificativaNaoAtivo { get; set; }
         public Nullable<int> idBu_atual { get; set; }
         public Nullable<int> idBu_Origem { get; set; }
-
         public Nullable<int> idWorkzone { get; set; }
-
-        [MaxLength(100)]
-        [Display(Name = "Identificador Auxiliar")]
         public string IdentificadorAuxiliar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -54,7 +39,6 @@ namespace Mercedes_Matriz_de_Conhecimento
         public virtual ICollection<tblAvaliacaoFuncXworkzoneXatividadeHist> tblAvaliacaoFuncXworkzoneXatividadeHist { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AtividadesDiario> AtividadesDiario { get; set; }
-
         public virtual tblWorkzone tblWorkzone { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblStatusFuncionarioXworkzoneXtreinamento> tblStatusFuncionarioXworkzoneXtreinamento { get; set; }

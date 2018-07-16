@@ -23,16 +23,13 @@ namespace Mercedes_Matriz_de_Conhecimento
         }
     
         public int IdTreinamento { get; set; }
-        [Required]
         public string Nome { get; set; }
-        [Required]
         public string Sigla { get; set; }
-        [Required]
         public string Descricao { get; set; }
         public string UsuarioCriacao { get; set; }
         public System.DateTime DataCriacao { get; set; }
-        public Nullable<bool> IndicaGrupoDeTreinamentos { get; set; }
-        [Required]
+        [Display(Name = "Grupo de Treinamento")]
+        public bool IndicaGrupoDeTreinamentos { get; set; }
         public Nullable<int> idTipoTreinamento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
