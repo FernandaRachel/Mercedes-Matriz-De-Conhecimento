@@ -6,9 +6,10 @@ using System.Web;
 
 namespace Mercedes_Matriz_de_Conhecimento.Models
 {
-    public class TrainingModel
+    public class TrainingMetadata
     {
-        public int idTreinamento { get; set; }
+
+        public int IdTreinamento { get; set; }
 
         [MaxLength(100)]
         public string Nome { get; set; }
@@ -17,15 +18,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         public string Sigla { get; set; }
 
         [MaxLength(300)]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         [MaxLength(20)]
+        [Display(Name = "Usuário Criação")]
         public string UsuarioCriacao { get; set; }
+        public System.DateTime DataCriacao { get; set; }
 
-        public DateTime DataCriacao { get; set; }
+        [Display(Name = "Grupo de Treinamento")]
+        public bool IndicaGrupoDeTreinamentos { get; set; }
 
-        public bool indicaGrupoDeTreinamento { get; set; }
+        [Display(Name = "Tipo de Treinamento")]
+        public Nullable<int> idTipoTreinamento { get; set; }
 
-        public int idTipoTreinamento { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Mercedes-Matriz.dbo.AtividadesDiario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="AtividadesDiario">
@@ -16,6 +16,15 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.AtividadesDiario' does not hav
           <Property Name="IdFuncionario" Type="int" Nullable="false" />
           <Property Name="IdWorkzoneAtividade" Type="int" Nullable="false" />
           <Property Name="idAtividadeDiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoricoTeste">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="300" />
+          <Property Name="DateSaved" Type="datetime" />
+          <Property Name="Arquivo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -96,6 +105,14 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
           <Property Name="idBu_Origem" Type="int" />
           <Property Name="idWorkzone" Type="int" />
           <Property Name="IdentificadorAuxiliar" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblGrupoAtividades">
+          <Key>
+            <PropertyRef Name="idAtividadePai" />
+            <PropertyRef Name="idAtividadeFilho" />
+          </Key>
+          <Property Name="idAtividadePai" Type="int" Nullable="false" />
+          <Property Name="idAtividadeFilho" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblGrupoTreinamentos">
           <Key>
@@ -196,7 +213,7 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
           <Property Name="Descricao" Type="varchar" MaxLength="300" />
           <Property Name="UsuarioCriacao" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="DataCriacao" Type="datetime" Nullable="false" />
-          <Property Name="IndicaGrupoDeTreinamentos" Type="bit" />
+          <Property Name="IndicaGrupoDeTreinamentos" Type="bit" Nullable="false" />
           <Property Name="idTipoTreinamento" Type="int" />
         </EntityType>
         <EntityType Name="tblTreinamentoStatus">
@@ -512,11 +529,13 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="HistoricoTeste" EntityType="Self.HistoricoTeste" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAtividades" EntityType="Self.tblAtividades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAvaliacaoFuncXworkzoneXatividade" EntityType="Self.tblAvaliacaoFuncXworkzoneXatividade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAvaliacaoFuncXworkzoneXatividadeHist" EntityType="Self.tblAvaliacaoFuncXworkzoneXatividadeHist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblFuncionarios" EntityType="Self.tblFuncionarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGrupoAtividades" EntityType="Self.tblGrupoAtividades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGrupoTreinamentos" EntityType="Self.tblGrupoTreinamentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPerfilAtividade" EntityType="Self.tblPerfilAtividade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPerfilAtividadeXPerfilAtItem" EntityType="Self.tblPerfilAtividadeXPerfilAtItem" Schema="dbo" store:Type="Tables" />
@@ -637,8 +656,7 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
             <End Role="tblWorkzoneXAtividades" EntitySet="tblWorkzoneXAtividades" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -840,7 +858,7 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
           <Property Name="Descricao" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioCriacao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IndicaGrupoDeTreinamentos" Type="Boolean" />
+          <Property Name="IndicaGrupoDeTreinamentos" Type="Boolean" Nullable="false" />
           <Property Name="idTipoTreinamento" Type="Int32" />
           <NavigationProperty Name="tblStatusFuncionarioXworkzoneXtreinamento" Relationship="Self.FK_tblStatusFuncionarioXworkzoneXtreinamento_tblTreinamento" FromRole="tblTreinamento" ToRole="tblStatusFuncionarioXworkzoneXtreinamento" />
           <NavigationProperty Name="tblAtividadeXTreinamentos" Relationship="Self.FK_tblAtividadeXTreinamentos_tblTreinamento" FromRole="tblTreinamento" ToRole="tblAtividadeXTreinamentos" />
@@ -1303,7 +1321,26 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
             <End Role="tblWorkzoneXAtividades" EntitySet="tblWorkzoneXAtividades" />
             <End Role="AtividadesDiario" EntitySet="AtividadesDiario" />
           </AssociationSet>
+          <EntitySet Name="tblGrupoAtividades" EntityType="Model.tblGrupoAtividades" />
+          <EntitySet Name="HistoricoTeste" EntityType="Model.HistoricoTeste" />
         </EntityContainer>
+        <EntityType Name="tblGrupoAtividades">
+          <Key>
+            <PropertyRef Name="idAtividadePai" />
+            <PropertyRef Name="idAtividadeFilho" />
+          </Key>
+          <Property Name="idAtividadePai" Type="Int32" Nullable="false" />
+          <Property Name="idAtividadeFilho" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoricoTeste">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="DateSaved" Type="DateTime" Precision="3" />
+          <Property Name="Arquivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1540,6 +1577,24 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
                 <ScalarProperty Name="idAtividade" ColumnName="idAtividade" />
                 <ScalarProperty Name="idTreinamento" ColumnName="idTreinamento" />
                 <ScalarProperty Name="idAtivTreinamento" ColumnName="idAtivTreinamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGrupoAtividades">
+            <EntityTypeMapping TypeName="Model.tblGrupoAtividades">
+              <MappingFragment StoreEntitySet="tblGrupoAtividades">
+                <ScalarProperty Name="idAtividadeFilho" ColumnName="idAtividadeFilho" />
+                <ScalarProperty Name="idAtividadePai" ColumnName="idAtividadePai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoricoTeste">
+            <EntityTypeMapping TypeName="Model.HistoricoTeste">
+              <MappingFragment StoreEntitySet="HistoricoTeste">
+                <ScalarProperty Name="Arquivo" ColumnName="Arquivo" />
+                <ScalarProperty Name="DateSaved" ColumnName="DateSaved" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

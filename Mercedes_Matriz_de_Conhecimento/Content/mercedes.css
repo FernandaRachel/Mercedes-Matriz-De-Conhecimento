@@ -1,4 +1,21 @@
 ﻿
+
+.scrollable > .row {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+/*.scrollable > .row > .col-xs-4 {
+  display: inline-block;
+  float: none;
+}*/
+.colored-tiles{
+    /*background-color:;*/
+    border: solid 1px #bbbec1;
+    border-radius: 4px;
+}
+.scrollable{
+    overflow-x:scroll;
+}
 .body-container {
     margin-top: 6vh;
 }

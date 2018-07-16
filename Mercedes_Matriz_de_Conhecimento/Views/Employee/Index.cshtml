@@ -40,7 +40,14 @@
                     <tr class="text-center">
                         <td>@employee.Nome</td>
                         <td>@employee.RE</td>
-                        <td>@employee.tblWorkzone.Nome</td>
+                        @if (@employee.tblWorkzone != null)
+                        {
+                            <td>@employee.tblWorkzone.Nome</td>
+                        }else
+                        {
+
+                            <td></td>
+                        }
                         <td>@employee.IdentificadorAuxiliar</td>
                         <td>
                             <div class="btn-group" role="group">

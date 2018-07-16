@@ -48,6 +48,8 @@
         <AssociationConnector Association="Model.FK_tblAtividadeXTreinamentos_tblTreinamento" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_tblWorkoneXAtividades_tblWorkzone" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_AtividadesDiario_tblWorkzoneXAtividades" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.tblGrupoAtividades" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.HistoricoTeste" Width="1.5" PointX="10.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

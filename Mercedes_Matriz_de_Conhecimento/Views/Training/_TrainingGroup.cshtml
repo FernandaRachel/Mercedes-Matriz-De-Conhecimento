@@ -1,0 +1,27 @@
+﻿
+<div class="col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">Treinamentos Existentes</div>
+        <div class="panel-body pre-scrollable">
+            <div class="list-group">
+                @foreach (var allTrein in (IEnumerable<tblTreinamento>)ViewData["TodosTreinamentos"])
+                {
+                    <a type="button" class="list-group-item" href="@Url.Action("Push", "Training", new { idDaddy = Model.IdTreinamento, idSon = @allTrein.IdTreinamento,})">@allTrein.Nome</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">Treinamentos Adicionados</div>
+        <div class="panel-body pre-scrollable">
+            <div class="list-group">
+                @foreach (var treinSon in (List<tblTreinamento>)ViewData["TreinamentosFilhos"])
+                {
+                    <a type="button" class="list-group-item" href="@Url.Action("Pop", "Training", new { idDaddy = Model.IdTreinamento, idSon = @treinSon.IdTreinamento })">@treinSon.Nome</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
