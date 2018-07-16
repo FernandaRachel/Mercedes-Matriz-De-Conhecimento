@@ -46,5 +46,6 @@ namespace Mercedes_Matriz_de_Conhecimento
         public virtual DbSet<AtividadesDiario> AtividadesDiario { get; set; }
         public virtual DbSet<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
         public virtual DbSet<tblGrupoAtividades> tblGrupoAtividades { get; set; }
+        public virtual DbSet<HistoricoTeste> HistoricoTeste { get; set; }
     }
 }

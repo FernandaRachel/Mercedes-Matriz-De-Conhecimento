@@ -1,0 +1,16 @@
+﻿@model Mercedes_Matriz_de_Conhecimento.HistoricoTeste
+
+
+@using (Html.BeginForm("SavePdf", "HistMatrix", FormMethod.Post, new { FilePath = "teste", enctype = "multipart/form-data", encoding = "multipart/form-data" }))
+{
+
+
+    @*@Html.HiddenFor(x => x.Id)*@
+    <input type="file" name="uploadFile" id="uploadFile" />
+
+    <input type="submit" value="Guardar" />
+
+    @Html.ActionLink("PDF", "ReadPdf", "HistMatrix", new { id = '3' }, new { @class = "btn btn-default", title = "Open PDF document" })
+
+
+}

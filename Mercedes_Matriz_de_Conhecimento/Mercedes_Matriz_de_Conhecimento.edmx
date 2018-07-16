@@ -17,6 +17,15 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.AtividadesDiario' does not hav
           <Property Name="IdWorkzoneAtividade" Type="int" Nullable="false" />
           <Property Name="idAtividadeDiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="HistoricoTeste">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="300" />
+          <Property Name="DateSaved" Type="datetime" />
+          <Property Name="Arquivo" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -520,6 +529,7 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="HistoricoTeste" EntityType="Self.HistoricoTeste" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAtividades" EntityType="Self.tblAtividades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAvaliacaoFuncXworkzoneXatividade" EntityType="Self.tblAvaliacaoFuncXworkzoneXatividade" Schema="dbo" store:Type="Tables" />
@@ -1312,6 +1322,7 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
             <End Role="AtividadesDiario" EntitySet="AtividadesDiario" />
           </AssociationSet>
           <EntitySet Name="tblGrupoAtividades" EntityType="Model.tblGrupoAtividades" />
+          <EntitySet Name="HistoricoTeste" EntityType="Model.HistoricoTeste" />
         </EntityContainer>
         <EntityType Name="tblGrupoAtividades">
           <Key>
@@ -1320,6 +1331,15 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
           </Key>
           <Property Name="idAtividadePai" Type="Int32" Nullable="false" />
           <Property Name="idAtividadeFilho" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoricoTeste">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="DateSaved" Type="DateTime" Precision="3" />
+          <Property Name="Arquivo" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1565,6 +1585,16 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
               <MappingFragment StoreEntitySet="tblGrupoAtividades">
                 <ScalarProperty Name="idAtividadeFilho" ColumnName="idAtividadeFilho" />
                 <ScalarProperty Name="idAtividadePai" ColumnName="idAtividadePai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoricoTeste">
+            <EntityTypeMapping TypeName="Model.HistoricoTeste">
+              <MappingFragment StoreEntitySet="HistoricoTeste">
+                <ScalarProperty Name="Arquivo" ColumnName="Arquivo" />
+                <ScalarProperty Name="DateSaved" ColumnName="DateSaved" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
