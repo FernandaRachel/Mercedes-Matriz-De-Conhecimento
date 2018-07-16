@@ -18,4 +18,23 @@ namespace Mercedes_Matriz_de_Conhecimento
     {
     }
 
+    [MetadataType(typeof(TrainingMetadata))]
+    public partial class tblTreinamento
+    {
+    }
+
+    [MetadataType(typeof(TrainingProfileMetada))]
+    public partial class tblPerfilTreinamento
+    {
+    }
+
+    [MetadataType(typeof(TrainingTypeMetada))]
+    public partial class tblTipoTreinamento
+    {
+    }
+
+    //[MetadataType(typeof(TrainingTypeMetada))]
+    //public partial class tblTipoTreinamento
+    //{
+    //}
 }

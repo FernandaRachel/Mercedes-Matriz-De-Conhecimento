@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Mercedes_Matriz_de_Conhecimento.Models
 {
-    public class TrainingProfileModel
+    public class TrainingProfileMetada
     {
         public int idPerfilTreinamento { get; set; }
 
