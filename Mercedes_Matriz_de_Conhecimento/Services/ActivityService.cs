@@ -81,6 +81,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             trainingToUpdate.Descricao = Activity.Descricao;
             trainingToUpdate.idPerfilAtividade = Activity.idPerfilAtividade;
             trainingToUpdate.idTipoEquipamentoGSA = Activity.idTipoEquipamentoGSA;
+            trainingToUpdate.IndicaGrupoDeAtividades = Activity.IndicaGrupoDeAtividades;
 
 
             _db.Entry(trainingToUpdate).State = EntityState.Modified;

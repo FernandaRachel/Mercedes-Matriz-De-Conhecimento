@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Mercedes_Matriz_de_Conhecimento.tblWorkzoneXAtividades>
+
+
+<!DOCTYPE html>
+
+<script type="text/javascript">
+
+</script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2 class="text-center">Atividades</h2>
+    <div class="container table-place">
+
+        <table class="table table-striped">
+            <thead class="text-center">
+                <tr class="table-dark">
+                    <th class="text-center">Ordem</th>
+                    <th class="text-center">Atividade</th>
+                    <th class="text-center">Workzone</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var activity in Model)
+                {
+                    <tr class="text-center">
+                        <td>@activity.Ordem</td>
+                        <td>@activity.idAtividade</td>
+                        <td>@activity.idWorkzone</td> 
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-warning btn-group-sm" href="@Url.Action("Details","ActivityXWorkzone",new { id = @activity.idWorkzoneAtividade })">Editar</a>
+                                <a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","ActivityXWorkzone",  new { id = @activity.idWorkzoneAtividade })">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <a type="button" class="btn btn-primary btn-group-sm pull-right" href="@Url.Action("Create", "Activity")">
+            Cadastrar Atividade
+        </a>
+    </div>
+
+</body>
+</html>
