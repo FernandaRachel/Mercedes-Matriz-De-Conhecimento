@@ -11,7 +11,7 @@
 <body>
 
     @*<h3 class=""></h3>*@
-    <h4>Editar Atividade X Workzone</h4>
+    <h4 class="">Editar Workzone X Atividade</h4>
 
     <div class="row">
 
@@ -30,7 +30,8 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.idAtividade, new { @class = "col-md-3 control-label" })
                     <div class="col-md-8">
-                        @Html.DropDownListFor(m => m.idAtividade, new SelectList((IEnumerable)ViewData["Activies"], "idAtividade", "Nome"), "Escolha uma Atividade",
+                        @* (IEnumerable<SelectListItem>)ViewBag.Campaign) *@
+                        @Html.DropDownList("idAtividade", new SelectList((IEnumerable)ViewData["Activies"], "idAtividade", "Nome"), "Escolha uma Atividade",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
@@ -39,10 +40,11 @@
                         })
                     </div>
                 </div>
+                @Model.idAtividade
                 <div class="form-group">
                     @Html.LabelFor(m => m.idWorkzone, new { @class = "col-md-3 control-label" })
                     <div class="col-md-8">
-                        @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzones"], "idWorkzone", "Nome"), "Escolha uma Workzone",
+                        @Html.DropDownList("idWorkzone", new SelectList((IEnumerable)ViewData["Workzones"], "IdWorkzone", "Nome"), "Escolha uma Workzone",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",

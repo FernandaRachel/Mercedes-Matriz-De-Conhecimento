@@ -17,8 +17,8 @@ namespace Mercedes_Matriz_de_Conhecimento
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblTreinamento()
         {
-            this.tblStatusFuncionarioXworkzoneXtreinamento = new HashSet<tblStatusFuncionarioXworkzoneXtreinamento>();
             this.tblAtividadeXTreinamentos = new HashSet<tblAtividadeXTreinamentos>();
+            this.tblStatusFuncionarioXworkzoneXtreinamento = new HashSet<tblStatusFuncionarioXworkzoneXtreinamento>();
         }
     
         public int IdTreinamento { get; set; }
@@ -31,8 +31,8 @@ namespace Mercedes_Matriz_de_Conhecimento
         public Nullable<int> idTipoTreinamento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblStatusFuncionarioXworkzoneXtreinamento> tblStatusFuncionarioXworkzoneXtreinamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblStatusFuncionarioXworkzoneXtreinamento> tblStatusFuncionarioXworkzoneXtreinamento { get; set; }
     }
 }

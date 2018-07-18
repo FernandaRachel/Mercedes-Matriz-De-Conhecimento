@@ -76,11 +76,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [HttpPost]
         public ActionResult Create(tblWorkzoneXAtividades activityXWorkzone)
         {
+            // Valida se nº da ordem ja existe 
+            // e se determinada atividade ja esta associada a determinada workzone
             var exits = _activityXWorkzone.checkIfWorzoneXActivityAlreadyExits(activityXWorkzone);
+            var orderExits = _activityXWorkzone.checkIfOrderAlreadyExits(activityXWorkzone);
 
             if (ModelState.IsValid)
             {
-                if (!exits)
+                if (!exits && !orderExits)
                 {
                     _activityXWorkzone.CreateWorzoneXActivity(activityXWorkzone);
                     return RedirectToAction("Index");
@@ -96,9 +99,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [HttpPost]
         public ActionResult Edit(tblWorkzoneXAtividades activityXWorkzone, int id)
         {
-            activityXWorkzone.idAtividade = id;
-            var exits = _activityXWorkzone.checkIfWorzoneXActivityAlreadyExits(activityXWorkzone);
+            // Adiciona o ID ao objeto, pois o obejto não esta retornando o ID
+            activityXWorkzone.idWorkzoneAtividade = id;
 
+            // Valida se nº da ordem ja existe 
+            // e se determinada atividade ja esta associada a determinada workzone
+            var exits = _activityXWorkzone.checkIfWorzoneXActivityAlreadyExits(activityXWorkzone);
+            var orderExits = _activityXWorkzone.checkIfOrderAlreadyExits(activityXWorkzone);
 
             if (ModelState.IsValid)
             {
@@ -110,6 +117,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+            IEnumerable<tblAtividades> activies;
+            IEnumerable<tblWorkzone> workzones;
+            tblWorkzoneXAtividades workzoneXAtividade;
+
+            activies = _activity.GetActivities();
+            workzones = _workzone.GetWorkzones();
+            workzoneXAtividade = _activityXWorkzone.GetWorzoneXActivityById(id);
+
+            ViewData["Activies"] = activies;
+            ViewData["Workzones"] = workzones;
+
             return View(activityXWorkzone);
         }
 

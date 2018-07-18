@@ -25,11 +25,14 @@ namespace Mercedes_Matriz_de_Conhecimento
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<HistoricoTeste> HistoricoTeste { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tblAtividades> tblAtividades { get; set; }
+        public virtual DbSet<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
         public virtual DbSet<tblAvaliacaoFuncXworkzoneXatividade> tblAvaliacaoFuncXworkzoneXatividade { get; set; }
         public virtual DbSet<tblAvaliacaoFuncXworkzoneXatividadeHist> tblAvaliacaoFuncXworkzoneXatividadeHist { get; set; }
         public virtual DbSet<tblFuncionarios> tblFuncionarios { get; set; }
+        public virtual DbSet<tblGrupoAtividades> tblGrupoAtividades { get; set; }
         public virtual DbSet<tblGrupoTreinamentos> tblGrupoTreinamentos { get; set; }
         public virtual DbSet<tblPerfilAtividade> tblPerfilAtividade { get; set; }
         public virtual DbSet<tblPerfilAtividadeXPerfilAtItem> tblPerfilAtividadeXPerfilAtItem { get; set; }
@@ -44,8 +47,5 @@ namespace Mercedes_Matriz_de_Conhecimento
         public virtual DbSet<tblWorkzone> tblWorkzone { get; set; }
         public virtual DbSet<tblWorkzoneXAtividades> tblWorkzoneXAtividades { get; set; }
         public virtual DbSet<AtividadesDiario> AtividadesDiario { get; set; }
-        public virtual DbSet<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
-        public virtual DbSet<tblGrupoAtividades> tblGrupoAtividades { get; set; }
-        public virtual DbSet<HistoricoTeste> HistoricoTeste { get; set; }
     }
 }

@@ -67,7 +67,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             ViewData["TipoTreinamento"] = trainingType;
             ViewData["TreinamentosFilhos"] = trainingGroup;
-            //            ViewData["TodosTreinamentos"] = new tblTreinamento();
             ViewData["TodosTreinamentos"] = allTrainings;
 
 

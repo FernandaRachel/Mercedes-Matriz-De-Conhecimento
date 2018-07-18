@@ -20,7 +20,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             tblWorkzoneXAtividades WorzoneXActivity;
 
             var query = from f in _db.tblWorkzoneXAtividades
-                        where f.idAtividade == id
+                        where f.idWorkzoneAtividade == id
                         orderby f.idWorkzoneAtividade
                         select f;
 
@@ -70,7 +70,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return WorzoneXActivity;
         }
 
-        
+
         public tblWorkzoneXAtividades UpdateWorzoneXActivity(tblWorkzoneXAtividades WorzoneXActivity)
         {
             var trainingToUpdate = _db.tblWorkzoneXAtividades.Find(WorzoneXActivity.idWorkzoneAtividade);
@@ -91,6 +91,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             var query = from f in _db.tblWorkzoneXAtividades
                         where f.idAtividade == WorzoneXActivity.idAtividade &&
                         f.idWorkzone == WorzoneXActivity.idWorkzone
+                        select f;
+            if (query.Count() == 1)
+                return true;
+
+            return false;
+        }
+
+        public bool checkIfOrderAlreadyExits(tblWorkzoneXAtividades WorzoneXActivity)
+        {
+            var query = from f in _db.tblWorkzoneXAtividades
+                        where f.Ordem == WorzoneXActivity.Ordem 
                         select f;
             if (query.Count() == 1)
                 return true;

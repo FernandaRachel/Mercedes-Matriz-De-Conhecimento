@@ -204,6 +204,7 @@
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivityXTrainingController.cs" />
     <Compile Include="Controllers\ActivityXWorkzoneController.cs" />
     <Compile Include="Controllers\HistMatrixController.cs" />
     <Compile Include="Controllers\MatrixController.cs" />
@@ -251,7 +252,9 @@
     <Compile Include="Models\TrainingTypeMetada.cs" />
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interface\IActivityXTrainingService.cs" />
     <Compile Include="Services\WorzoneXActivityService.cs" />
+    <Compile Include="Services\ActivityXTrainingService.cs" />
     <Compile Include="Services\HistMatrixService.cs" />
     <Compile Include="Services\Interface\IWorzoneXActivityService.cs" />
     <Compile Include="Services\Interface\IHistMatrixService.cs" />
@@ -445,6 +448,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="[Content_Types].xml" />
+    <Content Include="Scripts\bootstrap-select.js.map" />
+    <Content Include="Content\bootstrap-select.css.map" />
     <EntityDeploy Include="Mercedes_Matriz_de_Conhecimento.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Mercedes_Matriz_de_Conhecimento.Designer.cs</LastGenOutput>
@@ -452,8 +457,6 @@
     <Content Include="Mercedes_Matriz_de_Conhecimento.edmx.diagram">
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.edmx</DependentUpon>
     </Content>
-    <Content Include="Scripts\bootstrap-select.js.map" />
-    <Content Include="Content\bootstrap-select.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -535,6 +538,9 @@
     <Content Include="Views\ActivityXWorkzone\Create.cshtml" />
     <Content Include="Views\ActivityXWorkzone\Edit.cshtml" />
     <Content Include="Views\ActivityXWorkzone\Index.cshtml" />
+    <Content Include="Views\ActivityXTraining\Create.cshtml" />
+    <Content Include="Views\ActivityXTraining\Edit.cshtml" />
+    <Content Include="Views\ActivityXTraining\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
