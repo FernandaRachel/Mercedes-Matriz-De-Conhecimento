@@ -111,6 +111,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+
+            if (exits)
+                ModelState.AddModelError("Nome", "Workzone já existente");
+
             return View("workzone");
         }
 

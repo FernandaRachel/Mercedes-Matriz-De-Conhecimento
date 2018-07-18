@@ -113,6 +113,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+
+            IEnumerable<tblPerfilAtividade> activityProfile;
+            activityProfile = _activityProfile.GetActivityProfiles();
+            ViewData["PerfildeAtividade"] = activityProfile;
+
+            if (exits)
+                ModelState.AddModelError("idAtividade", "Atividade já existente");
+
             return View("Create");
         }
 

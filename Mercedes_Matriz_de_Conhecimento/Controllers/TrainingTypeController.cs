@@ -87,6 +87,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+
+            IEnumerable<tblPerfilTreinamento> trainingProile;
+            trainingProile = _trainingProfile.GetTrainingProfiles();
+            ViewData["PerfilTreinamento"] = trainingProile;
+
+            if (exits)
+                ModelState.AddModelError("Nome", "Tipo de Treinamento já existente");
+
             return View(training);
         }
 

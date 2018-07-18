@@ -124,7 +124,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
-            return View("training");
+
+            IEnumerable<tblTipoTreinamento> trainingType;
+            trainingType = _trainingType.GetTrainingTypes();
+            ViewData["TipoTreinamento"] = trainingType;
+
+            if (exits)
+                ModelState.AddModelError("Nome", "Treinamento já existente");
+
+            return View("Create");
         }
 
 

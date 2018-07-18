@@ -204,6 +204,7 @@
       <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PerfilAtivItemXPerfilItemController.cs" />
     <Compile Include="Controllers\ActivityXTrainingController.cs" />
     <Compile Include="Controllers\ActivityXWorkzoneController.cs" />
     <Compile Include="Controllers\HistMatrixController.cs" />
@@ -247,11 +248,14 @@
     <Compile Include="Models\ItemProfileModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PartialClasses.cs" />
+    <Compile Include="Models\PerfilAtividadeXPerfilAtItemMetadata.cs" />
     <Compile Include="Models\TrainingMetadata.cs" />
     <Compile Include="Models\TrainingProfileMetada.cs" />
     <Compile Include="Models\TrainingTypeMetada.cs" />
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PerfilAtivItemXPerfilItemService.cs" />
+    <Compile Include="Services\Interface\IPerfilAtivItemXPerfilItemService.cs" />
     <Compile Include="Services\Interface\IActivityXTrainingService.cs" />
     <Compile Include="Services\WorzoneXActivityService.cs" />
     <Compile Include="Services\ActivityXTrainingService.cs" />
@@ -541,6 +545,9 @@
     <Content Include="Views\ActivityXTraining\Create.cshtml" />
     <Content Include="Views\ActivityXTraining\Edit.cshtml" />
     <Content Include="Views\ActivityXTraining\Index.cshtml" />
+    <Content Include="Views\PerfilAtivItemXPerfilItem\Create.cshtml" />
+    <Content Include="Views\PerfilAtivItemXPerfilItem\Edit.cshtml" />
+    <Content Include="Views\PerfilAtivItemXPerfilItem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,9 +10,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     {
         public int idfuncionario { get; set; }
 
+        [Required]
         [MaxLength(20)]
         public string RE { get; set; }
 
+        [Required]
         [MaxLength(100)]
         public string Nome { get; set; }
 
@@ -28,6 +30,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [Display(Name = "BU Origem")]
         public Nullable<int> idBu_Origem { get; set; }
 
+        [Required]
         [Display(Name = "Workzone")]
         public Nullable<int> idWorkzone { get; set; }
 

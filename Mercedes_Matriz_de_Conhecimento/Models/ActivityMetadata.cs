@@ -10,10 +10,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     {
         public int idAtividade { get; set; }
 
+        [Required]
         public string Nome { get; set; }
 
+        [Required]
         public string Sigla { get; set; }
 
+        [Required]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
@@ -24,6 +27,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [Display(Name = "Grupo de Atividades")]
         public bool IndicaGrupoDeAtividades { get; set; }
 
+        [Required]
         [Display(Name = "Perfil de Atividades")]
         public Nullable<int> idPerfilAtividade { get; set; }
 

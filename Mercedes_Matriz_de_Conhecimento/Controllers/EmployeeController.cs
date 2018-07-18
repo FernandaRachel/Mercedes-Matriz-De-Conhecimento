@@ -82,6 +82,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
             }
 
+            IEnumerable<tblWorkzone> workzone;
+            workzone = _workzone.GetWorkzones();
+            ViewData["Workzone"] = workzone;
+
+            if (exits)
+                ModelState.AddModelError("Nome", "Funcionário já existente");
+
             return View(employee);
         }
 
