@@ -50,17 +50,13 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.AtividadesDiario' does not hav
           <Property Name="idPerfilAtividade" Type="int" />
           <Property Name="idTipoEquipamentoGSA" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblAtividadeXTreinamentos">
           <Key>
-            <PropertyRef Name="idAtividade" />
-            <PropertyRef Name="idTreinamento" />
             <PropertyRef Name="idAtivTreinamento" />
           </Key>
+          <Property Name="idAtivTreinamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idAtividade" Type="int" Nullable="false" />
           <Property Name="idTreinamento" Type="int" Nullable="false" />
-          <Property Name="idAtivTreinamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="tblAvaliacaoFuncXworkzoneXatividade">
           <Key>
@@ -532,6 +528,7 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
           <EntitySet Name="HistoricoTeste" EntityType="Self.HistoricoTeste" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAtividades" EntityType="Self.tblAtividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAtividadeXTreinamentos" EntityType="Self.tblAtividadeXTreinamentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAvaliacaoFuncXworkzoneXatividade" EntityType="Self.tblAvaliacaoFuncXworkzoneXatividade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAvaliacaoFuncXworkzoneXatividadeHist" EntityType="Self.tblAvaliacaoFuncXworkzoneXatividadeHist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblFuncionarios" EntityType="Self.tblFuncionarios" Schema="dbo" store:Type="Tables" />
@@ -555,13 +552,6 @@ warning 6002: The table/view 'Mercedes-Matriz.dbo.tblAtividadeXTreinamentos' doe
     [AtividadesDiario].[IdWorkzoneAtividade] AS [IdWorkzoneAtividade], 
     [AtividadesDiario].[idAtividadeDiario] AS [idAtividadeDiario]
     FROM [dbo].[AtividadesDiario] AS [AtividadesDiario]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="tblAtividadeXTreinamentos" EntityType="Self.tblAtividadeXTreinamentos" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [tblAtividadeXTreinamentos].[idAtividade] AS [idAtividade], 
-    [tblAtividadeXTreinamentos].[idTreinamento] AS [idTreinamento], 
-    [tblAtividadeXTreinamentos].[idAtivTreinamento] AS [idAtivTreinamento]
-    FROM [dbo].[tblAtividadeXTreinamentos] AS [tblAtividadeXTreinamentos]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_AtividadesDiario_tblFuncionarios" Association="Self.FK_AtividadesDiario_tblFuncionarios">
             <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
