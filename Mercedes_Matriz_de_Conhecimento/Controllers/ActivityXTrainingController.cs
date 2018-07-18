@@ -103,18 +103,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             // Valida se nº da ordem ja existe 
             // e se determinada atividade ja esta associada a determinada workzone
-            var exits = _activityXTraining.checkIfActivityXTrainingAlreadyExits(activityXTraining);
 
             if (ModelState.IsValid)
             {
-                if (!exits)
-                {
-                    _activityXTraining.UpdateActivityXTraining(activityXTraining);
+                _activityXTraining.UpdateActivityXTraining(activityXTraining);
 
-                    return RedirectToAction("Index");
-                }
-
+                return RedirectToAction("Index");
             }
+
             IEnumerable<tblAtividades> activies;
             IEnumerable<tblTreinamento> trainings;
             tblAtividadeXTreinamentos workzoneXAtividade;

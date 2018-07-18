@@ -14,9 +14,9 @@ namespace Mercedes_Matriz_de_Conhecimento
     
     public partial class tblAtividadeXTreinamentos
     {
+        public int idAtivTreinamento { get; set; }
         public int idAtividade { get; set; }
         public int idTreinamento { get; set; }
-        public int idAtivTreinamento { get; set; }
     
         public virtual tblAtividades tblAtividades { get; set; }
         public virtual tblTreinamento tblTreinamento { get; set; }
