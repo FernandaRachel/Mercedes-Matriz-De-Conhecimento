@@ -21,6 +21,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         bool checkIfWorzoneXActivityAlreadyExits(tblWorkzoneXAtividades WorzoneXActivity);
 
+        bool checkIfOrderAlreadyExits(tblWorkzoneXAtividades WorzoneXActivity);
+
 
     }
 }

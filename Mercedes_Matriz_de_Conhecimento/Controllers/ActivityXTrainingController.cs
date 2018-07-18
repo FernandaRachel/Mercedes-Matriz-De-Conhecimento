@@ -12,41 +12,41 @@ using System.Net;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class ActivityXWorkzoneController : Controller
+    public class ActivityXTrainingController : Controller
     {
 
 
-        private WorzoneXActivityService _activityXWorkzone;
+        private ActivityXTrainingService _activityXTraining;
         private ActivityService _activity;
-        private WorkzoneService _workzone;
+        private TrainingService _training;
 
 
-        public ActivityXWorkzoneController()
+        public ActivityXTrainingController()
         {
-            _activityXWorkzone = new WorzoneXActivityService();
+            _activityXTraining = new ActivityXTrainingService();
             _activity = new ActivityService();
-            _workzone = new WorkzoneService();
+            _training = new TrainingService();
         }
 
-        // GET: activityXWorkzone
+        // GET: activityXTraining
         public ActionResult Index()
         {
-            IEnumerable<tblWorkzoneXAtividades> activityXWorkzone;
-            activityXWorkzone = _activityXWorkzone.GetWorzoneXActivities();
+            IEnumerable<tblAtividadeXTreinamentos> activityXTraining;
+            activityXTraining = _activityXTraining.GetActivityXWorkzone();
 
-            return View(activityXWorkzone);
+            return View(activityXTraining);
         }
 
         public ActionResult Create()
         {
             IEnumerable<tblAtividades> activies;
-            IEnumerable<tblWorkzone> workzones;
+            IEnumerable<tblTreinamento> trainings;
 
             activies = _activity.GetActivities();
-            workzones = _workzone.GetWorkzones();
+            trainings = _training.GetTrainings();
 
             ViewData["Activies"] = activies;
-            ViewData["Workzones"] = workzones;
+            ViewData["Trainings"] = trainings;
 
             return View("Create");
         }
@@ -56,15 +56,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         {
 
             IEnumerable<tblAtividades> activies;
-            IEnumerable<tblWorkzone> workzones;
-            tblWorkzoneXAtividades workzoneXAtividade;
+            IEnumerable<tblTreinamento> trainings;
+            tblAtividadeXTreinamentos workzoneXAtividade;
 
             activies = _activity.GetActivities();
-            workzones = _workzone.GetWorkzones();
-            workzoneXAtividade = _activityXWorkzone.GetWorzoneXActivityById(id);
+            trainings = _training.GetTrainings();
+            workzoneXAtividade = _activityXTraining.GetActivityXTrainingById(id);
 
             ViewData["Activies"] = activies;
-            ViewData["Workzones"] = workzones;
+            ViewData["Trainings"] = trainings;
 
             if (workzoneXAtividade == null)
                 return View("Index");
@@ -74,18 +74,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(tblWorkzoneXAtividades activityXWorkzone)
+        public ActionResult Create(tblAtividadeXTreinamentos activityXTraining)
         {
             // Valida se nº da ordem ja existe 
             // e se determinada atividade ja esta associada a determinada workzone
-            var exits = _activityXWorkzone.checkIfWorzoneXActivityAlreadyExits(activityXWorkzone);
-            var orderExits = _activityXWorkzone.checkIfOrderAlreadyExits(activityXWorkzone);
+            var exits = _activityXTraining.checkIfActivityXTrainingAlreadyExits(activityXTraining);
 
             if (ModelState.IsValid)
             {
-                if (!exits && !orderExits)
+                if (!exits)
                 {
-                    _activityXWorkzone.CreateWorzoneXActivity(activityXWorkzone);
+                    _activityXTraining.CreateActivityXTraining(activityXTraining);
                     return RedirectToAction("Index");
 
                 }
@@ -97,45 +96,44 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: Activity/Edit/5
         [HttpPost]
-        public ActionResult Edit(tblWorkzoneXAtividades activityXWorkzone, int id)
+        public ActionResult Edit(tblAtividadeXTreinamentos activityXTraining, int id)
         {
             // Adiciona o ID ao objeto, pois o obejto não esta retornando o ID
-            activityXWorkzone.idWorkzoneAtividade = id;
+            activityXTraining.idAtivTreinamento = id;
 
             // Valida se nº da ordem ja existe 
             // e se determinada atividade ja esta associada a determinada workzone
-            var exits = _activityXWorkzone.checkIfWorzoneXActivityAlreadyExits(activityXWorkzone);
-            var orderExits = _activityXWorkzone.checkIfOrderAlreadyExits(activityXWorkzone);
+            var exits = _activityXTraining.checkIfActivityXTrainingAlreadyExits(activityXTraining);
 
             if (ModelState.IsValid)
             {
                 if (!exits)
                 {
-                    _activityXWorkzone.UpdateWorzoneXActivity(activityXWorkzone);
+                    _activityXTraining.UpdateActivityXTraining(activityXTraining);
 
                     return RedirectToAction("Index");
                 }
 
             }
             IEnumerable<tblAtividades> activies;
-            IEnumerable<tblWorkzone> workzones;
-            tblWorkzoneXAtividades workzoneXAtividade;
+            IEnumerable<tblTreinamento> trainings;
+            tblAtividadeXTreinamentos workzoneXAtividade;
 
             activies = _activity.GetActivities();
-            workzones = _workzone.GetWorkzones();
-            workzoneXAtividade = _activityXWorkzone.GetWorzoneXActivityById(id);
+            trainings = _training.GetTrainings();
+            workzoneXAtividade = _activityXTraining.GetActivityXTrainingById(id);
 
             ViewData["Activies"] = activies;
-            ViewData["Workzones"] = workzones;
+            ViewData["Trainings"] = trainings;
 
-            return View(activityXWorkzone);
+            return View(activityXTraining);
         }
 
 
-        // GET: activityXWorkzone/Delete/5
+        // GET: activityXTraining/Delete/5
         public ActionResult Delete(int id)
         {
-            _activityXWorkzone.DeleteWorzoneXActivity(id);
+            _activityXTraining.DeleteActivityXTraining(id);
 
             return RedirectToAction("Index");
         }

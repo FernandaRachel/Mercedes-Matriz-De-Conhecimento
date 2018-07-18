@@ -41,7 +41,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             activity = query.AsEnumerable();
 
-            return activity;
+            return activity.AsEnumerable();
         }
 
 
