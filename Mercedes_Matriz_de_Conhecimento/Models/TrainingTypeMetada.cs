@@ -10,13 +10,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     {
         public int IdTipoTreinamento { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public string Nome { get; set; }
 
+        [Required]
         [MaxLength(200)]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
+        [Required]
         [MaxLength(5)]
         public string Sigla { get; set; }
 
@@ -31,6 +34,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [Display(Name = "Ativo")]
         public bool TipoAtivo { get; set; }
 
+        [Required]
+        [Display(Name = "Perfil Treinamento")]
         public int idPerfilTreinamento { get; set; }
     }
 }

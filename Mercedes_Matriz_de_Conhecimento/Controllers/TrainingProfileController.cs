@@ -75,6 +75,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
             }
 
+
+            if (exits)
+                ModelState.AddModelError("Nome", "Perfil de Treinamento já existente");
+
             return View("Create");
         }
 

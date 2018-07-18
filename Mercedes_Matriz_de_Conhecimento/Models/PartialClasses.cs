@@ -37,4 +37,9 @@ namespace Mercedes_Matriz_de_Conhecimento
     public partial class tblAtividades
     {
     }
+
+    [MetadataType(typeof(PerfilAtividadeXPerfilAtItemMetadata))]
+    public partial class tblPerfilAtividadeXPerfilAtItem
+    {
+    }
 }

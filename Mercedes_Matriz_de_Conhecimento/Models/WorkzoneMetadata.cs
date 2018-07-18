@@ -10,9 +10,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     {
         public int IdWorkzone { get; set; }
 
+        [Required]
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
+        [Required]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
@@ -28,6 +30,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [Display(Name = "Centro de Custo")]
         public int IdCentroDeCusto { get; set; }
 
+        [Required]
         [Display(Name = "Pessoas Necessárias")]
         public int PessoasNecessarias { get; set; }
 

@@ -11,6 +11,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 
         public int IdPerfilTreinamento { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public string Nome { get; set; }
 

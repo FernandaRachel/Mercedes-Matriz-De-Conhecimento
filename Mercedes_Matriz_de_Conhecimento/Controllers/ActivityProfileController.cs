@@ -72,6 +72,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+
+            if (exits)
+                ModelState.AddModelError("Nome", "Perfil de Atividade já existente");
+
             return View("Create");
         }
 

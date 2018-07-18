@@ -90,6 +90,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+
+            if (exits) 
+                ModelState.AddModelError("idAtividade", "Treinamento já associado a atividade");
+
             return View("Create");
         }
 
