@@ -8,13 +8,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 {
     public class TrainingProfileMetada
     {
-        public int idPerfilTreinamento { get; set; }
+
+        public int IdPerfilTreinamento { get; set; }
 
         [MaxLength(50)]
         public string Nome { get; set; }
 
         [MaxLength(20)]
-        public string UsuarioCricao { get; set; }
+        public string UsuarioCriacao { get; set; }
 
         public DateTime DataCriacao { get; set; }
     }

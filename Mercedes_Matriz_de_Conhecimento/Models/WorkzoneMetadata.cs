@@ -18,8 +18,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 
         public string UsuarioCriacao { get; set; }
 
-        [Display(Name = "Data Criacao")]
-        public System.DateTime DataCriacao { get; set; }
+        public DateTime DataCriacao { get; set; }
 
         [Display(Name = "Usuario Desativação")]
         public string UsuarioDesativacao { get; set; }
@@ -27,13 +26,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         public string DataDesativacao { get; set; }
 
         [Display(Name = "Centro de Custo")]
-        public Nullable<int> IdCentroDeCusto { get; set; }
+        public int IdCentroDeCusto { get; set; }
 
         [Display(Name = "Pessoas Necessárias")]
         public int PessoasNecessarias { get; set; }
 
-        [Display(Name = "Data de Alteração")]
-        public Nullable<System.DateTime> DataAlteracao { get; set; }
+        public DateTime DataAlteracao { get; set; }
 
         [MaxLength(20)]
         [Display(Name = "Usuário Alteração")]
