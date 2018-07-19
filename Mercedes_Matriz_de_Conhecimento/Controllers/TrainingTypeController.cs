@@ -93,7 +93,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData["PerfilTreinamento"] = trainingProile;
 
             if (exits)
-                ModelState.AddModelError("Nome", "Tipo de Treinamento já existente");
+                ModelState.AddModelError("Nome", "Tipo de Treinamento já existe");
 
             return View(training);
         }

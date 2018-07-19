@@ -243,6 +243,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityMetadata.cs" />
+    <Compile Include="Models\ActivityItemMetadata.cs" />
+    <Compile Include="Models\ActivityProfileItemMetadata.cs" />
+    <Compile Include="Models\ActivityProfileMetada.cs" />
     <Compile Include="Models\EmployeeMetadata.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ItemProfileModel.cs" />
@@ -508,11 +511,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Employee\Employee.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Workzone\Index.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\Workzone\Workzone.cshtml" />
+    <Content Include="Views\Workzone\Create.cshtml" />
     <Content Include="Views\Workzone\Edit.cshtml" />
     <Content Include="Views\Employee\ConfirmDelete.cshtml" />
     <Content Include="Views\Training\Edit.cshtml" />

@@ -119,7 +119,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData["PerfildeAtividade"] = activityProfile;
 
             if (exits)
-                ModelState.AddModelError("idAtividade", "Atividade já existente");
+                ModelState.AddModelError("Nome", "Atividade já existe");
 
             return View("Create");
         }

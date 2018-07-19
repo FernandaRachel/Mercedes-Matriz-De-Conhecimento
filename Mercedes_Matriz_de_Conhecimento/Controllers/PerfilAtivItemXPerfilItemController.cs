@@ -95,15 +95,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             IEnumerable<tblPerfilAtividade> activityProfile;
             IEnumerable<tblPerfilAtivItem> profileItemActivity;
-
             activityProfile = _profileActivity.GetActivityProfiles();
             profileItemActivity = _activityProfileItem.GetActivityProfileItems();
-
             ViewData["PerfilAtividade"] = activityProfile;
             ViewData["PerfilAtividadeItem"] = profileItemActivity;
 
             if (orderExits)
-                ModelState.AddModelError("Ordem", "Ordem já existente");
+                ModelState.AddModelError("Ordem", "Ordem já existe");
+            else if(exits)
+                ModelState.AddModelError("idPerfilAtivItem", " Atividade Item já associada a Perfil Atividade");
 
 
             return View("Create");
@@ -127,7 +127,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
                 if (exits)
-                    ModelState.AddModelError("Ordem", "Ordem já existente");
+                    ModelState.AddModelError("Ordem", "Ordem já existe");
 
                 return View("Edit");
             }

@@ -91,6 +91,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             }
 
+            IEnumerable<tblAtividades> activies;
+            IEnumerable<tblTreinamento> trainings;
+            activies = _activity.GetActivities();
+            trainings = _training.GetTrainings();
+            ViewData["Activies"] = activies;
+            ViewData["Trainings"] = trainings;
+
+
             if (exits) 
                 ModelState.AddModelError("idAtividade", "Treinamento já associado a atividade");
 
