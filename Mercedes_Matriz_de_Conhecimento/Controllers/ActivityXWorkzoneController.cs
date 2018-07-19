@@ -91,6 +91,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+
+            IEnumerable<tblAtividades> activies;
+            IEnumerable<tblWorkzone> workzones;
+            activies = _activity.GetActivities();
+            workzones = _workzone.GetWorkzones();
+            ViewData["Activies"] = activies;
+            ViewData["Workzones"] = workzones;
+
+            if (orderExits)
+                ModelState.AddModelError("Ordem", "Ordem já existe");
+            else if (exits)
+                ModelState.AddModelError("idAtividade", "Treinamento já associado a atividade");
+
             return View("Create");
         }
 

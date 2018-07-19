@@ -130,7 +130,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData["TipoTreinamento"] = trainingType;
 
             if (exits)
-                ModelState.AddModelError("Nome", "Treinamento já existente");
+                ModelState.AddModelError("Nome", "Treinamento já existe");
 
             return View("Create");
         }

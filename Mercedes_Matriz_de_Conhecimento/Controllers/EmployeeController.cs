@@ -43,7 +43,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             ViewData["Workzone"] = workzone;
 
-            return View("Employee");
+            return View("Create");
         }
 
         // GET: Employee/Details/5
@@ -87,7 +87,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData["Workzone"] = workzone;
 
             if (exits)
-                ModelState.AddModelError("Nome", "Funcionário já existente");
+                ModelState.AddModelError("Nome", "Funcionário já existe");
 
             return View(employee);
         }

@@ -44,7 +44,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             ViewData["Workzone"] = workzone;
 
-            return View("workzone");
+            return View("Create");
         }
 
         //GET: workzone/Details/5
@@ -113,9 +113,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             }
 
             if (exits)
-                ModelState.AddModelError("Nome", "Workzone já existente");
+                ModelState.AddModelError("Nome", "Workzone já existe");
 
-            return View("workzone");
+            return View("Create");
         }
 
 
