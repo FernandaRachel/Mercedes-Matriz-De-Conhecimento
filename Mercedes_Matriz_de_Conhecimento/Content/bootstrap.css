@@ -1479,8 +1479,8 @@ th {
   border-bottom-width: 2px;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td,
-.table-striped > tbody > tr:nth-child(odd) > th {
+.table-bordered > tbody > tr:nth-child(odd) > td,
+.table-bordered > tbody > tr:nth-child(odd) > th {
   background-color: #f9f9f9;
 }
 
@@ -2089,43 +2089,43 @@ fieldset[disabled] .btn-default.active {
   border-color: #cccccc;
 }
 
-.btn-primary {
+.btn-modified-create {
   color: #ffffff;
   background-color: #428bca;
   border-color: #357ebd;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.open .dropdown-toggle.btn-primary {
+.btn-modified-create:hover,
+.btn-modified-create:focus,
+.btn-modified-create:active,
+.btn-modified-create.active,
+.open .dropdown-toggle.btn-modified-create {
   color: #ffffff;
   background-color: #3276b1;
   border-color: #285e8e;
 }
 
-.btn-primary:active,
-.btn-primary.active,
-.open .dropdown-toggle.btn-primary {
+.btn-modified-create:active,
+.btn-modified-create.active,
+.open .dropdown-toggle.btn-modified-create {
   background-image: none;
 }
 
-.btn-primary.disabled,
-.btn-primary[disabled],
-fieldset[disabled] .btn-primary,
-.btn-primary.disabled:hover,
-.btn-primary[disabled]:hover,
-fieldset[disabled] .btn-primary:hover,
-.btn-primary.disabled:focus,
-.btn-primary[disabled]:focus,
-fieldset[disabled] .btn-primary:focus,
-.btn-primary.disabled:active,
-.btn-primary[disabled]:active,
-fieldset[disabled] .btn-primary:active,
-.btn-primary.disabled.active,
-.btn-primary[disabled].active,
-fieldset[disabled] .btn-primary.active {
+.btn-modified-create.disabled,
+.btn-modified-create[disabled],
+fieldset[disabled] .btn-modified-create,
+.btn-modified-create.disabled:hover,
+.btn-modified-create[disabled]:hover,
+fieldset[disabled] .btn-modified-create:hover,
+.btn-modified-create.disabled:focus,
+.btn-modified-create[disabled]:focus,
+fieldset[disabled] .btn-modified-create:focus,
+.btn-modified-create.disabled:active,
+.btn-modified-create[disabled]:active,
+fieldset[disabled] .btn-modified-create:active,
+.btn-modified-create.disabled.active,
+.btn-modified-create[disabled].active,
+fieldset[disabled] .btn-modified-create.active {
   background-color: #428bca;
   border-color: #357ebd;
 }
@@ -2212,43 +2212,43 @@ fieldset[disabled] .btn-danger.active {
   border-color: #d43f3a;
 }
 
-.btn-success {
+.btn-modified-create {
   color: #ffffff;
   background-color: #5cb85c;
   border-color: #4cae4c;
 }
 
-.btn-success:hover,
-.btn-success:focus,
-.btn-success:active,
-.btn-success.active,
-.open .dropdown-toggle.btn-success {
+.btn-modified-create:hover,
+.btn-modified-create:focus,
+.btn-modified-create:active,
+.btn-modified-create.active,
+.open .dropdown-toggle.btn-modified-create {
   color: #ffffff;
   background-color: #47a447;
   border-color: #398439;
 }
 
-.btn-success:active,
-.btn-success.active,
-.open .dropdown-toggle.btn-success {
+.btn-modified-create:active,
+.btn-modified-create.active,
+.open .dropdown-toggle.btn-modified-create {
   background-image: none;
 }
 
-.btn-success.disabled,
-.btn-success[disabled],
-fieldset[disabled] .btn-success,
-.btn-success.disabled:hover,
-.btn-success[disabled]:hover,
-fieldset[disabled] .btn-success:hover,
-.btn-success.disabled:focus,
-.btn-success[disabled]:focus,
-fieldset[disabled] .btn-success:focus,
-.btn-success.disabled:active,
-.btn-success[disabled]:active,
-fieldset[disabled] .btn-success:active,
-.btn-success.disabled.active,
-.btn-success[disabled].active,
-fieldset[disabled] .btn-success.active {
+.btn-modified-create.disabled,
+.btn-modified-create[disabled],
+fieldset[disabled] .btn-modified-create,
+.btn-modified-create.disabled:hover,
+.btn-modified-create[disabled]:hover,
+fieldset[disabled] .btn-modified-create:hover,
+.btn-modified-create.disabled:focus,
+.btn-modified-create[disabled]:focus,
+fieldset[disabled] .btn-modified-create:focus,
+.btn-modified-create.disabled:active,
+.btn-modified-create[disabled]:active,
+fieldset[disabled] .btn-modified-create:active,
+.btn-modified-create.disabled.active,
+.btn-modified-create[disabled].active,
+fieldset[disabled] .btn-modified-create.active {
   background-color: #5cb85c;
   border-color: #4cae4c;
 }
@@ -3361,8 +3361,8 @@ input[type="button"].btn-block {
   border-top-color: #333333;
 }
 
-.btn-primary .caret,
-.btn-success .caret,
+.btn-modified-create .caret,
+.btn-modified-create .caret,
 .btn-warning .caret,
 .btn-danger .caret,
 .btn-info .caret {
@@ -3373,8 +3373,8 @@ input[type="button"].btn-block {
   border-bottom-color: #333333;
 }
 
-.dropup .btn-primary .caret,
-.dropup .btn-success .caret,
+.dropup .btn-modified-create .caret,
+.dropup .btn-modified-create .caret,
 .dropup .btn-warning .caret,
 .dropup .btn-danger .caret,
 .dropup .btn-info .caret {
