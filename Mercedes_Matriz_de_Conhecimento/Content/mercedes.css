@@ -1,21 +1,29 @@
 ﻿
+body {
+    letter-spacing: 0;
+    font-family: "DaimlerCS-Regular", Arial, sans-serif;
+    line-height: 1;
+    padding-bottom: 20px;
+}
 
 .scrollable > .row {
-  overflow-x: auto;
-  white-space: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 /*.scrollable > .row > .col-xs-4 {
   display: inline-block;
   float: none;
 }*/
-.colored-tiles{
+.colored-tiles {
     /*background-color:;*/
     border: solid 1px #bbbec1;
     border-radius: 4px;
 }
-.scrollable{
-    overflow-x:scroll;
+
+.scrollable {
+    overflow-x: scroll;
 }
+
 .body-container {
     margin-top: 6vh;
 }
@@ -37,22 +45,41 @@
     padding-top: 3%;
 }
 
-.table-dark th:first-child, td:first-child {
-    border-top-left-radius: 0.5em;
-}
-
-.table-dark th:last-child, td:last-child {
-    border-top-right-radius: 0.5em;
-}
 
 tr.table-dark {
-    background-color: #7e7c7c;
+    background-color: #c9c1c1;
+    color: black;
+    ;
+}
+
+.btn-modified-create {
+    background-color: #000000;
+    border-color: #000000;
     color: white;
 }
 
-body {
-    letter-spacing: 0;
-    font-family: "DaimlerCS-Regular", Arial, sans-serif;
-    line-height: 1;
-    padding-bottom: 20px;
+.btn-modified-create:hover {
+    background-color: #423f3f;
+    border-color: #423f3f;
+    color: white;
+}
+
+.btn-modified-save  {
+    background-color: #00677F;
+    border-color: #00677F;
+    color: white;
+}
+
+ .btn-modified-save:hover{
+    background-color: #1e9ab7;
+    border-color: #1e9ab7;
+    color: white;
+}
+
+.icon-edit-modified {
+    color: black;
+}
+
+.icon-delete-modified {
+    color: red;
 }
