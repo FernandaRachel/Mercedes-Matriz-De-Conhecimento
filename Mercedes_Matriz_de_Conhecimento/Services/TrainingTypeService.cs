@@ -21,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblTipoTreinamento
                         where f.IdTipoTreinamento == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             TrainingType = query.FirstOrDefault();
@@ -36,7 +36,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblTipoTreinamento
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             TrainingType = query.AsEnumerable();
@@ -61,7 +61,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblTipoTreinamento
                         where f.IdTipoTreinamento == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             TrainingType = query.FirstOrDefault();
@@ -96,7 +96,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblTipoTreinamento
                         where f.Nome == TrainingType.Nome
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             if (query.Count() == 1 && query.FirstOrDefault().IdTipoTreinamento != TrainingType.IdTipoTreinamento)

@@ -21,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblPerfilAtividadeXPerfilAtItem
                         where f.idPerfilAtividade == idPA && f.idPerfilAtivItem == idPAI
-                        orderby f.idPerfilAtividade
+                        orderby f.idPerfilAtividade ascending
                         select f;
 
             PerfilAtivItemXPerfilItem = query.FirstOrDefault();
@@ -34,7 +34,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             IEnumerable<tblPerfilAtividadeXPerfilAtItem> PerfilAtivItemXPerfilItem;
 
             var query = from f in _db.tblPerfilAtividadeXPerfilAtItem
-                        orderby f.idPerfilAtividade
+                        orderby f.idPerfilAtividade ascending
                         select f;
 
             PerfilAtivItemXPerfilItem = query.AsEnumerable();
@@ -59,7 +59,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblPerfilAtividadeXPerfilAtItem
                         where f.idPerfilAtividade == idPA && f.idPerfilAtivItem == idPAI
-                        orderby f.idPerfilAtividade
+                        orderby f.idPerfilAtividade ascending
                         select f;
 
             PerfilAtivItemXPerfilItem = query.FirstOrDefault();
@@ -77,7 +77,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                 from f in _db.tblPerfilAtividadeXPerfilAtItem
                 where f.idPerfilAtividade == PerfilAtivItemXPerfilItem.idPerfilAtividade
                 && f.idPerfilAtivItem == PerfilAtivItemXPerfilItem.idPerfilAtivItem
-                orderby f.idPerfilAtividade
+                orderby f.idPerfilAtividade ascending
                 select f;
             var AuxPAIXPI = PerfilAtivItemXPerfilItemToUpdate.FirstOrDefault();
 
@@ -99,7 +99,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             var query = from f in _db.tblPerfilAtividadeXPerfilAtItem
                         where f.idPerfilAtividade == PerfilAtivItemXPerfilItem.idPerfilAtividade
                         && f.idPerfilAtivItem == PerfilAtivItemXPerfilItem.idPerfilAtivItem
-                        orderby f.idPerfilAtividade
+                        orderby f.idPerfilAtividade ascending
                         select f;
 
             if (query.Count() == 1)

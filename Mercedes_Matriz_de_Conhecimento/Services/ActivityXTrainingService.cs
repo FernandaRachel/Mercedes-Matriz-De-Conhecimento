@@ -21,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblAtividadeXTreinamentos
                         where f.idAtivTreinamento == id
-                        orderby f.idAtivTreinamento
+                        orderby f.idAtivTreinamento ascending
                         select f;
 
             ActivityXTraining = query.FirstOrDefault();
@@ -34,7 +34,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             IEnumerable<tblAtividadeXTreinamentos> ActivityXTraining;
 
             var query = from f in _db.tblAtividadeXTreinamentos
-                        orderby f.idAtivTreinamento
+                        orderby f.idAtivTreinamento ascending
                         select f;
 
             ActivityXTraining = query.AsEnumerable();
@@ -59,7 +59,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblAtividadeXTreinamentos
                         where f.idAtivTreinamento == id
-                        orderby f.idAtivTreinamento
+                        orderby f.idAtivTreinamento ascending
                         select f;
 
             ActivityXTraining = query.FirstOrDefault();

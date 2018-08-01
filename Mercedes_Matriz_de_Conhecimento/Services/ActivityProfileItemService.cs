@@ -21,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblPerfilAtivItem
                         where f.idPerfilAtivItem == id
-                        orderby f.Sigla
+                        orderby f.Sigla ascending
                         select f;
 
             activityProfile = query.FirstOrDefault();
@@ -36,7 +36,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblPerfilAtivItem
-                        orderby f.Sigla
+                        orderby f.Sigla ascending
                         select f;
 
             activityProfile = query.AsEnumerable();
@@ -61,7 +61,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblPerfilAtivItem
                         where f.idPerfilAtivItem == id
-                        orderby f.Sigla
+                        orderby f.Sigla ascending
                         select f;
 
             ActivityProfileItem = query.FirstOrDefault();
@@ -93,7 +93,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblPerfilAtivItem
                         where f.Sigla == ActivityProfileItem.Sigla
-                        orderby f.Sigla
+                        orderby f.Sigla ascending
                         select f;
 
             if (query.Count() == 1 && query.FirstOrDefault().idPerfilAtivItem != ActivityProfileItem.idPerfilAtivItem)

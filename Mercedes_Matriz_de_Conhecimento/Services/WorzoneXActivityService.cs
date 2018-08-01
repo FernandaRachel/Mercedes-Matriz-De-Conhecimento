@@ -21,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblWorkzoneXAtividades
                         where f.idWorkzoneAtividade == id
-                        orderby f.idWorkzoneAtividade
+                        orderby f.idWorkzoneAtividade ascending
                         select f;
 
             WorzoneXActivity = query.FirstOrDefault();
@@ -34,7 +34,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             IEnumerable<tblWorkzoneXAtividades> WorzoneXActivity;
 
             var query = from f in _db.tblWorkzoneXAtividades
-                        orderby f.idWorkzoneAtividade
+                        orderby f.idWorkzoneAtividade ascending
                         select f;
 
             WorzoneXActivity = query.AsEnumerable();
@@ -59,7 +59,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblWorkzoneXAtividades
                         where f.idWorkzoneAtividade == id
-                        orderby f.idWorkzoneAtividade
+                        orderby f.idWorkzoneAtividade ascending
                         select f;
 
             WorzoneXActivity = query.FirstOrDefault();

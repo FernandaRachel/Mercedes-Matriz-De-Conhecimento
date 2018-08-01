@@ -22,7 +22,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblFuncionarios
-                         orderby f.Nome
+                         orderby f.Nome ascending
                          select f;
 
             employee = query.AsEnumerable();
@@ -35,7 +35,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblFuncionarios
                         where f.idfuncionario == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             employee = query.FirstOrDefault();
@@ -62,7 +62,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblFuncionarios
                         where f.idfuncionario == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             Employee = query.FirstOrDefault();
@@ -97,7 +97,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblFuncionarios
                         where f.Nome == Employee.Nome
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             if (query.Count() == 1 && query.FirstOrDefault().idfuncionario != Employee.idfuncionario)

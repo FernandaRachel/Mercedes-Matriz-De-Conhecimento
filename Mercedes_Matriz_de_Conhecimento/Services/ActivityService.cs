@@ -36,7 +36,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblAtividades
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             activity = query.AsEnumerable();
@@ -61,7 +61,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblAtividades
                         where f.idAtividade == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             Activity = query.FirstOrDefault();
@@ -96,7 +96,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblAtividades
                         where f.Nome == Activity.Nome
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             if (query.Count() == 1 && query.FirstOrDefault().idAtividade != Activity.idAtividade)

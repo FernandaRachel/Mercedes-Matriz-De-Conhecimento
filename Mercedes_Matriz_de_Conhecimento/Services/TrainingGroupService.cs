@@ -21,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblGrupoTreinamentos
                         where f.IdTreinamentoPai == id
-                        orderby f.IdTreinamentoFilho
+                        orderby f.IdTreinamentoFilho ascending
                         select f;
 
             TrainingGroup = query.FirstOrDefault();
@@ -34,7 +34,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             IEnumerable<tblGrupoTreinamentos> TrainingGroup;
 
             var query = from f in _db.tblGrupoTreinamentos
-                        orderby f.IdTreinamentoPai
+                        orderby f.IdTreinamentoPai ascending
                         select f;
 
             TrainingGroup = query.AsEnumerable();
@@ -59,7 +59,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblGrupoTreinamentos
                         where f.IdTreinamentoPai == idDaddy && f.IdTreinamentoFilho == idSon
-                        orderby f.IdTreinamentoPai
+                        orderby f.IdTreinamentoPai ascending
                         select f;
 
             TrainingGroup = query.FirstOrDefault();
