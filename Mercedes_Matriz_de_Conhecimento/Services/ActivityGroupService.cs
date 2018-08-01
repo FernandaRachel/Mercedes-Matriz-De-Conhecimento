@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using PagedList;
 
 namespace Mercedes_Matriz_de_Conhecimento.Services
 {
@@ -88,7 +89,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
         public List<tblAtividades> setUpActivitys(int idDaddy)
         {
-            List<tblAtividades> allSons =  new List<tblAtividades>();
+            List<tblAtividades> allSons = new List<tblAtividades>();
 
             var query = from f in _db.tblGrupoAtividades
                         where f.idAtividadePai == idDaddy
@@ -97,8 +98,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             foreach (var son in query)
             {
                 var query2 = from f in _db.tblAtividades
-                            where f.idAtividade == son.idAtividadeFilho 
-                            select f;
+                             where f.idAtividade == son.idAtividadeFilho
+                             select f;
                 allSons.Add(query2.FirstOrDefault());
             }
 
@@ -116,6 +117,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                 return true;
 
             return false;
+        }
+
+        public IEnumerable<tblGrupoAtividades> GetActivityGroupsItemsWithPagination(int pageNumber, int quantity)
+        {
+            IEnumerable<tblGrupoAtividades> ActivityGroup;
+
+            var query = from f in _db.tblGrupoAtividades
+                        orderby f.idAtividadePai ascending
+                        select f;
+
+            ActivityGroup = query.ToPagedList(pageNumber, quantity);
+
+            return ActivityGroup;
         }
     }
 }

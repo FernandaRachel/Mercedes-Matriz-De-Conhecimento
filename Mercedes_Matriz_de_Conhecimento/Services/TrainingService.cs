@@ -102,5 +102,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             return false;
         }
+
+        public IEnumerable<tblTreinamento> GetTrainingsWithPagination(int pageNumber, int quantity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

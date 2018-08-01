@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using PagedList;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -27,10 +28,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: workzone
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(int page = 1)
         {
-            IEnumerable<tblWorkzone> workzone;
-            workzone = _workzone.GetWorkzones();
+            IPagedList<tblWorkzone> workzone;
+            workzone = _workzone.GetWorkzonesWithPagination(page, 2);
 
             return View(workzone);
 

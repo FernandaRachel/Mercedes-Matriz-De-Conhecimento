@@ -19,5 +19,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
         tblGrupoTreinamentos DeleteTrainingGroup(int idDaddy, int idSon);
 
         List<tblTreinamento> setUpTrainings(int idDaddy);
+
+        IEnumerable<tblGrupoTreinamentos> GetTrainingGroupsWithPagination(int pageNumber, int quantity);
     }
 }

@@ -19,5 +19,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
         tblGrupoAtividades DeleteActivityGroup(int idDaddy, int idSon);
 
         List<tblAtividades> setUpActivitys(int idDaddy);
+
+        IEnumerable<tblGrupoAtividades> GetActivityGroupsItemsWithPagination(int pageNumber, int quantity);
     }
 }

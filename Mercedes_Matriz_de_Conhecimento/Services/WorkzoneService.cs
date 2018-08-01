@@ -1,5 +1,6 @@
 ﻿using Mercedes_Matriz_de_Conhecimento.Services;
 using Mercedes_Matriz_de_Conhecimento.Services.Interface;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -109,6 +110,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                 return true;
 
             return false;
+        }
+
+        public IPagedList<tblWorkzone> GetWorkzonesWithPagination(int pageNumber, int quantity = 2)
+        {
+            IPagedList<tblWorkzone> workzone;
+
+
+            var query = from f in _db.tblWorkzone
+                        orderby f.Nome ascending
+                        select f;
+
+            workzone = query.ToPagedList(pageNumber, quantity);
+
+            return workzone;
         }
     }
 

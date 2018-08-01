@@ -21,6 +21,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         bool checkIfProfileItemAlreadyExits(tblPerfilItem ProfileItem);
 
-
+        IEnumerable<tblPerfilItem> GetTrainingGroupsWithPagination(int pageNumber, int quantity);
     }
 }

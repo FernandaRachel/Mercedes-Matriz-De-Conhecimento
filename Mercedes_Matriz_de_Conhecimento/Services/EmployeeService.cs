@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using PagedList;
 
 namespace Mercedes_Matriz_de_Conhecimento.Services
 {
@@ -106,5 +107,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
+        public IEnumerable<tblFuncionarios> GetEmployeesWithPagination(int pageNumber, int quantity)
+        {
+            IEnumerable<tblFuncionarios> employee;
+
+
+
+            var query = from f in _db.tblFuncionarios
+                        orderby f.Nome ascending
+                        select f;
+
+            employee = query.ToPagedList(pageNumber, quantity);
+            return employee;
+        }
     }
 }

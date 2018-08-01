@@ -21,6 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         bool checkIfTrainingStatusAlreadyExits(tblTreinamentoStatus TrainingStatusStatus);
 
+        IEnumerable<tblTreinamentoStatus> GetTrainingStatussWithPagination(int pageNumber, int quantity);
 
     }
 }

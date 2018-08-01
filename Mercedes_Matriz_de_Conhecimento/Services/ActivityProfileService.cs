@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using PagedList;
 
 namespace Mercedes_Matriz_de_Conhecimento.Services
 {
@@ -98,6 +99,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                 return true;
 
             return false;
+        }
+
+        public IEnumerable<tblPerfilAtividade> GetActivityProfilesWithPagination(int pageNumber, int quantity)
+        {
+            IEnumerable<tblPerfilAtividade> activityProfile;
+
+
+
+            var query = from f in _db.tblPerfilAtividade
+                        orderby f.nome ascending
+                        select f;
+
+            activityProfile = query.ToPagedList(pageNumber, quantity);
+
+            return activityProfile;
         }
     }
 }
