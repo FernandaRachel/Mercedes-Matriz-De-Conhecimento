@@ -21,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblTreinamento
                         where f.IdTreinamento == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             training = query.FirstOrDefault();
@@ -36,7 +36,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblTreinamento
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             training = query.AsEnumerable();
@@ -61,7 +61,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblTreinamento
                         where f.IdTreinamento == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             Training = query.FirstOrDefault();
@@ -94,13 +94,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblTreinamento
                         where f.Nome == Training.Nome
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             if (query.Count() == 1 && query.FirstOrDefault().IdTreinamento != Training.IdTreinamento)
                 return true;
 
             return false;
+        }
+
+        public IEnumerable<tblTreinamento> GetTrainingsWithPagination(int pageNumber, int quantity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -20,5 +20,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
         tblAtividadeXTreinamentos DeleteActivityXTraining(int id);
 
         bool checkIfActivityXTrainingAlreadyExits(tblAtividadeXTreinamentos ActivityXTraining);
+
+        IEnumerable<tblAtividadeXTreinamentos> GetActivityXWorkzoneWithPagination(int pageNumber, int quantity);
     }
 }

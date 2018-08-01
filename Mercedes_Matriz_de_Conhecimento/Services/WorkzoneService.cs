@@ -1,5 +1,6 @@
 ﻿using Mercedes_Matriz_de_Conhecimento.Services;
 using Mercedes_Matriz_de_Conhecimento.Services.Interface;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -25,7 +26,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblWorkzone
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             workzone = query.AsEnumerable();
@@ -40,7 +41,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblWorkzone
                         where f.IdWorkzone == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             workzone = query.FirstOrDefault();
@@ -56,7 +57,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblWorkzone
                         where f.Nome == Workzone.Nome
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
             if (query != null)
                 _db.SaveChanges();
@@ -87,7 +88,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblWorkzone
                         where f.IdWorkzone == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             Workzone = query.FirstOrDefault();
@@ -102,13 +103,27 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblWorkzone
                         where f.Nome == workzone.Nome
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             if (query.Count() == 1 && query.FirstOrDefault().IdWorkzone != workzone.IdWorkzone)
                 return true;
 
             return false;
+        }
+
+        public IPagedList<tblWorkzone> GetWorkzonesWithPagination(int pageNumber, int quantity = 2)
+        {
+            IPagedList<tblWorkzone> workzone;
+
+
+            var query = from f in _db.tblWorkzone
+                        orderby f.Nome ascending
+                        select f;
+
+            workzone = query.ToPagedList(pageNumber, quantity);
+
+            return workzone;
         }
     }
 

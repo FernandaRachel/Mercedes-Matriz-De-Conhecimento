@@ -29,6 +29,8 @@ namespace Mercedes_Matriz_de_Conhecimento
                       "~/Content/bootstrap-select.css",
                       "~/Content/mercedes.css",
                       "~/Content/mbbras.css",
+                      "~/Content/tooltip.css",
+                      "~/Content/uipt_BR.css",
                       "~/Content/site.css"));
         }
     }

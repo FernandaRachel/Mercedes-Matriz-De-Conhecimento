@@ -3,8 +3,11 @@
 @using System.Collections;
 
 
+@{
+    ViewBag.Title = "FUNCIONÁRIOS";
+}
 
-<h4><i class="fas fa-plus"></i> Cadastrar Funcionário</h4>
+<h4> Cadastrar Funcionário</h4>
 
 <div class="row">
     @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

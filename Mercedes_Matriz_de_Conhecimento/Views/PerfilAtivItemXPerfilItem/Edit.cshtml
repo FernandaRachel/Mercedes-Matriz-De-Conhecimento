@@ -3,69 +3,62 @@
 @using System.Collections;
 
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
+@{
+    ViewBag.Title = "PERFIL ATIVIDADE X PERFIL ATIVIDADE ITEM";
+}
 
-    @*<h3 class=""></h3>*@
-    <h4> Perfil Atividade Item X Perfil Item </h4>
+<h4> Perfil Atividade Item X Perfil Item </h4>
 
-    <div class="row">
+<div class="row">
 
-        @using (Html.BeginForm("Edit", "PerfilAtivItemXPerfilItem", new { idPAI = Model.idPerfilAtividade, idPA = Model.idPerfilAtividade }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
+    @using (Html.BeginForm("Edit", "PerfilAtivItemXPerfilItem", new { idPAI = Model.idPerfilAtividade, idPA = Model.idPerfilAtividade }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
 
-            <div class="col-md-5">
-                @Html.ValidationSummary("", new { @class = "text-danger" })
-                <p class = "text-danger">@ViewBag.OrderExits</p>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Ordem, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control" })
-                    </div>
+        <div class="col-md-5">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <p class="text-danger">@ViewBag.OrderExits</p>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ordem, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control" })
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.idPerfilAtividade, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-8">
-                        @Html.DropDownListFor(m => m.idPerfilAtividade, new SelectList((IEnumerable)ViewData["PerfilAtividade"], "idPerfilAtividade", "nome"), "Escolha uma Workzone",
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.idPerfilAtividade, new { @class = "col-md-3 control-label" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(m => m.idPerfilAtividade, new SelectList((IEnumerable)ViewData["PerfilAtividade"], "idPerfilAtividade", "nome"), "Escolha uma Workzone",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
                             data_show_subtext = "true",
                             data_live_search = "true"
                         })
-                    </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.idPerfilAtivItem, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-8">
-                        @Html.DropDownListFor(m => m.idPerfilAtivItem, new SelectList((IEnumerable)ViewData["PerfilAtividadeItem"], "idPerfilAtivItem", "Sigla"), "Escolha uma Atividade",
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.idPerfilAtivItem, new { @class = "col-md-3 control-label" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(m => m.idPerfilAtivItem, new SelectList((IEnumerable)ViewData["PerfilAtividadeItem"], "idPerfilAtivItem", "Sigla"), "Escolha uma Atividade",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
                             data_show_subtext = "true",
                             data_live_search = "true"
                         })
-                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-11">
-                        <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">
+                    <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
                 </div>
-
             </div>
 
-        }
+        </div>
 
-    </div>
+    }
 
-    <div class="row">
-        <a type="button" class="btn btn-default" href="@Url.Action("Index", "PerfilAtivItemXPerfilItem")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
-    </div>
-</body>
+</div>
 
-</html>
+<div class="row">
+    <a type="button" class="btn btn-default" href="@Url.Action("Index", "PerfilAtivItemXPerfilItem")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
+</div>

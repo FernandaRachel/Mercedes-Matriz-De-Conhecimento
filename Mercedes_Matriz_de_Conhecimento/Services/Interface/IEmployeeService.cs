@@ -25,5 +25,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         bool checkIfUserAlreadyExits(tblFuncionarios Employee);
 
+        IEnumerable<tblFuncionarios> GetEmployeesWithPagination(int pageNumber, int quantity);
     }
 }

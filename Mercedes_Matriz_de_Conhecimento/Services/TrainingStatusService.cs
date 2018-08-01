@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using PagedList;
 
 namespace Mercedes_Matriz_de_Conhecimento.Services
 {
@@ -20,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblTreinamentoStatus
                         where f.idStatusTreinamento == id
-                        orderby f.Denominacao
+                        orderby f.Denominacao ascending
                         select f;
 
             TrainingStatus = query.FirstOrDefault();
@@ -35,7 +36,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblTreinamentoStatus
-                        orderby f.Denominacao
+                        orderby f.Denominacao ascending
                         select f;
 
             TrainingStatus = query.AsEnumerable();
@@ -60,7 +61,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblTreinamentoStatus
                         where f.idStatusTreinamento == id
-                        orderby f.Denominacao
+                        orderby f.Denominacao ascending
                         select f;
 
             TrainingStatus = query.FirstOrDefault();
@@ -90,13 +91,28 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblTreinamentoStatus
                         where f.Denominacao == TrainingStatus.Denominacao
-                        orderby f.Denominacao
+                        orderby f.Denominacao ascending
                         select f;
 
             if (query.Count() == 1 && query.FirstOrDefault().idStatusTreinamento != TrainingStatus.idStatusTreinamento)
                 return true;
 
             return false;
+        }
+
+        public IEnumerable<tblTreinamentoStatus> GetTrainingStatussWithPagination(int pageNumber, int quantity)
+        {
+            IEnumerable<tblTreinamentoStatus> TrainingStatus;
+
+
+
+            var query = from f in _db.tblTreinamentoStatus
+                        orderby f.Denominacao ascending
+                        select f;
+
+            TrainingStatus = query.ToPagedList(pageNumber,quantity);
+
+            return TrainingStatus;
         }
     }
 }

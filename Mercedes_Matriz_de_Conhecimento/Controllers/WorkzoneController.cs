@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using PagedList;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -27,10 +28,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: workzone
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(int page = 1)
         {
-            IEnumerable<tblWorkzone> workzone;
-            workzone = _workzone.GetWorkzones();
+            IPagedList<tblWorkzone> workzone;
+            workzone = _workzone.GetWorkzonesWithPagination(page, 2);
 
             return View(workzone);
 
@@ -69,20 +71,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var employe = _employee.GetEmployeeById(id);
             employe.idWorkzone = idwz;
 
-            _employee.UpdateEmployee(employe);
-
-            var workzone = _workzone.GetWorkzoneById(idwz);
-
-
-            return RedirectToAction("Details", new { id = idwz});
-        }
-
-        public ActionResult Pop(int id, int idwz)
-        {
-            var employe = _employee.GetEmployeeById(id);
-            employe.idWorkzone = null;
-
-            _employee.UpdateEmployee(employe);
+            if (ModelState.IsValid)
+                _employee.UpdateEmployee(employe);
 
             var workzone = _workzone.GetWorkzoneById(idwz);
 
@@ -90,7 +80,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return RedirectToAction("Details", new { id = idwz });
         }
 
-    
+        public ActionResult Pop(int id, int idwz)
+        {
+            var employe = _employee.GetEmployeeById(id);
+            employe.idWorkzone = null;
+
+            if (ModelState.IsValid)
+                _employee.UpdateEmployee(employe);
+
+            var workzone = _workzone.GetWorkzoneById(idwz);
+
+
+            return RedirectToAction("Details", new { id = idwz });
+        }
+
+
         // GET: workzone/Create
         [HttpPost]
         public ActionResult Create(tblWorkzone workzone)

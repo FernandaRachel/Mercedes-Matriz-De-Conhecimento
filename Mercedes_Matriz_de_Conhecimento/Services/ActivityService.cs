@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using PagedList;
 
 namespace Mercedes_Matriz_de_Conhecimento.Services
 {
@@ -36,7 +37,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblAtividades
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             activity = query.AsEnumerable();
@@ -61,7 +62,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var query = from f in _db.tblAtividades
                         where f.idAtividade == id
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             Activity = query.FirstOrDefault();
@@ -72,7 +73,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Activity;
         }
 
-        
+
         public tblAtividades UpdateActivity(tblAtividades Activity)
         {
             var trainingToUpdate = _db.tblAtividades.Find(Activity.idAtividade);
@@ -96,13 +97,28 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblAtividades
                         where f.Nome == Activity.Nome
-                        orderby f.Nome
+                        orderby f.Nome ascending
                         select f;
 
             if (query.Count() == 1 && query.FirstOrDefault().idAtividade != Activity.idAtividade)
                 return true;
 
             return false;
+        }
+
+        public IEnumerable<tblAtividades> GetActivitiesWithPagination(int pageNumber, int quantity)
+        {
+            IEnumerable<tblAtividades> activity;
+
+
+
+            var query = from f in _db.tblAtividades
+                        orderby f.Nome ascending
+                        select f;
+
+            activity = query.ToPagedList(pageNumber, quantity);
+
+            return activity.AsEnumerable();
         }
     }
 }

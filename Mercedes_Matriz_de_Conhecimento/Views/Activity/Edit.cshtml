@@ -33,12 +33,10 @@
     </script>
 }
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
+@{
+    ViewBag.Title = "ATIVIDADES";
+}
+
 
     @*<h3 class=""></h3>*@
     <h4> Atividade</h4>
@@ -137,6 +135,3 @@
     <div class="row">
         <a type="button" class="btn btn-default" href="@Url.Action("Index", "Activity")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
     </div>
-</body>
-
-</html>
