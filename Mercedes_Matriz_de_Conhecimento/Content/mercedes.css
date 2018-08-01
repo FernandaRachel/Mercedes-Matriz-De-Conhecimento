@@ -81,5 +81,9 @@ tr.table-dark {
 }
 
 .icon-delete-modified {
-    color: red;
+    color: white;
+}
+.container .button-place{
+    margin-bottom:0;
+    padding-bottom:0;
 }

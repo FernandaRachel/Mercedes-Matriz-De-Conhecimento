@@ -9,46 +9,62 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="navbar navbar-right fixed-top">
-        <span class="img-responsive navbar-brand pull-left">Daimler SGP</span>
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Mercedes", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visualização/Cadastro <span class="caret"></span></a>
-                        <ul class="dropdown-menu" id="teste">
-                            <li>@Html.ActionLink("Funcionário", "Index", "Employee")</li>
-                            <li>@Html.ActionLink("Workzone", "Index", "Workzone")</li>
-                            <li>@Html.ActionLink("Treinamento", "Index", "Training")</li>
-                            <li>@Html.ActionLink("Tipo de Treinamento", "Index", "TrainingType")</li>
-                            <li>@Html.ActionLink("Perfil de Treinamento", "Index", "TrainingProfile")</li>
-                            <li>@Html.ActionLink("Item de Treinamento", "Index", "ProfileItem")</li>
-                            <li>@Html.ActionLink("Atividades", "Index", "Activity")</li>
-                            <li>@Html.ActionLink("Perfil de Atividades", "Index", "ActivityProfile")</li>
-                            <li>@Html.ActionLink("Item de Atividade", "Index", "ActivityProfileItem")</li>
-                            
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Associação <span class="caret"></span></a>
-                        <ul class="dropdown-menu" id="assoc">
-                            <li>@Html.ActionLink("Workzone X Atividade", "Index", "ActivityXWorkzone")</li>
-                            <li>@Html.ActionLink("Treinamento X Atividade", "Index", "ActivityXTraining")</li>
-                            <li>@Html.ActionLink("Perfil Atividade Item X Perfil Item", "Index", "PerfilAtivItemXPerfilItem")</li>
-                        </ul>
-                    </li>
-                    <li>@Html.ActionLink("Matriz de Conhecimento", "Index", "Matrix")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+    <div class="navbar navbar-default text-center">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <label class="text-info">Daimler</label>&nbsp;SGP
+            </a>
+        </div>
+        <a class="navbar-brand navbar-center" href="#">@ViewBag.Title</a>
+
+
+        <div class="nav navbar-login navbar-right navbar-collapse">
+            <img src="~/Imagens/" class="pull-left" height="40" width="40">
+            <ul class="nav navbar-right navbar-collapse collapse" id="navLogin">
+                <li class="dropdown">
+                    <a tabindex="-1" class="dropdown-toggle accessibility_skipCancelNode" id="assistbar-dropdown" role="button" href="#" data-toggle="dropdown">
+                        SPI <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="assistbar-dropdown">
+                        <li><a length="0" href="#Account/Logoff">Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar navbar-default">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visualização/Cadastro <span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="teste">
+                        <li>@Html.ActionLink("Funcionário", "Index", "Employee")</li>
+                        <li>@Html.ActionLink("Workzone", "Index", "Workzone")</li>
+                        <li>@Html.ActionLink("Treinamento", "Index", "Training")</li>
+                        <li>@Html.ActionLink("Tipo de Treinamento", "Index", "TrainingType")</li>
+                        <li>@Html.ActionLink("Perfil de Treinamento", "Index", "TrainingProfile")</li>
+                        <li>@Html.ActionLink("Item de Treinamento", "Index", "ProfileItem")</li>
+                        <li>@Html.ActionLink("Atividades", "Index", "Activity")</li>
+                        <li>@Html.ActionLink("Perfil de Atividades", "Index", "ActivityProfile")</li>
+                        <li>@Html.ActionLink("Item de Atividade", "Index", "ActivityProfileItem")</li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Associação <span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="assoc">
+                        <li>@Html.ActionLink("Workzone X Atividade", "Index", "ActivityXWorkzone")</li>
+                        <li>@Html.ActionLink("Treinamento X Atividade", "Index", "ActivityXTraining")</li>
+                        <li>@Html.ActionLink("Perfil Atividade Item X Perfil Item", "Index", "PerfilAtivItemXPerfilItem")</li>
+                    </ul>
+                </li>
+                <li>@Html.ActionLink("Matriz de Conhecimento", "Index", "Matrix")</li>
+            </ul>
         </div>
     </div>
     <div class="container body-container">

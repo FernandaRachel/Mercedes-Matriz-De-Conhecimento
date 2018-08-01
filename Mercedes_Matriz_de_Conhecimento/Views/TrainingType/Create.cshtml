@@ -2,81 +2,68 @@
 
 @using System.Collections;
 
-<script type="text/javascript">
+@{
+    ViewBag.Title = "TIPO DE TREINAMENTO";
+}
 
+<h4 class="">Criar Tipo de Treinamento</h4>
 
-</script>
+<div class="row">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-
-    <h4 class="">Criar Tipo de Treinamento</h4>
-
-    <div class="row">
-
-        @using (Html.BeginForm("Create", "TrainingType", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("Create", "TrainingType", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
 
-            <div class="col-md-5">
+        <div class="col-md-5">
 
-                @Html.ValidationSummary("", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Nome, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
-                    </div>
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Nome, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Sigla, new { @class = "col-md-3 control-label" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sigla, new { @class = "col-md-3 control-label" })
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Sigla, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Descricao, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
+                </div>
+            </div>
+            @*<div class="form-group">
+                    @Html.LabelFor(m => m.IndicaGrupoDeTreinamentos, new { @class = "col-md-3 control-label" })
                     <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.Sigla, new { @class = "form-control" })
+                        @Html.CheckBoxFor(m => m.IndicaGrupoDeTreinamentos, new { @class = "" })
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Descricao, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
-                    </div>
-                </div>
-                @*<div class="form-group">
-                        @Html.LabelFor(m => m.IndicaGrupoDeTreinamentos, new { @class = "col-md-3 control-label" })
-                        <div class="col-md-2">
-                            @Html.CheckBoxFor(m => m.IndicaGrupoDeTreinamentos, new { @class = "" })
-                        </div>
-                    </div>*@
-                <div class="form-group">
-                    @Html.Label("Perfil de Treinamento", new { @class = "col-md-3 control-label" })
-                    <div class="col-md-9">
-                       
-                        @Html.DropDownListFor(m => m.idPerfilTreinamento, new SelectList((IEnumerable)ViewData["PerfilTreinamento"], "idPerfilTreinamento", "Nome", 0), "Escolha um Perfil de Treinamento",
+                </div>*@
+            <div class="form-group">
+                @Html.Label("Perfil de Treinamento", new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+
+                    @Html.DropDownListFor(m => m.idPerfilTreinamento, new SelectList((IEnumerable)ViewData["PerfilTreinamento"], "idPerfilTreinamento", "Nome", 0), "Escolha um Perfil de Treinamento",
                         new
                         {
                             @class = "form-control selectpicker",
                             data_show_subtext = "true",
                             data_live_search = "true"
                         })
-                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-11">
-                        <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">
+                    <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
                 </div>
-
             </div>
 
-}
+        </div>
 
-    </div>
-    <div class="row">
-        <a type="button" class="btn btn-default" href="@Url.Action("Index", "TrainingType")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
-    </div>
-</body>
+    }
 
-
-
-</html>
+</div>
+<div class="row">
+    <a type="button" class="btn btn-default" href="@Url.Action("Index", "TrainingType")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
+</div>

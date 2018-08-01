@@ -2,57 +2,45 @@
 
 @using System.Collections;
 
-<script type="text/javascript">
+@{
+    ViewBag.Title = "PERFIL DE TREINAMENTO";
+}
 
+<h4> Perfil de Treinamento</h4>
 
-</script>
+<div class="row">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
+    @using (Html.BeginForm("Edit", "Workzone", new { id = Model.IdPerfilTreinamento }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
 
-    @*<h3 class=""></h3>*@
-    <h4> Perfil de Treinamento</h4>
+        <div class="col-md-5">
 
-    <div class="row">
-
-        @using (Html.BeginForm("Edit", "Workzone", new { id = Model.IdPerfilTreinamento }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
-
-            <div class="col-md-5">
-
-                @Html.ValidationSummary("", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Nome, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
-                    </div>
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Nome, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
                 </div>
-                @*<div class="form-group">
+            </div>
+            @*<div class="form-group">
                     @Html.LabelFor(m => m.UsuarioCriacao, new { @class = "col-md-3 control-label" })
                     <div class="col-md-2">
                         @Html.TextBoxFor(m => m.UsuarioCriacao, new { @class = "form-control" })
                     </div>
                 </div>*@
-              
-                <div class="form-group">
-                    <div class="col-md-11">
-                        <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
-                    </div>
-                </div>
 
+            <div class="form-group">
+                <div class="col-md-11">
+                    <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
+                </div>
             </div>
 
-        }
-    </div>
+        </div>
+
+    }
+</div>
 
 
-    <div class="row">
-        <a type="button" class="btn btn-default" href="@Url.Action("Index", "TrainingProfile")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
-    </div>
-</body>
-
-</html>
+<div class="row">
+    <a type="button" class="btn btn-default" href="@Url.Action("Index", "TrainingProfile")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
+</div>

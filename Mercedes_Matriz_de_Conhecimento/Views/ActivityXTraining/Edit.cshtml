@@ -3,64 +3,58 @@
 @using System.Collections;
 
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
 
-    @*<h3 class=""></h3>*@
-    <h4>Treinamento X Atividade </h4>
+@{
+    ViewBag.Title = "ATIVIDADE X TREINAMENTO";
+}
 
-    <div class="row">
 
-        @using (Html.BeginForm("Edit", "ActivityXTraining", new { id = Model.idAtivTreinamento }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
+<h4>Treinamento X Atividade </h4>
 
-            <div class="col-md-5">
+<div class="row">
 
-                @Html.ValidationSummary("", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.idTreinamento, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-8">
-                        @Html.DropDownListFor(m => m.idTreinamento, new SelectList((IEnumerable)ViewData["Trainings"], "idTreinamento", "Nome"), "Escolha uma Workzone",
+    @using (Html.BeginForm("Edit", "ActivityXTraining", new { id = Model.idAtivTreinamento }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+
+        <div class="col-md-5">
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.idTreinamento, new { @class = "col-md-3 control-label" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(m => m.idTreinamento, new SelectList((IEnumerable)ViewData["Trainings"], "idTreinamento", "Nome"), "Escolha uma Workzone",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
                             data_show_subtext = "true",
                             data_live_search = "true"
                         })
-                    </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.idAtividade, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-8">
-                        @* (IEnumerable<SelectListItem>)ViewBag.Campaign) *@
-                        @Html.DropDownListFor(m => m.idAtividade, new SelectList((IEnumerable)ViewData["Activies"], "idAtividade", "Nome"), "Escolha uma Atividade",
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.idAtividade, new { @class = "col-md-3 control-label" })
+                <div class="col-md-8">
+                    @* (IEnumerable<SelectListItem>)ViewBag.Campaign) *@
+                    @Html.DropDownListFor(m => m.idAtividade, new SelectList((IEnumerable)ViewData["Activies"], "idAtividade", "Nome"), "Escolha uma Atividade",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
                             data_show_subtext = "true",
                             data_live_search = "true"
                         })
-                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-11">
-                        <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-11">
+                    <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
                 </div>
-
             </div>
 
-        }
+        </div>
 
-    </div>
+    }
 
-    <div class="row">
-        <a type="button" class="btn btn-default" href="@Url.Action("Index", "ActivityXTraining")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
-    </div>
-</body>
-
-</html>
+</div>
+<div class="row">
+    <a type="button" class="btn btn-default" href="@Url.Action("Index", "ActivityXTraining")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
+</div>

@@ -69,20 +69,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var employe = _employee.GetEmployeeById(id);
             employe.idWorkzone = idwz;
 
-            _employee.UpdateEmployee(employe);
-
-            var workzone = _workzone.GetWorkzoneById(idwz);
-
-
-            return RedirectToAction("Details", new { id = idwz});
-        }
-
-        public ActionResult Pop(int id, int idwz)
-        {
-            var employe = _employee.GetEmployeeById(id);
-            employe.idWorkzone = null;
-
-            _employee.UpdateEmployee(employe);
+            if (ModelState.IsValid)
+                _employee.UpdateEmployee(employe);
 
             var workzone = _workzone.GetWorkzoneById(idwz);
 
@@ -90,7 +78,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return RedirectToAction("Details", new { id = idwz });
         }
 
-    
+        public ActionResult Pop(int id, int idwz)
+        {
+            var employe = _employee.GetEmployeeById(id);
+            employe.idWorkzone = null;
+
+            if (ModelState.IsValid)
+                _employee.UpdateEmployee(employe);
+
+            var workzone = _workzone.GetWorkzoneById(idwz);
+
+
+            return RedirectToAction("Details", new { id = idwz });
+        }
+
+
         // GET: workzone/Create
         [HttpPost]
         public ActionResult Create(tblWorkzone workzone)
