@@ -25,18 +25,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         public string JustificativaNaoAtivo { get; set; }
 
         [Display(Name = "BU Atual")]
-        public Nullable<int> idBu_atual { get; set; }
-
-        [Display(Name = "BU Origem")]
         public Nullable<int> idBu_Origem { get; set; }
 
-        [Required]
-        [Display(Name = "Workzone")]
-        public Nullable<int> idWorkzone { get; set; }
-
-        [MaxLength(100)]
+        [MaxLength(10)]
         [Display(Name = "Identificador Auxiliar")]
         public string IdentificadorAuxiliar { get; set; }
+
+        [Display(Name = "ID Americas")]
+        public int idAmericas { get; set; }
 
     }
 }

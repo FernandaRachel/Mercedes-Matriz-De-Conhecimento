@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -26,10 +27,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: profileItem
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            IEnumerable<tblPerfilItem> profileItem;
-            profileItem = _ProfileItem.GetProfileItems();
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
+            IEnumerable<tblPerfilItens> profileItem;
+            profileItem = _ProfileItem.GetProfileItemsWithPagination(page,pages_quantity);
 
             return View(profileItem);
 
@@ -45,7 +48,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Details(int id)
         {
 
-            tblPerfilItem profileItem;
+            tblPerfilItens profileItem;
             profileItem = _ProfileItem.GetProfileItemById(id);
 
             if (profileItem == null)
@@ -56,9 +59,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(tblPerfilItem profileItem)
+        public ActionResult Create(tblPerfilItens profileItem)
         {
             var exits = _ProfileItem.checkIfProfileItemAlreadyExits(profileItem);
+            profileItem.Tipo = "T";
 
             if (ModelState.IsValid)
             {
@@ -80,7 +84,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: Activity/Edit/5
         [HttpPost]
-        public ActionResult Edit(tblPerfilItem profileItem, int id)
+        public ActionResult Edit(tblPerfilItens profileItem, int id)
         {
             profileItem.IdPerfilItem = id;
             var exits = _ProfileItem.checkIfProfileItemAlreadyExits(profileItem);

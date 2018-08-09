@@ -9,7 +9,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
     interface IActivityXTrainingService
     {
 
-        IEnumerable<tblAtividadeXTreinamentos> GetActivityXWorkzone();
+        IEnumerable<tblAtividadeXTreinamentos> GetActivityXTraining();
 
         tblAtividadeXTreinamentos GetActivityXTrainingById(int id);
 
@@ -17,10 +17,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         tblAtividadeXTreinamentos UpdateActivityXTraining(tblAtividadeXTreinamentos ActivityXTraining);
 
-        tblAtividadeXTreinamentos DeleteActivityXTraining(int id);
+        tblAtividadeXTreinamentos DeleteActivityXTraining(int idActivity, int Train);
 
         bool checkIfActivityXTrainingAlreadyExits(tblAtividadeXTreinamentos ActivityXTraining);
 
-        IEnumerable<tblAtividadeXTreinamentos> GetActivityXWorkzoneWithPagination(int pageNumber, int quantity);
+        IEnumerable<tblAtividadeXTreinamentos> GetActivityXTrainingWithPagination(int pageNumber, int quantity);
+
+        IEnumerable<tblTreinamento> SetUpTrainingList(int idActivity);
     }
 }

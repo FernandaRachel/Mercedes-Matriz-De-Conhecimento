@@ -16,12 +16,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
 
-        public tblPerfilTreinamento GetTrainingProfileById(int id)
+        public tblPerfis GetTrainingProfileById(int id)
         {
-            tblPerfilTreinamento trainingProfile;
+            tblPerfis trainingProfile;
 
-            var query = from f in _db.tblPerfilTreinamento
-                        where f.IdPerfilTreinamento == id
+            var query = from f in _db.tblPerfis
+                        where f.IdPerfis == id
                         orderby f.Nome ascending
                         select f;
 
@@ -29,18 +29,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             return trainingProfile;
         }
-        public tblPerfilTreinamento GetFirstProfile()
+        public tblPerfis GetFirstProfile()
         {
-            return _db.tblPerfilTreinamento.FirstOrDefault();
+            return _db.tblPerfis.FirstOrDefault();
         }
 
-        public IEnumerable<tblPerfilTreinamento> GetTrainingProfiles()
+        public IEnumerable<tblPerfis> GetTrainingProfiles()
         {
-            IEnumerable<tblPerfilTreinamento> trainingProfile;
+            IEnumerable<tblPerfis> trainingProfile;
 
 
 
-            var query = from f in _db.tblPerfilTreinamento
+            var query = from f in _db.tblPerfis
                         orderby f.Nome ascending
                         select f;
 
@@ -50,9 +50,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         }
 
 
-        public tblPerfilTreinamento CreateTrainingProfile(tblPerfilTreinamento TrainingProfile)
+        public tblPerfis CreateTrainingProfile(tblPerfis TrainingProfile)
         {
-            _db.tblPerfilTreinamento.Add(TrainingProfile);
+            _db.tblPerfis.Add(TrainingProfile);
 
             _db.SaveChanges();
 
@@ -60,29 +60,30 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return TrainingProfile;
         }
 
-        public tblPerfilTreinamento DeleteTrainingProfile(int id)
+        public tblPerfis DeleteTrainingProfile(int id)
         {
-            tblPerfilTreinamento TrainingProfile;
+            tblPerfis TrainingProfile;
 
-            var query = from f in _db.tblPerfilTreinamento
-                        where f.IdPerfilTreinamento == id
+            var query = from f in _db.tblPerfis
+                        where f.IdPerfis == id
                         orderby f.Nome ascending
                         select f;
 
             TrainingProfile = query.FirstOrDefault();
 
-            _db.tblPerfilTreinamento.Remove(TrainingProfile);
+            _db.tblPerfis.Remove(TrainingProfile);
             _db.SaveChanges();
 
             return TrainingProfile;
         }
 
         
-        public tblPerfilTreinamento UpdateTrainingProfile(tblPerfilTreinamento TrainingProfile)
+        public tblPerfis UpdateTrainingProfile(tblPerfis TrainingProfile)
         {
-            var trainingProfileToUpdate = _db.tblPerfilTreinamento.Find(TrainingProfile.IdPerfilTreinamento);
+            var trainingProfileToUpdate = _db.tblPerfis.Find(TrainingProfile.IdPerfis);
             trainingProfileToUpdate.Nome = TrainingProfile.Nome;
-            trainingProfileToUpdate.tblTipoTreinamento= TrainingProfile.tblTipoTreinamento;
+            trainingProfileToUpdate.tblPerfilAtividadeXPerfilAtItem= TrainingProfile.tblPerfilAtividadeXPerfilAtItem;
+            trainingProfileToUpdate.tblPerfilAtividadeXPerfilAtItem= TrainingProfile.tblPerfilAtividadeXPerfilAtItem;
             trainingProfileToUpdate.tblPerfilTreinamentoxPerfilItem = TrainingProfile.tblPerfilTreinamentoxPerfilItem;
            
 
@@ -95,30 +96,44 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         }
 
 
-        public bool checkIfTrainingProfileAlreadyExits(tblPerfilTreinamento TrainingProfile)
+        public bool checkIfTrainingProfileAlreadyExits(tblPerfis TrainingProfile)
         {
-            var query = from f in _db.tblPerfilTreinamento
+            var query = from f in _db.tblPerfis
                         where f.Nome == TrainingProfile.Nome
                         orderby f.Nome ascending
                         select f;
 
-            if (query.Count() == 1 && query.FirstOrDefault().IdPerfilTreinamento != TrainingProfile.IdPerfilTreinamento)
+            if (query.Count() == 1 && query.FirstOrDefault().IdPerfis != TrainingProfile.IdPerfis)
                 return true;
 
             return false;
         }
 
-        public IEnumerable<tblPerfilTreinamento> GetTrainingProfilesWithPagination(int pageNumber, int quantity)
+        public IEnumerable<tblPerfis> GetTrainingProfilesWithPagination(int pageNumber, int quantity)
         {
-            IEnumerable<tblPerfilTreinamento> trainingProfile;
+            IEnumerable<tblPerfis> trainingProfile;
 
 
 
-            var query = from f in _db.tblPerfilTreinamento
+            var query = from f in _db.tblPerfis
                         orderby f.Nome ascending
                         select f;
 
             trainingProfile = query.ToPagedList(pageNumber,quantity);
+
+            return trainingProfile;
+        }
+
+        public IEnumerable<tblPerfis> GetTrainingProfilesByType(string type)
+        {
+            IEnumerable<tblPerfis> trainingProfile;
+
+            var query = from f in _db.tblPerfis
+                        orderby f.Nome ascending
+                        where f.Tipo == "T"
+                        select f;
+
+            trainingProfile = query.AsEnumerable();
 
             return trainingProfile;
         }

@@ -16,11 +16,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
 
-        public tblPerfilItem GetProfileItemById(int id)
+        public tblPerfilItens GetProfileItemById(int id)
         {
-            tblPerfilItem Profile;
+            tblPerfilItens Profile;
 
-            var query = from f in _db.tblPerfilItem
+            var query = from f in _db.tblPerfilItens
                         where f.IdPerfilItem == id
                         orderby f.Sigla ascending
                         select f;
@@ -30,13 +30,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Profile;
         }
 
-        public IEnumerable<tblPerfilItem> GetProfileItems()
+        public IEnumerable<tblPerfilItens> GetProfileItems()
         {
-            IEnumerable<tblPerfilItem> Profile;
+            IEnumerable<tblPerfilItens> Profile;
 
 
 
-            var query = from f in _db.tblPerfilItem
+            var query = from f in _db.tblPerfilItens
                         orderby f.Sigla ascending
                         select f;
 
@@ -46,9 +46,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         }
 
 
-        public tblPerfilItem CreateProfileItem(tblPerfilItem ProfileItem)
+        public tblPerfilItens CreateProfileItem(tblPerfilItens ProfileItem)
         {
-            _db.tblPerfilItem.Add(ProfileItem);
+            _db.tblPerfilItens.Add(ProfileItem);
 
             _db.SaveChanges();
 
@@ -56,27 +56,27 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return ProfileItem;
         }
 
-        public tblPerfilItem DeleteProfileItem(int id)
+        public tblPerfilItens DeleteProfileItem(int id)
         {
-            tblPerfilItem ProfileItem;
+            tblPerfilItens ProfileItem;
 
-            var query = from f in _db.tblPerfilItem
+            var query = from f in _db.tblPerfilItens
                         where f.IdPerfilItem == id
                         orderby f.Sigla ascending
                         select f;
 
             ProfileItem = query.FirstOrDefault();
 
-            _db.tblPerfilItem.Remove(ProfileItem);
+            _db.tblPerfilItens.Remove(ProfileItem);
             _db.SaveChanges();
 
             return ProfileItem;
         }
 
         
-        public tblPerfilItem UpdateProfileItem(tblPerfilItem ProfileItem)
+        public tblPerfilItens UpdateProfileItem(tblPerfilItens ProfileItem)
         {
-            var trainingToUpdate = _db.tblPerfilItem.Find(ProfileItem.IdPerfilItem);
+            var trainingToUpdate = _db.tblPerfilItens.Find(ProfileItem.IdPerfilItem);
             trainingToUpdate.Sigla = ProfileItem.Sigla;
             trainingToUpdate.Descricao = ProfileItem.Descricao;
 
@@ -89,9 +89,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         }
 
 
-        public bool checkIfProfileItemAlreadyExits(tblPerfilItem ProfileItem)
+        public bool checkIfProfileItemAlreadyExits(tblPerfilItens ProfileItem)
         {
-            var query = from f in _db.tblPerfilItem
+            var query = from f in _db.tblPerfilItens
                         where f.Sigla == ProfileItem.Sigla
                         orderby f.Sigla ascending
                         select f;
@@ -102,17 +102,46 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
-        public IEnumerable<tblPerfilItem> GetTrainingGroupsWithPagination(int pageNumber, int quantity)
+        public IEnumerable<tblPerfilItens> GetTrainingGroupsWithPagination(int pageNumber, int quantity)
         {
-            IEnumerable<tblPerfilItem> Profile;
+            IEnumerable<tblPerfilItens> Profile;
 
 
 
-            var query = from f in _db.tblPerfilItem
+            var query = from f in _db.tblPerfilItens
                         orderby f.Sigla ascending
                         select f;
 
             Profile = query.ToPagedList(pageNumber,quantity);
+
+            return Profile;
+        }
+
+        public IPagedList<tblPerfilItens> GetProfileItemsWithPagination(int pageNumber, int quantity)
+        {
+            IPagedList<tblPerfilItens> Profile;
+
+
+
+            var query = from f in _db.tblPerfilItens
+                        orderby f.Sigla ascending
+                        select f;
+
+            Profile = query.ToPagedList(pageNumber,quantity);
+
+            return Profile;
+        }
+
+        public IEnumerable<tblPerfilItens> GetProfileItemsByType(string type)
+        {
+            IEnumerable<tblPerfilItens> Profile;
+
+            var query = from f in _db.tblPerfilItens
+                        orderby f.Sigla ascending
+                        where f.Tipo == "T"
+                        select f;
+
+            Profile = query.AsEnumerable();
 
             return Profile;
         }

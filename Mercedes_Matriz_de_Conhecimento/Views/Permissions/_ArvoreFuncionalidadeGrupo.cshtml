@@ -1,0 +1,21 @@
+﻿
+@model DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeGrupoDeSistema
+
+
+@foreach (var item in Model.Filhos.OrderBy(x => x.CodigoFuncionalidade))
+{
+    <ul>
+        @if (item != null)
+        {
+            <li>
+                @item.Nome
+
+                @if (item.Filhos.Count > 0)
+                {
+                    @Html.Partial("_ArvoreFuncionalidadeGrupo", item)
+                }
+            </li>
+        }
+    </ul>
+}
+

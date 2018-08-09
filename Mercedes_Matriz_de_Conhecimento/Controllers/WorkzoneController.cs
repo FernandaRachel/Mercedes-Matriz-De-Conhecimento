@@ -10,6 +10,8 @@ using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
 using PagedList;
+using System.Configuration;
+using DCX.ITLC.AutSis.Services.Integracao;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -19,11 +21,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         private WorkzoneService _workzone;
         private EmployeeService _employee;
+        private WorzoneXEmployeeService _workzoneXemployee;
 
         public WorkzoneController()
         {
             _workzone = new WorkzoneService();
             _employee = new EmployeeService();
+            _workzoneXemployee = new WorzoneXEmployeeService();
 
         }
 
@@ -31,8 +35,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [HttpGet]
         public ActionResult Index(int page = 1)
         {
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
             IPagedList<tblWorkzone> workzone;
-            workzone = _workzone.GetWorkzonesWithPagination(page, 2);
+            workzone = _workzone.GetWorkzonesWithPagination(page, pages_quantity);
 
             return View(workzone);
 
@@ -41,10 +47,29 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Create()
         {
             IEnumerable<tblWorkzone> workzone;
-
             workzone = _workzone.GetWorkzones();
-
             ViewData["Workzone"] = workzone;
+
+
+            var innerX = new List<SelectListItem>();
+            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "BU_TESTE", Value = "1" };
+            innerX.Insert(0, innerXItem);
+            SelectList BU = new SelectList(innerX, "Value", "Text");
+
+            var listaCC = new List<SelectListItem>();
+            SelectListItem itemCC = new SelectListItem { Selected = false, Text = "CC_TESTE", Value = "1" };
+            listaCC.Insert(0, itemCC);
+            SelectList CC = new SelectList(listaCC, "Value", "Text");
+
+            var listaLinha = new List<SelectListItem>();
+            SelectListItem itemLinha = new SelectListItem { Selected = false, Text = "LINHA_TESTE", Value = "1" };
+            listaLinha.Insert(0, itemLinha);
+            SelectList Linha = new SelectList(listaLinha, "Value", "Text");
+
+            ViewData["BU"] = BU;
+            ViewData["CC"] = CC;
+            ViewData["LINHA"] = Linha;
+
 
             return View("Create");
         }
@@ -52,13 +77,39 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         //GET: workzone/Details/5
         public ActionResult Details(int id)
         {
+            /*  MONTANDO SELECT LIST BU, CC E LINHA*/
+            var innerX = new List<SelectListItem>();
+            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "BU_TESTE", Value = "1" };
+            innerX.Insert(0, innerXItem);
+            SelectList BU = new SelectList(innerX, "Value", "Text");
+
+            var listaCC = new List<SelectListItem>();
+            SelectListItem itemCC = new SelectListItem { Selected = false, Text = "CC_TESTE", Value = "1" };
+            listaCC.Insert(0, itemCC);
+            SelectList CC = new SelectList(listaCC, "Value", "Text");
+
+            var listaLinha = new List<SelectListItem>();
+            SelectListItem itemLinha = new SelectListItem { Selected = false, Text = "LINHA_TESTE", Value = "1" };
+            listaLinha.Insert(0, itemLinha);
+            SelectList Linha = new SelectList(listaLinha, "Value", "Text");
+
+            ViewData["BU"] = BU;
+            ViewData["CC"] = CC;
+            ViewData["LINHA"] = Linha;
+
+            /*FINALIZANDO SELECT LISTA BU, CC E LINHA*/
 
             tblWorkzone workzone;
             workzone = _workzone.GetWorkzoneById(id);
 
+            /*SELECIONA FUNCIONÁRIOS EXISTENTES*/
             IEnumerable<tblFuncionarios> employee;
             employee = _employee.GetEmployees();
             ViewData["Funcionarios"] = employee;
+            /* SELECIONA FUNCIONÁRIOS ADICIONADOS NESSA WZ*/
+            IEnumerable<tblFuncionarios> employeeAdded;
+            employeeAdded = _workzone.setUpEmployees(id);
+            ViewData["FuncionariosAdicionados"] = employeeAdded;
 
             if (workzone == null)
                 return View("Index");
@@ -68,25 +119,25 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActionResult Push(int id, int idwz)
         {
-            var employe = _employee.GetEmployeeById(id);
-            employe.idWorkzone = idwz;
+            tblWorkzoneXFuncionario infoToPush = new tblWorkzoneXFuncionario();
 
-            if (ModelState.IsValid)
-                _employee.UpdateEmployee(employe);
+            infoToPush.idFuncionario = id;
+            infoToPush.idWorkzone = idwz;
 
-            var workzone = _workzone.GetWorkzoneById(idwz);
+            var exists = _workzoneXemployee.checkIfWorzoneXEmployeeAlreadyExits(infoToPush);
 
+            if (ModelState.IsValid && !exists)
+                _workzoneXemployee.CreateWorzoneXEmployee(infoToPush);
 
             return RedirectToAction("Details", new { id = idwz });
         }
 
         public ActionResult Pop(int id, int idwz)
         {
-            var employe = _employee.GetEmployeeById(id);
-            employe.idWorkzone = null;
+            tblWorkzoneXFuncionario wzXemployee = _workzoneXemployee.GetWorzoneXEmployeeById(idwz, id);
 
             if (ModelState.IsValid)
-                _employee.UpdateEmployee(employe);
+                _workzoneXemployee.DeleteWorzoneXEmployee(wzXemployee.idWorkzoneFuncionario);
 
             var workzone = _workzone.GetWorkzoneById(idwz);
 
@@ -109,8 +160,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 {
                     workzone.FlagAtivo = true;
 
-                    _workzone.CreateWorkzone(workzone);
-                    return RedirectToAction("Index");
+                    var returnedElement = _workzone.CreateWorkzone(workzone);
+
+                    return RedirectToAction("Details", new { id = returnedElement.IdWorkzone });
 
                 }
 

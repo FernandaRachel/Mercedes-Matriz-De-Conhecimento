@@ -35,19 +35,7 @@
                     @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
                 </div>
             </div>
-            <div class="form-group">
-                @Html.Label("Tipo de Treinamento", new { @class = "col-md-3 control-label" })
-                <div class="col-md-8">
-                    @Html.DropDownListFor(m => m.idPerfilTreinamento, new SelectList((IEnumerable)ViewData["PerfilTreinamento"], "idPerfilTreinamento", "Nome"), "Escolha um Perfil de Treinamento",
-                       new
-                       {
-                           @class = "form-control selectpicker ",
-                           @Value = @Model.idPerfilTreinamento,
-                           data_show_subtext = "true",
-                           data_live_search = "true"
-                       })
-                </div>
-            </div>
+           
 
             <div class="form-group">
                 <div class="col-md-11">

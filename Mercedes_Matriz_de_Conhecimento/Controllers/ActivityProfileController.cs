@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -26,10 +27,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: activityProfile
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            IEnumerable<tblPerfilAtividade> activityProfile;
-            activityProfile = _activityProfile.GetActivityProfiles();
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
+            IEnumerable<tblPerfis> activityProfile;
+            activityProfile = _activityProfile.GetActivityProfilesWithPagination(page, pages_quantity);
 
             return View(activityProfile);
 
@@ -45,7 +48,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Details(int id)
         {
 
-            tblPerfilAtividade activityProfile;
+            tblPerfis activityProfile;
             activityProfile = _activityProfile.GetActivityProfileById(id);
 
             if (activityProfile == null)
@@ -56,11 +59,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(tblPerfilAtividade activityProfile)
+        public ActionResult Create(tblPerfis activityProfile)
         {
             var exits = _activityProfile.checkIfActivityProfileAlreadyExits(activityProfile);
             activityProfile.UsuarioCriacao = "Teste Sem Seg";
             activityProfile.DataCriacao = DateTime.Now;
+            activityProfile.Tipo = "A";
 
             if (ModelState.IsValid)
             {
@@ -82,9 +86,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: Activity/Edit/5
         [HttpPost]
-        public ActionResult Edit(tblPerfilAtividade activityProfile, int id)
+        public ActionResult Edit(tblPerfis activityProfile, int id)
         {
-            activityProfile.idPerfilAtividade = id;
+            activityProfile.IdPerfis = id;
             var exits = _activityProfile.checkIfActivityProfileAlreadyExits(activityProfile);
 
 

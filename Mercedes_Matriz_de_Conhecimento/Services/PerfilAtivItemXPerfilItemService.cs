@@ -120,9 +120,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
-        public IEnumerable<tblPerfilAtividadeXPerfilAtItem> GetPerfilAtivItemXPerfilItemsWithPagination(int pageNumber, int quantity)
+        public IPagedList<tblPerfilAtividadeXPerfilAtItem> GetPerfilAtivItemXPerfilItemsWithPagination(int pageNumber, int quantity)
         {
-            IEnumerable<tblPerfilAtividadeXPerfilAtItem> PerfilAtivItemXPerfilItem;
+            IPagedList<tblPerfilAtividadeXPerfilAtItem> PerfilAtivItemXPerfilItem;
 
             var query = from f in _db.tblPerfilAtividadeXPerfilAtItem
                         orderby f.idPerfilAtividade ascending

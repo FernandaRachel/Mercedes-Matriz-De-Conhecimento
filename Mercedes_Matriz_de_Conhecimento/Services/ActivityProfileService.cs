@@ -16,13 +16,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
 
-        public tblPerfilAtividade GetActivityProfileById(int id)
+        public tblPerfis GetActivityProfileById(int id)
         {
-            tblPerfilAtividade activityProfile;
+            tblPerfis activityProfile;
 
-            var query = from f in _db.tblPerfilAtividade
-                        where f.idPerfilAtividade == id
-                        orderby f.nome ascending
+            var query = from f in _db.tblPerfis
+                        where f.IdPerfis == id
+                        orderby f.Nome ascending
                         select f;
 
             activityProfile = query.FirstOrDefault();
@@ -30,14 +30,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return activityProfile;
         }
 
-        public IEnumerable<tblPerfilAtividade> GetActivityProfiles()
+        public IEnumerable<tblPerfis> GetActivityProfiles()
         {
-            IEnumerable<tblPerfilAtividade> activityProfile;
+            IEnumerable<tblPerfis> activityProfile;
 
 
 
-            var query = from f in _db.tblPerfilAtividade
-                        orderby f.nome ascending
+            var query = from f in _db.tblPerfis
+                        orderby f.Nome ascending
                         select f;
 
             activityProfile = query.AsEnumerable();
@@ -46,9 +46,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         }
 
 
-        public tblPerfilAtividade CreateActivityProfile(tblPerfilAtividade ActivityProfile)
+        public tblPerfis CreateActivityProfile(tblPerfis ActivityProfile)
         {
-            _db.tblPerfilAtividade.Add(ActivityProfile);
+            _db.tblPerfis.Add(ActivityProfile);
 
             _db.SaveChanges();
 
@@ -56,28 +56,28 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return ActivityProfile;
         }
 
-        public tblPerfilAtividade DeleteActivityProfile(int id)
+        public tblPerfis DeleteActivityProfile(int id)
         {
-            tblPerfilAtividade ActivityProfile;
+            tblPerfis ActivityProfile;
 
-            var query = from f in _db.tblPerfilAtividade
-                        where f.idPerfilAtividade == id
-                        orderby f.nome ascending
+            var query = from f in _db.tblPerfis
+                        where f.IdPerfis == id
+                        orderby f.Nome ascending
                         select f;
 
             ActivityProfile = query.FirstOrDefault();
 
-            _db.tblPerfilAtividade.Remove(ActivityProfile);
+            _db.tblPerfis.Remove(ActivityProfile);
             _db.SaveChanges();
 
             return ActivityProfile;
         }
 
         
-        public tblPerfilAtividade UpdateActivityProfile(tblPerfilAtividade ActivityProfile)
+        public tblPerfis UpdateActivityProfile(tblPerfis ActivityProfile)
         {
-            var trainingToUpdate = _db.tblPerfilAtividade.Find(ActivityProfile.idPerfilAtividade);
-            trainingToUpdate.nome = ActivityProfile.nome;
+            var trainingToUpdate = _db.tblPerfis.Find(ActivityProfile.IdPerfis);
+            trainingToUpdate.Nome = ActivityProfile.Nome;
 
 
             _db.Entry(trainingToUpdate).State = EntityState.Modified;
@@ -88,30 +88,47 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         }
 
 
-        public bool checkIfActivityProfileAlreadyExits(tblPerfilAtividade ActivityProfile)
+        public bool checkIfActivityProfileAlreadyExits(tblPerfis ActivityProfile)
         {
-            var query = from f in _db.tblPerfilAtividade
-                        where f.nome == ActivityProfile.nome
-                        orderby f.nome ascending
+            var query = from f in _db.tblPerfis
+                        where f.Nome == ActivityProfile.Nome
+                        orderby f.Nome ascending
                         select f;
 
-            if (query.Count() == 1 && query.FirstOrDefault().idPerfilAtividade != ActivityProfile.idPerfilAtividade)
+            if (query.Count() == 1 && query.FirstOrDefault().IdPerfis != ActivityProfile.IdPerfis)
                 return true;
 
             return false;
         }
 
-        public IEnumerable<tblPerfilAtividade> GetActivityProfilesWithPagination(int pageNumber, int quantity)
+        public IEnumerable<tblPerfis> GetActivityProfilesWithPagination(int pageNumber, int quantity)
         {
-            IEnumerable<tblPerfilAtividade> activityProfile;
+            IEnumerable<tblPerfis> activityProfile;
 
 
 
-            var query = from f in _db.tblPerfilAtividade
-                        orderby f.nome ascending
+            var query = from f in _db.tblPerfis
+                        orderby f.Nome ascending
+                        where f.Tipo == "A"
                         select f;
 
             activityProfile = query.ToPagedList(pageNumber, quantity);
+
+            return activityProfile;
+        }
+
+        public IEnumerable<tblPerfis> GetActivityProfilesByType()
+        {
+            IEnumerable<tblPerfis> activityProfile;
+
+
+
+            var query = from f in _db.tblPerfis
+                        orderby f.Nome ascending
+                        where f.Tipo == "A"
+                        select f;
+
+            activityProfile = query.AsEnumerable();
 
             return activityProfile;
         }

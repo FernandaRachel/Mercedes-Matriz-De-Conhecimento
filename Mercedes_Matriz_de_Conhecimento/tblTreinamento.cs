@@ -18,7 +18,6 @@ namespace Mercedes_Matriz_de_Conhecimento
         public tblTreinamento()
         {
             this.tblAtividadeXTreinamentos = new HashSet<tblAtividadeXTreinamentos>();
-            this.tblStatusFuncionarioXworkzoneXtreinamento = new HashSet<tblStatusFuncionarioXworkzoneXtreinamento>();
         }
     
         public int IdTreinamento { get; set; }
@@ -29,10 +28,11 @@ namespace Mercedes_Matriz_de_Conhecimento
         public System.DateTime DataCriacao { get; set; }
         public bool IndicaGrupoDeTreinamentos { get; set; }
         public Nullable<int> idTipoTreinamento { get; set; }
+        public int idPerfilTreinamento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblStatusFuncionarioXworkzoneXtreinamento> tblStatusFuncionarioXworkzoneXtreinamento { get; set; }
+        public virtual tblPerfis tblPerfis { get; set; }
+        public virtual tblTipoTreinamento tblTipoTreinamento { get; set; }
     }
 }

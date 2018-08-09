@@ -15,8 +15,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
-
-        [Display(Name = "Logar Transicao")]
-        public bool LogarTransicao { get; set; }
+       
     }
 }

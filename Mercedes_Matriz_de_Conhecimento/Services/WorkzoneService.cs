@@ -52,17 +52,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         public tblWorkzone CreateWorkzone(tblWorkzone Workzone)
         {
 
-
             _db.tblWorkzone.Add(Workzone);
+            _db.SaveChanges();
 
-            var query = from f in _db.tblWorkzone
-                        where f.Nome == Workzone.Nome
-                        orderby f.Nome ascending
-                        select f;
-            if (query != null)
-                _db.SaveChanges();
+            var wz = _db.tblWorkzone
+                .OrderByDescending(w => w.DataCriacao)
+                .FirstOrDefault();
 
-            return Workzone;
+            return wz;
         }
 
         public tblWorkzone UpdateWorkzone(tblWorkzone Workzone)
@@ -112,7 +109,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
-        public IPagedList<tblWorkzone> GetWorkzonesWithPagination(int pageNumber, int quantity = 2)
+        public IPagedList<tblWorkzone> GetWorkzonesWithPagination(int pageNumber, int quantity = 15)
         {
             IPagedList<tblWorkzone> workzone;
 
@@ -124,6 +121,25 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             workzone = query.ToPagedList(pageNumber, quantity);
 
             return workzone;
+        }
+
+        public List<tblFuncionarios> setUpEmployees(int idWZ)
+        {
+            List<tblFuncionarios> allEmployee = new List<tblFuncionarios>();
+
+            var query = from f in _db.tblWorkzoneXFuncionario
+                        where f.idWorkzone == idWZ
+                        select f;
+
+            foreach (var func in query)
+            {
+                var query2 = from f in _db.tblFuncionarios
+                             where f.idfuncionario == func.idFuncionario
+                             select f;
+                allEmployee.Add(query2.FirstOrDefault());
+            }
+
+            return allEmployee;
         }
     }
 

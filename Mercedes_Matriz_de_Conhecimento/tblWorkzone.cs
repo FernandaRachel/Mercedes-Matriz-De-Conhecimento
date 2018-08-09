@@ -17,9 +17,8 @@ namespace Mercedes_Matriz_de_Conhecimento
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblWorkzone()
         {
-            this.tblFuncionarios = new HashSet<tblFuncionarios>();
-            this.tblStatusFuncionarioXworkzoneXtreinamento = new HashSet<tblStatusFuncionarioXworkzoneXtreinamento>();
             this.tblWorkzoneXAtividades = new HashSet<tblWorkzoneXAtividades>();
+            this.tblWorkzoneXFuncionario = new HashSet<tblWorkzoneXFuncionario>();
         }
     
         public int IdWorkzone { get; set; }
@@ -29,19 +28,19 @@ namespace Mercedes_Matriz_de_Conhecimento
         public System.DateTime DataCriacao { get; set; }
         public string UsuarioDesativacao { get; set; }
         public string DataDesativacao { get; set; }
-        public Nullable<int> IdCentroDeCusto { get; set; }
         public int PessoasNecessarias { get; set; }
         public Nullable<System.DateTime> DataAlteracao { get; set; }
         public string UsuarioAlteracao { get; set; }
         public string DadosUltimaAlteracao { get; set; }
         public string MotivoUltimaAlteracao { get; set; }
         public bool FlagAtivo { get; set; }
+        public string idBU { get; set; }
+        public int idCC { get; set; }
+        public int idLinha { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblFuncionarios> tblFuncionarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblStatusFuncionarioXworkzoneXtreinamento> tblStatusFuncionarioXworkzoneXtreinamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWorkzoneXAtividades> tblWorkzoneXAtividades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblWorkzoneXFuncionario> tblWorkzoneXFuncionario { get; set; }
     }
 }

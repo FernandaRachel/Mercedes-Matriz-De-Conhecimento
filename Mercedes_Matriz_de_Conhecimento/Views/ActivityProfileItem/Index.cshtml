@@ -1,9 +1,10 @@
-﻿@model IEnumerable<Mercedes_Matriz_de_Conhecimento.tblPerfilAtivItem>
-
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Mercedes_Matriz_de_Conhecimento.tblPerfilAtivItem>
 
 @{
-    ViewBag.Title = "ATIVIDADE X PERFIL ITEM";
+    ViewBag.Title = "ITEM PERFIL DE ATIVIDADE";
 }
+
 
 
 <div class="container button-place">
@@ -13,7 +14,7 @@
 </div>
 <div class="container table-place">
     <div class="panel panel-primary">
-        <div class="panel-heading">Quantidade: </div>
+        <div class="panel-heading">Quantidade: @Model.TotalItemCount </div>
         <div class="panel-body table-responsive">
             <table class="table table-striped table-hover table-condensed table-bordered text-center">
                 <thead class="text-center">
@@ -49,6 +50,10 @@
                     }
                 </tbody>
             </table>
+            <div class="page-pagination">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            </div>
         </div>
     </div>
 </div>

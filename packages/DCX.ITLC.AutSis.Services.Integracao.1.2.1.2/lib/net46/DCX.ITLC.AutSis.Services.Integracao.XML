@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DCX.ITLC.AutSis.Services.Integracao</name>
+    </assembly>
+    <members>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.Infra.Arquivo.Seguranca">
+            <summary>
+            Classe com metodos para uso de segurança 
+            </summary>
+        </member>
+        <member name="M:DCX.ITLC.AutSis.Services.Integracao.Infra.Arquivo.Seguranca.Criptografar(System.String)">
+            <summary>
+            Criptografa texto de uma variavel
+            </summary>
+            <param name="conteudo"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:DCX.ITLC.AutSis.Services.Integracao.Infra.Arquivo.Seguranca.Descriptografar(System.String)">
+            <summary>
+            Descriptografa texto de uma variavel
+            </summary>
+            <param name="conteudo"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.IntegracaoAutSis">
+            <summary>
+            Classe responsável por disponibilizar um meio de acesso as funcionalidades do AutSis.
+            </summary>
+        </member>
+        <member name="M:DCX.ITLC.AutSis.Services.Integracao.IntegracaoAutSis.ObterPermissoes(System.String,System.String,System.Int32)">
+            <summary>
+            Retorna o sistema as devidas funcionalidades do usuário informado, caso tenha acesso.
+            </summary>
+            <param name="nomeSistema">O nome do sistema deve estar igual ao cadastrado no site</param>
+            <param name="chaveUsuario">Chave do usuário</param>
+            <param name="tipoDaChave"><para>0 - AMERICAS</para><para>1 - Mainframe</para></param>
+            <returns>Sistema preenchido</returns>
+        </member>
+        <member name="M:DCX.ITLC.AutSis.Services.Integracao.IntegracaoAutSis.ObterUsuariosPorSistema(System.String)">
+            <summary>
+            Retorna uma lista de usuarios do sistema informado.
+            </summary>
+            <param name="nomeDoSistema">O nome do sistema deve estar igual ao cadastrado no site</param>
+            <returns>Lista de usuarios</returns>
+        </member>
+        <member name="M:DCX.ITLC.AutSis.Services.Integracao.IntegracaoAutSis.ObterSistemasPorUsuario(System.String,System.Int32)">
+            <summary>
+            Retorna uma lista de sistemas de acordo com as permissões do usuário informado.
+            </summary>
+            <param name="chaveUsuario">Chave do usuário</param>
+            <param name="tipoDaChave"><para>0 - AMERICAS</para><para>1 - Mainframe</para></param>
+            <returns>Lista de sistemas</returns>
+        </member>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeAssociacao">
+            <summary>
+            Classe representando as funcionalidades de associação
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeAssociacao.Nome">
+            <summary>
+            Nome da funcionalidade
+            </summary>
+        </member>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeAutorizacao">
+            <summary>
+            Classe representando as funcionalidades de autorização, que são apresentadas em modelo de árvore.
+            </summary>
+        </member>
+        <member name="M:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeAutorizacao.#ctor">
+            <summary>
+            Construtor da classe
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeAutorizacao.CodigoFuncionalidade">
+            <summary>
+            Código da funcionalidade
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeAutorizacao.Nome">
+            <summary>
+            Nome da funcionalidade
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeAutorizacao.Parametros">
+            <summary>
+            Parâmetros da funcionalidade
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeAutorizacao.CodigoFuncionalidadePai">
+            <summary>
+            Código da funcionalidade pai
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeAutorizacao.Filhos">
+            <summary>
+            Filhos da funcionalidade
+            </summary>
+        </member>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeGrupoDeSistema">
+            <summary>
+            Classe que representa as funcionalidades do grupo de sistema
+            </summary>
+        </member>
+        <member name="M:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeGrupoDeSistema.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeGrupoDeSistema.CodigoFuncionalidade">
+            <summary>
+            Código da funcionalidade
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeGrupoDeSistema.CodigoFuncionalidadePai">
+            <summary>
+            Código da funcionalidade pai
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeGrupoDeSistema.Nome">
+            <summary>
+            Nome da funcionalidade
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeGrupoDeSistema.Parametros">
+            <summary>
+            Parâmetros da funcionalidade
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.FuncionalidadeGrupoDeSistema.Filhos">
+            <summary>
+            Filhos da funcionalidade
+            </summary>
+        </member>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.GrupoDeAcesso">
+            <summary>
+            Classe representando o grupo de acesso pertencente ao sistema
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.GrupoDeAcesso.Nome">
+            <summary>
+            Nome do grupo de acesso
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.GrupoDeAcesso.Descricao">
+            <summary>
+            Descrição do grupo de acesso
+            </summary>
+        </member>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.GrupoDeSistema">
+            <summary>
+            Classe representando o grupo de sistema
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.GrupoDeSistema.Nome">
+            <summary>
+            Nome do grupo de sistema
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.GrupoDeSistema.Descricao">
+            <summary>
+            Descrição do grupo de sistema
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.GrupoDeSistema.Funcionalidades">
+            <summary>
+            Funcionalidades do grupo de sistema
+            </summary>
+        </member>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.PerfilSistema">
+            <summary>
+            Classe representando o perfil do sistema
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.PerfilSistema.Nome">
+            <summary>
+            Nome do perfil
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.PerfilSistema.Descricao">
+            <summary>
+            Descrição do perfil
+            </summary>
+        </member>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema">
+            <summary>
+            Entidade do sistema
+            </summary>
+        </member>
+        <member name="M:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.#ctor">
+            <summary>
+            Construtor da classe
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.Nome">
+            <summary>
+            Propriedade referente ao nome do sistema
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.Descricao">
+            <summary>
+            Propriedade referente a descrição do sistema
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.GrupoDeAcesso">
+            <summary>
+            Propriedade referente ao grupo de acesso
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.Perfil">
+            <summary>
+            Propriedade referente ao perfil
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.Usuario">
+            <summary>
+            Propriedade referente ao usuário informado
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.FuncionalidadesDeAutorizacao">
+            <summary>
+            Propriedade referente as funcionalidades do tipo autorização
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.FuncionalidadesDeAssociacao">
+            <summary>
+            Propriedade referente as funcionalidades do tipo associação
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.GruposDeSistema">
+            <summary>
+            Propriedade referente aos grupos de sistemas que o sistema está associado
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema.MensagemDeErro">
+            <summary>
+            <para>Propriedade referente a mensagem de erro informada pela DLL.</para>
+            <para>Ao realizar uma chamada na DLL, caso a mensagem de erro esteja vazia, não houve qualquer problema no retorno.</para>
+            </summary>
+        </member>
+        <member name="T:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Usuario">
+            <summary>
+            Entidade do usuário
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Usuario.Nome">
+            <summary>
+            Propriedade referente ao nome do usuário
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Usuario.Email">
+            <summary>
+            Propriedade referente ao e-mail do usuário
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Usuario.ChaveMainframe">
+            <summary>
+            Propriedade referente à chave mainframe do usuário
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Usuario.ChaveAmericas">
+            <summary>
+            Propriedade referente à chave americas do usuário
+            </summary>
+        </member>
+        <member name="P:DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Usuario.MensagemDeErro">
+            <summary>
+            <para>Propriedade referente a mensagem de erro informada pela DLL.</para>
+            <para>Ao realizar uma chamada na DLL, caso a mensagem de erro esteja vazia, não houve qualquer problema no retorno.</para>
+            </summary>
+        </member>
+    </members>
+</doc>

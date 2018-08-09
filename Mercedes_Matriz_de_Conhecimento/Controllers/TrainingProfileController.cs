@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -26,10 +27,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: TrainingProfile
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            IEnumerable<tblPerfilTreinamento> trainingProfile;
-            trainingProfile = _trainingProfile.GetTrainingProfiles();
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
+            IEnumerable<tblPerfis> trainingProfile;
+            trainingProfile = _trainingProfile.GetTrainingProfilesWithPagination(page, pages_quantity);
 
             return View(trainingProfile);
 
@@ -45,7 +48,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Details(int id)
         {
 
-            tblPerfilTreinamento trainingProfile;
+            tblPerfis trainingProfile;
             trainingProfile = _trainingProfile.GetTrainingProfileById(id);
 
 
@@ -59,11 +62,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: TrainingProfile/Create
         [HttpPost]
-        public ActionResult Create(tblPerfilTreinamento trainingProfile)
+        public ActionResult Create(tblPerfis trainingProfile)
         {
             var exits = _trainingProfile.checkIfTrainingProfileAlreadyExits(trainingProfile);
             trainingProfile.UsuarioCriacao = "Teste Sem Seg";
             trainingProfile.DataCriacao = DateTime.Now;
+            trainingProfile.Tipo = "T";
 
             if (ModelState.IsValid)
             {
@@ -85,9 +89,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: TrainingProfile/Edit/5
         [HttpPost]
-        public ActionResult Edit(tblPerfilTreinamento trainingProfile, int id)
+        public ActionResult Edit(tblPerfis trainingProfile, int id)
         {
-            trainingProfile.IdPerfilTreinamento = id;
+            trainingProfile.IdPerfis = id;
             var exits = _trainingProfile.checkIfTrainingProfileAlreadyExits(trainingProfile);
 
 

@@ -9,19 +9,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
     interface ITrainingProfileService
     {
 
-        IEnumerable<tblPerfilTreinamento> GetTrainingProfiles();
+        IEnumerable<tblPerfis> GetTrainingProfiles();
 
-        tblPerfilTreinamento GetTrainingProfileById(int id);
+        IEnumerable<tblPerfis> GetTrainingProfilesByType(string type);
 
-        tblPerfilTreinamento CreateTrainingProfile(tblPerfilTreinamento TrainingProfile);
+        tblPerfis GetTrainingProfileById(int id);
 
-        tblPerfilTreinamento UpdateTrainingProfile(tblPerfilTreinamento TrainingProfileProfile);
+        tblPerfis CreateTrainingProfile(tblPerfis TrainingProfile);
 
-        tblPerfilTreinamento DeleteTrainingProfile(int id);
+        tblPerfis UpdateTrainingProfile(tblPerfis TrainingProfileProfile);
 
-        bool checkIfTrainingProfileAlreadyExits(tblPerfilTreinamento TrainingProfile);
+        tblPerfis DeleteTrainingProfile(int id);
 
-        IEnumerable<tblPerfilTreinamento> GetTrainingProfilesWithPagination(int pageNumber, int quantity);
+        bool checkIfTrainingProfileAlreadyExits(tblPerfis TrainingProfile);
+
+        IEnumerable<tblPerfis> GetTrainingProfilesWithPagination(int pageNumber, int quantity);
 
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Mercedes_Matriz_de_Conhecimento.tblPerfilAtividade
+﻿@model Mercedes_Matriz_de_Conhecimento.tblPerfis
 
 @using System.Collections;
 
@@ -18,9 +18,9 @@
 
             @Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(m => m.nome, new { @class = "col-md-3 control-label" })
+                @Html.Label("Nome", new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
-                    @Html.TextBoxFor(m => m.nome, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">

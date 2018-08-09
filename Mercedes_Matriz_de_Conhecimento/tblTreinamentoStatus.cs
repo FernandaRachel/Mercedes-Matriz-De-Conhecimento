@@ -14,17 +14,8 @@ namespace Mercedes_Matriz_de_Conhecimento
     
     public partial class tblTreinamentoStatus
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblTreinamentoStatus()
-        {
-            this.tblStatusFuncionarioXworkzoneXtreinamento = new HashSet<tblStatusFuncionarioXworkzoneXtreinamento>();
-        }
-    
         public int idStatusTreinamento { get; set; }
         public string Cor { get; set; }
         public string Denominacao { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblStatusFuncionarioXworkzoneXtreinamento> tblStatusFuncionarioXworkzoneXtreinamento { get; set; }
     }
 }

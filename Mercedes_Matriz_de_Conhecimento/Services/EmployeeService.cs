@@ -80,11 +80,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             var eup = _db.tblFuncionarios.Find(Employee.idfuncionario);
             eup.Nome = Employee.Nome;
             eup.RE = Employee.RE;
-            eup.idBu_atual = Employee.idBu_atual;
             eup.idBu_Origem = Employee.idBu_Origem;
             eup.IdentificadorAuxiliar = Employee.IdentificadorAuxiliar;
             eup.Ativo = Employee.Ativo;
-            eup.idWorkzone = Employee.idWorkzone;
             eup.JustificativaNaoAtivo = Employee.JustificativaNaoAtivo;
 
             _db.Entry(eup).State = EntityState.Modified;

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using PagedList;
 
 namespace Mercedes_Matriz_de_Conhecimento.Services
 {
@@ -72,7 +73,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Training;
         }
 
-        
+
         public tblTreinamento UpdateTraining(tblTreinamento Training)
         {
             var trainingToUpdate = _db.tblTreinamento.Find(Training.IdTreinamento);
@@ -103,9 +104,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
-        public IEnumerable<tblTreinamento> GetTrainingsWithPagination(int pageNumber, int quantity)
+        public IPagedList<tblTreinamento> GetTrainingsWithPagination(int pageNumber, int quantity)
         {
-            throw new NotImplementedException();
+            IPagedList<tblTreinamento> training;
+
+
+
+            var query = from f in _db.tblTreinamento
+                        orderby f.Nome ascending
+                        select f;
+            
+            training = query.ToPagedList(pageNumber, quantity);
+
+            return training;
         }
     }
 }
