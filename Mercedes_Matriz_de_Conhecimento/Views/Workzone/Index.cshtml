@@ -29,7 +29,7 @@
                     @foreach (var workzone in Model)
                     {
                         <tr class="text-center">
-                            <td>@workzone.Nome</td>
+                            <td>@workzone.Nome @workzone.idBU @workzone.idCC @workzone.idLinha</td>
                             <td>@workzone.Descricao</td>
                             <td>@workzone.PessoasNecessarias</td>
                             @if (@workzone.FlagAtivo)
@@ -50,11 +50,10 @@
                     }
                 </tbody>
             </table>
-            <div class="">
+            <div class="page-pagination">
                 @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
                 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
             </div>
-
         </div>
     </div>
 </div>

@@ -33,9 +33,5 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 
         [Display(Name = "Ativo")]
         public bool TipoAtivo { get; set; }
-
-        [Required]
-        [Display(Name = "Perfil Treinamento")]
-        public int idPerfilTreinamento { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -29,10 +30,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: perfilAtivItemXPerfilItem
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
             IEnumerable<tblPerfilAtividadeXPerfilAtItem> perfilAtivItemXPerfilItem;
-            perfilAtivItemXPerfilItem = _perfilAtivItemXPerfilItem.GetPerfilAtivItemXPerfilItems();
+            perfilAtivItemXPerfilItem = _perfilAtivItemXPerfilItem.GetPerfilAtivItemXPerfilItemsWithPagination(page, pages_quantity);
 
             return View(perfilAtivItemXPerfilItem);
 
@@ -40,8 +43,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActionResult Create()
         {
-            IEnumerable<tblPerfilAtividade> activityProfile;
-            IEnumerable<tblPerfilAtivItem> profileItemActivity;
+            IEnumerable<tblPerfis> activityProfile;
+            IEnumerable<tblPerfilItens> profileItemActivity;
 
             activityProfile = _profileActivity.GetActivityProfiles();
             profileItemActivity = _activityProfileItem.GetActivityProfileItems();
@@ -56,8 +59,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Details(int idPAI, int idPA)
         {
             // Declaração de variaveis
-            IEnumerable<tblPerfilAtividade> activityProfile;
-            IEnumerable<tblPerfilAtivItem> profileItemActivity;
+            IEnumerable<tblPerfis> activityProfile;
+            IEnumerable<tblPerfilItens> profileItemActivity;
             tblPerfilAtividadeXPerfilAtItem perfilAtivItemXPerfilItem;
 
             //chamadas dos métodos(no service) e assignment
@@ -93,8 +96,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             }
 
-            IEnumerable<tblPerfilAtividade> activityProfile;
-            IEnumerable<tblPerfilAtivItem> profileItemActivity;
+            IEnumerable<tblPerfis> activityProfile;
+            IEnumerable<tblPerfilItens> profileItemActivity;
             activityProfile = _profileActivity.GetActivityProfiles();
             profileItemActivity = _activityProfileItem.GetActivityProfileItems();
             ViewData["PerfilAtividade"] = activityProfile;
@@ -102,7 +105,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             if (orderExits)
                 ModelState.AddModelError("Ordem", "Ordem já existe");
-            else if(exits)
+            else if (exits)
                 ModelState.AddModelError("idPerfilAtivItem", " Atividade Item já associada a Perfil Atividade");
 
 
@@ -132,8 +135,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 return View("Edit");
             }
 
-            IEnumerable<tblPerfilAtividade> activityProfile;
-            IEnumerable<tblPerfilAtivItem> profileItemActivity;
+            IEnumerable<tblPerfis> activityProfile;
+            IEnumerable<tblPerfilItens> profileItemActivity;
 
             activityProfile = _profileActivity.GetActivityProfiles();
             profileItemActivity = _activityProfileItem.GetActivityProfileItems();

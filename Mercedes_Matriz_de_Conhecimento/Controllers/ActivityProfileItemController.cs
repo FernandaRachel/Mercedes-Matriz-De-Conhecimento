@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -26,10 +27,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: activityProfile
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            IEnumerable<tblPerfilAtivItem> activityProfile;
-            activityProfile = _activityProfileItem.GetActivityProfileItems();
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
+            IEnumerable<tblPerfilItens> activityProfile;
+            activityProfile = _activityProfileItem.GetActivityProfileItemsWithPagination(page,pages_quantity);
 
             return View(activityProfile);
 
@@ -45,7 +48,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Details(int id)
         {
 
-            tblPerfilAtivItem activityProfile;
+            tblPerfilItens activityProfile;
             activityProfile = _activityProfileItem.GetActivityProfileItemById(id);
 
             if (activityProfile == null)
@@ -56,10 +59,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(tblPerfilAtivItem activityProfile)
+        public ActionResult Create(tblPerfilItens activityProfile)
         {
             var exits = _activityProfileItem.checkIfActivityProfileItemAlreadyExits(activityProfile);
-            activityProfile.LogarTransicao = true;
+            activityProfile.Tipo = "A";
 
             if (ModelState.IsValid)
             {
@@ -80,9 +83,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: Activity/Edit/5
         [HttpPost]
-        public ActionResult Edit(tblPerfilAtivItem activityProfile, int id)
+        public ActionResult Edit(tblPerfilItens activityProfile, int id)
         {
-            activityProfile.idPerfilAtivItem = id;
+            activityProfile.IdPerfilItem = id;
             var exits = _activityProfileItem.checkIfActivityProfileItemAlreadyExits(activityProfile);
 
 

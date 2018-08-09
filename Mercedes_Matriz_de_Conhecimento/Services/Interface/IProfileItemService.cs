@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,18 +10,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
     interface IProfileItemService
     {
 
-        IEnumerable<tblPerfilItem> GetProfileItems();
+        IEnumerable<tblPerfilItens> GetProfileItems();
 
-        tblPerfilItem GetProfileItemById(int id);
+        IEnumerable<tblPerfilItens> GetProfileItemsByType(string type);
 
-        tblPerfilItem CreateProfileItem(tblPerfilItem ProfileItem);
+        tblPerfilItens GetProfileItemById(int id);
 
-        tblPerfilItem UpdateProfileItem(tblPerfilItem ProfileItem);
+        tblPerfilItens CreateProfileItem(tblPerfilItens ProfileItem);
 
-        tblPerfilItem DeleteProfileItem(int id);
+        tblPerfilItens UpdateProfileItem(tblPerfilItens ProfileItem);
 
-        bool checkIfProfileItemAlreadyExits(tblPerfilItem ProfileItem);
+        tblPerfilItens DeleteProfileItem(int id);
 
-        IEnumerable<tblPerfilItem> GetTrainingGroupsWithPagination(int pageNumber, int quantity);
+        bool checkIfProfileItemAlreadyExits(tblPerfilItens ProfileItem);
+
+        IPagedList<tblPerfilItens> GetProfileItemsWithPagination(int pageNumber, int quantity);
     }
 }

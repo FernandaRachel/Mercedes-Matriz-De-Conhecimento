@@ -1,14 +1,10 @@
 ﻿using Mercedes_Matriz_de_Conhecimento.Models;
 using Mercedes_Matriz_de_Conhecimento.Services;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Data.Entity;
-using System.Net;
+using System.Configuration;
+using DCX.ITLC.AutSis.Services.Integracao;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -29,10 +25,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: activity
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
+            //var Teste = new IntegracaoAutSis().ObterPermissoes("StepNet", "SILALIS", 0);
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
             IEnumerable<tblAtividades> activity;
-            activity = _activity.GetActivities();
+            activity = _activity.GetActivitiesWithPagination(page, pages_quantity);
 
             return View(activity);
 
@@ -40,9 +39,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActionResult Create()
         {
-            IEnumerable<tblPerfilAtividade> activityProfile;
+            IEnumerable<tblPerfis> activityProfile;
 
-            activityProfile = _activityProfile.GetActivityProfiles();
+            activityProfile = _activityProfile.GetActivityProfilesByType();
 
             ViewData["PerfildeAtividade"] = activityProfile;
 
@@ -55,13 +54,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             // Declaração de variaveis
             tblAtividades activity;
-            IEnumerable<tblPerfilAtividade> activityProfile;
+            IEnumerable<tblPerfis> activityProfile;
             IEnumerable<tblAtividades> allActivies;
             IEnumerable<tblAtividades> activitiesGroup;
 
             //chamadas dos métodos(no service) e assignment
             activity = _activity.GetActivityById(id);
-            activityProfile = _activityProfile.GetActivityProfiles();
+            activityProfile = _activityProfile.GetActivityProfilesByType();
             activitiesGroup = _activityGroup.setUpActivitys(id);
             allActivies = _activity.GetActivities();
 
@@ -114,7 +113,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             }
 
-            IEnumerable<tblPerfilAtividade> activityProfile;
+            IEnumerable<tblPerfis> activityProfile;
             activityProfile = _activityProfile.GetActivityProfiles();
             ViewData["PerfildeAtividade"] = activityProfile;
 

@@ -28,12 +28,6 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.idBu_atual, new { @class = "col-md-3 control-label" })
-                <div class="col-md-9">
-                    @Html.TextBoxFor(m => m.idBu_atual, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
                 @Html.LabelFor(m => m.idBu_Origem, new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
                     @Html.TextBoxFor(m => m.idBu_Origem, new { @class = "form-control" })
@@ -45,20 +39,9 @@
                     @Html.TextBoxFor(m => m.IdentificadorAuxiliar, new { @class = "form-control" })
                 </div>
             </div>
+            
             <div class="form-group">
-                @Html.Label("Workzone", new { @class = "col-md-3 control-label" })
-                <div class="col-md-9">
-                    @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzone"], "IdWorkzone", "Nome"), "Escolha uma Workzone",
-                   new
-                   {
-                       @class = "form-control col-md-9 selectpicker",
-                       data_show_subtext = "true",
-                       data_live_search = "true"
-                   })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
+                <div class="col-md-11">
                     <button type="submit" class="btn btn-modified-save btn-sm pull-right"><i class="fas fa-save"></i> Salvar</button>
                 </div>
             </div>

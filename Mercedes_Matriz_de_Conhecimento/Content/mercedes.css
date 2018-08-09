@@ -58,23 +58,23 @@ tr.table-dark {
     color: white;
 }
 
-.btn-modified-create:hover {
-    background-color: #423f3f;
-    border-color: #423f3f;
-    color: white;
-}
+    .btn-modified-create:hover {
+        background-color: #423f3f;
+        border-color: #423f3f;
+        color: white;
+    }
 
-.btn-modified-save  {
+.btn-modified-save {
     background-color: #00677F;
     border-color: #00677F;
     color: white;
 }
 
- .btn-modified-save:hover{
-    background-color: #1e9ab7;
-    border-color: #1e9ab7;
-    color: white;
-}
+    .btn-modified-save:hover {
+        background-color: #1e9ab7;
+        border-color: #1e9ab7;
+        color: white;
+    }
 
 .icon-edit-modified {
     color: black;
@@ -83,7 +83,62 @@ tr.table-dark {
 .icon-delete-modified {
     color: white;
 }
-.container .button-place{
-    margin-bottom:0;
-    padding-bottom:0;
+
+.container .button-place {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.page-pagination {
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+}
+
+/*   MATRIZ DE CONHECIMENTO   */
+
+.main-container{
+    display:flex;
+    justify-content:flex-end;
+    flex-flow:column;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    margin-bottom:-3vh;
+    flex-grow: 10;
+}
+
+/*  PRIMEIRO E SEGUNDO CONJUNTO */
+.first-container{
+    display:flex;
+    flex-flow:row;
+    justify-content:flex-end;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    flex-grow: 5;
+}
+
+.item-first-container{
+    /*height:4vh;*/
+    width:3vw;
+}
+
+/* ------------------------- */
+/*  TERCEIRO CONJUNTO */
+
+.second-container{
+    display:flex;
+    flex-flow:row;
+    justify-content:flex-end;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+}
+
+.item-second-container{
+    /*height:4vh;*/
+    width:2vw;
+}
+
+.title-second-container{
+    display:flex;
+    justify-content:flex-end;
 }

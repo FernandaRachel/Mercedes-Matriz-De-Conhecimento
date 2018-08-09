@@ -24,5 +24,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         IPagedList<tblWorkzone> GetWorkzonesWithPagination(int pageNumber, int quantity);
 
+        List<tblFuncionarios> setUpEmployees(int idWZ);
     }
 }

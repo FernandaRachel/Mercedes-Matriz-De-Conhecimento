@@ -18,6 +18,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         public int IdPerfilItem { get; set; }
         public Nullable<int> Ordem { get; set; }
     
-        public virtual tblPerfilTreinamento tblPerfilTreinamento { get; set; }
+        public virtual tblPerfilItens tblPerfilItens { get; set; }
+        public virtual tblPerfis tblPerfis { get; set; }
     }
 }

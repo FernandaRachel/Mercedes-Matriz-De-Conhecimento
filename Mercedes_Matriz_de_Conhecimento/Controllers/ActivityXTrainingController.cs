@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -29,80 +30,116 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: activityXTraining
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
             IEnumerable<tblAtividadeXTreinamentos> activityXTraining;
-            activityXTraining = _activityXTraining.GetActivityXWorkzone();
+            activityXTraining = _activityXTraining.GetActivityXTrainingWithPagination(page, pages_quantity);
 
             return View(activityXTraining);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int idActivity = 0)
         {
+            
             IEnumerable<tblAtividades> activies;
             IEnumerable<tblTreinamento> trainings;
+            IEnumerable<tblTreinamento> trainingAdded;
+
+            
 
             activies = _activity.GetActivities();
             trainings = _training.GetTrainings();
 
+            trainingAdded = _activityXTraining.SetUpTrainingList(idActivity);
+            tblAtividadeXTreinamentos teste = new tblAtividadeXTreinamentos();
+            teste.idAtividade = idActivity;
+
             ViewData["Activies"] = activies;
             ViewData["Trainings"] = trainings;
+            ViewData["TrainingsAdded"] = trainingAdded;
 
-            return View("Create");
+            return View("Create",teste);
         }
 
         //GET: Activity/Details/5
         public ActionResult Details(int id)
         {
+            tblAtividadeXTreinamentos ativXTrain = new tblAtividadeXTreinamentos();
+            ativXTrain.idAtividade = id;
+            ativXTrain.tblAtividades = _activity.GetActivityById(id);
 
-            IEnumerable<tblAtividades> activies;
             IEnumerable<tblTreinamento> trainings;
-            tblAtividadeXTreinamentos workzoneXAtividade;
+            IEnumerable<tblTreinamento> trainingsAddedToActivity;
 
-            activies = _activity.GetActivities();
+            trainingsAddedToActivity = _activityXTraining.SetUpTrainingList(id);
             trainings = _training.GetTrainings();
-            workzoneXAtividade = _activityXTraining.GetActivityXTrainingById(id);
+            //workzoneXAtividade = _activityXTraining.GetActivityXTrainingById(id);
 
-            ViewData["Activies"] = activies;
+            ViewData["TrainingsAdded"] = trainingsAddedToActivity;
             ViewData["Trainings"] = trainings;
 
-            if (workzoneXAtividade == null)
-                return View("Index");
+           // if (workzoneXAtividade == null)
+            //    return View("Index");
 
-            return View("Edit", workzoneXAtividade);
+            return View("Edit", ativXTrain);
         }
 
-
-        [HttpPost]
-        public ActionResult Create(tblAtividadeXTreinamentos activityXTraining)
+        public ActionResult Push(int idActivity, int idTraining)
         {
-            // Valida se nº da ordem ja existe 
-            // e se determinada atividade ja esta associada a determinada workzone
-            var exits = _activityXTraining.checkIfActivityXTrainingAlreadyExits(activityXTraining);
 
-            if (ModelState.IsValid)
-            {
-                if (!exits)
-                {
-                    _activityXTraining.CreateActivityXTraining(activityXTraining);
-                    return RedirectToAction("Index");
+            tblAtividadeXTreinamentos actXTrain = new tblAtividadeXTreinamentos();
+            actXTrain.idAtividade = idActivity;
+            actXTrain.idTreinamento = idTraining;
 
-                }
+            var exits = _activityXTraining.checkIfActivityXTrainingAlreadyExits(actXTrain);
 
-            }
+            if (!exits)
+                _activityXTraining.CreateActivityXTraining(actXTrain);
+
 
             IEnumerable<tblAtividades> activies;
             IEnumerable<tblTreinamento> trainings;
+            IEnumerable<tblTreinamento> trainingAdded;
+
             activies = _activity.GetActivities();
             trainings = _training.GetTrainings();
+
+            trainingAdded = _activityXTraining.SetUpTrainingList(idActivity);
+            tblAtividadeXTreinamentos teste = new tblAtividadeXTreinamentos();
+            teste.idAtividade = idActivity;
+
             ViewData["Activies"] = activies;
             ViewData["Trainings"] = trainings;
+            ViewData["TrainingsAdded"] = trainingAdded;
 
+            if (exits)
+                ModelState.AddModelError("idAtividade", "Atividade já associada a esse treinamento");
 
-            if (exits) 
-                ModelState.AddModelError("idAtividade", "Treinamento já associado a atividade");
+            return RedirectToAction("Create", new { idActivity = idActivity });
+        }
 
-            return View("Create");
+        public ActionResult Pop(int idActivity, int idTraining)
+        {
+            _activityXTraining.DeleteActivityXTraining(idActivity, idTraining);
+
+            IEnumerable<tblAtividades> activies;
+            IEnumerable<tblTreinamento> trainings;
+            IEnumerable<tblTreinamento> trainingAdded;
+
+            activies = _activity.GetActivities();
+            trainings = _training.GetTrainings();
+
+            trainingAdded = _activityXTraining.SetUpTrainingList(idActivity);
+            tblAtividadeXTreinamentos teste = new tblAtividadeXTreinamentos();
+            teste.idAtividade = idActivity;
+
+            ViewData["Activies"] = activies;
+            ViewData["Trainings"] = trainings;
+            ViewData["TrainingsAdded"] = trainingAdded;
+
+            return RedirectToAction("Details", new { idActivity = idActivity });
         }
 
 
@@ -125,26 +162,34 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             IEnumerable<tblAtividades> activies;
             IEnumerable<tblTreinamento> trainings;
-            tblAtividadeXTreinamentos workzoneXAtividade;
+            IEnumerable<tblTreinamento> trainingAdded;
 
             activies = _activity.GetActivities();
             trainings = _training.GetTrainings();
-            workzoneXAtividade = _activityXTraining.GetActivityXTrainingById(id);
+
+            trainingAdded = _activityXTraining.SetUpTrainingList(activityXTraining.idAtividade);
+            tblAtividadeXTreinamentos teste = new tblAtividadeXTreinamentos();
+            teste.idAtividade = activityXTraining.idAtividade;
 
             ViewData["Activies"] = activies;
             ViewData["Trainings"] = trainings;
+            ViewData["TrainingsAdded"] = trainingAdded;
+
+            activityXTraining = _activityXTraining.GetActivityXTrainingById(id);
+
 
             return View(activityXTraining);
         }
 
 
         // GET: activityXTraining/Delete/5
-        public ActionResult Delete(int id)
-        {
-            _activityXTraining.DeleteActivityXTraining(id);
+        //VERIFICAR
+        //public ActionResult Delete(int idActivity)
+        //{
+        //    _activityXTraining.DeleteActivityXTraining(idActivy);
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
 
     }

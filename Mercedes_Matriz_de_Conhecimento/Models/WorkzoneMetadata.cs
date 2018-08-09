@@ -27,9 +27,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 
         public string DataDesativacao { get; set; }
 
-        [Display(Name = "Centro de Custo")]
-        public int IdCentroDeCusto { get; set; }
-
         [Required]
         [Display(Name = "Pessoas Necessárias")]
         public int PessoasNecessarias { get; set; }

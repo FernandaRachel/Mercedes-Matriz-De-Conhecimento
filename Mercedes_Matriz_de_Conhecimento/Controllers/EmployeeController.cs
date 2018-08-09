@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -26,10 +27,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: Employee
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
             IEnumerable<tblFuncionarios> employee;
-            employee = _employee.GetEmployees();
+            employee = _employee.GetEmployeesWithPagination(page, pages_quantity);
 
             return View(employee);
 

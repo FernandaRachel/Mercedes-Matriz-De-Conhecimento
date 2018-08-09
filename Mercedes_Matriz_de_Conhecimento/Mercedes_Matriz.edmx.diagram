@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6d9ad1e47b484d55999b578df4f2f335" Name="Diagram1">
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblAtividades" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblAtividadeXTreinamentos" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblFuncionarios" Width="1.5" PointX="5.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblGrupoAtividades" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblGrupoTreinamentos" Width="1.5" PointX="8.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblPerfilAtividadeXPerfilAtItem" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblPerfilItens" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblPerfilTreinamentoxPerfilItem" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblPerfis" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblTipoTreinamento" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblTreinamento" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblWorkzoneXAtividades" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblWorkzoneXFuncionario" Width="1.5" PointX="8" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblAtividadeXTreinamentos_tblAtividade" ManuallyRouted="false" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblWorkoneXAtividades_tblAtividades" ManuallyRouted="false" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblAtividadeXTreinamentos_tblTreinamento" ManuallyRouted="false" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblWorkzonesXFuncionarios_tblFuncionarios" ManuallyRouted="false" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtivItem" ManuallyRouted="false" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblPerfilAtividadeXPerfilItem_tblPerfis" ManuallyRouted="false" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblPerfilTreinamentoxPerfilItem_tblPerfilAtivItem" ManuallyRouted="false" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblPerfilTreinamentoxPerfilItem_tblPerfilTreinamento" ManuallyRouted="false" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblTreinamento_tblPerfis" ManuallyRouted="false" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblTreinamento_tblTipoTreinamento" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblTreinamentoStatus" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Mercedes_Matriz_V2Model.tblWorkzone" Width="1.5" PointX="2.75" PointY="14" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblWorkoneXAtividades_tblWorkzone" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblWorkzonesXFuncionarios_tblWorkzone" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblAtividade_tblPerfilAtividade" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

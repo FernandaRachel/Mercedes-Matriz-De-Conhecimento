@@ -1,4 +1,4 @@
-﻿@model Mercedes_Matriz_de_Conhecimento.tblPerfilAtividade
+﻿@model Mercedes_Matriz_de_Conhecimento.tblPerfis
 
 @using System.Collections;
 
@@ -6,22 +6,20 @@
     ViewBag.Title = "PERFIL DE ATIVIDADES";
 }
 
-
-    @*<h3 class=""></h3>*@
-    <h4><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i> Perfil Atividade</h4>
+    <h4> Perfil Atividade</h4>
 
     <div class="row">
 
-        @using (Html.BeginForm("Edit", "ActivityProfile", new { id = Model.idPerfilAtividade }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Edit", "ActivityProfile", new { id = Model.IdPerfis }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
 
             <div class="col-md-5">
 
                 @Html.ValidationSummary("", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(m => m.nome, new { @class = "col-md-3 control-label" })
+                    @Html.Label("Nome", new { @class = "col-md-3 control-label" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.nome, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">

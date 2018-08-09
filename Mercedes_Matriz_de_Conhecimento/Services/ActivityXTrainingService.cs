@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using PagedList;
+using Microsoft.Ajax.Utilities;
 
 namespace Mercedes_Matriz_de_Conhecimento.Services
 {
@@ -30,13 +31,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return ActivityXTraining;
         }
 
-        public IEnumerable<tblAtividadeXTreinamentos> GetActivityXWorkzone()
+        public IEnumerable<tblAtividadeXTreinamentos> GetActivityXTraining()
         {
             IEnumerable<tblAtividadeXTreinamentos> ActivityXTraining;
 
-            var query = from f in _db.tblAtividadeXTreinamentos
-                        orderby f.idAtivTreinamento ascending
-                        select f;
+            var query = _db.tblAtividadeXTreinamentos
+                .DistinctBy(a => a.idAtividade)
+                .OrderBy(a => a.idAtividade);
+
+            query.Distinct();
 
             ActivityXTraining = query.AsEnumerable();
 
@@ -54,13 +57,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return ActivityXTraining;
         }
 
-        public tblAtividadeXTreinamentos DeleteActivityXTraining(int id)
+        public tblAtividadeXTreinamentos DeleteActivityXTraining(int idActivity, int idTrain)
         {
             tblAtividadeXTreinamentos ActivityXTraining;
 
             var query = from f in _db.tblAtividadeXTreinamentos
-                        where f.idAtivTreinamento == id
-                        orderby f.idAtivTreinamento ascending
+                        where f.idAtividade == idActivity && f.idTreinamento == idTrain
                         select f;
 
             ActivityXTraining = query.FirstOrDefault();
@@ -99,17 +101,38 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
-        public IEnumerable<tblAtividadeXTreinamentos> GetActivityXWorkzoneWithPagination(int pageNumber, int quantity)
+        public IEnumerable<tblAtividadeXTreinamentos> GetActivityXTrainingWithPagination(int pageNumber, int quantity)
         {
-            IEnumerable<tblAtividadeXTreinamentos> ActivityXTraining;
+            IEnumerable<tblAtividadeXTreinamentos> ActivityXTraining = new List<tblAtividadeXTreinamentos>();
 
-            var query = from f in _db.tblAtividadeXTreinamentos
-                        orderby f.idAtivTreinamento ascending
-                        select f;
+            //var q = _db.tblAtividadeXTreinamentos
+            //    .Select(a => a.idAtividade).Distinct().AsQueryable();
 
-            ActivityXTraining = query.ToPagedList(pageNumber, quantity);
+            var q = _db.tblAtividadeXTreinamentos
+                .DistinctBy(a => a.idAtividade).AsQueryable();
+
+            ActivityXTraining = q.ToPagedList(pageNumber, quantity);
 
             return ActivityXTraining;
+        }
+
+        public IEnumerable<tblTreinamento> SetUpTrainingList(int idActivity)
+        {
+            List<tblTreinamento> allTrainings = new List<tblTreinamento>();
+
+            var query = from f in _db.tblAtividadeXTreinamentos
+                        where f.idAtividade == idActivity
+                        select f;
+
+            foreach (var trainings in query)
+            {
+                var query2 = from f in _db.tblTreinamento
+                             where f.IdTreinamento == trainings.idTreinamento
+                             select f;
+                allTrainings.Add(query2.FirstOrDefault());
+            }
+
+            return allTrainings;
         }
     }
 }

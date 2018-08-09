@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
+using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -18,6 +19,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         private TrainingService _training;
         private TrainingTypeService _trainingType;
+        private TrainingProfileService _trainingProfile;
         private TrainingGroupService _trainingGroup;
 
 
@@ -25,15 +27,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         {
             _training = new TrainingService();
             _trainingType = new TrainingTypeService();
+            _trainingProfile = new TrainingProfileService();
             _trainingGroup = new TrainingGroupService();
 
         }
 
         // GET: training
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
             IEnumerable<tblTreinamento> training;
-            training = _training.GetTrainings();
+            training = _training.GetTrainingsWithPagination(page, pages_quantity);
 
             return View(training);
 
@@ -42,10 +47,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Create()
         {
             IEnumerable<tblTipoTreinamento> trainingType;
+            IEnumerable<tblPerfis> trainingProfile;
 
             trainingType = _trainingType.GetTrainingTypes();
+            trainingProfile = _trainingProfile.GetTrainingProfilesByType("T");
 
             ViewData["TipoTreinamento"] = trainingType;
+            ViewData["PerfilTreinamento"] = trainingProfile;
 
             return View("Create");
         }

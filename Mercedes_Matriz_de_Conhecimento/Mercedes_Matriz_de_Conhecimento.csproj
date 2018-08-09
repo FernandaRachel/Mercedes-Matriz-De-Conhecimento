@@ -44,8 +44,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DCX.ITLC.AutSis.Services.Integracao, Version=1.2.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Autisis exemplo\Autisis exemplo\packages\DCX.ITLC.AutSis.Services.Integracao.1.2.1.2\lib\net45\DCX.ITLC.AutSis.Services.Integracao.dll</HintPath>
+    </Reference>
     <Reference Include="DCX.ITLC.Seguranca.Autenticacao">
       <HintPath>..\..\SegAut\SegAut\DCX.ITLC.Seguranca.Autenticacao.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -80,6 +88,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
@@ -153,9 +165,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -208,15 +217,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="AtividadesDiario.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PerfilAtivItemXPerfilItemController.cs" />
     <Compile Include="Controllers\ActivityXTrainingController.cs" />
     <Compile Include="Controllers\ActivityXWorkzoneController.cs" />
     <Compile Include="Controllers\HistMatrixController.cs" />
     <Compile Include="Controllers\MatrixController.cs" />
+    <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\ProfileItemController.cs" />
     <Compile Include="Controllers\ActivityProfileItemController.cs" />
     <Compile Include="Controllers\ActivityProfileController.cs" />
@@ -232,23 +240,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HistoricoTeste.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mercedes_Matriz_de_Conhecimento.Context.cs">
+    <Compile Include="Mercedes_Matriz.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.Context.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Mercedes_Matriz_de_Conhecimento.cs">
+    <Compile Include="Mercedes_Matriz.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
-    <Compile Include="Mercedes_Matriz_de_Conhecimento.Designer.cs">
+    <Compile Include="Mercedes_Matriz.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.edmx</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityMetadata.cs" />
@@ -262,15 +267,20 @@
     <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\PerfilAtividadeXPerfilAtItemMetadata.cs" />
     <Compile Include="Models\TrainingMetadata.cs" />
-    <Compile Include="Models\TrainingProfileMetada.cs" />
+    <Compile Include="Models\ProfilesMetadata.cs" />
     <Compile Include="Models\TrainingTypeMetada.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interface\IPermissionsService.cs" />
     <Compile Include="Services\Interface\ITrainingStatusService.cs" />
+    <Compile Include="Services\Interface\IWorzoneXEmployeeService.cs" />
     <Compile Include="Services\PerfilAtivItemXPerfilItemService.cs" />
     <Compile Include="Services\Interface\IPerfilAtivItemXPerfilItemService.cs" />
     <Compile Include="Services\Interface\IActivityXTrainingService.cs" />
+    <Compile Include="Services\PermissionsService.cs" />
     <Compile Include="Services\TrainingStatusService.cs" />
+    <Compile Include="Services\WorzoneXEmployeeService.cs" />
     <Compile Include="Services\WorzoneXActivityService.cs" />
     <Compile Include="Services\ActivityXTrainingService.cs" />
     <Compile Include="Services\HistMatrixService.cs" />
@@ -299,65 +309,50 @@
     <Compile Include="Services\Interface\IEmployeeService.cs" />
     <Compile Include="Services\WorkzoneService.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
-    </Compile>
     <Compile Include="tblAtividades.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblAtividadeXTreinamentos.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblAvaliacaoFuncXworkzoneXatividade.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblAvaliacaoFuncXworkzoneXatividadeHist.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblFuncionarios.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGrupoAtividades.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGrupoTreinamentos.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPerfilAtividade.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPerfilAtividadeXPerfilAtItem.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
-    <Compile Include="tblPerfilAtivItem.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPerfilItem.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPerfilTreinamento.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+    <Compile Include="tblPerfilItens.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPerfilTreinamentoxPerfilItem.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
-    <Compile Include="tblStatusFuncionarioXworkzoneXtreinamento.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+    <Compile Include="tblPerfis.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTipoTreinamento.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTreinamento.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTreinamentoStatus.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblWorkzone.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblWorkzoneXAtividades.cs">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.tt</DependentUpon>
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWorkzoneXFuncionario.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -371,6 +366,7 @@
     <Content Include="Content\mbbras.min.css" />
     <Content Include="Content\mercedes.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="DCX.ITLC.AutSis.Services.Integracao.dll" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -378,15 +374,16 @@
     <Content Include="Content\Site.css" />
     <Content Include="Imagens\logo-mercedes-branco.jpg" />
     <Content Include="Imagens\logo-mercedes.png" />
-    <Content Include="Mercedes_Matriz_de_Conhecimento.Context.tt">
+    <Content Include="Imagens\user-default.png" />
+    <Content Include="Mercedes_Matriz.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.edmx</DependentUpon>
-      <LastGenOutput>Mercedes_Matriz_de_Conhecimento.Context.cs</LastGenOutput>
+      <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
+      <LastGenOutput>Mercedes_Matriz.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Mercedes_Matriz_de_Conhecimento.tt">
+    <Content Include="Mercedes_Matriz.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.edmx</DependentUpon>
-      <LastGenOutput>Mercedes_Matriz_de_Conhecimento.cs</LastGenOutput>
+      <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
+      <LastGenOutput>Mercedes_Matriz.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
@@ -472,18 +469,18 @@
     <Content Include="[Content_Types].xml" />
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Content\bootstrap-select.css.map" />
-    <EntityDeploy Include="Mercedes_Matriz_de_Conhecimento.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Mercedes_Matriz_de_Conhecimento.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Mercedes_Matriz_de_Conhecimento.edmx.diagram">
-      <DependentUpon>Mercedes_Matriz_de_Conhecimento.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <EntityDeploy Include="Mercedes_Matriz.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Mercedes_Matriz.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Mercedes_Matriz.edmx.diagram">
+      <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -571,6 +568,10 @@
     <Content Include="Views\PerfilAtivItemXPerfilItem\Create.cshtml" />
     <Content Include="Views\PerfilAtivItemXPerfilItem\Edit.cshtml" />
     <Content Include="Views\PerfilAtivItemXPerfilItem\Index.cshtml" />
+    <Content Include="Views\Permissions\Index.cshtml" />
+    <Content Include="Views\Permissions\_ArvoreFuncionalidadeGrupo.cshtml" />
+    <Content Include="Views\Permissions\_Arvore.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,91 @@
+﻿@model DCX.ITLC.AutSis.Services.Integracao.Models.Retornos.Sistema
+
+
+@{
+    ViewBag.Title = "Permissões";
+}
+
+
+<div class="jumbotron">
+    <h3>@Model.Nome</h3>
+    <p class="lead">
+        @Model.Descricao
+    </p>
+</div>
+<hr />
+
+<div class="row">
+    <div>
+        <h3>Usuário</h3>
+    </div>
+    <br />
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <dl>
+            <dt>
+                Nome
+            </dt>
+            <dd>
+                @Model.Usuario.Nome
+            </dd>
+            <dt>
+                E-mail
+            </dt>
+            <dd>
+                @Model.Usuario.Email
+            </dd>
+            <dt>
+                Chave Americas
+            </dt>
+            <dd>
+                @Model.Usuario.ChaveAmericas
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="row">
+    <div>
+        <h3>Funcionalidades de Autorização</h3>
+    </div>
+    <br />
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul>
+            <li>
+                <p>@Model.FuncionalidadesDeAutorizacao.Nome</p>
+                @Html.Partial("_Arvore", Model.FuncionalidadesDeAutorizacao)
+            </li>
+        </ul>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div>
+        <h3>Funcionalidades de Associação</h3>
+    </div>
+    <br />
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        @foreach (var item in Model.FuncionalidadesDeAssociacao)
+        {
+            <a>@item.Nome</a>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div>
+        <h3>Grupos de Sistemas</h3>
+    </div>
+    <br />
+    @*<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            @foreach (var grupoDeSistema in Model.GruposDeSistema)
+            {
+                <ul>
+                    <li>
+                        <p>@grupoDeSistema.Nome</p>
+                        @Html.Partial("_ArvoreFuncionalidadeGrupo", grupoDeSistema.Funcionalidades)
+                    </li>
+                </ul>
+            }
+        </div>*@
+</div>

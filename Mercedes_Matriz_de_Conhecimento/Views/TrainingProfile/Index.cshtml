@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Mercedes_Matriz_de_Conhecimento.tblPerfilTreinamento>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Mercedes_Matriz_de_Conhecimento.tblPerfis>
 
 
 
@@ -15,7 +16,7 @@
 </div>
 <div class="container table-place">
     <div class="panel panel-primary">
-        <div class="panel-heading">Quantidade: </div>
+        <div class="panel-heading">Quantidade: @Model.TotalItemCount </div>
         <div class="panel-body table-responsive">
             <table class="table table-striped table-hover table-condensed table-bordered text-center">
                 <thead class="text-center">
@@ -33,16 +34,19 @@
                             <td>@trainingProfile.Nome</td>
                             <td>@trainingProfile.UsuarioCriacao</td>
                             <td>
-                                <div class="" role="group">
-                                    <button class="btn" onclick="lcoation.href='@Url.Action("Details","TrainingProfile",new { id = @trainingProfile.IdPerfilTreinamento })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
-                                    <button class="btn btn-warning" onclick="lcoation.href='@Url.Action("Delete","TrainingProfile",  new { id = @trainingProfile.IdPerfilTreinamento})"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                <div class="btn-group" role="group">
+                                    <button class="btn" onclick="location.href='@Url.Action("Details","TrainingProfile",new { id = @trainingProfile.IdPerfis })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
+                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","TrainingProfile",  new { id = @trainingProfile.IdPerfis})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
                                 </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-
+            <div class="page-pagination">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            </div>
         </div>
     </div>
 </div>

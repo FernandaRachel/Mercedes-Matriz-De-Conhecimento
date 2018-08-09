@@ -11,8 +11,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         // GET: Matrix
         public ActionResult Index()
         {
-            int[] teste = { 1, 1, 1, 1, 1, 2, 3, 2, 2, 1, 2, 3 };
-            int[] teste2 = { 1, 2, 3, 1, 2, 3, 5, 6, 3, 2, 2, 1 };
+            int[] teste = { 1, 2, 3, 1, 2, 3, 5, 6, 3, 2, 2, 1,2,3,5 };
+            int[] teste2 = { 1, 2, 3, 1, 2, 3, 5, 6, 3, 2, 2, 1, 2, 3, 5 };
             ViewBag.numbers = teste;
             ViewBag.numbers2 = teste2;
 

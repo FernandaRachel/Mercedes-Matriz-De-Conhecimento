@@ -23,8 +23,8 @@ namespace Mercedes_Matriz_de_Conhecimento
     {
     }
 
-    [MetadataType(typeof(TrainingProfileMetada))]
-    public partial class tblPerfilTreinamento
+    [MetadataType(typeof(ProfilesMetadata))]
+    public partial class tblPerfis
     {
     }
 

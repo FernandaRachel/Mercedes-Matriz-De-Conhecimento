@@ -9,18 +9,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
     interface IActivityProfileService
     {
 
-        IEnumerable<tblPerfilAtividade> GetActivityProfiles();
+        IEnumerable<tblPerfis> GetActivityProfiles();
 
-        tblPerfilAtividade GetActivityProfileById(int id);
+        IEnumerable<tblPerfis> GetActivityProfilesByType();
 
-        tblPerfilAtividade CreateActivityProfile(tblPerfilAtividade ActivityProfile);
+        tblPerfis GetActivityProfileById(int id);
 
-        tblPerfilAtividade UpdateActivityProfile(tblPerfilAtividade ActivityProfile);
+        tblPerfis CreateActivityProfile(tblPerfis ActivityProfile);
 
-        tblPerfilAtividade DeleteActivityProfile(int id);
+        tblPerfis UpdateActivityProfile(tblPerfis ActivityProfile);
 
-        bool checkIfActivityProfileAlreadyExits(tblPerfilAtividade ActivityProfile);
+        tblPerfis DeleteActivityProfile(int id);
 
-        IEnumerable<tblPerfilAtividade> GetActivityProfilesWithPagination(int pageNumber, int quantity);
+        bool checkIfActivityProfileAlreadyExits(tblPerfis ActivityProfile);
+
+        IEnumerable<tblPerfis> GetActivityProfilesWithPagination(int pageNumber, int quantity);
     }
 }
