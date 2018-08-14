@@ -82,7 +82,7 @@
                 <div class="form-group">
                     @Html.Label("Perfil de Atividade", new { @class = "col-md-3 control-label" })
                     <div class="col-md-9">
-                        @Html.DropDownListFor(m => m.idPerfilAtividade, new SelectList((IEnumerable)ViewData["PerfildeAtividade"], "idPerfilAtividade", "Nome"), "Escolha um Perfil de Atividade",
+                        @Html.DropDownListFor(m => m.idPerfilAtividade, new SelectList((IEnumerable)ViewData["PerfildeAtividade"], "idPerfis", "Nome"), "Escolha um Perfil de Atividade",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",

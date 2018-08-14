@@ -1,5 +1,5 @@
 ﻿@using PagedList.Mvc;
-@model PagedList.IPagedList<Mercedes_Matriz_de_Conhecimento.tblAtividadeXTreinamentos>
+@model PagedList.IPagedList<Mercedes_Matriz_de_Conhecimento.tblAtividades>
 
 
 @{
@@ -21,7 +21,6 @@
                 <thead class="text-center">
                     <tr>
                         <th class="text-center">Atividade</th>
-                        <th class="text-center">Treinamento</th>
                         <th class="text-center"></th>
                     </tr>
                 </thead>
@@ -30,12 +29,11 @@
                     @foreach (var activity in Model)
                     {
                         <tr class="text-center">
-                            <td>@activity.tblAtividades.Nome</td>
-                            <td>@activity.tblTreinamento.Nome</td>
+                            <td>@activity.Nome</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <button class="btn" onclick="location.href='@Url.Action("Details","ActivityXTraining",new { id = @activity.idAtividade })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
-                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","ActivityXTraining",  new { id = @activity.idAtivTreinamento })'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    <button class="btn" onclick="location.href='@Url.Action("Details","ActivityXTraining",new { idActivity = @activity.idAtividade })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
+                                    @*<button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","ActivityXTraining",  new { id = @activity.idAtivTreinamento })'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>*@
                                 </div>
                             </td>
                         </tr>

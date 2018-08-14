@@ -42,7 +42,7 @@
                             }
                             <td>
                                 <div class="btn-group" role="group">
-                                    <button class="btn" onclick="location.href='@Url.Action("Details","Workzone",new { id = @workzone.IdWorkzone })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
+                                    <button class="btn" onclick="location.href='@Url.Action("Details","Workzone",new { id = @workzone.IdWorkzone, nome = "" })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
                                     <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","Workzone",  new { id = @workzone.IdWorkzone})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
                                 </div>
                             </td>

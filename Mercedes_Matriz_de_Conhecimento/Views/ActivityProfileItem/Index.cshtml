@@ -1,5 +1,5 @@
 ﻿@using PagedList.Mvc;
-@model PagedList.IPagedList<Mercedes_Matriz_de_Conhecimento.tblPerfilAtivItem>
+@model PagedList.IPagedList<Mercedes_Matriz_de_Conhecimento.tblPerfilItens>
 
 @{
     ViewBag.Title = "ITEM PERFIL DE ATIVIDADE";
@@ -21,7 +21,6 @@
                     <tr>
                         <th class="text-center">Sigla</th>
                         <th class="text-center">Descrição</th>
-                        <th class="text-center">Transição</th>
                         <th class="text-center"></th>
                     </tr>
                 </thead>
@@ -32,18 +31,10 @@
                         <tr class="text-center">
                             <td>@activityProfileItem.Sigla</td>
                             <td>@activityProfileItem.Descricao</td>
-                            @if (@activityProfileItem.LogarTransicao)
-                            {
-                                <td>Logar</td>
-                            }
-                            else
-                            {
-                                <td>Não Logar</td>
-                            }
                             <td>
                                 <div class="btn-group" role="group">
-                                    <button class="btn" onclick="location.href='@Url.Action("Details","ActivityProfileItem",new { id = @activityProfileItem.idPerfilAtivItem })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
-                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","ActivityProfileItem",  new { id = @activityProfileItem.idPerfilAtivItem})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    <button class="btn" onclick="location.href='@Url.Action("Details","ActivityProfileItem",new { id = @activityProfileItem.IdPerfilItem })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
+                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","ActivityProfileItem",  new { id = @activityProfileItem.IdPerfilItem})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
                                 </div>
                             </td>
                         </tr>

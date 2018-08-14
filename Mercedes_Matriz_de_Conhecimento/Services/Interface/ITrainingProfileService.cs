@@ -25,5 +25,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         IEnumerable<tblPerfis> GetTrainingProfilesWithPagination(int pageNumber, int quantity);
 
+        IEnumerable<tblPerfis> GetTrainingProfilesByType();
     }
 }

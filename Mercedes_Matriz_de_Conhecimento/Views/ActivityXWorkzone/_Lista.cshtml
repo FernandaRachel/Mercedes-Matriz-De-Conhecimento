@@ -1,0 +1,32 @@
+﻿
+@model  Mercedes_Matriz_de_Conhecimento.Models.ActiviesListModel
+
+<div class="col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">Atividades Existentes</div>
+        <div class="panel-body pre-scrollable" id="func-all">
+            <div class="list-group">
+                @Html.TextBox("Name", (string)ViewBag.Name, new { @class = "form-control", oninput = "searchActivity()", id = "nome" })
+
+                @foreach (var activ in (IEnumerable<tblAtividades>)Model.activies)
+                {
+                    <a type="button" class="list-group-item" href="@Url.Action("Push", "ActivityXWorkzone", new { idActivity = @activ.idAtividade, idWorkzone = Model.idWorkzone})">@activ.Nome</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">Atividades Adicionados</div>
+        <div class="panel-body pre-scrollable">
+            <div class="list-group">
+                @foreach (var funcAdd in (IEnumerable<tblAtividades>)Model.activiesAdded)
+                {
+                    <a type="button" class="list-group-item" href="@Url.Action("Pop", "ActivityXWorkzone", new { idActivity = @funcAdd.idAtividade, idWorkzone = Model.idWorkzone})">@funcAdd.Nome</a>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

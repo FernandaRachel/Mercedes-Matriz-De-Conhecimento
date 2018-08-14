@@ -17,6 +17,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblWorkzone()
         {
+            this.tblMatrizWorkzone = new HashSet<tblMatrizWorkzone>();
             this.tblWorkzoneXAtividades = new HashSet<tblWorkzoneXAtividades>();
             this.tblWorkzoneXFuncionario = new HashSet<tblWorkzoneXFuncionario>();
         }
@@ -38,6 +39,8 @@ namespace Mercedes_Matriz_de_Conhecimento
         public int idCC { get; set; }
         public int idLinha { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMatrizWorkzone> tblMatrizWorkzone { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWorkzoneXAtividades> tblWorkzoneXAtividades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

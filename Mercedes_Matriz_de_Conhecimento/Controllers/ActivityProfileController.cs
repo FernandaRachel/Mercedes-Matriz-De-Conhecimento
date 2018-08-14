@@ -71,8 +71,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 if (!exits)
                 {
                     _activityProfile.CreateActivityProfile(activityProfile);
-                    return RedirectToAction("Index");
 
+                    return RedirectToAction("Index");
                 }
 
             }

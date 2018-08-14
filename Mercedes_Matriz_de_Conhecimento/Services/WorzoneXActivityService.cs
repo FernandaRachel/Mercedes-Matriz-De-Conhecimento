@@ -54,21 +54,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return WorzoneXActivity;
         }
 
-        public tblWorkzoneXAtividades DeleteWorzoneXActivity(int id)
+        public tblWorkzoneXAtividades DeleteWorzoneXActivity(int idWorkzone, int idActivity)
         {
-            tblWorkzoneXAtividades WorzoneXActivity;
+            tblWorkzoneXAtividades WorkzoneXActivity;
 
             var query = from f in _db.tblWorkzoneXAtividades
-                        where f.idWorkzoneAtividade == id
-                        orderby f.idWorkzoneAtividade ascending
+                        where f.idWorkzone == idWorkzone && f.idAtividade == idActivity
                         select f;
 
-            WorzoneXActivity = query.FirstOrDefault();
+            WorkzoneXActivity = query.FirstOrDefault();
 
-            _db.tblWorkzoneXAtividades.Remove(WorzoneXActivity);
+            _db.tblWorkzoneXAtividades.Remove(WorkzoneXActivity);
             _db.SaveChanges();
 
-            return WorzoneXActivity;
+            return WorkzoneXActivity;
         }
 
 
@@ -102,7 +101,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         public bool checkIfOrderAlreadyExits(tblWorkzoneXAtividades WorzoneXActivity)
         {
             var query = from f in _db.tblWorkzoneXAtividades
-                        where f.Ordem == WorzoneXActivity.Ordem 
+                        where f.Ordem == WorzoneXActivity.Ordem
                         select f;
             if (query.Count() == 1)
                 return true;
@@ -110,17 +109,46 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
-        public IPagedList<tblWorkzoneXAtividades> GetWorzoneXActivitiesPagination(int pageNumber, int quantity)
+        public IEnumerable<tblWorkzone> GetWorzoneXActivitiesPagination(int pageNumber, int quantity)
         {
-            IPagedList<tblWorkzoneXAtividades> WorzoneXActivity;
+            List<tblWorkzone> Workzone = new List<tblWorkzone>();
+
+            var q = _db.tblWorkzoneXAtividades
+                .Select(a => a.idWorkzone).Distinct().AsQueryable();
+
+            var q2 = _db.tblWorkzone;
+
+            //Seleciona apenas as workzones que possuem associações na 'tblWorkzoneXAtividades'
+            foreach (var x in q)
+            {
+                var retorno = q2.Where(a => a.IdWorkzone == x);
+                Workzone.Add(retorno.FirstOrDefault());
+            }
+
+            // convert de List to Enumerable
+            var returnedWorkzone = Workzone.AsEnumerable();
+            returnedWorkzone = returnedWorkzone.ToPagedList(pageNumber, quantity);
+
+            return returnedWorkzone;
+        }
+
+        public IEnumerable<tblAtividades> SetUpWorkzoneList(int idWorkzone)
+        {
+            List<tblAtividades> allActivies = new List<tblAtividades>();
 
             var query = from f in _db.tblWorkzoneXAtividades
-                        orderby f.idWorkzoneAtividade ascending
+                        where f.idWorkzone == idWorkzone
                         select f;
 
-            WorzoneXActivity = query.ToPagedList(pageNumber,quantity);
+            foreach (var activies in query)
+            {
+                var query2 = from f in _db.tblAtividades
+                             where f.idAtividade == activies.idAtividade
+                             select f;
+                allActivies.Add(query2.FirstOrDefault());
+            }
 
-            return WorzoneXActivity;
+            return allActivies;
         }
     }
 }

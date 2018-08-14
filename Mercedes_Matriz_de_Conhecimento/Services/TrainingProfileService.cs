@@ -49,6 +49,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return trainingProfile;
         }
 
+        public IEnumerable<tblPerfis> GetTrainingProfilesByType()
+        {
+            IEnumerable<tblPerfis> activityProfile;
+
+            var query = from f in _db.tblPerfis
+                        orderby f.Nome ascending
+                        where f.Tipo == "T"
+                        select f;
+
+            activityProfile = query.AsEnumerable();
+
+            return activityProfile;
+        }
 
         public tblPerfis CreateTrainingProfile(tblPerfis TrainingProfile)
         {
@@ -116,6 +129,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblPerfis
+                        where f.Tipo == "T"
                         orderby f.Nome ascending
                         select f;
 

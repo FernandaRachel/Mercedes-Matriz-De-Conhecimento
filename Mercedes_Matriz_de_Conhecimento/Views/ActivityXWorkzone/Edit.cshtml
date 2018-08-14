@@ -4,8 +4,55 @@
 
 
 @{
-    ViewBag.Title = "ASSOCIAR ATIVIDADE X WORKZONE";
+    ViewBag.Title = "ASSOCIAR WORKZONE X ATIVIDADE";
+    ViewBag.Name = "";
 }
+
+@section scripts
+{
+    <script>
+        function searchActivity() {
+
+            setTimeout(function () {
+                var name = document.getElementById("nome");
+                var workzone = document.getElementById("workzone");
+
+                if (name.value.length > 3 || name.value.length == 0) {
+
+                    $.ajax({
+                        url: '@Url.Action("SearchActivity", "ActivityXWorkzone")',
+                        data: {
+                            idWorkzone: workzone.value,
+                            nome: name.value
+                        }
+                    }).done(function (response) {
+                        var x = document.getElementById('listaActiv');
+                        x.innerHTML = response;
+                        $('#listaActiv').innerHTML = response;
+                        $("#nome").focus();
+                    });
+                }
+            }, 1000)
+
+        }
+
+        function push(valueActivity) {
+            var idWorkzone = document.getElementById("workzone");
+            var ordem = document.getElementById("ordem");
+            console.log(idWorkzone.value);
+            console.log(valueActivity);
+            location.href = '@Url.Action("Push", "ActivityXWorkzone")?idWorkzone=' + idWorkzone.value + '&idActivity=' + valueActivity + '&ordem=' + ordem.value;
+        }
+
+        function pop(valueActivity) {
+            var idWorkzone = document.getElementById("workzone");
+            console.log(idWorkzone.value);
+            console.log(valueActivity);
+            location.href = '@Url.Action("Pop", "ActivityXWorkzone")?idWorkzone=' + idWorkzone.value + '&idActivity=' + valueActivity;
+        }
+    </script>
+}
+
 
 
 <h4 class="">Workzone X Atividade</h4>
@@ -21,36 +68,19 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Ordem, new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
-                    @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control", id = "ordem" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.idAtividade, new { @class = "col-md-3 control-label" })
-                <div class="col-md-8">
-                    @Html.DropDownList("idAtividade", new SelectList((IEnumerable)ViewData["Activies"], "idAtividade", "Nome"), "Escolha uma Atividade",
-                        new
-                        {
-                            @class = "form-control col-md-9 selectpicker",
-                            data_show_subtext = "true",
-                            data_live_search = "true"
-                        })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.idWorkzone, new { @class = "col-md-3 control-label" })
-                <div class="col-md-8">
-                    @Html.DropDownList("idWorkzone", new SelectList((IEnumerable)ViewData["Workzones"], "IdWorkzone", "Nome"), "Escolha uma Workzone",
-                        new
-                        {
-                            @class = "form-control col-md-9 selectpicker",
-                            data_show_subtext = "true",
-                            data_live_search = "true"
-                        })
+                @Html.Label("Workzone", new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.HiddenFor(m => m.idWorkzone, new { @class = "form-control disabled", id = "workzone", @disabled = "disabled" })
+                    @Html.TextBoxFor(m => m.tblWorkzone.Nome, new { @class = "form-control disabled", @disabled = "disabled" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-11">
-                    <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
+                    @*<button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>*@
                 </div>
             </div>
 
@@ -58,6 +88,10 @@
 
     }
 
+
+    <div id="listaActiv">
+        @{Html.RenderAction("SearchActivity", "ActivityXWorkzone", new { idWorkzone = Model.idWorkzone, nome = ViewBag.Name });}
+    </div>
 </div>
 
 <div class="row">

@@ -22,6 +22,12 @@
                 </div>
             </div>
             <div class="form-group">
+                @Html.Label("ID Americas", new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.idAmericas, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(m => m.RE, new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
                     @Html.TextBoxFor(m => m.RE, new { @class = "form-control" })

@@ -16,10 +16,8 @@
         });
 
         function selected() {
-            /*Botão para mostrar lista*/
-            var buttonSelect = document.getElementById("activity");
-            buttonSelect.disabled;
-            $("#training-list").css('display', 'block');
+            var idActivity = document.getElementById("activity");
+            location.href = '@Url.Action("Details", "ActivityXTraining")?idActivity=' + idActivity.value;
         }
 
        function push(valueTraining) {
@@ -48,22 +46,9 @@
         <div class="col-md-5">
 
             @Html.ValidationSummary("", new { @class = "text-danger" })
-            @*<div class="form-group">
-                    @Html.Label("Treinamento", new { @class = "col-md-3 control-label" })
-                    <div class="col-md-8">
-                        @Html.DropDownListFor(m => m.idTreinamento, new SelectList((IEnumerable)ViewData["Trainings"], "idTreinamento", "Nome"), "Escolha uma Workzone",
-                            new
-                            {
-                                @class = "form-control col-md-9 selectpicker",
-                                data_show_subtext = "true",
-                                data_live_search = "true"
-                            })
-                    </div>
-                </div>*@
             <div class="form-group">
                 @Html.Label("Atividade", new { @class = "col-md-3 control-label" })
                 <div class="col-md-8">
-                    @* (IEnumerable<SelectListItem>)ViewBag.Campaign) *@
                     @Html.DropDownListFor(m => m.idAtividade, new SelectList((IEnumerable)ViewData["Activies"], "idAtividade", "Nome"), "Escolha uma Atividade",
                         new
                         {
@@ -77,45 +62,12 @@
             <div class="form-group">
                 <div class="col-md-11">
                     <button type="button" id="selecionado" onclick="selected()" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Selecionar Atividade</button>
-                    @*<button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>*@
                 </div>
             </div>
 
         </div>
 
     }
-
-    <div id="training-list">
-        <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">Treinamentos Existentes</div>
-                <div class="panel-body pre-scrollable">
-                    <div class="list-group">
-                        @foreach (var train in (IEnumerable<tblTreinamento>)ViewData["Trainings"])
-                        {
-                            <button type="button" id="training" onclick="push(@train.IdTreinamento)" class="list-group-item">@train.Nome</button>
-                            @*<a type="button" class="list-group-item" id="@train.IdTreinamento" href="@Url.Action("Push", "ActivityXTraining", new { idTraining = @train.IdTreinamento, idActivity = Model.idAtividade})">@train.Nome</a>*@
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">Treinamentos Adicionados</div>
-                <div class="panel-body pre-scrollable">
-                    <div class="list-group">
-                        @foreach (var trainAdd in (IEnumerable<tblTreinamento>)ViewData["TrainingsAdded"])
-                        {
-                            <button type="button" id="trainingExclude" onclick="pop(@trainAdd.IdTreinamento)" class="list-group-item">@trainAdd.Nome</button>
-                            @*<a type="button" class="list-group-item" href="@Url.Action("Pop", "ActivityXTraining", new { idTraining = trainAdd.IdTreinamento, idActivity = Model.idAtividade})">@trainAdd.Nome</a>*@
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 
 </div>

@@ -18,12 +18,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         tblWorkzoneXAtividades UpdateWorzoneXActivity(tblWorkzoneXAtividades WorzoneXActivity);
 
-        tblWorkzoneXAtividades DeleteWorzoneXActivity(int id);
+        tblWorkzoneXAtividades DeleteWorzoneXActivity(int idWorkzone, int idActivity);
 
         bool checkIfWorzoneXActivityAlreadyExits(tblWorkzoneXAtividades WorzoneXActivity);
 
         bool checkIfOrderAlreadyExits(tblWorkzoneXAtividades WorzoneXActivity);
 
-        IPagedList<tblWorkzoneXAtividades> GetWorzoneXActivitiesPagination(int pageNumber, int quantity);
+        IEnumerable<tblWorkzone> GetWorzoneXActivitiesPagination(int pageNumber, int quantity);
+
+        IEnumerable<tblAtividades> SetUpWorkzoneList(int idWorkzone);
+
     }
 }

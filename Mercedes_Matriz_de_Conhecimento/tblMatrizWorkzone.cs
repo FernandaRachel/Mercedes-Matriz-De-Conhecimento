@@ -12,26 +12,24 @@ namespace Mercedes_Matriz_de_Conhecimento
     using System;
     using System.Collections.Generic;
     
-    public partial class tblPerfilItens
+    public partial class tblMatrizWorkzone
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblPerfilItens()
+        public tblMatrizWorkzone()
         {
+            this.tblMatrizFuncXAtividades = new HashSet<tblMatrizFuncXAtividades>();
             this.tblMatrizFuncXTreinamento = new HashSet<tblMatrizFuncXTreinamento>();
-            this.tblPerfilAtividadeXPerfilAtItem = new HashSet<tblPerfilAtividadeXPerfilAtItem>();
-            this.tblPerfilTreinamentoxPerfilItem = new HashSet<tblPerfilTreinamentoxPerfilItem>();
         }
     
-        public int IdPerfilItem { get; set; }
-        public string Sigla { get; set; }
-        public string Descricao { get; set; }
-        public string Tipo { get; set; }
+        public int idMatrizWZ { get; set; }
+        public int idWorkzone { get; set; }
+        public System.DateTime DataCriacao { get; set; }
+        public string Usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMatrizFuncXAtividades> tblMatrizFuncXAtividades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMatrizFuncXTreinamento> tblMatrizFuncXTreinamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblPerfilAtividadeXPerfilAtItem> tblPerfilAtividadeXPerfilAtItem { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblPerfilTreinamentoxPerfilItem> tblPerfilTreinamentoxPerfilItem { get; set; }
+        public virtual tblWorkzone tblWorkzone { get; set; }
     }
 }

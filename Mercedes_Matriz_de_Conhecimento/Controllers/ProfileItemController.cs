@@ -32,7 +32,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
 
             IEnumerable<tblPerfilItens> profileItem;
-            profileItem = _ProfileItem.GetProfileItemsWithPagination(page,pages_quantity);
+            profileItem = _ProfileItem.GetProfileItensWithPagination(page,pages_quantity);
 
             return View(profileItem);
 

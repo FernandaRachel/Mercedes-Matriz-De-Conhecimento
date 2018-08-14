@@ -24,7 +24,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             IEnumerable<tblWorkzone> workzone;
 
-
             var query = from f in _db.tblWorkzone
                         orderby f.Nome ascending
                         select f;
@@ -33,6 +32,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             return workzone;
         }
+
 
         public tblWorkzone GetWorkzoneById(int id)
         {
@@ -66,6 +66,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var wzToUpdate = _db.tblWorkzone.Find(Workzone.IdWorkzone);
             wzToUpdate.Nome = Workzone.Nome;
+            wzToUpdate.idBU = Workzone.idBU; 
+            wzToUpdate.idCC = Workzone.idCC; 
+            wzToUpdate.idLinha = Workzone.idLinha;
+            wzToUpdate.DataAlteracao = Workzone.DataAlteracao;
             wzToUpdate.MotivoUltimaAlteracao = Workzone.MotivoUltimaAlteracao;
             wzToUpdate.PessoasNecessarias = Workzone.PessoasNecessarias;
             wzToUpdate.UsuarioAlteracao = Workzone.UsuarioAlteracao;

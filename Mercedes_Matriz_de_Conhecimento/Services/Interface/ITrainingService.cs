@@ -23,5 +23,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
         bool checkIfTrainingAlreadyExits(tblTreinamento Training);
 
         IPagedList<tblTreinamento> GetTrainingsWithPagination(int pageNumber, int quantity);
+
+        IEnumerable<tblTreinamento> GetTrainingByName(string Nome);
     }
 }

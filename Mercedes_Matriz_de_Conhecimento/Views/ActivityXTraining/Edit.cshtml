@@ -6,11 +6,38 @@
 
 @{
     ViewBag.Title = "ATIVIDADE X TREINAMENTO";
+    ViewBag.Nome = "";
 }
 
 @section scripts
 {
     <script>
+        function searchTraining() {
+
+            setTimeout(function () {
+                var name = document.getElementById("nome");
+                var activity = document.getElementById("activity");
+
+                if (name.value.length > 3 || name.value.length == 0) {
+
+                    $.ajax({
+                        url: '@Url.Action("SearchTraining", "ActivityXTraining")',
+                        data: {
+                            idActivity: activity.value,
+                            nome: name.value
+                        }
+                    }).done(function (response) {
+                        var x = document.getElementById('listTraining');
+                        x.innerHTML = response;
+                        $('#listTraining').innerHTML = response;
+                        $("#nome").focus(this.name);
+                    });
+                }
+            }, 1000)
+
+        }
+
+      
         function push(valueTraining) {
             var idActivity = document.getElementById("activity");
             console.log(idActivity.value);
@@ -25,61 +52,31 @@
             location.href = '@Url.Action("Pop", "ActivityXTraining")?idTraining=' + valueTraining + '&idActivity=' + idActivity.value;
         }
     </script>
-    }
+}
 
 
 <h4>Treinamento X Atividade </h4>
 
 <div class="row">
 
-   
 
-        <div class="col-md-5">
 
-            @Html.ValidationSummary("", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.Label("Atividade", new { @class = "col-md-3 control-label" })
-                <div class="col-md-8">
-                    @* (IEnumerable<SelectListItem>)ViewBag.Campaign) *@
-                    @Html.TextBox(Model.tblAtividades.Nome, Model.tblAtividades.idAtividade ,new { @class="form-control disabled", id= "activity" } )
-                </div>
-            </div>
-            <br />
-            <div class="form-group">
-                <div class="col-md-11">
-                    <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
-                </div>
-            </div>
+    <div class="col-md-5">
 
-        </div>
-
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">Treinamentos Existentes</div>
-            <div class="panel-body pre-scrollable">
-                <div class="list-group">
-                    @foreach (var train in (IEnumerable<tblTreinamento>)ViewData["Trainings"])
-                    {
-                        <button type="button" id="training" onclick="push(@train.IdTreinamento)" class="list-group-item">@train.Nome</button>
-                            @*<a type="button" class="list-group-item" id="@train.IdTreinamento" href="@Url.Action("Push", "ActivityXTraining", new { idTraining = @train.IdTreinamento, idActivity = Model.idAtividade})">@train.Nome</a>*@
-                    }
-                </div>
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Atividade", new { @class = "col-md-3 control-label" })
+            <div class="col-md-8">
+                @* (IEnumerable<SelectListItem>)ViewBag.Campaign) *@
+                @Html.HiddenFor(m => m.idAtividade, new { @class = "form-control disabled", id = "activity", @disabled = "disabled" })
+                @Html.TextBoxFor(m => m.tblAtividades.Nome, new { @class = "form-control disabled", @disabled = "disabled" })
             </div>
         </div>
+        <br />
     </div>
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">Treinamentos Adicionados</div>
-            <div class="panel-body pre-scrollable">
-                <div class="list-group">
-                    @foreach (var trainAdd in (IEnumerable<tblTreinamento>)ViewData["TrainingsAdded"])
-                    {
-                        <button type="button" id="trainingExclude" onclick="pop(@trainAdd.IdTreinamento)" class="list-group-item">@trainAdd.Nome</button>
-                            @*<a type="button" class="list-group-item" href="@Url.Action("Pop", "ActivityXTraining", new { idTraining = trainAdd.IdTreinamento, idActivity = Model.idAtividade})">@trainAdd.Nome</a>*@
-                    }
-                </div>
-            </div>
-        </div>
+
+    <div id="listTraining">
+        @{Html.RenderAction("SearchTraining", "ActivityXTraining", new { idActivity = Model.idAtividade, nome = ViewBag.Name });}
     </div>
 
 

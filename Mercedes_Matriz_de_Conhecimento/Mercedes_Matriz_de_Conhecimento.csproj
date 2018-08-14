@@ -256,11 +256,14 @@
       <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\TrainingsListModel.cs" />
     <Compile Include="Models\ActivityMetadata.cs" />
     <Compile Include="Models\ActivityItemMetadata.cs" />
     <Compile Include="Models\ActivityProfileItemMetadata.cs" />
     <Compile Include="Models\ActivityProfileMetada.cs" />
     <Compile Include="Models\EmployeeMetadata.cs" />
+    <Compile Include="Models\ActiviesListModel.cs" />
+    <Compile Include="Models\FuncListModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ItemProfileModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -272,6 +275,8 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MatrizWorkzoneService.cs" />
+    <Compile Include="Services\Interface\IMatrizService.cs" />
     <Compile Include="Services\Interface\IPermissionsService.cs" />
     <Compile Include="Services\Interface\ITrainingStatusService.cs" />
     <Compile Include="Services\Interface\IWorzoneXEmployeeService.cs" />
@@ -309,6 +314,9 @@
     <Compile Include="Services\Interface\IEmployeeService.cs" />
     <Compile Include="Services\WorkzoneService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblAtividades.cs">
       <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
@@ -322,6 +330,15 @@
       <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGrupoTreinamentos.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMatrizFuncXAtividades.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMatrizFuncXTreinamento.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMatrizWorkzone.cs">
       <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPerfilAtividadeXPerfilAtItem.cs">
@@ -572,6 +589,9 @@
     <Content Include="Views\Permissions\_ArvoreFuncionalidadeGrupo.cshtml" />
     <Content Include="Views\Permissions\_Arvore.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Workzone\_Lista.cshtml" />
+    <Content Include="Views\ActivityXWorkzone\_Lista.cshtml" />
+    <Content Include="Views\ActivityXTraining\_Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

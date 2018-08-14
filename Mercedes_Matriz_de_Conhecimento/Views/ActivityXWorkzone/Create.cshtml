@@ -3,7 +3,34 @@
 @using System.Collections;
 
 @{
-    ViewBag.Title = "ASSOCIAR ATIVIDADE X WORKZONE";
+    ViewBag.Title = "ASSOCIAR WORKZONE X ATIVIDADE";
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#training-list").css('display', 'none');
+        });
+
+        function selected() {
+            var idWorkzone = document.getElementById("workzone");
+            location.href = '@Url.Action("Details", "ActivityXWorkzone")?idWorkzone=' + idWorkzone.value + "&nome=";
+        }
+
+        function push(valueActivity) {
+            var idWorkzone = document.getElementById("workzone");
+            console.log(idActivity.value);
+            console.log(valueWorkzone);
+            location.href = '@Url.Action("Push", "ActivityXWorkzone")?idWorkzone=' + idWorkzone.value + '&idActivity=' + valueActivity;
+        }
+
+        function pop(valueActivity) {
+            var idWorkzone = document.getElementById("workzone");
+            console.log(valueWorkzone);
+            location.href = '@Url.Action("Pop", "ActivityXWorkzone")?idWorkzone=' + idWorkzone.value + '&idActivity=' + valueActivity;
+        }
+    </script>
 }
 
 <h4 class="">Associar Workzone X Atividade</h4>
@@ -17,38 +44,21 @@
 
             @Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(m => m.Ordem, new { @class = "col-md-3 control-label" })
-                <div class="col-md-9">
-                    @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.idAtividade, new { @class = "col-md-3 control-label" })
-                <div class="col-md-8">
-                    @Html.DropDownListFor(m => m.idAtividade, new SelectList((IEnumerable)ViewData["Activies"], "idAtividade", "Nome"), "Escolha uma Atividade",
-                        new
-                        {
-                            @class = "form-control col-md-9 selectpicker",
-                            data_show_subtext = "true",
-                            data_live_search = "true"
-                        })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.idWorkzone, new { @class = "col-md-3 control-label" })
+                @Html.Label("Workzone", new { @class = "col-md-3 control-label" })
                 <div class="col-md-8">
                     @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzones"], "idWorkzone", "Nome"), "Escolha uma Workzone",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
                             data_show_subtext = "true",
-                            data_live_search = "true"
+                            data_live_search = "true",
+                            id = "workzone"
                         })
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-11">
-                    <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
+                    <button type="button" id="selecionado" onclick="selected()" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Selecionar Atividade</button>
                 </div>
             </div>
 

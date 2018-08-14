@@ -6,6 +6,12 @@ body {
     padding-bottom: 20px;
 }
 
+.vertical-text {
+    transform: rotate(-90deg);
+    /*-moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);*/
+}
+
 .scrollable > .row {
     overflow-x: auto;
     white-space: nowrap;
@@ -97,48 +103,51 @@ tr.table-dark {
 
 /*   MATRIZ DE CONHECIMENTO   */
 
-.main-container{
-    display:flex;
-    justify-content:flex-end;
-    flex-flow:column;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    margin-bottom:-3vh;
+.main-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    margin-top:10vh;
     flex-grow: 10;
 }
 
 /*  PRIMEIRO E SEGUNDO CONJUNTO */
-.first-container{
-    display:flex;
-    flex-flow:row;
-    justify-content:flex-end;
-    flex-wrap:nowrap;
-    overflow-x:auto;
+.first-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
     flex-grow: 5;
 }
 
-.item-first-container{
+.item-first-container {
     /*height:4vh;*/
-    width:3vw;
+    width: 3vw;
 }
 
 /* ------------------------- */
 /*  TERCEIRO CONJUNTO */
 
-.second-container{
-    display:flex;
-    flex-flow:row;
-    justify-content:flex-end;
-    flex-wrap:nowrap;
-    overflow-x:auto;
+.second-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
-.item-second-container{
+.item-second-container {
     /*height:4vh;*/
-    width:2vw;
+    width: 2vw;
 }
 
-.title-second-container{
-    display:flex;
-    justify-content:flex-end;
+.title-second-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main-texts{
+    border: 1px solid;
+    padding: 2vh;
 }

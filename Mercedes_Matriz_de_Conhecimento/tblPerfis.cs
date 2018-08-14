@@ -17,10 +17,10 @@ namespace Mercedes_Matriz_de_Conhecimento
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblPerfis()
         {
+            this.tblAtividades = new HashSet<tblAtividades>();
             this.tblPerfilAtividadeXPerfilAtItem = new HashSet<tblPerfilAtividadeXPerfilAtItem>();
             this.tblPerfilTreinamentoxPerfilItem = new HashSet<tblPerfilTreinamentoxPerfilItem>();
             this.tblTreinamento = new HashSet<tblTreinamento>();
-            this.tblAtividades = new HashSet<tblAtividades>();
         }
     
         public int IdPerfis { get; set; }
@@ -30,12 +30,12 @@ namespace Mercedes_Matriz_de_Conhecimento
         public string Tipo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblAtividades> tblAtividades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPerfilAtividadeXPerfilAtItem> tblPerfilAtividadeXPerfilAtItem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPerfilTreinamentoxPerfilItem> tblPerfilTreinamentoxPerfilItem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTreinamento> tblTreinamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblAtividades> tblAtividades { get; set; }
     }
 }
