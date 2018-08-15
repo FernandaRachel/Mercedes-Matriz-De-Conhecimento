@@ -53,12 +53,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             var innerX = new List<SelectListItem>();
             SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "BU_TESTE", Value = "1" };
+            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "BU_TESTE2", Value = "2" };
             innerX.Insert(0, innerXItem);
+            innerX.Insert(0, innerXItem2);
             SelectList BU = new SelectList(innerX, "Value", "Text");
 
             var listaCC = new List<SelectListItem>();
             SelectListItem itemCC = new SelectListItem { Selected = false, Text = "CC_TESTE", Value = "1" };
+            SelectListItem itemCC2 = new SelectListItem { Selected = false, Text = "CC_TESTE2", Value = "2" };
             listaCC.Insert(0, itemCC);
+            listaCC.Insert(0, itemCC2);
             SelectList CC = new SelectList(listaCC, "Value", "Text");
 
             var listaLinha = new List<SelectListItem>();
@@ -74,18 +78,58 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return View("Create");
         }
 
-        //GET: workzone/Details/5
-        public ActionResult Details(int id)
+        [OutputCache(Duration = 1)]
+        public ActionResult SearchUser(int idWorkzone, string nome = "")
         {
+            ModelState.Clear();
+            tblWorkzone workzone;
+            workzone = _workzone.GetWorkzoneById(idWorkzone);
+
+            /* SELECIONA FUNCIONÁRIOS ADICIONADOS NESSA WZ*/
+            IEnumerable<tblFuncionarios> employeeAdded;
+            employeeAdded = _workzone.setUpEmployees(idWorkzone);
+            IEnumerable<tblFuncionarios> funcFiltrados;
+            funcFiltrados = _employee.GetEmployeeByName(nome);
+
+            ViewBag.Name = nome;
+            ViewData["Funcionarios"] = funcFiltrados;
+            ViewData["FuncionariosAdicionados"] = employeeAdded;
+
+            FuncListModel Func = new FuncListModel();
+
+            Func.idWorkzone = idWorkzone;
+            Func.funcionariosAdded = employeeAdded;
+            Func.funcionarios = funcFiltrados;
+            UpdateModel(Func);
+
+            //return RedirectToAction("Details", new { id = workzone.IdWorkzone, nome = nome });
+
+            return PartialView("_Lista", Func);
+        }
+
+        //GET: workzone/Details/5
+        public ActionResult Details(int id, string nome = "")
+        {
+            FuncListModel Func = new FuncListModel();
+            Func.idWorkzone = id;
+            var x = ViewBag.Name;
+            
+            ModelState.Clear();
+            ViewData.Clear();
+            UpdateModel(ViewData);
             /*  MONTANDO SELECT LIST BU, CC E LINHA*/
             var innerX = new List<SelectListItem>();
             SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "BU_TESTE", Value = "1" };
+            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "BU_TESTE2", Value = "2" };
             innerX.Insert(0, innerXItem);
+            innerX.Insert(0, innerXItem2);
             SelectList BU = new SelectList(innerX, "Value", "Text");
 
             var listaCC = new List<SelectListItem>();
             SelectListItem itemCC = new SelectListItem { Selected = false, Text = "CC_TESTE", Value = "1" };
+            SelectListItem itemCC2 = new SelectListItem { Selected = false, Text = "CC_TESTE2", Value = "2" };
             listaCC.Insert(0, itemCC);
+            listaCC.Insert(0, itemCC2);
             SelectList CC = new SelectList(listaCC, "Value", "Text");
 
             var listaLinha = new List<SelectListItem>();
@@ -101,14 +145,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             tblWorkzone workzone;
             workzone = _workzone.GetWorkzoneById(id);
-
             /*SELECIONA FUNCIONÁRIOS EXISTENTES*/
             IEnumerable<tblFuncionarios> employee;
-            employee = _employee.GetEmployees();
+            if (nome.Length > 0)
+                employee = _employee.GetEmployeeByName(nome);
+            else
+                employee = _employee.GetEmployees();
+            Func.funcionarios = employee;
             ViewData["Funcionarios"] = employee;
+            
             /* SELECIONA FUNCIONÁRIOS ADICIONADOS NESSA WZ*/
             IEnumerable<tblFuncionarios> employeeAdded;
             employeeAdded = _workzone.setUpEmployees(id);
+            Func.funcionariosAdded = employeeAdded;
+
             ViewData["FuncionariosAdicionados"] = employeeAdded;
 
             if (workzone == null)

@@ -101,19 +101,29 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
-        public IEnumerable<tblAtividadeXTreinamentos> GetActivityXTrainingWithPagination(int pageNumber, int quantity)
+        public IEnumerable<tblAtividades> GetActivityXTrainingWithPagination(int pageNumber, int quantity)
         {
-            IEnumerable<tblAtividadeXTreinamentos> ActivityXTraining = new List<tblAtividadeXTreinamentos>();
-
-            //var q = _db.tblAtividadeXTreinamentos
-            //    .Select(a => a.idAtividade).Distinct().AsQueryable();
+            List<tblAtividades> Activity = new List<tblAtividades>();
 
             var q = _db.tblAtividadeXTreinamentos
-                .DistinctBy(a => a.idAtividade).AsQueryable();
+                .Select(a => a.idAtividade).Distinct().AsQueryable();
 
-            ActivityXTraining = q.ToPagedList(pageNumber, quantity);
+            var q2 = _db.tblAtividades;
 
-            return ActivityXTraining;
+
+            // TESTA ISSO AQUI DEPOIS - VE SE APARECE UM DE CADA ID 
+            foreach (var x in q)
+            {
+                var retorno = q2.Where(a => a.idAtividade == x);
+                Activity.Add(retorno.FirstOrDefault());
+            }
+
+            //var q = _db.tblAtividadeXTreinamentos
+            //    .DistinctBy(a => a.idAtividade).AsQueryable();
+            var returnedActivity = Activity.AsEnumerable();
+            returnedActivity = returnedActivity.ToPagedList(pageNumber, quantity);
+
+            return returnedActivity;
         }
 
         public IEnumerable<tblTreinamento> SetUpTrainingList(int idActivity)

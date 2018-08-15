@@ -34,83 +34,156 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
 
-            IEnumerable<tblWorkzoneXAtividades> activityXWorkzone;
-            activityXWorkzone = _activityXWorkzone.GetWorzoneXActivitiesPagination(page,pages_quantity);
+            IEnumerable<tblWorkzone> activityXWorkzone;
+            activityXWorkzone = _activityXWorkzone.GetWorzoneXActivitiesPagination(page, pages_quantity);
 
             return View(activityXWorkzone);
         }
 
-        public ActionResult Create()
+        [OutputCache(Duration = 1)]
+        public ActionResult SearchActivity(int idWorkzone, string nome = "")
         {
-            IEnumerable<tblAtividades> activies;
+            ViewBag.Name = nome;
+
             IEnumerable<tblWorkzone> workzones;
+            IEnumerable<tblAtividades> activiesFiltrated;
+            IEnumerable<tblAtividades> activiesAdded;
+            tblWorkzoneXAtividades wzXatv = new tblWorkzoneXAtividades();
 
-            activies = _activity.GetActivities();
             workzones = _workzone.GetWorkzones();
+            activiesFiltrated = _activity.GetActivityByName(nome);
+            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
+            wzXatv.idWorkzone = idWorkzone;
 
-            ViewData["Activies"] = activies;
             ViewData["Workzones"] = workzones;
+            ViewData["Activies"] = activiesFiltrated;
+            ViewData["ActiviesAdded"] = activiesAdded;
 
-            return View("Create");
+
+            ActiviesListModel Actv = new ActiviesListModel();
+
+            Actv.idWorkzone = idWorkzone;
+            Actv.activies = activiesFiltrated;
+            Actv.activiesAdded = activiesAdded;
+            UpdateModel(Actv);
+
+            return PartialView("_Lista", Actv);
+        }
+
+        public ActionResult Create(int idWorkzone = 0)
+        {
+            IEnumerable<tblWorkzone> workzones;
+            IEnumerable<tblAtividades> activies;
+            IEnumerable<tblAtividades> activiesAdded;
+            tblWorkzoneXAtividades wzXatv = new tblWorkzoneXAtividades();
+
+            workzones = _workzone.GetWorkzones();
+            activies = _activity.GetActivities();
+            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
+            wzXatv.idWorkzone = idWorkzone;
+
+            ViewData["Workzones"] = workzones;
+            ViewData["Activies"] = activies;
+            ViewData["ActiviesAdded"] = activiesAdded;
+
+            return View("Create", wzXatv);
         }
 
         //GET: Activity/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int idWorkzone = 0)
         {
+            tblWorkzoneXAtividades workzoneXAtividade = new tblWorkzoneXAtividades();
+            workzoneXAtividade.idWorkzone = idWorkzone;
+            workzoneXAtividade.tblWorkzone = _workzone.GetWorkzoneById(idWorkzone);
 
             IEnumerable<tblAtividades> activies;
             IEnumerable<tblWorkzone> workzones;
-            tblWorkzoneXAtividades workzoneXAtividade;
+            IEnumerable<tblAtividades> activiesAdded;
 
             activies = _activity.GetActivities();
+            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
             workzones = _workzone.GetWorkzones();
-            workzoneXAtividade = _activityXWorkzone.GetWorzoneXActivityById(id);
 
-            ViewData["Activies"] = activies;
             ViewData["Workzones"] = workzones;
+            ViewData["Activies"] = activies;
+            ViewData["ActiviesAdded"] = activiesAdded;
+            //ViewBag.WorkzoneName = workzoneXAtividade.tblWorkzone.Nome;
 
-            if (workzoneXAtividade == null)
-                return View("Index");
+            if (idWorkzone == 0)
+            {
+                ModelState.AddModelError("idWorkzone", "Selecione uma Workzone");
+
+                return View("Create", workzoneXAtividade);
+            }
 
             return View("Edit", workzoneXAtividade);
         }
 
-
-        [HttpPost]
-        public ActionResult Create(tblWorkzoneXAtividades activityXWorkzone)
+        public ActionResult Push(int idWorkzone, int idActivity, int ordem = 0)
         {
-            // Valida se nº da ordem ja existe 
-            // e se determinada atividade ja esta associada a determinada workzone
-            var exits = _activityXWorkzone.checkIfWorzoneXActivityAlreadyExits(activityXWorkzone);
-            var orderExits = _activityXWorkzone.checkIfOrderAlreadyExits(activityXWorkzone);
+            tblWorkzoneXAtividades workzoneXAtividade = new tblWorkzoneXAtividades();
+            workzoneXAtividade.idWorkzone = idWorkzone;
+            workzoneXAtividade.idAtividade = idActivity;
+            workzoneXAtividade.Ordem = ordem;
+            ViewBag.WorkzoneName = _workzone.GetWorkzoneById(idWorkzone).Nome;
 
-            if (ModelState.IsValid)
+            var exits = _activityXWorkzone.checkIfWorzoneXActivityAlreadyExits(workzoneXAtividade);
+            var ordemExists = _activityXWorkzone.checkIfOrderAlreadyExits(workzoneXAtividade);
+
+            if (ModelState.IsValid && ordem != 0)
             {
-                if (!exits && !orderExits)
+                if (!exits && !ordemExists)
                 {
-                    _activityXWorkzone.CreateWorzoneXActivity(activityXWorkzone);
-                    return RedirectToAction("Index");
+                    _activityXWorkzone.CreateWorzoneXActivity(workzoneXAtividade);
 
+                    return RedirectToAction("Details", new { idWorkzone = idWorkzone });
                 }
 
             }
 
+            /*popula as listas*/
             IEnumerable<tblAtividades> activies;
-            IEnumerable<tblWorkzone> workzones;
+            IEnumerable<tblAtividades> activiesAdded;
+
             activies = _activity.GetActivities();
-            workzones = _workzone.GetWorkzones();
+            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
+
             ViewData["Activies"] = activies;
-            ViewData["Workzones"] = workzones;
+            ViewData["ActiviesAdded"] = activiesAdded;
 
-            if (orderExits)
-                ModelState.AddModelError("Ordem", "Ordem já existe");
-            else if (exits)
-                ModelState.AddModelError("idAtividade", "Treinamento já associado a atividade");
+            /*GERANDO MENSAGENS DE VALIDAÇÃO*/
+            if (exits)
+                ModelState.AddModelError("idWorkzone", "Workzone já associada a essa atividade");
+            if (ordemExists)
+                ModelState.AddModelError("Ordem", "Ordem já existente");
+            if (ordem == 0)
+                ModelState.AddModelError("Ordem", "Ordem deve ser preenchida");
 
-            return View("Create");
+            return View("Edit", workzoneXAtividade);
         }
 
+        public ActionResult Pop(int idWorkzone, int idActivity)
+        {
+            _activityXWorkzone.DeleteWorzoneXActivity(idWorkzone, idActivity);
 
+
+            tblWorkzoneXAtividades workzoneXAtividade = new tblWorkzoneXAtividades();
+            workzoneXAtividade.idWorkzone = idWorkzone;
+            workzoneXAtividade.tblAtividades = _activity.GetActivityById(idWorkzone);
+
+            /*popula as listas*/
+            IEnumerable<tblAtividades> activies;
+            IEnumerable<tblAtividades> activiesAdded;
+
+            activies = _activity.GetActivities();
+            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
+
+            ViewData["Activies"] = activies;
+            ViewData["ActiviesAdded"] = activiesAdded;
+
+
+            return RedirectToAction("Details", new { idWorkzone = idWorkzone });
+        }
         // GET: Activity/Edit/5
         [HttpPost]
         public ActionResult Edit(tblWorkzoneXAtividades activityXWorkzone, int id)
@@ -148,13 +221,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
 
-        // GET: activityXWorkzone/Delete/5
-        public ActionResult Delete(int id)
-        {
-            _activityXWorkzone.DeleteWorzoneXActivity(id);
-
-            return RedirectToAction("Index");
-        }
 
 
     }

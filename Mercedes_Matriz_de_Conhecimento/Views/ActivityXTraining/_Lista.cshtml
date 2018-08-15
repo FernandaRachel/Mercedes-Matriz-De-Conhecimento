@@ -1,0 +1,31 @@
+﻿
+@model  Mercedes_Matriz_de_Conhecimento.Models.TrainingsListModel
+
+<div class="col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">Treinamentos Existentes</div>
+        <div class="panel-body pre-scrollable" id="func-all">
+            <div class="list-group">
+                @Html.TextBox("Name", (string)ViewBag.Name, new { @class = "form-control", oninput = "searchTraining()", id = "nome" })
+
+                @foreach (var training in (IEnumerable<tblTreinamento>)Model.trainings)
+                {
+                    <a type="button" class="list-group-item" href="@Url.Action("Push", "ActivityXTraining", new { id = @training.IdTreinamento, idwz = Model.IdAtividade})">@training.Nome</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">Treinamentos Adicionados</div>
+        <div class="panel-body pre-scrollable">
+            <div class="list-group">
+                @foreach (var training in (IEnumerable<tblTreinamento>)Model.trainingsAdded)
+                {
+                    <a type="button" class="list-group-item" href="@Url.Action("Pop", "ActivityXTraining", new { id = @training.IdTreinamento, idwz = Model.IdAtividade})">@training.Nome</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

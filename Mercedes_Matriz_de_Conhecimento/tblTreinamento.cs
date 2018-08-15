@@ -18,6 +18,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         public tblTreinamento()
         {
             this.tblAtividadeXTreinamentos = new HashSet<tblAtividadeXTreinamentos>();
+            this.tblMatrizFuncXTreinamento = new HashSet<tblMatrizFuncXTreinamento>();
         }
     
         public int IdTreinamento { get; set; }
@@ -32,6 +33,8 @@ namespace Mercedes_Matriz_de_Conhecimento
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMatrizFuncXTreinamento> tblMatrizFuncXTreinamento { get; set; }
         public virtual tblPerfis tblPerfis { get; set; }
         public virtual tblTipoTreinamento tblTipoTreinamento { get; set; }
     }

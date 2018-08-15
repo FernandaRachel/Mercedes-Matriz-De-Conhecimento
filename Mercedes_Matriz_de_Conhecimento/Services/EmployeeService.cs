@@ -44,6 +44,23 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return employee;
         }
 
+        public IEnumerable<tblFuncionarios> GetEmployeeByName(string Nome)
+        {
+            IEnumerable<tblFuncionarios> employee;
+            var query = _db.tblFuncionarios;
+            employee = query.AsEnumerable();
+
+            if (Nome.Count() == 0)
+                return employee;
+
+            var query2 = _db.tblFuncionarios
+                .Where(f => f.Nome.Contains(Nome));
+
+            employee = query2.AsEnumerable();
+
+            return employee;
+        }
+
         public tblFuncionarios CreateEmployee(tblFuncionarios Employee)
         {
             _db.tblFuncionarios.Add(Employee);

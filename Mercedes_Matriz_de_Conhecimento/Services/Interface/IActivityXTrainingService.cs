@@ -21,7 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         bool checkIfActivityXTrainingAlreadyExits(tblAtividadeXTreinamentos ActivityXTraining);
 
-        IEnumerable<tblAtividadeXTreinamentos> GetActivityXTrainingWithPagination(int pageNumber, int quantity);
+        IEnumerable<tblAtividades> GetActivityXTrainingWithPagination(int pageNumber, int quantity);
 
         IEnumerable<tblTreinamento> SetUpTrainingList(int idActivity);
     }

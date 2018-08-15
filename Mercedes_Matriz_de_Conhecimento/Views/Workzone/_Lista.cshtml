@@ -1,0 +1,31 @@
+﻿@model  Mercedes_Matriz_de_Conhecimento.Models.FuncListModel
+
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Funcionários Existentes</div>
+            <div class="panel-body pre-scrollable" id="func-all">
+                <div class="list-group">
+                    @Html.TextBox("Name", (string)ViewBag.Name, new { @class = "form-control", oninput = "searchFunc()", id = "nome" })
+
+                    @foreach (var func in (IEnumerable<tblFuncionarios>)Model.funcionarios)
+                    {
+                        <a type="button" class="list-group-item" href="@Url.Action("Push", "Workzone", new { id = @func.idfuncionario, idwz = Model.idWorkzone})">@func.Nome - @func.idAmericas</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Funcionários Adicionados</div>
+            <div class="panel-body pre-scrollable">
+                <div class="list-group">
+                    @foreach (var funcAdd in (IEnumerable<tblFuncionarios>)Model.funcionariosAdded)
+                    {
+                        <a type="button" class="list-group-item" href="@Url.Action("Pop", "Workzone", new { id = @funcAdd.idfuncionario, idwz = Model.idWorkzone})">@funcAdd.Nome - @funcAdd.idAmericas</a>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>

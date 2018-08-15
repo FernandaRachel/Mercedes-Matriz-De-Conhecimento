@@ -23,7 +23,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActivityProfileItemController()
         {
             _activityProfileItem = new ActivityProfileItemService();
-
         }
 
         // GET: activityProfile
@@ -35,7 +34,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             activityProfile = _activityProfileItem.GetActivityProfileItemsWithPagination(page,pages_quantity);
 
             return View(activityProfile);
-
         }
 
         public ActionResult Create()

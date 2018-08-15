@@ -46,6 +46,5 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 
         [Display(Name = "Ativo")]
         public bool FlagAtivo { get; set; }
-
     }
 }

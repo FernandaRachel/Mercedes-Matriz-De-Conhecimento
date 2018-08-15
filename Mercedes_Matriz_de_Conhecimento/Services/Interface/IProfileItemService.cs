@@ -24,6 +24,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         bool checkIfProfileItemAlreadyExits(tblPerfilItens ProfileItem);
 
-        IPagedList<tblPerfilItens> GetProfileItemsWithPagination(int pageNumber, int quantity);
+        IPagedList<tblPerfilItens> GetProfileItensWithPagination(int pageNumber, int quantity);
     }
 }

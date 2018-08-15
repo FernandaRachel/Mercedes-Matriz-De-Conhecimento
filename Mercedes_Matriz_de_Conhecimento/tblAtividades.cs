@@ -18,6 +18,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         public tblAtividades()
         {
             this.tblAtividadeXTreinamentos = new HashSet<tblAtividadeXTreinamentos>();
+            this.tblMatrizFuncXAtividades = new HashSet<tblMatrizFuncXAtividades>();
             this.tblWorkzoneXAtividades = new HashSet<tblWorkzoneXAtividades>();
         }
     
@@ -31,10 +32,12 @@ namespace Mercedes_Matriz_de_Conhecimento
         public Nullable<int> idPerfilAtividade { get; set; }
         public Nullable<int> idTipoEquipamentoGSA { get; set; }
     
+        public virtual tblPerfis tblPerfis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMatrizFuncXAtividades> tblMatrizFuncXAtividades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWorkzoneXAtividades> tblWorkzoneXAtividades { get; set; }
-        public virtual tblPerfis tblPerfis { get; set; }
     }
 }

@@ -4,8 +4,40 @@
 
 @{
     ViewBag.Title = "WORKZONE";
+    ViewBag.Name = "";
 }
 
+
+@section scripts
+{
+    <script>
+
+        function searchFunc() {
+            var name = document.getElementById("nome");
+            var workzone = document.getElementById("workzone");
+
+            if (name.value.length > 3) {
+                $.ajax({
+                    url: '@Url.Action("SearchUser", "Workzone")',
+                    data: {
+                        idWorkzone: workzone.value,
+                        nome: name.value
+                    }
+                }).done(function (response) {
+                    var url = '/Workzone/SearchUser'
+                    var x = document.getElementById('listaFunc');
+                    x.innerHTML = response;
+                    $('#listaFunc').innerHTML = response;
+
+                    console.log('response');
+                    console.log(response);
+                });
+            }
+
+        }
+    </script>
+
+}
 
 <h4>Workzone</h4>
 
@@ -17,6 +49,7 @@
         <div class="col-md-5">
 
             @Html.ValidationSummary("", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.IdWorkzone, new { id = "workzone" });
             <div class="form-group">
                 @Html.LabelFor(m => m.Nome, new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
@@ -39,36 +72,36 @@
                 @Html.Label("BU", new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(m => m.idBU, new SelectList((IEnumerable)ViewData["BU"], "Value", "Text"), "Escolha uma BU",
-                   new
-                   {
-                       @class = "form-control col-md-9 selectpicker",
-                       data_show_subtext = "true",
-                       data_live_search = "true"
-                   })
+                    new
+                    {
+                        @class = "form-control col-md-9 selectpicker",
+                        data_show_subtext = "true",
+                        data_live_search = "true"
+                    })
                 </div>
             </div>
             <div class="form-group">
                 @Html.Label("CC", new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(m => m.idCC, new SelectList((IEnumerable)ViewData["CC"], "Value", "Text"), "Escolha uma CC",
-                   new
-                   {
-                       @class = "form-control col-md-9 selectpicker",
-                       data_show_subtext = "true",
-                       data_live_search = "true"
-                   })
+                    new
+                    {
+                        @class = "form-control col-md-9 selectpicker",
+                        data_show_subtext = "true",
+                        data_live_search = "true"
+                    })
                 </div>
             </div>
             <div class="form-group">
                 @Html.Label("Linha", new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(m => m.idLinha, new SelectList((IEnumerable)ViewData["LINHA"], "Value", "Text"), "Escolha uma Linha",
-                   new
-                   {
-                       @class = "form-control col-md-9 selectpicker",
-                       data_show_subtext = "true",
-                       data_live_search = "true"
-                   })
+                    new
+                    {
+                        @class = "form-control col-md-9 selectpicker",
+                        data_show_subtext = "true",
+                        data_live_search = "true"
+                    })
                 </div>
             </div>
             <div class="form-group">
@@ -88,40 +121,16 @@
                     <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
                 </div>
             </div>
-
         </div>
 
     }
 
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">Funcionários Existentes</div>
-            <div class="panel-body pre-scrollable">
-                <div class="list-group">
-                    @foreach (var func in (IEnumerable<tblFuncionarios>)ViewData["Funcionarios"])
-                    {
-                        <a type="button" class="list-group-item" href="@Url.Action("Push", "Workzone", new { id = @func.idfuncionario, idwz = Model.IdWorkzone})">@func.Nome</a>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">Funcionários Adicionados</div>
-            <div class="panel-body pre-scrollable">
-                <div class="list-group">
-                    @foreach (var funcAdd in (IEnumerable<tblFuncionarios>)ViewData["FuncionariosAdicionados"])
-                    {
-                        <a type="button" class="list-group-item" href="@Url.Action("Pop", "Workzone", new { id = @funcAdd.idfuncionario, idwz = Model.IdWorkzone})">@funcAdd.Nome</a>
-
-                    }
-                </div>
-            </div>
-        </div>
+    <div id="listaFunc">
+        @{Html.RenderAction("SearchUser", "Workzone", new { idWorkzone = Model.IdWorkzone, nome = ViewBag.Name });}
     </div>
 </div>
 
+
 <div class="row">
-    <a type="button" class="btn btn-default" href="@Url.Action("Index", "Workzone")"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
+    <a type="button" class="btn btn-default" href="@Url.Action("Index", "Workzone", new { page = 1 })"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
 </div>

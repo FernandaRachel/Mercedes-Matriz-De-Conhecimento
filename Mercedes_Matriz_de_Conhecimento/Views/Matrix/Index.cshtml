@@ -1,74 +1,89 @@
-﻿@model Mercedes_Matriz_de_Conhecimento.tblAvaliacaoFuncXworkzoneXatividade
+﻿@model Mercedes_Matriz_de_Conhecimento.tblMatrizWorkzone
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
 @* PRIMEIRO CONJUNTO *@
 
 <div class="main-container">
-    <p class="">Trabalha com autonomia</p>
     <div class="first-container">
-        <p class="">Neces</p>
-
-        @foreach (var teste in @ViewBag.numbers)
+        <div class="main-texts"><h4>Nome</h4></div>
+            @foreach (var t in Model.tblMatrizFuncXTreinamento)
             {
-            @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-        }
-    </div>
-
-    <div class="first-container">
-        <p class="">Disp.</p>
-        @foreach (var teste in @ViewBag.numbers)
+                <p class="vertical-text main-texts">@t.tblTreinamento.Nome</p>
+            }
+            @foreach (var t in Model.tblMatrizFuncXAtividades)
             {
-            @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-        }
-    </div>
-    <div class="first-container">
-        <p class="">♠</p>
-        @foreach (var teste in @ViewBag.numbers)
-            {
-            @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-        }
+                <p class="vertical-text main-texts">@t.tblAtividades.Nome</p>
+            }
     </div>
 </div>
+
+
+
+@*<div class="main-container">
+        <p class="">Trabalha com autonomia</p>
+        <div class="first-container">
+            <p class="">Neces</p>
+
+            @foreach (var teste in @ViewBag.numbers)
+                {
+                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
+            }
+        </div>
+
+        <div class="first-container">
+            <p class="">Disp.</p>
+            @foreach (var teste in @ViewBag.numbers)
+                {
+                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
+            }
+        </div>
+        <div class="first-container">
+            <p class="">♠</p>
+            @foreach (var teste in @ViewBag.numbers)
+                {
+                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
+            }
+        </div>
+    </div>*@
 
 @* SEGUNDO CONJUNTO *@
-<div class="main-container">
-    <p class="">Apto a treinar</p>
-    <div class="first-container">
-        <p class="">Neces</p>
+@*<div class="main-container">
+        <p class="">Apto a treinar</p>
+        <div class="first-container">
+            <p class="">Neces</p>
 
-        @foreach (var teste in @ViewBag.numbers)
-            {
-            @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-        }
+            @foreach (var teste in @ViewBag.numbers)
+                {
+                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
+            }
+        </div>
+
+        <div class="first-container">
+            <p class="">Disp.</p>
+            @foreach (var teste in @ViewBag.numbers)
+                {
+                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
+            }
+        </div>
+        <div class="first-container">
+            <p class="">♠</p>
+            @foreach (var teste in @ViewBag.numbers)
+                {
+                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
+            }
+        </div>
     </div>
 
-    <div class="first-container">
-        <p class="">Disp.</p>
-        @foreach (var teste in @ViewBag.numbers)
-            {
-            @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-        }
-    </div>
-    <div class="first-container">
-        <p class="">♠</p>
-        @foreach (var teste in @ViewBag.numbers)
-            {
-            @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-        }
-    </div>
-</div>
-
-<div class="main-container">
-    <h3 class="title-second-container">Tarefas</h3>
-    <div class="second-container">
-        @foreach (var teste in @ViewBag.numbers)
-            {
-            @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-second-container" })
-        }
-    </div>
-</div>
+    <div class="main-container">
+        <h3 class="title-second-container">Tarefas</h3>
+        <div class="second-container">
+            @foreach (var teste in @ViewBag.numbers)
+                {
+                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-second-container" })
+            }
+        </div>
+    </div>*@

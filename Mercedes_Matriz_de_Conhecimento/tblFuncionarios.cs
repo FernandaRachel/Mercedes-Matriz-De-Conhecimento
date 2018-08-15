@@ -17,6 +17,8 @@ namespace Mercedes_Matriz_de_Conhecimento
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblFuncionarios()
         {
+            this.tblMatrizFuncXAtividades = new HashSet<tblMatrizFuncXAtividades>();
+            this.tblMatrizFuncXTreinamento = new HashSet<tblMatrizFuncXTreinamento>();
             this.tblWorkzoneXFuncionario = new HashSet<tblWorkzoneXFuncionario>();
         }
     
@@ -29,6 +31,10 @@ namespace Mercedes_Matriz_de_Conhecimento
         public string IdentificadorAuxiliar { get; set; }
         public int idAmericas { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMatrizFuncXAtividades> tblMatrizFuncXAtividades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMatrizFuncXTreinamento> tblMatrizFuncXTreinamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWorkzoneXFuncionario> tblWorkzoneXFuncionario { get; set; }
     }

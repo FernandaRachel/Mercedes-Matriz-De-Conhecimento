@@ -102,28 +102,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
-        public IEnumerable<tblPerfilItens> GetTrainingGroupsWithPagination(int pageNumber, int quantity)
-        {
-            IEnumerable<tblPerfilItens> Profile;
 
-
-
-            var query = from f in _db.tblPerfilItens
-                        orderby f.Sigla ascending
-                        select f;
-
-            Profile = query.ToPagedList(pageNumber,quantity);
-
-            return Profile;
-        }
-
-        public IPagedList<tblPerfilItens> GetProfileItemsWithPagination(int pageNumber, int quantity)
+        public IPagedList<tblPerfilItens> GetProfileItensWithPagination(int pageNumber, int quantity)
         {
             IPagedList<tblPerfilItens> Profile;
 
-
-
             var query = from f in _db.tblPerfilItens
+                        where f.Tipo == "T"
                         orderby f.Sigla ascending
                         select f;
 
