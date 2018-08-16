@@ -45,7 +45,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return TrainingType;
         }
 
-
         public tblTipoTreinamento CreateTrainingType(tblTipoTreinamento TrainingType)
         {
             _db.tblTipoTreinamento.Add(TrainingType);

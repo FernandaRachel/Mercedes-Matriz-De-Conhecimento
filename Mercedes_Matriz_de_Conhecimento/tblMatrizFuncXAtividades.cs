@@ -22,8 +22,7 @@ namespace Mercedes_Matriz_de_Conhecimento
     
         public virtual tblAtividades tblAtividades { get; set; }
         public virtual tblFuncionarios tblFuncionarios { get; set; }
-        public virtual tblMatrizFuncXAtividades tblMatrizFuncXAtividades1 { get; set; }
-        public virtual tblMatrizFuncXAtividades tblMatrizFuncXAtividades2 { get; set; }
         public virtual tblMatrizWorkzone tblMatrizWorkzone { get; set; }
+        public virtual tblPerfilItens tblPerfilItens { get; set; }
     }
 }

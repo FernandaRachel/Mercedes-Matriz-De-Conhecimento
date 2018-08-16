@@ -29,8 +29,8 @@
                     {
                         <tr class="text-center">
                             <td>@activity.Ordem</td>
-                            <td>@activity.tblPerfilAtividade.nome</td>
-                            <td>@activity.tblPerfilAtivItem.Sigla</td>
+                            <td>@activity.tblPerfis.Nome</td>
+                            <td>@activity.tblPerfilItens.Sigla</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <button class="btn" onclick="location.href='@Url.Action("Details","PerfilAtivItemXPerfilItem",new { idPAI = @activity.idPerfilAtividade, idPA = @activity.idPerfilAtivItem })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>

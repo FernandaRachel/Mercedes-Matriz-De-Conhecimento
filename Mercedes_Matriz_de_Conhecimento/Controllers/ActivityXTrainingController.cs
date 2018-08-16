@@ -129,7 +129,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 {
                     _activityXTraining.CreateActivityXTraining(actXTrain);
 
-                    return RedirectToAction("Details", new { id = idActivity });
+                    return RedirectToAction("Details", new { idActivity = idActivity });
                 }
             }
 
@@ -175,7 +175,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData["Trainings"] = trainings;
             ViewData["TrainingsAdded"] = trainingAdded;
 
-            return RedirectToAction("Details", new { id = idActivity });
+            return RedirectToAction("Details", new { idActivity = idActivity });
         }
 
 

@@ -34,10 +34,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
 
-            IEnumerable<tblPerfilAtividadeXPerfilAtItem> perfilAtivItemXPerfilItem;
-            perfilAtivItemXPerfilItem = _perfilAtivItemXPerfilItem.GetPerfilAtivItemXPerfilItemsWithPagination(page, pages_quantity);
+            IEnumerable<tblPerfis> perfis;
+            perfis = _perfilAtivItemXPerfilItem.GetPerfilAtivItemXPerfilItemsWithPagination(page, pages_quantity);
 
-            return View(perfilAtivItemXPerfilItem);
+            return View(perfis);
 
         }
 
@@ -56,7 +56,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
-        public ActionResult Details(int idPAI, int idPA)
+        public ActionResult Details(int idProfile)
         {
             // Declaração de variaveis
             IEnumerable<tblPerfis> activityProfile;
@@ -66,10 +66,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             //chamadas dos métodos(no service) e assignment
             activityProfile = _profileActivity.GetActivityProfiles();
             profileItemActivity = _activityProfileItem.GetActivityProfileItems();
-            perfilAtivItemXPerfilItem = _perfilAtivItemXPerfilItem.GetPerfilAtivItemXPerfilItemById(idPAI, idPA);
+            perfilAtivItemXPerfilItem = _perfilAtivItemXPerfilItem.SetUpPerfilItensLista(idProfile);
 
             ViewData["PerfilAtividade"] = activityProfile;
-            ViewData["PerfilAtividadeItem"] = profileItemActivity;
+            ViewData["PerfilAtividadeItemAdded"] = profileItemActivity;
 
 
             if (perfilAtivItemXPerfilItem == null)
