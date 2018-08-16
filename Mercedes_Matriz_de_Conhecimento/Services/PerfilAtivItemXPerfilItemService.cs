@@ -120,17 +120,48 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return false;
         }
 
-        public IPagedList<tblPerfilAtividadeXPerfilAtItem> GetPerfilAtivItemXPerfilItemsWithPagination(int pageNumber, int quantity)
+        public IEnumerable<tblPerfis> GetPerfilAtivItemXPerfilItemsWithPagination(int pageNumber, int quantity)
         {
-            IPagedList<tblPerfilAtividadeXPerfilAtItem> PerfilAtivItemXPerfilItem;
+
+            List<tblPerfis> Perfis = new List<tblPerfis>();
+
+            var q = _db.tblPerfilAtividadeXPerfilAtItem
+                .Select(a => a.idPerfilAtividade).Distinct().AsQueryable();
+
+            var q2 = _db.tblPerfis;
+
+            //Seleciona apenas as workzones que possuem associações na 'tblWorkzoneXAtividades'
+            foreach (var x in q)
+            {
+                var retorno = q2.Where(a => a.IdPerfis == x);
+                Perfis.Add(retorno.FirstOrDefault());
+            }
+
+            // convert de List to Enumerable
+            var returnedProfiles = Perfis.AsEnumerable();
+            returnedProfiles = returnedProfiles.ToPagedList(pageNumber, quantity);
+
+            return returnedProfiles;
+            //////////////////////
+        }
+
+        public IEnumerable<tblPerfilItens> SetUpPerfilItensLista(int idPerfil)
+        {
+            List<tblPerfilItens> allPerfilItens = new List<tblPerfilItens>();
 
             var query = from f in _db.tblPerfilAtividadeXPerfilAtItem
-                        orderby f.idPerfilAtividade ascending
+                        where f.idPerfilAtividade == idPerfil
                         select f;
 
-            PerfilAtivItemXPerfilItem = query.ToPagedList(pageNumber, quantity);
+            foreach (var activies in query)
+            {
+                var query2 = from f in _db.tblPerfilItens
+                             where f.IdPerfilItem == activies.idPerfilAtivItem
+                             select f;
+                allPerfilItens.Add(query2.FirstOrDefault());
+            }
 
-            return PerfilAtivItemXPerfilItem;
+            return allPerfilItens;
         }
     }
 }

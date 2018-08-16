@@ -1,10 +1,34 @@
-﻿@model Mercedes_Matriz_de_Conhecimento.tblPerfilAtividadeXPerfilAtItem
+﻿@model Mercedes_Matriz_de_Conhecimento.tblPerfis
 
 @using System.Collections;
 
 @{
     ViewBag.Title = "PERFIL ATIVIDADE X PERFIL ATIVIDADE ITEM";
 }
+
+<script>
+        $(document).ready(function () {
+            $("#profile-list").css('display', 'none');
+        });
+
+        function selected() {
+            var idPerfis = document.getElementById("idPerfis");
+            location.href = '@Url.Action("Details", "PerfilAtivItemXPerfilItem")?idWorkzone=' + idWorkzone.value + "&nome=";
+        }
+
+        function push(valueActivity) {
+            var idWorkzone = document.getElementById("workzone");
+            console.log(idActivity.value);
+            console.log(valueWorkzone);
+            location.href = '@Url.Action("Push", "PerfilAtivItemXPerfilItem")?idWorkzone=' + idWorkzone.value + '&idActivity=' + valueActivity;
+        }
+
+        function pop(valueActivity) {
+            var idWorkzone = document.getElementById("workzone");
+            console.log(valueWorkzone);
+            location.href = '@Url.Action("Pop", "PerfilAtivItemXPerfilItem")?idWorkzone=' + idWorkzone.value + '&idActivity=' + valueActivity;
+        }
+</script>
 
 <h4 class="">Associar Perfil Atividade X Perfil Atividade Item</h4>
 
@@ -16,42 +40,30 @@
         <div class="col-md-5">
 
             @Html.ValidationSummary("", new { @class = "text-danger" })
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(m => m.Ordem, new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
                     @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control" })
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
-                @Html.LabelFor(m => m.idPerfilAtividade, new { @class = "col-md-3 control-label" })
+                @Html.Label("Perfis", new { @class = "col-md-3 control-label" })
                 <div class="col-md-8">
-                    @Html.DropDownListFor(m => m.idPerfilAtividade, new SelectList((IEnumerable)ViewData["PerfilAtividade"], "idPerfilAtividade", "nome"), "Escolha uma Workzone",
+                    @Html.DropDownListFor(m => m.IdPerfis, new SelectList((IEnumerable)ViewData["PerfilAtividade"], "idPerfis", "nome"), "Escolha uma Workzone",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
                             data_show_subtext = "true",
-                            data_live_search = "true"
-                        })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.idPerfilAtivItem, new { @class = "col-md-3 control-label" })
-                <div class="col-md-8">
-                    @Html.DropDownListFor(m => m.idPerfilAtivItem, new SelectList((IEnumerable)ViewData["PerfilAtividadeItem"], "idPerfilAtivItem", "Sigla"), "Escolha uma Atividade",
-                        new
-                        {
-                            @class = "form-control col-md-9 selectpicker",
-                            data_show_subtext = "true",
-                            data_live_search = "true"
+                            data_live_search = "true",
+                            id = "idPerfis"
                         })
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-11">
-                    <button type="submit" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Salvar</button>
+                    <button type="button" id="selecionado" onclick="selected()" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Selecionar Atividade</button>
                 </div>
             </div>
-
         </div>
 
     }

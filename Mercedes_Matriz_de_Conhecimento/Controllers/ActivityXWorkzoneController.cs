@@ -52,7 +52,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             workzones = _workzone.GetWorkzones();
             activiesFiltrated = _activity.GetActivityByName(nome);
-            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
+            activiesAdded = _activityXWorkzone.SetUpActivitiesList(idWorkzone);
             wzXatv.idWorkzone = idWorkzone;
 
             ViewData["Workzones"] = workzones;
@@ -79,7 +79,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             workzones = _workzone.GetWorkzones();
             activies = _activity.GetActivities();
-            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
+            activiesAdded = _activityXWorkzone.SetUpActivitiesList(idWorkzone);
             wzXatv.idWorkzone = idWorkzone;
 
             ViewData["Workzones"] = workzones;
@@ -101,7 +101,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblAtividades> activiesAdded;
 
             activies = _activity.GetActivities();
-            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
+            activiesAdded = _activityXWorkzone.SetUpActivitiesList(idWorkzone);
             workzones = _workzone.GetWorkzones();
 
             ViewData["Workzones"] = workzones;
@@ -146,7 +146,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblAtividades> activiesAdded;
 
             activies = _activity.GetActivities();
-            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
+            activiesAdded = _activityXWorkzone.SetUpActivitiesList(idWorkzone);
 
             ViewData["Activies"] = activies;
             ViewData["ActiviesAdded"] = activiesAdded;
@@ -176,7 +176,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblAtividades> activiesAdded;
 
             activies = _activity.GetActivities();
-            activiesAdded = _activityXWorkzone.SetUpWorkzoneList(idWorkzone);
+            activiesAdded = _activityXWorkzone.SetUpActivitiesList(idWorkzone);
 
             ViewData["Activies"] = activies;
             ViewData["ActiviesAdded"] = activiesAdded;

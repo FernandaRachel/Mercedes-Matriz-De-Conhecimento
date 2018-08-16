@@ -6,12 +6,6 @@ body {
     padding-bottom: 20px;
 }
 
-.vertical-text {
-    transform: rotate(-90deg);
-    /*-moz-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);*/
-}
-
 .scrollable > .row {
     overflow-x: auto;
     white-space: nowrap;
@@ -55,7 +49,6 @@ body {
 tr.table-dark {
     background-color: #c9c1c1;
     color: black;
-    ;
 }
 
 .btn-modified-create {
@@ -108,17 +101,64 @@ tr.table-dark {
     justify-content: flex-start;
     flex-flow: column;
     flex-wrap: nowrap;
-    margin-top:10vh;
+    margin-top: 10vh;
     flex-grow: 10;
 }
 
 /*  PRIMEIRO E SEGUNDO CONJUNTO */
-.first-container {
+.container-default {
     display: flex;
-    flex-flow: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    flex-grow: 5;
+    flex-direction: row;
+    justify-content:flex-end;
+}
+
+.sub-container {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sub-container-header{
+     display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+}
+
+.sub-container-ativ {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transform: rotate(-90deg);
+    transform-origin: center bottom 0px;
+    -ms-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -webkit-transform-origin: bottom;
+}
+
+.rotate-fix{
+    -webkit-transform-origin: 90% 100%;
+}
+.sub-container-infos {
+    display: flex;
+    flex-direction: row;
+}
+
+.container-size {
+    height: 15vh;
+}
+
+.text-style-bigger{
+    padding: 17vh !important;
+}
+
+.text-style {
+    border: 1px solid #ddd;
+    padding: 2vh;
+    margin: 0;
+    list-style-type: none;
+    text-align: center;
 }
 
 .item-first-container {
@@ -126,28 +166,30 @@ tr.table-dark {
     width: 3vw;
 }
 
-/* ------------------------- */
-/*  TERCEIRO CONJUNTO */
-
-.second-container {
-    display: flex;
-    flex-flow: row;
-    justify-content: flex-end;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+/* STYLES FROM V2 */
+th.rotate {
+  /* Something you can count on */
+  height: 140px;
+  white-space: nowrap;
 }
 
-.item-second-container {
-    /*height:4vh;*/
-    width: 2vw;
+th.rotate > div {
+  transform: 
+    /* Magic Numbers */
+    translate(25px, 51px)
+    /* 45 is really 360 - 45 */
+    rotate(270deg);
+  width: 30px;
+}
+th.rotate > div > span {
+  border-bottom: 1px solid #ccc;
+  padding: 5px 10px;
 }
 
-.title-second-container {
-    display: flex;
-    justify-content: flex-end;
+.rotation-wrapper-outer {
+  display: table;
 }
-
-.main-texts{
-    border: 1px solid;
-    padding: 2vh;
+.rotation-wrapper-inner {
+  padding: 50% 0;
+  height: 0;
 }

@@ -592,6 +592,7 @@
     <Content Include="Views\Workzone\_Lista.cshtml" />
     <Content Include="Views\ActivityXWorkzone\_Lista.cshtml" />
     <Content Include="Views\ActivityXTraining\_Lista.cshtml" />
+    <Content Include="Views\Matrix\_Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

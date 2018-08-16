@@ -16,12 +16,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
 
-        public tblWorkzoneXAtividades GetWorzoneXActivityById(int id)
+        public tblWorkzoneXAtividades GetWorzoneXActivityById(int idWz)
         {
             tblWorkzoneXAtividades WorzoneXActivity;
 
             var query = from f in _db.tblWorkzoneXAtividades
-                        where f.idWorkzoneAtividade == id
+                        where f.idWorkzone == idWz
                         orderby f.idWorkzoneAtividade ascending
                         select f;
 
@@ -132,7 +132,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return returnedWorkzone;
         }
 
-        public IEnumerable<tblAtividades> SetUpWorkzoneList(int idWorkzone)
+        public IEnumerable<tblAtividades> SetUpActivitiesList(int idWorkzone)
         {
             List<tblAtividades> allActivies = new List<tblAtividades>();
 

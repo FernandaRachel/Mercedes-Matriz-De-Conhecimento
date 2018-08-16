@@ -12,7 +12,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         IEnumerable<tblWorkzoneXAtividades> GetWorzoneXActivities();
 
-        tblWorkzoneXAtividades GetWorzoneXActivityById(int id);
+        tblWorkzoneXAtividades GetWorzoneXActivityById(int idWz);
 
         tblWorkzoneXAtividades CreateWorzoneXActivity(tblWorkzoneXAtividades WorzoneXActivity);
 
@@ -26,7 +26,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         IEnumerable<tblWorkzone> GetWorzoneXActivitiesPagination(int pageNumber, int quantity);
 
-        IEnumerable<tblAtividades> SetUpWorkzoneList(int idWorkzone);
+        IEnumerable<tblAtividades> SetUpActivitiesList(int idWorkzone);
 
     }
 }

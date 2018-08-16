@@ -48,6 +48,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
         public tblMatrizWorkzone CreateMatriz(tblMatrizWorkzone Matriz)
         {
+            tblMatrizFuncXTreinamento matrizXFunc = new tblMatrizFuncXTreinamento();
+            /* matrizXFunc.idFuncionario
+             matrizXFunc.idTreinamento
+             matrizXFunc.idItemPerfil
+             matrizXFunc.idMatrizWorkzone
+             Matriz.idMatrizWZ; 
+             Matriz.idWorkzone
+            */
             _db.tblMatrizWorkzone.Add(Matriz);
 
             _db.SaveChanges();

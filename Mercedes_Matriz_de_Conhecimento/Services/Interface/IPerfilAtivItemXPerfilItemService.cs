@@ -23,6 +23,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         bool checkIfOrderAlreadyExits(tblPerfilAtividadeXPerfilAtItem PerfilAtivItemXPerfilItem);
 
-        IPagedList<tblPerfilAtividadeXPerfilAtItem> GetPerfilAtivItemXPerfilItemsWithPagination(int pageNumber, int quantity);
+        IEnumerable<tblPerfis> GetPerfilAtivItemXPerfilItemsWithPagination(int pageNumber, int quantity);
     }
 }

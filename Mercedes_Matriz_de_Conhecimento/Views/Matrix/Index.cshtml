@@ -1,89 +1,175 @@
-﻿@model Mercedes_Matriz_de_Conhecimento.tblMatrizWorkzone
+﻿@model Mercedes_Matriz_de_Conhecimento.tblWorkzone
 
 @{
     ViewBag.Title = "Index";
+    ViewBag.Cols = 0;
 }
 
+<script>
+    function openModalTrain(idTrain, idFuncionario) {
+        $('#treinamento').modal('show');
+    }
 
-@* PRIMEIRO CONJUNTO *@
+    function openModalActiv(idActivity, idFuncionario) {
+        $('#atividade').modal('show');
+    }
+</script>
 
-<div class="main-container">
-    <div class="first-container">
-        <div class="main-texts"><h4>Nome</h4></div>
-            @foreach (var t in Model.tblMatrizFuncXTreinamento)
+
+<p>TT: @ViewBag.ttListCount</p>
+<p>T: @ViewBag.tListCount</p>
+<p>ATV: @ViewBag.activiesCount</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="2"></th>
+            <th colspan="@ViewBag.tListCount">Perfil</th>
+            <th colspan="@ViewBag.activiesCount">Tarefas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th></th>
+            <th></th>
+            @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
             {
-                <p class="vertical-text main-texts">@t.tblTreinamento.Nome</p>
+                <th colspan="@tt.tblTreinamento.Count" class="text-style">@tt.Nome</th>
             }
-            @foreach (var t in Model.tblMatrizFuncXAtividades)
+
+            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
             {
-                <p class="vertical-text main-texts">@t.tblAtividades.Nome</p>
+                <th class="text-style">@a.Sigla</th>
             }
-    </div>
+
+
+        </tr>
+        <tr>
+            <th>Registro</th>
+            <th>Nome</th>
+            @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
+            {
+                <th class="rotate">
+                    <div>
+                        <div class="rotation-wrapper-outer">
+                            <div class="rotation-wrapper-inner">
+                                <span>@t.Nome</span>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            }
+
+            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+            {
+                <th class="rotate">
+                    <div>
+                        <div class="rotation-wrapper-outer">
+                            <div class="rotation-wrapper-inner">
+                                <span>@a.Nome</span>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            }
+        </tr>
+        @foreach (var t in Model.tblWorkzoneXFuncionario)
+            {
+            <tr>
+                <td class="text-style">@t.tblFuncionarios.RE</td>
+                <td class="text-style">@t.tblFuncionarios.Nome</td>
+                @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
+                {
+                    <td onclick="openModalTrain(@trein.IdTreinamento,@t.idFuncionario)"></td>
+                }
+                @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+                {
+                    <td onclick="openModalActiv(@a.idAtividade,@t.idFuncionario)"></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="listTraining">
+    @{Html.RenderAction("BuscarITem", "Matrix", new { idTrain = 0, idFuncionario = 0 });}
 </div>
 
 
-
-@*<div class="main-container">
-        <p class="">Trabalha com autonomia</p>
-        <div class="first-container">
-            <p class="">Neces</p>
-
-            @foreach (var teste in @ViewBag.numbers)
-                {
-                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
+@*  V1 ------------------ *@
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<h2> v1</h2>
+<table class="table table-bordered">
+    <thead class="sub-container-header">
+        <tr>
+            @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
+            {
+                <td class="text-style">@tt.Nome</td>
             }
-        </div>
-
-        <div class="first-container">
-            <p class="">Disp.</p>
-            @foreach (var teste in @ViewBag.numbers)
-                {
-                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
+            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+            {
+                <td class="text-style">@a.Sigla</td>
             }
-        </div>
-        <div class="first-container">
-            <p class="">♠</p>
-            @foreach (var teste in @ViewBag.numbers)
-                {
-                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-            }
-        </div>
-    </div>*@
-
-@* SEGUNDO CONJUNTO *@
-@*<div class="main-container">
-        <p class="">Apto a treinar</p>
-        <div class="first-container">
-            <p class="">Neces</p>
-
-            @foreach (var teste in @ViewBag.numbers)
-                {
-                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-            }
-        </div>
-
-        <div class="first-container">
-            <p class="">Disp.</p>
-            @foreach (var teste in @ViewBag.numbers)
-                {
-                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-            }
-        </div>
-        <div class="first-container">
-            <p class="">♠</p>
-            @foreach (var teste in @ViewBag.numbers)
-                {
-                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-first-container" })
-            }
-        </div>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div class="container-default">
+    <div class="sub-sub-container">
+        <h4 class="container-size text-style text-style-bigger">Registro</h4>
+        @foreach (var t in Model.tblWorkzoneXFuncionario)
+            {
+            <p class="text-style">@t.tblFuncionarios.RE</p>
+        }
+    </div>
+    <div class="sub-container">
+        <h4 class="container-size text-style text-style-bigger">Nome</h4>
+        @foreach (var t in Model.tblWorkzoneXFuncionario)
+            {
+            <p class="text-style">@t.tblFuncionarios.Nome</p>
+        }
     </div>
 
-    <div class="main-container">
-        <h3 class="title-second-container">Tarefas</h3>
-        <div class="second-container">
-            @foreach (var teste in @ViewBag.numbers)
-                {
-                @Html.TextBoxFor(m => m.idFuncionario, new { @class = "form-control item-second-container" })
-            }
-        </div>
-    </div>*@
+    <div class="sub-container-ativ container-size">
+        @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
+            {
+            <p class="text-style vertical-text">@t.Nome</p>
+        }
+        @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+            {
+            <p class="text-style vertical-text">@a.Nome</p>
+        }
+    </div>
+</div>
+
