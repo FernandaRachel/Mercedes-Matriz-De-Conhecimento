@@ -314,6 +314,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamento_tblPerfilItens">
+          <End Role="tblPerfilItens" Type="Self.tblPerfilItens" Multiplicity="1" />
+          <End Role="tblMatrizFuncXTreinamento" Type="Self.tblMatrizFuncXTreinamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerfilItens">
+              <PropertyRef Name="IdPerfilItem" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamento">
+              <PropertyRef Name="idItemPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblMatrizFuncXTreinamento_tblTreinamento">
           <End Role="tblTreinamento" Type="Self.tblTreinamento" Multiplicity="1" />
           <End Role="tblMatrizFuncXTreinamento" Type="Self.tblMatrizFuncXTreinamento" Multiplicity="*" />
@@ -514,6 +526,10 @@
             <End Role="tblMatrizWorkzone" EntitySet="tblMatrizWorkzone" />
             <End Role="tblMatrizFuncXTreinamento" EntitySet="tblMatrizFuncXTreinamento" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamento_tblPerfilItens" Association="Self.FK_tblMatrizFuncXTreinamento_tblPerfilItens">
+            <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
+            <End Role="tblMatrizFuncXTreinamento" EntitySet="tblMatrizFuncXTreinamento" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblMatrizFuncXTreinamento_tblTreinamento" Association="Self.FK_tblMatrizFuncXTreinamento_tblTreinamento">
             <End Role="tblTreinamento" EntitySet="tblTreinamento" />
             <End Role="tblMatrizFuncXTreinamento" EntitySet="tblMatrizFuncXTreinamento" />
@@ -663,6 +679,7 @@
           <NavigationProperty Name="tblFuncionarios" Relationship="Self.FK_tblMatrizFuncXTreinamento_tblFuncionarios" FromRole="tblMatrizFuncXTreinamento" ToRole="tblFuncionarios" />
           <NavigationProperty Name="tblMatrizWorkzone" Relationship="Self.FK_tblMatrizFuncXTreinamento_tblMatrizWorkzone" FromRole="tblMatrizFuncXTreinamento" ToRole="tblMatrizWorkzone" />
           <NavigationProperty Name="tblTreinamento" Relationship="Self.FK_tblMatrizFuncXTreinamento_tblTreinamento" FromRole="tblMatrizFuncXTreinamento" ToRole="tblTreinamento" />
+          <NavigationProperty Name="tblPerfilItens" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamento_tblPerfilItens" FromRole="tblMatrizFuncXTreinamento" ToRole="tblPerfilItens" />
         </EntityType>
         <EntityType Name="tblMatrizWorkzone">
           <Key>
@@ -698,6 +715,7 @@
           <NavigationProperty Name="tblPerfilAtividadeXPerfilAtItem" Relationship="Self.FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtivItem" FromRole="tblPerfilItens" ToRole="tblPerfilAtividadeXPerfilAtItem" />
           <NavigationProperty Name="tblPerfilTreinamentoxPerfilItem" Relationship="Self.FK_tblPerfilTreinamentoxPerfilItem_tblPerfilAtivItem" FromRole="tblPerfilItens" ToRole="tblPerfilTreinamentoxPerfilItem" />
           <NavigationProperty Name="tblMatrizFuncXAtividades" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividades_tblPerfilItens" FromRole="tblPerfilItens" ToRole="tblMatrizFuncXAtividades" />
+          <NavigationProperty Name="tblMatrizFuncXTreinamento" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamento_tblPerfilItens" FromRole="tblPerfilItens" ToRole="tblMatrizFuncXTreinamento" />
         </EntityType>
         <EntityType Name="tblPerfilTreinamentoxPerfilItem">
           <Key>
@@ -1154,6 +1172,10 @@
             <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
             <End Role="tblMatrizFuncXAtividades" EntitySet="tblMatrizFuncXAtividades" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamento_tblPerfilItens" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamento_tblPerfilItens">
+            <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
+            <End Role="tblMatrizFuncXTreinamento" EntitySet="tblMatrizFuncXTreinamento" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_tblMatrizFuncXAtividades_tblPerfilItens">
           <End Type="Mercedes_Matriz_V2Model.tblPerfilItens" Role="tblPerfilItens" Multiplicity="1" />
@@ -1163,6 +1185,18 @@
               <PropertyRef Name="IdPerfilItem" />
             </Principal>
             <Dependent Role="tblMatrizFuncXAtividades">
+              <PropertyRef Name="idItemPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamento_tblPerfilItens">
+          <End Type="Mercedes_Matriz_V2Model.tblPerfilItens" Role="tblPerfilItens" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXTreinamento" Role="tblMatrizFuncXTreinamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerfilItens">
+              <PropertyRef Name="IdPerfilItem" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamento">
               <PropertyRef Name="idItemPerfil" />
             </Dependent>
           </ReferentialConstraint>

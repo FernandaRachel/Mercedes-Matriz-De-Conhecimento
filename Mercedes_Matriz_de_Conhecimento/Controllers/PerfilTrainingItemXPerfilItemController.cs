@@ -13,22 +13,20 @@ using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class PerfilAtivItemXPerfilItemController : Controller
+    public class PerfilTrainingItemXPerfilItemController : Controller
     {
 
 
-        private PerfilAtivItemXPerfilItemService _perfilAtivItemXPerfilItem;
-        private ActivityProfileItemService _activityProfileItem;
-        private ActivityProfileService _profileActivity;
-        private ActivityProfileItemService _profileItemActivity;
+        private PerfilTrainingItemXPerfilItemService _perfilTrainingItemXPerfilItem;
+        private TrainingProfileService _profileTraining;
+        private ProfileItemService _profileItemTraining;
 
 
-        public PerfilAtivItemXPerfilItemController()
+        public PerfilTrainingItemXPerfilItemController()
         {
-            _perfilAtivItemXPerfilItem = new PerfilAtivItemXPerfilItemService();
-            _activityProfileItem = new ActivityProfileItemService();
-            _profileActivity = new ActivityProfileService();
-            _profileItemActivity = new ActivityProfileItemService();
+            _perfilTrainingItemXPerfilItem = new PerfilTrainingItemXPerfilItemService();
+            _profileTraining = new TrainingProfileService();
+            _profileItemTraining = new ProfileItemService();
         }
 
         // GET: perfilAtivItemXPerfilItem
@@ -37,7 +35,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
 
             IEnumerable<tblPerfis> perfis;
-            perfis = _perfilAtivItemXPerfilItem.GetPerfilAtivItemXPerfilItemsWithPagination(page, pages_quantity);
+            perfis = _perfilTrainingItemXPerfilItem.GetPerfilTrainingItemXPerfilItemsWithPagination(page, pages_quantity);
 
             return View(perfis);
 
@@ -46,8 +44,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Create()
         {
             IEnumerable<tblPerfis> activityProfile;
-            activityProfile = _profileActivity.GetActivityProfiles();
-            ViewData["PerfilAtividade"] = activityProfile;
+            activityProfile = _profileTraining.GetTrainingProfiles();
+            ViewData["PerfilTreinamentos"] = activityProfile;
 
             return View("Create");
         }
@@ -60,15 +58,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblPerfilItens> profileItemFiltered;
             IEnumerable<tblPerfilItens> profilesAdded;
 
-            profileItemFiltered = _profileItemActivity.GetProfileItemActvByName(nome);
-            profilesAdded = _perfilAtivItemXPerfilItem.SetUpPerfilItensLista(idProfile);
+            profileItemFiltered = _profileItemTraining.GetProfileItemByName(nome);
+            profilesAdded = _perfilTrainingItemXPerfilItem.SetUpPerfilItensLista(idProfile);
 
             ProfileItemListModel profileItem = new ProfileItemListModel();
 
             profileItem.idProfile = idProfile;
             profileItem.ProfileItem = profileItemFiltered;
             profileItem.ProfileItemAdded = profilesAdded;
-            profileItem.ProfileName = _profileActivity.GetActivityProfileById(idProfile).Nome;
+            profileItem.ProfileName = _profileTraining.GetTrainingProfileById(idProfile).Nome;
             UpdateModel(profileItem);
 
             return PartialView("_Lista", profileItem);
@@ -78,24 +76,24 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Details(int idProfile)
         {
             // Declaração de variaveis
-            tblPerfilAtividadeXPerfilAtItem profileXprofileItem = new tblPerfilAtividadeXPerfilAtItem();
-            profileXprofileItem.idPerfilAtividade = idProfile;
-            profileXprofileItem.tblPerfis = _profileActivity.GetActivityProfileById(idProfile);
+            tblPerfilTreinamentoxPerfilItem profileXprofileItem = new tblPerfilTreinamentoxPerfilItem();
+            profileXprofileItem.IdPerfilTreinamento = idProfile;
+            profileXprofileItem.tblPerfis = _profileTraining.GetTrainingProfileById(idProfile);
 
 
             IEnumerable<tblPerfilItens> profileItemList;
             IEnumerable<tblPerfilItens> profilesAdded;
 
-            profileItemList = _profileItemActivity.GetActivityProfileItems();
+            profileItemList = _profileItemTraining.GetProfileItems();
             //Retorna todos os itens que fazem referencia ao Perfil chamado 'idProfile'
-            profilesAdded = _perfilAtivItemXPerfilItem.SetUpPerfilItensLista(idProfile);
+            profilesAdded = _perfilTrainingItemXPerfilItem.SetUpPerfilItensLista(idProfile);
 
             ProfileItemListModel profileItem = new ProfileItemListModel();
 
             profileItem.idProfile = idProfile;
             profileItem.ProfileItem = profileItemList;
             profileItem.ProfileItemAdded = profilesAdded;
-            profileItem.ProfileName = _profileActivity.GetActivityProfileById(idProfile).Nome;
+            profileItem.ProfileName = _profileTraining.GetTrainingProfileById(idProfile).Nome;
             UpdateModel(profileItem);
 
 
@@ -104,17 +102,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(tblPerfilAtividadeXPerfilAtItem perfilAtivItemXPerfilItem)
+        public ActionResult Create(tblPerfilTreinamentoxPerfilItem perfilAtivItemXPerfilItem)
         {
-            var exits = _perfilAtivItemXPerfilItem.checkIfPerfilAtivItemXPerfilItemAlreadyExits(perfilAtivItemXPerfilItem);
-            var orderExits = _perfilAtivItemXPerfilItem.checkIfOrderAlreadyExits(perfilAtivItemXPerfilItem);
+            var exits = _perfilTrainingItemXPerfilItem.checkIfPerfilTrainingItemXPerfilItemAlreadyExits(perfilAtivItemXPerfilItem);
+            var orderExits = _perfilTrainingItemXPerfilItem.checkIfOrderAlreadyExits(perfilAtivItemXPerfilItem);
 
 
             if (ModelState.IsValid)
             {
                 if (!exits && !orderExits)
                 {
-                    _perfilAtivItemXPerfilItem.CreatePerfilAtivItemXPerfilItem(perfilAtivItemXPerfilItem);
+                    _perfilTrainingItemXPerfilItem.CreatePerfilTrainingItemXPerfilItem(perfilAtivItemXPerfilItem);
                     return RedirectToAction("Index");
 
                 }
@@ -123,15 +121,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             IEnumerable<tblPerfis> activityProfile;
             IEnumerable<tblPerfilItens> profileItemActivity;
-            activityProfile = _profileActivity.GetActivityProfiles();
-            profileItemActivity = _profileItemActivity.GetActivityProfileItems();
+            activityProfile = _profileTraining.GetTrainingProfiles();
+            profileItemActivity = _profileItemTraining.GetProfileItems();
             ViewData["PerfilAtividade"] = activityProfile;
             ViewData["PerfilAtividadeItem"] = profileItemActivity;
 
             if (orderExits)
                 ModelState.AddModelError("Ordem", "Ordem já existe");
             else if (exits)
-                ModelState.AddModelError("idPerfilAtivItem", " Atividade Item já associada a Perfil Atividade");
+                ModelState.AddModelError("IdPerfilItem", " Atividade Item já associada a Perfil Atividade");
 
 
             return View("Create");
@@ -141,22 +139,22 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActionResult Push(int idItem, int idProfile, int ordem = 0)
         {
-            tblPerfilAtividadeXPerfilAtItem profileXprofileItem = new tblPerfilAtividadeXPerfilAtItem();
-            profileXprofileItem.idPerfilAtividade = idProfile;
-            profileXprofileItem.idPerfilAtivItem = idItem;
+            tblPerfilTreinamentoxPerfilItem profileXprofileItem = new tblPerfilTreinamentoxPerfilItem();
+            profileXprofileItem.IdPerfilTreinamento = idProfile;
+            profileXprofileItem.IdPerfilItem = idItem;
             profileXprofileItem.Ordem = ordem;
 
-            ViewBag.ProfileName = _profileActivity.GetActivityProfileById(idProfile).Nome;
+            ViewBag.ProfileName = _profileTraining.GetTrainingProfileById(idProfile).Nome;
 
 
-            var exits = _perfilAtivItemXPerfilItem.checkIfPerfilAtivItemXPerfilItemAlreadyExits(profileXprofileItem);
-            var ordemExists = _perfilAtivItemXPerfilItem.checkIfOrderAlreadyExits(profileXprofileItem);
+            var exits = _perfilTrainingItemXPerfilItem.checkIfPerfilTrainingItemXPerfilItemAlreadyExits(profileXprofileItem);
+            var ordemExists = _perfilTrainingItemXPerfilItem.checkIfOrderAlreadyExits(profileXprofileItem);
 
             if (ModelState.IsValid && ordem != 0)
             {
                 if (!exits && !ordemExists)
                 {
-                    _perfilAtivItemXPerfilItem.CreatePerfilAtivItemXPerfilItem(profileXprofileItem);
+                    _perfilTrainingItemXPerfilItem.CreatePerfilTrainingItemXPerfilItem(profileXprofileItem);
 
                     return RedirectToAction("Details", new { idProfile = idProfile });
                 }
@@ -166,21 +164,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblPerfilItens> profileItemList;
             IEnumerable<tblPerfilItens> profilesAdded;
 
-            profileItemList = _profileItemActivity.GetActivityProfileItems();
+            profileItemList = _profileItemTraining.GetProfileItems();
             //Retorna todos os itens que fazem referencia ao Perfil chamado 'idProfile'
-            profilesAdded = _perfilAtivItemXPerfilItem.SetUpPerfilItensLista(idProfile);
+            profilesAdded = _perfilTrainingItemXPerfilItem.SetUpPerfilItensLista(idProfile);
 
             ProfileItemListModel profileItem = new ProfileItemListModel();
 
             profileItem.idProfile = idProfile;
             profileItem.ProfileItem = profileItemList;
             profileItem.ProfileItemAdded = profilesAdded;
-            profileItem.ProfileName = _profileActivity.GetActivityProfileById(idProfile).Nome;
+            profileItem.ProfileName = _profileTraining.GetTrainingProfileById(idProfile).Nome;
             UpdateModel(profileItem);
 
             /*GERANDO MENSAGENS DE VALIDAÇÃO*/
             if (exits)
-                ModelState.AddModelError("idPerfilAtividade", "Perfil já associado a esse item");
+                ModelState.AddModelError("IdPerfilTreinamento", "Perfil já associado a esse item");
             if (ordemExists)
                 ModelState.AddModelError("Ordem", "Ordem já existente");
             if (ordem == 0)
@@ -190,21 +188,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActionResult Pop(int idItem, int idProfile)
         {
-            _perfilAtivItemXPerfilItem.DeletePerfilAtivItemXPerfilItem(idProfile, idItem);
+            _perfilTrainingItemXPerfilItem.DeletePerfilTrainingItemXPerfilItem(idProfile, idItem);
 
             IEnumerable<tblPerfilItens> profileItemList;
             IEnumerable<tblPerfilItens> profilesAdded;
 
-            profileItemList = _profileItemActivity.GetActivityProfileItems();
+            profileItemList = _profileItemTraining.GetProfileItems();
             //Retorna todos os itens que fazem referencia ao Perfil chamado 'idProfile'
-            profilesAdded = _perfilAtivItemXPerfilItem.SetUpPerfilItensLista(idProfile);
+            profilesAdded = _perfilTrainingItemXPerfilItem.SetUpPerfilItensLista(idProfile);
 
             ProfileItemListModel profileItem = new ProfileItemListModel();
 
             profileItem.idProfile = idProfile;
             profileItem.ProfileItem = profileItemList;
             profileItem.ProfileItemAdded = profilesAdded;
-            profileItem.ProfileName = _profileActivity.GetActivityProfileById(idProfile).Nome;
+            profileItem.ProfileName = _profileTraining.GetTrainingProfileById(idProfile).Nome;
             UpdateModel(profileItem);
 
 
@@ -213,16 +211,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: Activity/Edit/5
         [HttpPost]
-        public ActionResult Edit(tblPerfilAtividadeXPerfilAtItem perfilAtivItemXPerfilItem)
+        public ActionResult Edit(tblPerfilTreinamentoxPerfilItem perfilAtivItemXPerfilItem)
         {
             // Verifica se ordem já existe
-            var exits = _perfilAtivItemXPerfilItem.checkIfOrderAlreadyExits(perfilAtivItemXPerfilItem);
+            var exits = _perfilTrainingItemXPerfilItem.checkIfOrderAlreadyExits(perfilAtivItemXPerfilItem);
 
             if (ModelState.IsValid)
             {
                 if (!exits)
                 {
-                    _perfilAtivItemXPerfilItem.UpdatePerfilAtivItemXPerfilItem(perfilAtivItemXPerfilItem);
+                    _perfilTrainingItemXPerfilItem.UpdatePerfilTrainingItemXPerfilItem(perfilAtivItemXPerfilItem);
 
                     return RedirectToAction("Index");
                 }
@@ -236,8 +234,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblPerfis> activityProfile;
             IEnumerable<tblPerfilItens> profileItemActivity;
 
-            activityProfile = _profileActivity.GetActivityProfiles();
-            profileItemActivity = _profileItemActivity.GetActivityProfileItems();
+            activityProfile = _profileTraining.GetTrainingProfiles();
+            profileItemActivity = _profileItemTraining.GetProfileItems();
 
             ViewData["PerfilAtividade"] = activityProfile;
             ViewData["PerfilAtividadeItem"] = profileItemActivity;

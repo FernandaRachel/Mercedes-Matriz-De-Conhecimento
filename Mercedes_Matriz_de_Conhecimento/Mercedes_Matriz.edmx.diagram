@@ -45,6 +45,7 @@
         <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblWorkoneXAtividades_tblWorkzone" ManuallyRouted="false" />
         <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblWorkzonesXFuncionarios_tblWorkzone" ManuallyRouted="false" />
         <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividades_tblPerfilItens" />
+        <AssociationConnector Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamento_tblPerfilItens" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

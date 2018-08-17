@@ -2,11 +2,11 @@
 @model PagedList.IPagedList<Mercedes_Matriz_de_Conhecimento.tblPerfis>
 
 @{
-    ViewBag.Title = "PERFIL ATIVIDADE X PERFIL ATIVIDADE ITEM";
+    ViewBag.Title = "PERFIL TREINAMENTO X PERFIL TREINAMENTO ITEM";
 }
 
 <div class="container button-place">
-    <a type="button" class="btn btn-modified-create btn-group-sm pull-left" href="@Url.Action("Create", "PerfilAtivItemXPerfilItem")">
+    <a type="button" class="btn btn-modified-create btn-group-sm pull-left" href="@Url.Action("Create", "PerfilTrainingItemXPerfilItem")">
         Associar Perfil Atividade X Perfil Atividade Item
     </a>
 </div>
@@ -29,7 +29,7 @@
                             <td>@profile.Nome</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <button class="btn" onclick="location.href='@Url.Action("Details","PerfilAtivItemXPerfilItem",new { idProfile = @profile.IdPerfis})'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
+                                    <button class="btn" onclick="location.href='@Url.Action("Details","PerfilTrainingItemXPerfilItem",new { idProfile = @profile.IdPerfis})'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
                                 </div>
                             </td>
                         </tr>

@@ -41,6 +41,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblPerfis
+                        where f.Tipo == "T"
                         orderby f.Nome ascending
                         select f;
 

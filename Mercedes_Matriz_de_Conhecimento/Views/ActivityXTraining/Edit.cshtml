@@ -29,9 +29,11 @@
                         }
                     }).done(function (response) {
                         var x = document.getElementById('listTraining');
+                        var itemID = document.getElementById('itemID');
                         x.innerHTML = response;
                         $('#listTraining').innerHTML = response;
                         $("#nome").focus(this.name);
+                        itemID.style.display = "block";
                     });
                 }
             }, 1000)

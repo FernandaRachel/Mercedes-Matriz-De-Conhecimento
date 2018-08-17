@@ -1,10 +1,10 @@
-﻿@model Mercedes_Matriz_de_Conhecimento.tblPerfilAtividadeXPerfilAtItem
+﻿@model Mercedes_Matriz_de_Conhecimento.tblPerfilTreinamentoxPerfilItem
 
 @using System.Collections;
 
 
 @{
-    ViewBag.Title = "PERFIL ATIVIDADE X PERFIL ATIVIDADE ITEM";
+    ViewBag.Title = "PERFIL TREINAMENTO X PERFIL TREINAMENTO ITEM";
     ViewBag.Name = "";
 }
 
@@ -19,7 +19,7 @@
 
 
                     $.ajax({
-                        url: '@Url.Action("SearchProfileItem", "PerfilAtivItemXPerfilItem")',
+                        url: '@Url.Action("SearchProfileItem", "PerfilTrainingItemXPerfilItem")',
                         data: {
                             idProfile: perfil.value,
                             nome: name.value
@@ -39,7 +39,7 @@
             var ordem = document.getElementById("ordem");
             console.log(idPerfil.value);
             console.log(valueItem);
-            location.href = '@Url.Action("Push", "PerfilAtivItemXPerfilItem")?idItem=' + valueItem + '&idProfile=' + idPerfil.value + '&ordem=' + ordem.value;
+            location.href = '@Url.Action("Push", "PerfilTrainingItemXPerfilItem")?idItem=' + valueItem + '&idProfile=' + idPerfil.value + '&ordem=' + ordem.value;
         }
     </script>
 }
@@ -51,7 +51,7 @@
 
 <div class="row">
 
-    @using (Html.BeginForm("Details", "PerfilAtivItemXPerfilItem", new { idProfile = Model.idPerfilAtividade }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("Details", "PerfilTrainingItemXPerfilItem", new { idProfile = Model.IdPerfilTreinamento }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         <div class="col-md-5">
             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -64,7 +64,7 @@
             <div class="form-group">
                 @Html.Label("Perfil", new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
-                    @Html.HiddenFor(m => m.idPerfilAtividade, new { @class = "form-control disabled", id = "perfil", @disabled = "disabled" })
+                    @Html.HiddenFor(m => m.IdPerfilTreinamento, new { @class = "form-control disabled", id = "perfil", @disabled = "disabled" })
                     @Html.TextBoxFor(m => m.tblPerfis.Nome, new { @class = "form-control disabled", @disabled = "disabled" })
                 </div>
             </div>
@@ -73,11 +73,11 @@
     }
 
     <div id="profileList">
-        @{Html.RenderAction("SearchProfileItem", "PerfilAtivItemXPerfilItem", new { idProfile = Model.idPerfilAtividade, nome = ViewBag.Name });}
+        @{Html.RenderAction("SearchProfileItem", "PerfilTrainingItemXPerfilItem", new { idProfile = Model.IdPerfilTreinamento, nome = ViewBag.Name });}
     </div>
 
 </div>
 
 <div class="row">
-    <a type="button" class="btn btn-default" href="@Url.Action("Index", "PerfilAtivItemXPerfilItem", new { page = 1})"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
+    <a type="button" class="btn btn-default" href="@Url.Action("Index", "PerfilTrainingItemXPerfilItem", new { page = 1})"><i class="glyphicon glyphicon-arrow-left"></i> Retornar para Visualização</a>
 </div>
