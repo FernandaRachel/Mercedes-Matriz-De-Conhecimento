@@ -30,6 +30,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return PerfilAtivItemXPerfilItem;
         }
 
+
         public IEnumerable<tblPerfilAtividadeXPerfilAtItem> GetPerfilAtivItemXPerfilItems()
         {
             IEnumerable<tblPerfilAtividadeXPerfilAtItem> PerfilAtivItemXPerfilItem;
@@ -54,12 +55,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return PerfilAtivItemXPerfilItem;
         }
 
-        public tblPerfilAtividadeXPerfilAtItem DeletePerfilAtivItemXPerfilItem(int idPAI, int idPA)
+        public tblPerfilAtividadeXPerfilAtItem DeletePerfilAtivItemXPerfilItem(int idProfile, int idItem)
         {
             tblPerfilAtividadeXPerfilAtItem PerfilAtivItemXPerfilItem;
 
             var query = from f in _db.tblPerfilAtividadeXPerfilAtItem
-                        where f.idPerfilAtividade == idPA && f.idPerfilAtivItem == idPAI
+                        where f.idPerfilAtividade == idProfile && f.idPerfilAtivItem == idItem
                         orderby f.idPerfilAtividade ascending
                         select f;
 

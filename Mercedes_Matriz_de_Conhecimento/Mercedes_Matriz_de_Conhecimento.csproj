@@ -219,6 +219,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PerfilTrainingItemXPerfilItemController.cs" />
     <Compile Include="Controllers\PerfilAtivItemXPerfilItemController.cs" />
     <Compile Include="Controllers\ActivityXTrainingController.cs" />
     <Compile Include="Controllers\ActivityXWorkzoneController.cs" />
@@ -256,6 +257,7 @@
       <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ProfileItemListModel.cs" />
     <Compile Include="Models\TrainingsListModel.cs" />
     <Compile Include="Models\ActivityMetadata.cs" />
     <Compile Include="Models\ActivityItemMetadata.cs" />
@@ -275,11 +277,14 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interface\IPerfilTrainingItemXPerfilItemService .cs" />
+    <Compile Include="Services\MatrizFuncTreinamentoService.cs" />
     <Compile Include="Services\MatrizWorkzoneService.cs" />
     <Compile Include="Services\Interface\IMatrizService.cs" />
     <Compile Include="Services\Interface\IPermissionsService.cs" />
     <Compile Include="Services\Interface\ITrainingStatusService.cs" />
     <Compile Include="Services\Interface\IWorzoneXEmployeeService.cs" />
+    <Compile Include="Services\PerfilTrainingItemXPerfilItemService.cs" />
     <Compile Include="Services\PerfilAtivItemXPerfilItemService.cs" />
     <Compile Include="Services\Interface\IPerfilAtivItemXPerfilItemService.cs" />
     <Compile Include="Services\Interface\IActivityXTrainingService.cs" />
@@ -593,6 +598,11 @@
     <Content Include="Views\ActivityXWorkzone\_Lista.cshtml" />
     <Content Include="Views\ActivityXTraining\_Lista.cshtml" />
     <Content Include="Views\Matrix\_Modal.cshtml" />
+    <Content Include="Views\PerfilAtivItemXPerfilItem\_Lista.cshtml" />
+    <Content Include="Views\PerfilTrainingItemXPerfilItem\_Lista.cshtml" />
+    <Content Include="Views\PerfilTrainingItemXPerfilItem\Create.cshtml" />
+    <Content Include="Views\PerfilTrainingItemXPerfilItem\Edit.cshtml" />
+    <Content Include="Views\PerfilTrainingItemXPerfilItem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

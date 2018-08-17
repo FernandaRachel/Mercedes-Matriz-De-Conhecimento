@@ -11,6 +11,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
     {
 
         private MatrizWorkzoneService _matrizService;
+        private MatrizFuncTreinamentoService _matrizFuncTrainingService;
         private WorzoneXActivityService _workzoneXActivity;
         private ActivityXTrainingService _activityXTraining;
         private WorzoneXEmployeeService _workzoneXFunc;
@@ -18,19 +19,28 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         private ActivityService _activity;
         private TrainingService _training;
         private TrainingTypeService _trainingType;
-        private PerfilAtivItemXPerfilItemService _perfilAtivItem;
+        private PerfilAtivItemXPerfilItemService _perfilAtivXperfilItem;
+        private TrainingProfileService _profileTraining;
+        private ActivityProfileService _profileActivity;
+        private ActivityProfileItemService _profileItemActivity;
+        private ProfileItemService _profileItemTraining;
 
         public MatrixController()
         {
             _matrizService = new MatrizWorkzoneService();
+            _matrizFuncTrainingService = new MatrizFuncTreinamentoService();
             _workzoneXActivity = new WorzoneXActivityService();
             _activityXTraining = new ActivityXTrainingService();
             _workzoneXFunc = new WorzoneXEmployeeService();
+            _perfilAtivXperfilItem = new PerfilAtivItemXPerfilItemService();
             _workzone = new WorkzoneService();
             _activity = new ActivityService();
             _training = new TrainingService();
             _trainingType = new TrainingTypeService();
-            _perfilAtivItem = new PerfilAtivItemXPerfilItemService();
+            _profileTraining = new TrainingProfileService();
+            _profileActivity = new ActivityProfileService();
+            _profileItemActivity = new ActivityProfileItemService();
+            _profileItemTraining = new ProfileItemService();
 
         }
         // GET: Matrix
@@ -68,13 +78,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewBag.tListCount = trainingList.Count();
             ViewBag.activiesCount = activiesList.Count();
             ViewBag.ttListCount = ttList.Count();
-            ViewBag.funcXTreinList = funcXTreinList;
 
             foreach (var x in workzone.tblWorkzoneXFuncionario)
             {
                 tblMatrizFuncXTreinamento funcXTrein = new tblMatrizFuncXTreinamento();
                 funcXTreinList.Add(funcXTrein);
             }
+
+            ViewBag.funcXTreinList = funcXTreinList;
 
 
 
@@ -83,10 +94,58 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActionResult BuscarITem(int idTrain, int idFuncionario)
         {
-            List<tblPerfilAtividadeXPerfilAtItem> perfilItemXPerfil = new List<tblPerfilAtividadeXPerfilAtItem>();
-            ViewBag.PerfilITem = perfilItemXPerfil;
+            tblMatrizFuncXTreinamento matrizFuncXTrain = new tblMatrizFuncXTreinamento();
+            matrizFuncXTrain.idTreinamento = idTrain;
+            matrizFuncXTrain.idFuncionario = idFuncionario;
 
-            return PartialView("_Modal");
+            if (idTrain != 0 && idFuncionario != 0)
+            {
+                List<tblPerfilItens> itensList = new List<tblPerfilItens>();
+                List<tblPerfilAtividadeXPerfilAtItem> perfilItemXPerfil = new List<tblPerfilAtividadeXPerfilAtItem>();
+               
+
+                var profileID = _training.GetTrainingById(idTrain).idPerfilTreinamento;
+                var itemXProfile = _profileTraining.GetTrainingProfileById(profileID).tblPerfilTreinamentoxPerfilItem;
+                var itens = new tblPerfilItens();
+
+                foreach (var iXp in itemXProfile)
+                {
+                    itens = _profileItemTraining.GetProfileItemById(iXp.IdPerfilItem);
+                    itensList.Add(itens);
+                }
+
+                ViewBag.PerfilITem = itensList;
+            }
+            else
+            {
+                ViewBag.PerfilITem = new List<tblPerfilItens>();
+            }
+
+
+            return PartialView("_Modal", matrizFuncXTrain);
+        }
+
+        public ActionResult CreateMatrizTraining(int idItem, int idFuncionario, int idTraining, int idWorkzone)
+        {
+            tblMatrizWorkzone matrizXworzone = new tblMatrizWorkzone();
+            matrizXworzone.Usuario = "Teste s/ Seg";
+            matrizXworzone.DataCriacao = DateTime.Now;
+
+            var idMatriz = _matrizService.CreateMatriz(matrizXworzone).idMatrizWZ;
+            var WorkzoneID = 1;
+            tblMatrizFuncXTreinamento matrizFuncTrain = new tblMatrizFuncXTreinamento();
+            matrizFuncTrain.idFuncionario = idFuncionario;
+            matrizFuncTrain.idItemPerfil = idItem;
+            matrizFuncTrain.idMatrizWorkzone = idMatriz;
+            matrizFuncTrain.idTreinamento = idTraining;
+
+            _matrizFuncTrainingService.CreateMatriz(matrizFuncTrain);
+
+            var workzone = _workzone.GetWorkzoneById(WorkzoneID);
+
+            Console.WriteLine("idTraining: {0}, idItem: {1}, idFuncionario: {2}", idTraining, idItem, idFuncionario);
+
+            return RedirectToAction("BuscarITem", new { idTrain = 0, idFuncionario = 0 });
         }
     }
 }

@@ -5,21 +5,64 @@
     ViewBag.Cols = 0;
 }
 
-<script>
-    function openModalTrain(idTrain, idFuncionario) {
-        $('#treinamento').modal('show');
-    }
+@section Scripts{
 
-    function openModalActiv(idActivity, idFuncionario) {
-        $('#atividade').modal('show');
-    }
-</script>
+    <script>
+        function openModalTrain(idTrain, idFuncionario) {
+
+            $.ajax({
+                url: '@Url.Action("BuscarITem", "Matrix")',
+                data: {
+                    idTrain: idTrain,
+                    idFuncionario: idFuncionario,
+                }
+            }).done(function (response) {
+                var x = document.getElementById('listTraining');
+                x.innerHTML = response;
+                $("#itemID").selectpicker();
+                $('#treinamento').modal('show');
+
+            });
+        }
+
+        function openModalActiv(idActivity, idFuncionario) {
+            $('#atividade').modal('show');
+
+            //Mudar pro método de bsucarItemActivity
+            location.href = '@Url.Action("BuscarITem", "Matrix")?idTrain='
+                + idTrain.value + "&idFuncionario=" + idFuncionario.value;
+        }
+
+        function SaveMatrizTraining(idFuncionario, idTraining) {
+            var itemID = document.getElementById("itemID");
+            var idWorkzone = document.getElementById("idWorkzone");
+
+            $.ajax({
+                url: '@Url.Action("CreateMatrizTraining", "Matrix")',
+                data: {
+                    idItem: itemID.value,
+                    idFuncionario: idFuncionario,
+                    idTraining: idTraining,
+                    idWorkzone: idWorkzone.value
+                }
+            }).done(function (response) {
+
+            });
+        }
+
+        function teste() {
+            console.log('teste');
+        }
+    </script>
+}
 
 
 <p>TT: @ViewBag.ttListCount</p>
 <p>T: @ViewBag.tListCount</p>
 <p>ATV: @ViewBag.activiesCount</p>
 
+<h2 class="text-center">@Model.Nome</h2>
+@Html.HiddenFor(w => w.IdWorkzone, new { id = "idWorkzone" })
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -80,7 +123,7 @@
                 <td class="text-style">@t.tblFuncionarios.Nome</td>
                 @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
                 {
-                    <td onclick="openModalTrain(@trein.IdTreinamento,@t.idFuncionario)"></td>
+                    <td onclick="openModalTrain(@trein.IdTreinamento,@t.idFuncionario)" onload="teste()"></td>
                 }
                 @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
                 {
@@ -149,25 +192,25 @@
     <div class="sub-sub-container">
         <h4 class="container-size text-style text-style-bigger">Registro</h4>
         @foreach (var t in Model.tblWorkzoneXFuncionario)
-            {
+        {
             <p class="text-style">@t.tblFuncionarios.RE</p>
         }
     </div>
     <div class="sub-container">
         <h4 class="container-size text-style text-style-bigger">Nome</h4>
         @foreach (var t in Model.tblWorkzoneXFuncionario)
-            {
+        {
             <p class="text-style">@t.tblFuncionarios.Nome</p>
         }
     </div>
 
     <div class="sub-container-ativ container-size">
         @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
-            {
+        {
             <p class="text-style vertical-text">@t.Nome</p>
         }
         @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-            {
+        {
             <p class="text-style vertical-text">@a.Nome</p>
         }
     </div>
