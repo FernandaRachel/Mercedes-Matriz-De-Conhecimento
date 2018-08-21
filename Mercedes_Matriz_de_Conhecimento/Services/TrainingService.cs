@@ -30,6 +30,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return training;
         }
 
+
         public IEnumerable<tblTreinamento> GetTrainingByName(string Nome)
         {
             IEnumerable<tblTreinamento> employee;
