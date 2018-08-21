@@ -30,6 +30,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Matriz;
         }
 
+        public tblMatrizWorkzone GetMatrizByWZId(int idWz)
+        {
+            tblMatrizWorkzone Matriz;
+
+            var query = from f in _db.tblMatrizWorkzone
+                        where f.idWorkzone == idWz
+                        orderby f.tblWorkzone.Nome
+                        select f;
+
+            Matriz = query.FirstOrDefault();
+
+            return Matriz;
+        }
+
         public IEnumerable<tblMatrizWorkzone> GetMatriz()
         {
             IEnumerable<tblMatrizWorkzone> Matriz;

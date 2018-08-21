@@ -30,6 +30,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Matriz;
         }
 
+        public tblMatrizFuncXTreinamento GetMatrizByFuncXTrain(int idTrain, int idFunc)
+        {
+            tblMatrizFuncXTreinamento Matriz;
+
+            var query = from f in _db.tblMatrizFuncXTreinamento
+                        where f.idTreinamento == idTrain && f.idFuncionario == idFunc
+                        orderby f.tblMatrizWorkzone.tblWorkzone.Nome
+                        select f;
+
+            Matriz = query.FirstOrDefault();
+
+            return Matriz;
+        }
+
         public IEnumerable<tblMatrizFuncXTreinamento> GetMatriz()
         {
             IEnumerable<tblMatrizFuncXTreinamento> Matriz;

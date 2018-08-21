@@ -57,162 +57,145 @@
 }
 
 
-<p>TT: @ViewBag.ttListCount</p>
-<p>T: @ViewBag.tListCount</p>
-<p>ATV: @ViewBag.activiesCount</p>
-
-<h2 class="text-center">@Model.Nome</h2>
-@Html.HiddenFor(w => w.IdWorkzone, new { id = "idWorkzone" })
-<table class="table table-bordered">
+@*<table>
     <thead>
         <tr>
-            <th colspan="2"></th>
-            <th colspan="@ViewBag.tListCount">Perfil</th>
-            <th colspan="@ViewBag.activiesCount">Tarefas</th>
+            <th>Teste</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th></th>
-            <th></th>
-            @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
-            {
-                <th colspan="@tt.tblTreinamento.Count" class="text-style">@tt.Nome</th>
-            }
-
-            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-            {
-                <th class="text-style">@a.Sigla</th>
-            }
-
-
-        </tr>
-        <tr>
-            <th>Registro</th>
-            <th>Nome</th>
-            @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
-            {
-                <th class="rotate">
-                    <div>
-                        <div class="rotation-wrapper-outer">
-                            <div class="rotation-wrapper-inner">
-                                <span>@t.Nome</span>
-                            </div>
-                        </div>
-                    </div>
-                </th>
-            }
-
-            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-            {
-                <th class="rotate">
-                    <div>
-                        <div class="rotation-wrapper-outer">
-                            <div class="rotation-wrapper-inner">
-                                <span>@a.Nome</span>
-                            </div>
-                        </div>
-                    </div>
-                </th>
-            }
-        </tr>
-        @foreach (var t in Model.tblWorkzoneXFuncionario)
-            {
+        @foreach (var m in (IEnumerable<tblMatrizWorkzone>)ViewBag.matriz)
+        {
             <tr>
-                <td class="text-style">@t.tblFuncionarios.RE</td>
-                <td class="text-style">@t.tblFuncionarios.Nome</td>
-                @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
-                {
-                    <td onclick="openModalTrain(@trein.IdTreinamento,@t.idFuncionario)" onload="teste()"></td>
-                }
-                @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-                {
-                    <td onclick="openModalActiv(@a.idAtividade,@t.idFuncionario)"></td>
-                }
+                <td>@m.tblMatrizFuncXAtividades</td>
             </tr>
         }
+
     </tbody>
-</table>
-
-<div id="listTraining">
-    @{Html.RenderAction("BuscarITem", "Matrix", new { idTrain = 0, idFuncionario = 0 });}
-</div>
+</table>*@
 
 
-@*  V1 ------------------ *@
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<h2> v1</h2>
-<table class="table table-bordered">
-    <thead class="sub-container-header">
-        <tr>
-            @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
+
+<h2> v2</h2>
+    <p>TT: @ViewBag.ttListCount</p>
+    <p>T: @ViewBag.tListCount</p>
+    <p>ATV: @ViewBag.activiesCount</p>
+
+    <h2 class="text-center">@Model.Nome</h2>
+    @Html.HiddenFor(w => w.IdWorkzone, new { id = "idWorkzone" })
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th colspan="2"></th>
+                <th colspan="@ViewBag.tListCount">Perfil</th>
+                <th colspan="@ViewBag.activiesCount">Tarefas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th></th>
+                <th></th>
+                @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
+                {
+                    <th colspan="@tt.tblTreinamento.Count" class="text-style">@tt.Nome</th>
+                }
+
+                @foreach (var a in (IEnumerable<tblMatrizFuncXAtividades>)ViewBag.activiesList)
+                {
+                    <th class="text-style">@a.tblAtividades.Sigla</th>
+                }
+
+
+            </tr>
+            <tr>
+                <th>Registro</th>
+                <th>Nome</th>
+                @foreach (var t in (IEnumerable<tblMatrizFuncXTreinamento>)ViewBag.trainingList)
+                {
+                    <th class="rotate">
+                        <div>
+                            <div class="rotation-wrapper-outer">
+                                <div class="rotation-wrapper-inner">
+                                    <span>@t.tblTreinamento.Nome</span>
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                }
+
+                @foreach (var a in (IEnumerable<tblMatrizFuncXAtividades>)ViewBag.activiesList)
+                {
+                    <th class="rotate">
+                        <div>
+                            <div class="rotation-wrapper-outer">
+                                <div class="rotation-wrapper-inner">
+                                    <span>@a.tblAtividades.Nome</span>
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                }
+            </tr>
+            @foreach (var wzXFunc in Model.tblWorkzoneXFuncionario)
             {
-                <td class="text-style">@tt.Nome</td>
-            }
-            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-            {
-                <td class="text-style">@a.Sigla</td>
-            }
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-<div class="container-default">
-    <div class="sub-sub-container">
-        <h4 class="container-size text-style text-style-bigger">Registro</h4>
-        @foreach (var t in Model.tblWorkzoneXFuncionario)
-        {
-            <p class="text-style">@t.tblFuncionarios.RE</p>
-        }
-    </div>
-    <div class="sub-container">
-        <h4 class="container-size text-style text-style-bigger">Nome</h4>
-        @foreach (var t in Model.tblWorkzoneXFuncionario)
-        {
-            <p class="text-style">@t.tblFuncionarios.Nome</p>
-        }
-    </div>
+                <tr>
+                    <td class="text-style">@wzXFunc.tblFuncionarios.RE</td>
+                    <td class="text-style">@wzXFunc.tblFuncionarios.Nome</td>
+                    @foreach (var funcXtrein in (IEnumerable<tblMatrizFuncXTreinamento>)ViewBag.trainingList)//x3
+                    {
 
-    <div class="sub-container-ativ container-size">
-        @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
-        {
-            <p class="text-style vertical-text">@t.Nome</p>
-        }
-        @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-        {
-            <p class="text-style vertical-text">@a.Nome</p>
-        }
-    </div>
-</div>
+                        if (wzXFunc.tblFuncionarios.tblMatrizFuncXTreinamento.Count > 0)
+                        {
+                            @wzXFunc.tblFuncionarios.tblMatrizFuncXTreinamento.Count
+                            foreach (var matrizXTrein in wzXFunc.tblFuncionarios.tblMatrizFuncXTreinamento)// x2
+                            {
+                                if (@matrizXTrein.tblFuncionarios.idfuncionario == @funcXtrein.idFuncionario)
+                                {
 
+                                    <td onclick="openModalTrain(@funcXtrein.tblTreinamento.IdTreinamento,@wzXFunc.idFuncionario)" onload="teste()">
+                                        @funcXtrein.tblTreinamento.IdTreinamento,@wzXFunc.idFuncionario:
+                                        @if (@funcXtrein.tblPerfilItens != null)
+                                        {
+                                            @funcXtrein.tblPerfilItens.Sigla
+                                        }
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td onclick="openModalTrain(@funcXtrein.tblTreinamento.IdTreinamento,@wzXFunc.idFuncionario)" onload="teste()">
+                                        HW @funcXtrein.tblTreinamento.IdTreinamento,@wzXFunc.idFuncionario:
+                                        @if (@funcXtrein.tblPerfilItens != null)
+                                        {
+                                            @funcXtrein.tblPerfilItens.Sigla
+                                        }
+                                    </td>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <td onclick="openModalTrain(@funcXtrein.tblTreinamento.IdTreinamento,@wzXFunc.idFuncionario)" onload="teste()">
+                                S/AVAL @funcXtrein.tblTreinamento.IdTreinamento,@wzXFunc.idFuncionario:
+
+                            </td>
+                        }
+                    }
+                    @foreach (var a in (IEnumerable<tblMatrizFuncXAtividades>)ViewBag.activiesList)
+                    {
+                        <td onclick="openModalActiv(@a.tblAtividades.idAtividade,@wzXFunc.idFuncionario)">
+                            A: @a.tblAtividades.idAtividade,@wzXFunc.idFuncionario:
+                            @if (@a.tblPerfilItens != null)
+                            {
+                                @a.tblPerfilItens.Sigla
+                            }
+
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div id="listTraining">
+        @{Html.RenderAction("BuscarITem", "Matrix", new { idTrain = 0, idFuncionario = 0 });}
+    </div>
