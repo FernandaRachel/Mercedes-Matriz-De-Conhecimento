@@ -12,6 +12,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         private MatrizWorkzoneService _matrizService;
         private MatrizFuncTreinamentoService _matrizFuncTrainingService;
+        private MatrizFuncAtividadeService _matrizFuncActivityService;
         private WorzoneXActivityService _workzoneXActivity;
         private ActivityXTrainingService _activityXTraining;
         private WorzoneXEmployeeService _workzoneXFunc;
@@ -29,6 +30,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         {
             _matrizService = new MatrizWorkzoneService();
             _matrizFuncTrainingService = new MatrizFuncTreinamentoService();
+            _matrizFuncActivityService = new MatrizFuncAtividadeService();
             _workzoneXActivity = new WorzoneXActivityService();
             _activityXTraining = new ActivityXTrainingService();
             _workzoneXFunc = new WorzoneXEmployeeService();
@@ -139,10 +141,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                             if (tExisting.idTreinamento == t.IdTreinamento)
                             {
                                 treinamentoMatriz.tblTreinamento = tExisting.tblTreinamento;
+                                treinamentoMatriz.idTreinamento = tExisting.idTreinamento;
+                                treinamentoMatriz.idItemPerfil = tExisting.idItemPerfil;
                                 treinamentoMatriz.tblPerfilItens = tExisting.tblPerfilItens;
                                 //added
                                 treinamentoMatriz.tblFuncionarios = tExisting.tblFuncionarios;
-                                treinamentoMatriz.tblPerfilItens = tExisting.tblPerfilItens;
+                                treinamentoMatriz.idFuncionario = tExisting.idFuncionario;
 
                                 matriz.idMatrizWZ = tExisting.idMatrizWorkzone;
                                 matriz.idWorkzone = WorkzoneID;
@@ -175,25 +179,49 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             }
 
 
-            //ViewBag.trainingList = trainingList.OrderBy(t => t.tblTipoTreinamento.Nome);
-            //ViewBag.activiesList = activiesList;
-            ViewBag.trainingList = matriz.tblMatrizFuncXTreinamento;
-            ViewBag.activiesList = matriz.tblMatrizFuncXAtividades;
+      
+            ViewBag.trainingList = trainingList;
+            ViewBag.activiesList = activiesList;
             ViewBag.ttList = ttList;
             ViewBag.tListCount = trainingList.Count();
             ViewBag.activiesCount = activiesList.Count();
             ViewBag.ttListCount = ttList.Count();
             ViewBag.Matriz = matriz;
 
-            //foreach (var x in workzone.tblWorkzoneXFuncionario)
-            //{
-            //    tblMatrizFuncXTreinamento funcXTrein = new tblMatrizFuncXTreinamento();
-            //    funcXTreinList.Add(funcXTrein);
-            //}
-
-            //ViewBag.funcXTreinList = funcXTreinList;
+         
 
             return View(workzone);
+        }
+
+        public ActionResult BuscarItemAtiv(int idActivity, int idFuncionario)
+        {
+            tblMatrizFuncXAtividades matrizFuncXTrain = new tblMatrizFuncXAtividades();
+            matrizFuncXTrain.idAtividade = idActivity;
+            matrizFuncXTrain.idFuncionario = idFuncionario;
+
+            if (idActivity != 0 && idFuncionario != 0)
+            {
+                List<tblPerfilItens> itensList = new List<tblPerfilItens>();
+
+                var profileID = _training.GetTrainingById(idActivity).idPerfilTreinamento;
+                var itemXProfile = _profileTraining.GetTrainingProfileById(profileID).tblPerfilTreinamentoxPerfilItem;
+                var itens = new tblPerfilItens();
+
+                foreach (var iXp in itemXProfile)
+                {
+                    itens = _profileItemActivity.GetActivityProfileItemById(iXp.IdPerfilItem);
+                    itensList.Add(itens);
+                }
+
+                ViewBag.PerfilITem = itensList;
+            }
+            else
+            {
+                ViewBag.PerfilITem = new List<tblPerfilItens>();
+            }
+
+
+            return PartialView("_ModalActivity", matrizFuncXTrain);
         }
 
         public ActionResult BuscarITem(int idTrain, int idFuncionario)
@@ -226,7 +254,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             }
 
 
-            return PartialView("_Modal", matrizFuncXTrain);
+            return PartialView("_ModalTrein", matrizFuncXTrain);
         }
 
         public ActionResult CreateMatrizTraining(int idItem, int idFuncionario, int idTraining, int idWorkzone)
@@ -253,7 +281,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             matrizFuncTrain.idMatrizWorkzone = idMatriz;
             matrizFuncTrain.idTreinamento = idTraining;
 
-            if (MatrizExists == null)
+            if (avaliationExist == null)
                 _matrizFuncTrainingService.CreateMatriz(matrizFuncTrain);
 
             else
@@ -268,131 +296,45 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult CreateMatrizActivity(int idItem, int idFuncionario, int idActivity, int idWorkzone)
+        {
+            tblMatrizWorkzone matrizXworzone = new tblMatrizWorkzone();
+            matrizXworzone.Usuario = "Teste s/ Seg";
+            matrizXworzone.DataCriacao = DateTime.Now;
+
+            var MatrizExists = _matrizService.GetMatrizByWZId(idWorkzone);
+            var idMatriz = 0;
+            var avaliationExist = _matrizFuncActivityService.GetMatrizByFuncXAtiv(idActivity, idFuncionario);
+
+            if (MatrizExists == null)
+                idMatriz = _matrizService.CreateMatriz(matrizXworzone).idMatrizWZ;
+
+            else
+                idMatriz = MatrizExists.idMatrizWZ;
+
+
+            var WorkzoneID = idWorkzone;
+            tblMatrizFuncXAtividades matrizFuncActiv = new tblMatrizFuncXAtividades();
+            matrizFuncActiv.idFuncionario = idFuncionario;
+            matrizFuncActiv.idItemPerfil = idItem;
+            matrizFuncActiv.idMatrizWorkzone = idMatriz;
+            matrizFuncActiv.idAtividade = idActivity;
+
+            if (avaliationExist == null)
+                _matrizFuncActivityService.CreateMatriz(matrizFuncActiv);
+
+            else
+            {
+                matrizFuncActiv.idMatrizFuncAtiv = avaliationExist.idMatrizFuncAtiv;
+                _matrizFuncActivityService.UpdateMatriz(matrizFuncActiv);
+            }
+
+            var workzone = _workzone.GetWorkzoneById(WorkzoneID);
+
+            Console.WriteLine("idActivity: {0}, idItem: {1}, idFuncionario: {2}", idActivity, idItem, idFuncionario);
+
+            return RedirectToAction("Index");
+        }
     }
 }
-
-/*
- 
-            
-     
-     */
-
-
-
-/*
-
-  var MatrizWorkzone = _matrizService.GetMatrizByWZId(WorkzoneID);
-        tblMatrizFuncXAtividades mAtivividadeObj = new tblMatrizFuncXAtividades();
-        tblMatrizFuncXTreinamento mTreinamentoObj = new tblMatrizFuncXTreinamento();
-
-        //Pega func[n]
-        foreach (var wFunc in workzone.tblWorkzoneXFuncionario)
-        {
-            //Pega Atividade[n1]
-            foreach (var wAtiv in workzone.tblWorkzoneXAtividades)
-            {
-                //Verifica se func[n] possui a atividade na posição Atividade[n1]
-                var funcTemAval = wAtiv.tblAtividades.tblMatrizFuncXAtividades
-                    .Where(m => m.idFuncionario == wFunc.idFuncionario);
-
-                //Verifica se funcionário tem avaliação na Atividade[n1] 
-                if (funcTemAval.Count() > 0)
-                {
-                    //funcComAval retorna cada objeto da tabela Funcionario X Atividades
-                    foreach (var funcComAval in funcTemAval)
-                    {
-                        mAtivividadeObj = new tblMatrizFuncXAtividades();
-                        mAtivividadeObj.idFuncionario = funcComAval.idFuncionario;
-                        mAtivividadeObj.idAtividade = (int)funcComAval.idAtividade;
-                        mAtivividadeObj.idItemPerfil = (int)funcComAval.idItemPerfil;
-                        mAtivividadeObj.idMatrizWorkzone = funcComAval.idMatrizWorkzone;
-                        mAtivividadeObj.tblPerfilItens = funcComAval.tblPerfilItens;
-                        mAtivividadeObj.tblFuncionarios = funcComAval.tblFuncionarios;
-                        mAtivividadeObj.tblAtividades = funcComAval.tblAtividades;
-                        mAtivividadeObj.tblMatrizWorkzone = funcComAval.tblMatrizWorkzone;
-
-                        matrizAtividades.Add(mAtivividadeObj);
-                    }
-                }
-                // Se func[n] não possui avaliação na Atividade[n1] - 
-                // cria um mock de func X Ativi s/func adicionado
-                else
-                {
-                    mAtivividadeObj = new tblMatrizFuncXAtividades();
-                    mAtivividadeObj.idFuncionario = 0;
-                    mAtivividadeObj.idAtividade = (int)wAtiv.idAtividade;
-                    mAtivividadeObj.idItemPerfil = 0;
-                    mAtivividadeObj.tblPerfilItens = new tblPerfilItens();
-                    mAtivividadeObj.tblFuncionarios = new tblFuncionarios();
-                    mAtivividadeObj.tblAtividades = wAtiv.tblAtividades;
-                    mAtivividadeObj.tblMatrizWorkzone = new tblMatrizWorkzone();
-
-                    matrizAtividades.Add(mAtivividadeObj);
-                }
-            }
-        } // fim foreach Atividade x Func
-
-
-        //Pega func[n]
-        foreach (var wFunc in workzone.tblWorkzoneXFuncionario)
-        {
-
-            foreach (var wAtividades in workzone.tblWorkzoneXAtividades)
-            {
-                //Pega os Treinamentos necessários para tal atividade
-                foreach (var ativXTrein in wAtividades.tblAtividades.tblAtividadeXTreinamentos)
-                {
-                    //Verifica se func[n] possui o treinamento na posição Treinamento[n1]
-                    var TreinTemAval = ativXTrein.tblTreinamento.tblMatrizFuncXTreinamento
-                    .Where(w => w.idFuncionario == wFunc.idFuncionario);
-
-
-                    if (TreinTemAval.Count() > 0)
-                    {
-                        foreach (var funcXTrein in TreinTemAval)
-                        {
-                            var treinamentoExist = matrizTreinamento.Where(m => m.idTreinamento == funcXTrein.idTreinamento);
-                            if (treinamentoExist.Count() == 0)
-                            {
-                                mTreinamentoObj = new tblMatrizFuncXTreinamento();
-
-                                mTreinamentoObj.idTreinamento = funcXTrein.idTreinamento;
-                                mTreinamentoObj.idItemPerfil = funcXTrein.idItemPerfil;
-                                mTreinamentoObj.idMatrizWorkzone = funcXTrein.idMatrizWorkzone;
-                                mTreinamentoObj.tblPerfilItens = funcXTrein.tblPerfilItens;
-                                mTreinamentoObj.tblTreinamento = funcXTrein.tblTreinamento;
-                                mTreinamentoObj.tblMatrizWorkzone = funcXTrein.tblMatrizWorkzone;
-                                mTreinamentoObj.idMatrizFuncTrein = funcXTrein.idMatrizFuncTrein;
-
-                                matrizTreinamento.Add(mTreinamentoObj);
-                            }
-                        }
-                    }
-                    else
-                    // Se func[n] não possui avaliação no Treinamento[n1] - 
-                    // cria um mock de func X Treinamento s/func adicionado
-                    {
-                        var treinamentoExist = matrizTreinamento.Where(m => m.idTreinamento == ativXTrein.idTreinamento);
-                        if (treinamentoExist.Count() == 0)
-                        {
-                            mTreinamentoObj = new tblMatrizFuncXTreinamento();
-
-                            mTreinamentoObj.idTreinamento = ativXTrein.idTreinamento;
-                            mTreinamentoObj.idItemPerfil = 0;
-                            mTreinamentoObj.idMatrizWorkzone = 0;
-                            mTreinamentoObj.tblPerfilItens = new tblPerfilItens();
-                            mTreinamentoObj.tblTreinamento = ativXTrein.tblTreinamento;
-                            mTreinamentoObj.tblMatrizWorkzone = new tblMatrizWorkzone();
-
-                            matrizTreinamento.Add(mTreinamentoObj);
-                        }
-                    }
-                }
-            }
-        }
-
-        matriz.tblMatrizFuncXTreinamento = matrizTreinamento;
-        matriz.tblMatrizFuncXAtividades = matrizAtividades;
-
-        ViewBag.matriz = matriz;
- */

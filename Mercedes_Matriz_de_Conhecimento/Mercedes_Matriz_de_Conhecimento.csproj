@@ -278,6 +278,7 @@
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Interface\IPerfilTrainingItemXPerfilItemService .cs" />
+    <Compile Include="Services\MatrizFuncAtividadeService.cs" />
     <Compile Include="Services\MatrizFuncTreinamentoService.cs" />
     <Compile Include="Services\MatrizWorkzoneService.cs" />
     <Compile Include="Services\Interface\IMatrizService.cs" />
@@ -597,12 +598,13 @@
     <Content Include="Views\Workzone\_Lista.cshtml" />
     <Content Include="Views\ActivityXWorkzone\_Lista.cshtml" />
     <Content Include="Views\ActivityXTraining\_Lista.cshtml" />
-    <Content Include="Views\Matrix\_Modal.cshtml" />
+    <Content Include="Views\Matrix\_ModalTrein.cshtml" />
     <Content Include="Views\PerfilAtivItemXPerfilItem\_Lista.cshtml" />
     <Content Include="Views\PerfilTrainingItemXPerfilItem\_Lista.cshtml" />
     <Content Include="Views\PerfilTrainingItemXPerfilItem\Create.cshtml" />
     <Content Include="Views\PerfilTrainingItemXPerfilItem\Edit.cshtml" />
     <Content Include="Views\PerfilTrainingItemXPerfilItem\Index.cshtml" />
+    <Content Include="Views\Matrix\_ModalActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
