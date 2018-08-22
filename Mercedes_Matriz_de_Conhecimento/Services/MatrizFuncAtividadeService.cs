@@ -69,13 +69,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Matriz;
         }
 
-        public tblMatrizFuncXAtividades DeleteMatriz(int id)
+        public tblMatrizFuncXAtividades DeleteMatriz(int idMWz, int idFunc, int idActiv)
         {
             tblMatrizFuncXAtividades Matriz;
 
             var query = from f in _db.tblMatrizFuncXAtividades
-                        where f.idMatrizFuncAtiv == id
-                        orderby f.tblMatrizWorkzone.tblWorkzone.Nome
+                        where f.idMatrizWorkzone == idMWz &&
+                       f.idFuncionario == idFunc &&
+                       f.idAtividade == idActiv 
                         select f;
 
             Matriz = query.FirstOrDefault();

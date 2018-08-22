@@ -1,216 +1,57 @@
-﻿@model Mercedes_Matriz_de_Conhecimento.tblWorkzone
+﻿@model Mercedes_Matriz_de_Conhecimento.tblMatrizWorkzone
+@using System.Collections;
 
 @{
-    ViewBag.Title = "Index";
-    ViewBag.Cols = 0;
+    ViewBag.Title = "SELEÇÃO MATRIZ";
 }
 
 @section Scripts{
 
     <script>
-        function openModalTrain(idTrain, idFuncionario) {
+        function redirectToMatriz() {
+            var WorkzoneID  = document.getElementById("workzone");
 
-            $.ajax({
-                url: '@Url.Action("BuscarITem", "Matrix")',
+            location.href = '@Url.Action("Matriz", "Matrix")?WorkzoneID=' + WorkzoneID.value;
+
+
+            @*$.ajax({
+                url: '@Url.Action("Matriz", "Matrix")',
                 data: {
-                    idTrain: idTrain,
-                    idFuncionario: idFuncionario,
+                    WorkzoneID: WorkzoneID.value
                 }
             }).done(function (response) {
-                var x = document.getElementById('listTraining');
-                x.innerHTML = response;
-                $("#itemID").selectpicker();
-                $('#treinamento').modal('show');
 
-            });
-        }
 
-        function openModalActiv(idActivity, idFuncionario) {
-            $.ajax({
-                url: '@Url.Action("BuscarItemAtiv", "Matrix")',
-                data: {
-                    idActivity: idActivity,
-                    idFuncionario: idFuncionario,
-                }
-            }).done(function (response) {
-                var x = document.getElementById('listActivity');
-                x.innerHTML = response;
-                $("#itemAtivID").selectpicker();
-                $('#atividade').modal('show');
-
-            });
-        }
-
-        function SaveMatrizTraining(idFuncionario, idTraining) {
-            var itemID = document.getElementById("itemID");
-            var idWorkzone = document.getElementById("idWorkzone");
-
-            $.ajax({
-                url: '@Url.Action("CreateMatrizTraining", "Matrix")',
-                data: {
-                    idItem: itemID.value,
-                    idFuncionario: idFuncionario,
-                    idTraining: idTraining,
-                    idWorkzone: idWorkzone.value
-                }
-            }).done(function (response) {
-                $('#atividade').modal();
-                location.reload();
-            });
-        }
-
-        function SaveMatrizActivity(idFuncionario, idActivity) {
-            var itemID = document.getElementById("itemAtivID");
-            var idWorkzone = document.getElementById("idWorkzone");
-
-            $.ajax({
-                url: '@Url.Action("CreateMatrizActivity", "Matrix")',
-                data: {
-                    idItem: itemID.value,
-                    idFuncionario: idFuncionario,
-                    idActivity: idActivity,
-                    idWorkzone: idWorkzone.value
-                }
-            }).done(function (response) {
-                $('#atividade').modal();
-                location.reload();
-            });
-        }
-
-        function teste() {
-            console.log('teste');
+            });*@
         }
     </script>
 }
 
 
-
-<h2> v2</h2>
-
-<h2 class="text-center">@Model.Nome</h2>
-@Html.HiddenFor(w => w.IdWorkzone, new { id = "idWorkzone" })
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th colspan="2"></th>
-            <th colspan="@ViewBag.tListCount">Perfil</th>
-            <th colspan="@ViewBag.activiesCount">Tarefas</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th></th>
-            <th></th>
-            @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
-            {
-                <th colspan="@tt.tblTreinamento.Count" class="text-style">@tt.Nome</th>
-            }
-
-            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-            {
-                <th class="text-style">@a.Sigla</th>
-            }
+<h3>Selecione sua Workzone</h3>
 
 
-        </tr>
-        <tr>
-            <th>Registro</th>
-            <th>Nome</th>
-            @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
-            {
-                <th class="rotate">
-                    <div>
-                        <div class="rotation-wrapper-outer">
-                            <div class="rotation-wrapper-inner">
-                                <span>@t.Nome</span>
-                            </div>
-                        </div>
-                    </div>
-                </th>
-            }
+<div class="row">
+    <div class="col-md-5">
 
-            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-            {
-                <th class="rotate">
-                    <div>
-                        <div class="rotation-wrapper-outer">
-                            <div class="rotation-wrapper-inner">
-                                <span>@a.Nome</span>
-                            </div>
-                        </div>
-                    </div>
-                </th>
-            }
-        </tr>
-        @foreach (var wzXFunc in Model.tblWorkzoneXFuncionario)
-            {
-            <tr>
-                <td class="text-style">@wzXFunc.tblFuncionarios.RE</td>
-                <td class="text-style">@wzXFunc.tblFuncionarios.Nome</td>
-                @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)//x3
-                {
-                    var idTrainAdded = 0;
-                    foreach (var t in trein.tblMatrizFuncXTreinamento)
-                    {
-                        if (t.idTreinamento == trein.IdTreinamento
-                            && wzXFunc.idFuncionario == t.tblFuncionarios.idfuncionario)
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Workzone", new { @class = "col-md-3 control-label" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzones"], "idWorkzone", "Nome"), "Escolha uma Workzone",
+                        new
                         {
-                            idTrainAdded = @t.idTreinamento;
-
-                            <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
-                                @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                @if (@t.tblPerfilItens != null)
-                                {
-                                    @t.tblPerfilItens.Sigla
-                                }
-                            </td>
-                        }
-
-                    }
-                    if (trein.IdTreinamento != idTrainAdded)
-                    {
-                        <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)"  class="text-center">
-                             @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                        </td>
-                    }
-                }
-
-                @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-                {
-                    var idActivAdded = 0;
-                    foreach (var a2 in a.tblMatrizFuncXAtividades)
-                    {
-                        if (a2.idAtividade == a.idAtividade
-                            && wzXFunc.idFuncionario == a2.tblFuncionarios.idfuncionario)
-                        {
-                            idActivAdded = @a2.idAtividade;
-
-                            <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario)" class="text-center">
-                                @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                @if (@a2.tblPerfilItens != null)
-                                {
-                                    @a2.tblPerfilItens.Sigla
-                                }
-                            </td>
-                        }
-
-                    }
-                    if (a.idAtividade != idActivAdded)
-                    {
-                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario)" class="text-center">
-                            @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                        </td>
-                    }
-                }
-            </tr>
-        }
-    </tbody>
-</table>
-
-<div id="listTraining">
-    @{Html.RenderAction("BuscarITem", "Matrix", new { idTrain = 0, idFuncionario = 0 });}
+                            @class = "form-control col-md-9 selectpicker",
+                            data_show_subtext = "true",
+                            data_live_search = "true",
+                            id = "workzone"
+                        })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-modified-save pull-right" onclick="redirectToMatriz()">Selecionar</button>
+    </div>
 </div>
 
-<div id="listActivity">
-    @{Html.RenderAction("BuscarItemAtiv", "Matrix", new { idActivity = 0, idFuncionario = 0 });}
-</div>
+

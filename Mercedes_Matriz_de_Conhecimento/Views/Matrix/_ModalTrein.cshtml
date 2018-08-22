@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-md-8" id="dropdown-training">
-                    @Html.DropDownListFor(m => m.idItemPerfil, new SelectList((IEnumerable<tblPerfilItens>)ViewBag.PerfilITem, "idPerfilItem", "Descricao"), "Escolha um Treinamento",
+                    @Html.DropDownListFor(m => m.idItemPerfil, new SelectList((IEnumerable<tblPerfilItens>)ViewBag.PerfilITem, "idPerfilItem", "Descricao"), "Escolha uma avaliação",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
@@ -25,7 +25,8 @@
             </div>
             <br />
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="SaveMatrizTraining(@Model.idFuncionario,@Model.idTreinamento)">Save changes</button>
+                <button type="button" class="btn btn-primary" onclick="SaveMatrizTraining(@Model.idFuncionario,@Model.idTreinamento)">Salvar Avaliação</button>
+                <button type="button" class="btn btn-danger" onclick="DeleteMatrizTraining(@Model.idFuncionario,@Model.idTreinamento)">Deletar Avaliação</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

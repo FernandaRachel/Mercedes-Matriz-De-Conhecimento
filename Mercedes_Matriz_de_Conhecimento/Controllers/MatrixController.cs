@@ -45,26 +45,49 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             _profileItemTraining = new ProfileItemService();
 
         }
-        // GET: Matrix
+
         public ActionResult Index()
         {
-            var WorkzoneID = 1;
+            IEnumerable<tblWorkzone> workzones;
+            workzones = _workzone.GetWorkzones();
+            ViewData["Workzones"] = workzones;
+
+            return View();
+        }
+
+        // GET: Matrix
+        public ActionResult Matriz(int WorkzoneID)
+        {
+            var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
+            var matrizWz = new tblMatrizWorkzone();
+            matrizWz.idMatrizWZ = 0;
+
+            if (exits == null)
+            {
+                tblMatrizWorkzone matrizXworzone = new tblMatrizWorkzone();
+                matrizXworzone.Usuario = "Teste s/ Seg";
+                matrizXworzone.DataCriacao = DateTime.Now;
+                matrizXworzone.idWorkzone = WorkzoneID;
+
+                //Se a wzWZ já existe ele retorna a WZ
+                matrizWz = _matrizService.CreateMatriz(matrizXworzone);
+
+            }
+            else
+            {
+                matrizWz = exits;
+            }
             var workzone = _workzone.GetWorkzoneById(WorkzoneID);
             var activiesList = _workzoneXActivity.SetUpActivitiesList(WorkzoneID);
             List<tblTreinamento> trainingList = new List<tblTreinamento>();
             List<tblTipoTreinamento> ttList = new List<tblTipoTreinamento>();
-            //List<tblMatrizFuncXTreinamento> funcXTreinList = new List<tblMatrizFuncXTreinamento>();
-            List<tblMatrizFuncXTreinamento> matrizTreinamento = new List<tblMatrizFuncXTreinamento>();
-            List<tblMatrizFuncXAtividades> matrizAtividades = new List<tblMatrizFuncXAtividades>();
-            tblMatrizWorkzone matriz = new tblMatrizWorkzone();
-            List<tblMatrizWorkzone> matrizList = new List<tblMatrizWorkzone>();
 
             var MatrizWorkzone = _matrizService.GetMatrizByWZId(WorkzoneID);
             tblMatrizFuncXAtividades mAtivividadeObj = new tblMatrizFuncXAtividades();
             tblMatrizFuncXTreinamento mTreinamentoObj = new tblMatrizFuncXTreinamento();
 
             //OBTER TODAS OS TREINAMENTOS DE TODAS ATIVIDADES DA ZONA
-
+            // E OS SEUS TIPOS
             foreach (var aList in activiesList)
             {
                 //Pega todos IDs de atividades associados a treinamentos DA ZONA
@@ -82,115 +105,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             }
 
 
-            tblMatrizFuncXAtividades atividadeMatriz = new tblMatrizFuncXAtividades();
-            tblMatrizFuncXTreinamento treinamentoMatriz = new tblMatrizFuncXTreinamento();
 
-            foreach (var a in activiesList)
-            {
-                if (MatrizWorkzone.tblMatrizFuncXAtividades.Count > 0)
-                {
-
-                    foreach (var aExisting in MatrizWorkzone.tblMatrizFuncXAtividades)
-                    {
-                        if (aExisting.idAtividade == a.idAtividade)
-                        {
-                            atividadeMatriz.tblAtividades = aExisting.tblAtividades;
-
-                            matriz.idMatrizWZ = 0;
-                            matriz.idWorkzone = WorkzoneID;
-                            matriz.tblMatrizFuncXAtividades.Add(atividadeMatriz);
-                            atividadeMatriz = new tblMatrizFuncXAtividades();
-                        }
-                        else
-                        {
-                            atividadeMatriz.tblAtividades = _activity.GetActivityById(a.idAtividade);
-
-                            matriz.idMatrizWZ = 0;
-                            matriz.idWorkzone = WorkzoneID;
-                            matriz.tblMatrizFuncXAtividades.Add(atividadeMatriz);
-                            atividadeMatriz = new tblMatrizFuncXAtividades();
-                        }
-                    }
-                }
-                else
-                {
-                    atividadeMatriz.tblAtividades = _activity.GetActivityById(a.idAtividade);
-
-                    matriz.idMatrizWZ = 0;
-                    matriz.idWorkzone = WorkzoneID;
-                    matriz.tblMatrizFuncXAtividades.Add(atividadeMatriz);
-                    atividadeMatriz = new tblMatrizFuncXAtividades();
-                }
-            }
-
-            foreach (var t in trainingList)
-            {
-                //t.tblMatrizFuncXTreinamento
-                if (MatrizWorkzone.tblMatrizFuncXTreinamento.Count > 0)
-                {
-
-                    foreach (var tExisting in MatrizWorkzone.tblMatrizFuncXTreinamento)
-                    {
-                        var exist = matriz.tblMatrizFuncXTreinamento.Where(w => w.tblTreinamento.IdTreinamento == t.IdTreinamento).Count();
-
-                        // Verifica se o Treinamento ja foi adicionado
-                        if (exist == 0)
-                        {
-
-                            // Verifica se o ID do treinamento existe na MATRIZ
-                            if (tExisting.idTreinamento == t.IdTreinamento)
-                            {
-                                treinamentoMatriz.tblTreinamento = tExisting.tblTreinamento;
-                                treinamentoMatriz.idTreinamento = tExisting.idTreinamento;
-                                treinamentoMatriz.idItemPerfil = tExisting.idItemPerfil;
-                                treinamentoMatriz.tblPerfilItens = tExisting.tblPerfilItens;
-                                //added
-                                treinamentoMatriz.tblFuncionarios = tExisting.tblFuncionarios;
-                                treinamentoMatriz.idFuncionario = tExisting.idFuncionario;
-
-                                matriz.idMatrizWZ = tExisting.idMatrizWorkzone;
-                                matriz.idWorkzone = WorkzoneID;
-                                matriz.tblMatrizFuncXTreinamento.Add(treinamentoMatriz);
-                                treinamentoMatriz = new tblMatrizFuncXTreinamento();
-                            }
-                            else
-                            {
-                                var treinamento = _training.GetTrainingById(t.IdTreinamento);
-                                treinamentoMatriz.tblTreinamento = treinamento;
-
-                                matriz.idMatrizWZ = 0;
-                                matriz.idWorkzone = WorkzoneID;
-                                matriz.tblMatrizFuncXTreinamento.Add(treinamentoMatriz);
-                                treinamentoMatriz = new tblMatrizFuncXTreinamento();
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    treinamentoMatriz.tblTreinamento = _training.GetTrainingById(t.IdTreinamento);
-
-                    matriz.idMatrizWZ = 0;
-                    matriz.idWorkzone = WorkzoneID;
-                    matriz.tblMatrizFuncXTreinamento.Add(treinamentoMatriz);
-                    treinamentoMatriz = new tblMatrizFuncXTreinamento();
-                }
-
-            }
-
-
-      
             ViewBag.trainingList = trainingList;
             ViewBag.activiesList = activiesList;
             ViewBag.ttList = ttList;
             ViewBag.tListCount = trainingList.Count();
             ViewBag.activiesCount = activiesList.Count();
             ViewBag.ttListCount = ttList.Count();
-            ViewBag.Matriz = matriz;
 
-         
-
-            return View(workzone);
+            return View("Matriz", workzone);
         }
 
         public ActionResult BuscarItemAtiv(int idActivity, int idFuncionario)
@@ -203,13 +126,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 List<tblPerfilItens> itensList = new List<tblPerfilItens>();
 
-                var profileID = _training.GetTrainingById(idActivity).idPerfilTreinamento;
-                var itemXProfile = _profileTraining.GetTrainingProfileById(profileID).tblPerfilTreinamentoxPerfilItem;
+                var itemXProfile = _activity.GetActivityById(idActivity).tblPerfis.tblPerfilAtividadeXPerfilAtItem;
                 var itens = new tblPerfilItens();
 
                 foreach (var iXp in itemXProfile)
                 {
-                    itens = _profileItemActivity.GetActivityProfileItemById(iXp.IdPerfilItem);
+                    itens = _profileItemActivity.GetActivityProfileItemById(iXp.idPerfilAtivItem);
                     itensList.Add(itens);
                 }
 
@@ -294,7 +216,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             Console.WriteLine("idTraining: {0}, idItem: {1}, idFuncionario: {2}", idTraining, idItem, idFuncionario);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Matriz", new { WorkzoneID = idWorkzone });
         }
 
         public ActionResult CreateMatrizActivity(int idItem, int idFuncionario, int idActivity, int idWorkzone)
@@ -334,7 +256,29 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             Console.WriteLine("idActivity: {0}, idItem: {1}, idFuncionario: {2}", idActivity, idItem, idFuncionario);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Matriz", new { WorkzoneID = idWorkzone });
         }
+
+
+        public ActionResult DeleteMatrizTraining( int idFuncionario, int idTraining, int idWorkzone)
+        {
+
+            var mWz = _matrizService.GetMatrizByWZId(idWorkzone);
+
+            _matrizFuncTrainingService.DeleteMatriz(mWz.idMatrizWZ, idFuncionario, idTraining);
+
+            return RedirectToAction("Matriz", new { WorkzoneID = idWorkzone });
+        }
+
+        public ActionResult DeleteMatrizActivity(int idFuncionario, int idActivity, int idWorkzone)
+        {
+            var mWz = _matrizService.GetMatrizByWZId(idWorkzone);
+
+            _matrizFuncActivityService.DeleteMatriz(mWz.idMatrizWZ, idFuncionario, idActivity);
+
+            return RedirectToAction("Matriz", new { WorkzoneID = idWorkzone });
+        }
+
+
     }
 }

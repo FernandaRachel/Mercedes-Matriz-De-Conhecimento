@@ -62,15 +62,25 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
         public tblMatrizWorkzone CreateMatriz(tblMatrizWorkzone Matriz)
         {
-            _db.tblMatrizWorkzone.Add(Matriz);
+            var exist = GetMatrizByWZId(Matriz.idWorkzone);
 
-            _db.SaveChanges();
+            if (exist == null)
+            {
 
-            var matrizCreated = _db.tblMatrizWorkzone
-               .OrderByDescending(w => w.DataCriacao)
-               .FirstOrDefault();
+                _db.tblMatrizWorkzone.Add(Matriz);
 
-            return matrizCreated;
+                _db.SaveChanges();
+
+                var matrizCreated = _db.tblMatrizWorkzone
+                   .OrderByDescending(w => w.DataCriacao)
+                   .FirstOrDefault();
+
+                return matrizCreated;
+            }
+            else
+            {
+                return exist;
+            }
         }
 
         public tblMatrizWorkzone DeleteMatriz(int id)
