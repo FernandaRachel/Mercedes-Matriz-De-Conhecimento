@@ -33,7 +33,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         public IEnumerable<tblPerfilItens> GetProfileItemActvByName(string Nome)
         {
             IEnumerable<tblPerfilItens> profileItemActv;
-            var query = _db.tblPerfilItens;
+            var query = _db.tblPerfilItens.Where(f => f.Tipo == "A");
             profileItemActv = query.AsEnumerable();
 
             //Se o nome veio vazio traz todas Atividades
@@ -41,7 +41,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                 return profileItemActv;
 
             var query2 = _db.tblPerfilItens
-                .Where(f => f.Sigla.Contains(Nome)).Where(m => m.Tipo == "A");
+                .Where(f => f.Tipo == "A" &&  f.Sigla.Contains(Nome));
 
             profileItemActv = query2.AsEnumerable();
 
@@ -98,7 +98,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             var trainingToUpdate = _db.tblPerfilItens.Find(ActivityProfileItem.IdPerfilItem);
             trainingToUpdate.Sigla = ActivityProfileItem.Sigla;
             trainingToUpdate.Descricao = ActivityProfileItem.Descricao;
-            trainingToUpdate.Tipo = ActivityProfileItem.Tipo;
+            trainingToUpdate.Tipo = "A";
 
 
             _db.Entry(trainingToUpdate).State = EntityState.Modified;

@@ -238,6 +238,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Filters\UserAutorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -579,7 +580,7 @@
     <Content Include="Views\ProfileItem\Create.cshtml" />
     <Content Include="Views\ProfileItem\Edit.cshtml" />
     <Content Include="Views\ProfileItem\Index.cshtml" />
-    <Content Include="Views\Matrix\Index.cshtml" />
+    <Content Include="Views\Matrix\Matriz.cshtml" />
     <Content Include="Views\Training\_TrainingGroup.cshtml" />
     <Content Include="Views\HistMatrix\Index.cshtml" />
     <Content Include="Views\ActivityXWorkzone\Create.cshtml" />
@@ -605,6 +606,7 @@
     <Content Include="Views\PerfilTrainingItemXPerfilItem\Edit.cshtml" />
     <Content Include="Views\PerfilTrainingItemXPerfilItem\Index.cshtml" />
     <Content Include="Views\Matrix\_ModalActivity.cshtml" />
+    <Content Include="Views\Matrix\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

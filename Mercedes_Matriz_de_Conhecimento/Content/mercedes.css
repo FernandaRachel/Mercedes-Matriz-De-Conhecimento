@@ -109,7 +109,7 @@ tr.table-dark {
 .container-default {
     display: flex;
     flex-direction: row;
-    justify-content:flex-end;
+    justify-content: flex-end;
 }
 
 .sub-container {
@@ -118,10 +118,10 @@ tr.table-dark {
     flex-shrink: 0;
 }
 
-.sub-container-header{
-     display: flex;
+.sub-container-header {
+    display: flex;
     flex-direction: row;
-    justify-content:flex-end;
+    justify-content: flex-end;
 }
 
 .sub-container-ativ {
@@ -137,9 +137,10 @@ tr.table-dark {
     -webkit-transform-origin: bottom;
 }
 
-.rotate-fix{
+.rotate-fix {
     -webkit-transform-origin: 90% 100%;
 }
+
 .sub-container-infos {
     display: flex;
     flex-direction: row;
@@ -149,7 +150,7 @@ tr.table-dark {
     height: 15vh;
 }
 
-.text-style-bigger{
+.text-style-bigger {
     padding: 17vh !important;
 }
 
@@ -168,28 +169,64 @@ tr.table-dark {
 
 /* STYLES FROM V2 */
 th.rotate {
-  /* Something you can count on */
-  height: 140px;
-  white-space: nowrap;
+    /* Something you can count on */
+    height: 140px;
+    white-space: nowrap;
 }
 
 th.rotate > div {
-  transform: 
-    /* Magic Numbers */
-    translate(25px, 51px)
-    /* 45 is really 360 - 45 */
-    rotate(270deg);
-  width: 30px;
+transform:
+/* Magic Numbers */
+translate(25px, 51px)
+/* 45 is really 360 - 45 */
+rotate(270deg);
+width: 30px;
 }
+
 th.rotate > div > span {
-  border-bottom: 1px solid #ccc;
-  padding: 5px 10px;
+    border-bottom: 1px solid #ccc;
+    /*padding: 5px 10px;*/
 }
 
 .rotation-wrapper-outer {
-  display: table;
+    display: table;
 }
+
 .rotation-wrapper-inner {
-  padding: 50% 0;
-  height: 0;
+    display: flex;
+    padding: 50% 0;
+    /*height: 0;*/
+    align-items: flex-end;
+}
+
+.element-to-rotate {
+    display: block;
+    transform-origin: top left;
+    /* Note: for a CLOCKWISE rotation, use the commented-out
+     transform instead of this one. */
+    transform: rotate(-90deg) translate(-100%);
+    /* transform: rotate(90deg) translate(0, -100%); */
+    margin-top: -50%;
+    /* Not vital, but possibly a good idea if the element you're rotating contains
+     text and you want a single long vertical line of text and the pre-rotation
+     width of your element is small enough that the text wraps: */
+    white-space: nowrap;
+}
+
+.table-title{
+    background-color: #bec4be;
+}
+
+.no-border{
+    border: none !important;
+}
+
+.bg-red{
+    background-color:#e46a6a;
+}
+.bg-gray{
+    background-color:gray;
+}
+.bg-green{
+    background-color:#3fd44a;
 }

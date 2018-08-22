@@ -69,12 +69,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Matriz;
         }
 
-        public tblMatrizFuncXTreinamento DeleteMatriz(int id)
+        public tblMatrizFuncXTreinamento DeleteMatriz(int idMWz, int idFunc, int idTrain)
         {
             tblMatrizFuncXTreinamento Matriz;
 
             var query = from f in _db.tblMatrizFuncXTreinamento
-                        where f.idMatrizFuncTrein == id
+                        where f.idMatrizWorkzone == idMWz &&
+                        f.idFuncionario == idFunc &&
+                        f.idTreinamento == idTrain
                         orderby f.tblMatrizWorkzone.tblWorkzone.Nome
                         select f;
 

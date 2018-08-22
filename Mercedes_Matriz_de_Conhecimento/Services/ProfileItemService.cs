@@ -33,7 +33,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         public IEnumerable<tblPerfilItens> GetProfileItemByName(string Nome)
         {
             IEnumerable<tblPerfilItens> profileItem;
-            var query = _db.tblPerfilItens;
+            var query = _db.tblPerfilItens
+                .Where(i => i.Tipo == "T");
             profileItem = query.AsEnumerable();
 
             //Se o nome veio vazio traz todas Atividades
@@ -93,7 +94,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return ProfileItem;
         }
 
-        
+
         public tblPerfilItens UpdateProfileItem(tblPerfilItens ProfileItem)
         {
             var trainingToUpdate = _db.tblPerfilItens.Find(ProfileItem.IdPerfilItem);
@@ -132,7 +133,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                         orderby f.Sigla ascending
                         select f;
 
-            Profile = query.ToPagedList(pageNumber,quantity);
+            Profile = query.ToPagedList(pageNumber, quantity);
 
             return Profile;
         }
