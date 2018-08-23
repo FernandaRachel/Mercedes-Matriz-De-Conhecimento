@@ -218,6 +218,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HistoricoMatrizController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PerfilTrainingItemXPerfilItemController.cs" />
     <Compile Include="Controllers\PerfilAtivItemXPerfilItemController.cs" />
@@ -279,8 +280,12 @@
     <Compile Include="Models\WorkzoneMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Interface\IPerfilTrainingItemXPerfilItemService .cs" />
+    <Compile Include="Services\MatrizFuncAtividadeTempService.cs" />
     <Compile Include="Services\MatrizFuncAtividadeService.cs" />
+    <Compile Include="Services\MatrizFuncTreinamentoTempService.cs" />
     <Compile Include="Services\MatrizFuncTreinamentoService.cs" />
+    <Compile Include="Services\MatrizHistoricoService.cs" />
+    <Compile Include="Services\MatrizWorkzoneTempService.cs" />
     <Compile Include="Services\MatrizWorkzoneService.cs" />
     <Compile Include="Services\Interface\IMatrizService.cs" />
     <Compile Include="Services\Interface\IPermissionsService.cs" />
@@ -339,13 +344,31 @@
     <Compile Include="tblGrupoTreinamentos.cs">
       <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblMatrizFuncActivityHistorico.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMatrizFuncTreinHistorico.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblMatrizFuncXAtividades.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMatrizFuncXAtividadesTemp.cs">
       <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblMatrizFuncXTreinamento.cs">
       <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblMatrizFuncXTreinamentoTemp.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblMatrizWorkzone.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMatrizWorkzoneHistorico.cs">
+      <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMatrizWorkzoneTemp.cs">
       <DependentUpon>Mercedes_Matriz.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPerfilAtividadeXPerfilAtItem.cs">
@@ -607,6 +630,8 @@
     <Content Include="Views\PerfilTrainingItemXPerfilItem\Index.cshtml" />
     <Content Include="Views\Matrix\_ModalActivity.cshtml" />
     <Content Include="Views\Matrix\Index.cshtml" />
+    <Content Include="Views\MatrizHistorico\Index.cshtml" />
+    <Content Include="Views\MatrizHistorico\MatrizHistorico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

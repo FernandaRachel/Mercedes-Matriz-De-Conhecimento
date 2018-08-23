@@ -44,5 +44,11 @@ namespace Mercedes_Matriz_de_Conhecimento
         public virtual DbSet<tblWorkzone> tblWorkzone { get; set; }
         public virtual DbSet<tblWorkzoneXAtividades> tblWorkzoneXAtividades { get; set; }
         public virtual DbSet<tblWorkzoneXFuncionario> tblWorkzoneXFuncionario { get; set; }
+        public virtual DbSet<tblMatrizFuncXAtividadesTemp> tblMatrizFuncXAtividadesTemp { get; set; }
+        public virtual DbSet<tblMatrizFuncXTreinamentoTemp> tblMatrizFuncXTreinamentoTemp { get; set; }
+        public virtual DbSet<tblMatrizWorkzoneTemp> tblMatrizWorkzoneTemp { get; set; }
+        public virtual DbSet<tblMatrizFuncActivityHistorico> tblMatrizFuncActivityHistorico { get; set; }
+        public virtual DbSet<tblMatrizFuncTreinHistorico> tblMatrizFuncTreinHistorico { get; set; }
+        public virtual DbSet<tblMatrizWorkzoneHistorico> tblMatrizWorkzoneHistorico { get; set; }
     }
 }

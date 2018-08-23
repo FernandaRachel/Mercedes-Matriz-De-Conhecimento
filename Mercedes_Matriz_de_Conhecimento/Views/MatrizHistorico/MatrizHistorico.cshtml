@@ -1,0 +1,150 @@
+﻿@*@model Mercedes_Matriz_de_Conhecimento.tblMatrizWorkzoneHistorico
+
+@using System.Collections
+
+@{
+    ViewBag.title = "Histórico da Matriz";
+}
+
+
+
+
+<h2 class="text-center">@Model.nomeWorkzone</h2>
+
+<th>Nome</th>
+<th>BU</th>
+@foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
+            {
+    <th class="rotate">
+        <div>
+            <div class="rotation-wrapper-outer">
+                <div class="rotation-wrapper-inner">
+                    <span>@t.Nome</span>
+                </div>
+            </div>
+        </div>
+    </th>
+}
+
+@foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+            {
+    <th class="rotate">
+        <div>
+            <div class="rotation-wrapper-outer">
+                <div class="rotation-wrapper-inner">
+                    <span>@a.Nome</span>
+                </div>
+            </div>
+        </div>
+    </th>
+}
+        </tr>
+@foreach (var wzXFunc in Model)
+            {
+    <tr>
+        <td class="text-style">@wzXFunc.tblFuncionarios.RE</td>
+        <td class="text-style">@wzXFunc.tblFuncionarios.Nome</td>
+        <td class="text-style">@wzXFunc.tblFuncionarios.idBu_Origem</td>
+        @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)//x3
+                {
+                    var idTrainAdded = 0;
+                    foreach (var t in trein.tblMatrizFuncXTreinamentoTemp)
+                    {
+                        if (t.idTreinamento == trein.IdTreinamento
+                            && wzXFunc.idFuncionario == t.tblFuncionarios.idfuncionario)
+                        {
+                            idTrainAdded = @t.idTreinamento;
+
+                    <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
+                        @if (@t.tblPerfilItens != null)
+                        {
+                            @t.tblPerfilItens.Sigla
+                        }
+                    </td>
+                }
+
+            }
+            if (trein.IdTreinamento != idTrainAdded)
+            {
+                <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
+                </td>
+            }
+        }
+
+        @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+                {
+                    var idActivAdded = 0;
+                    foreach (var a2 in a.tblMatrizFuncXAtividadesTemp)
+                    {
+
+                        var trainamentosQtd = 0;
+                        var avaliacoes = 0;
+
+                        foreach (var treinInsideAtiv in a2.tblAtividades.tblAtividadeXTreinamentos)
+                        {
+                            trainamentosQtd = a2.tblAtividades.tblAtividadeXTreinamentos.Count;
+                            foreach (var aval in treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamentoTemp)
+                            {
+                                if (treinInsideAtiv.idTreinamento == aval.idTreinamento && wzXFunc.idFuncionario == aval.idFuncionario)
+                                {
+
+                                    avaliacoes++;
+                                }
+                            }
+
+
+                        }
+
+                        if (a2.idAtividade == a.idAtividade
+                            && wzXFunc.idFuncionario == a2.tblFuncionarios.idfuncionario)
+                        {
+
+
+                            if (trainamentosQtd == avaliacoes)
+                            {
+                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario)" class="text-center bg-green">
+                            @if (@a2.tblPerfilItens != null)
+                                {
+                                @a2.tblPerfilItens.Sigla
+                            }
+                        </td>
+                    }
+                    else
+                    {
+                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario)" class="text-center bg-red">
+                            @if (@a2.tblPerfilItens != null)
+                                {
+                                @a2.tblPerfilItens.Sigla
+                            }
+                        </td>
+                    }
+
+                    idActivAdded = @a2.idAtividade;
+                }
+
+            }
+
+            var avaliacao = 0;
+            foreach (var t in a.tblAtividadeXTreinamentos)
+            {
+                avaliacao += t.tblTreinamento.tblMatrizFuncXTreinamentoTemp.Where(f => f.idFuncionario == wzXFunc.idFuncionario).Count();
+            }
+
+            if (a.idAtividade != idActivAdded)
+            {
+                if (a.tblAtividadeXTreinamentos.Count == avaliacao)
+                {
+                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario)" class="text-center bg-green">
+                    </td>
+                }
+                else
+                {
+                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario)" class="text-center bg-gray">
+                    </td>
+                }
+            }
+        }
+    </tr>
+}
+    </tbody>
+</table>*@

@@ -1,0 +1,49 @@
+﻿@model Mercedes_Matriz_de_Conhecimento.tblMatrizWorkzoneHistorico
+
+@using System.Collections
+
+@{
+    ViewBag.title = "Histórico da Matriz";
+}
+
+
+@section Scripts{
+
+    <script>
+        function redirectToMatriz() {
+            var WorkzoneID = document.getElementById("workzone");
+
+            location.href = '@Url.Action("Matriz", "Matrix")?WorkzoneID=' + WorkzoneID.value;
+
+
+            @*$.ajax({
+                url: '@Url.Action("Matriz", "Matrix")',
+                data: {
+                    WorkzoneID: WorkzoneID.value
+                }
+            }).done(function (response) {
+
+
+            });*@
+        }
+    </script>
+}
+
+
+
+<div class="row">
+    <div>
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.DataCriacao, new SelectList((IEnumerable)ViewBag.ListaHistorico, "IdPerfis", "Nome"), "Escolha uma versão",
+            new
+            {
+                @class = "form-control col-md-9 selectpicker",
+                data_show_subtext = "true",
+                data_live_search = "true"
+            })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-modified-save">Abrir Histórico</button>
+    </div>
+</div>

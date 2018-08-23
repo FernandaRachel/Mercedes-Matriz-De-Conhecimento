@@ -174,19 +174,19 @@ th.rotate {
     white-space: nowrap;
 }
 
-th.rotate > div {
-transform:
-/* Magic Numbers */
-translate(25px, 51px)
-/* 45 is really 360 - 45 */
-rotate(270deg);
-width: 30px;
-}
+    th.rotate > div {
+        transform:
+        /* Magic Numbers */
+        translate(25px, 51px)
+        /* 45 is really 360 - 45 */
+        rotate(270deg);
+        width: 30px;
+    }
 
-th.rotate > div > span {
-    border-bottom: 1px solid #ccc;
-    /*padding: 5px 10px;*/
-}
+        th.rotate > div > span {
+            border-bottom: 1px solid #ccc;
+            /*padding: 5px 10px;*/
+        }
 
 .rotation-wrapper-outer {
     display: table;
@@ -197,6 +197,7 @@ th.rotate > div > span {
     padding: 50% 0;
     /*height: 0;*/
     align-items: flex-end;
+    margin-bottom: 40px;
 }
 
 .element-to-rotate {
@@ -213,20 +214,27 @@ th.rotate > div > span {
     white-space: nowrap;
 }
 
-.table-title{
+.table-title {
     background-color: #bec4be;
 }
 
-.no-border{
-    border: none !important;
+.no-border {
+    border: 1px solid white !important;
 }
 
-.bg-red{
-    background-color:#e46a6a;
+.white-border {
+    border-top: 1px solid white !important;
+    border-left: 1px solid white !important;
 }
-.bg-gray{
-    background-color:gray;
+
+.bg-red {
+    background-color: #e46a6a;
 }
-.bg-green{
-    background-color:#3fd44a;
+
+.bg-gray {
+    background-color: gray;
+}
+
+.bg-green {
+    background-color: #3fd44a;
 }
