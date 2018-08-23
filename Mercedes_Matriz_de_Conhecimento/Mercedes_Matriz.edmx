@@ -66,6 +66,40 @@
           <Property Name="IdTreinamentoPai" Type="int" Nullable="false" />
           <Property Name="IdTreinamentoFilho" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblMatrizFuncActivityHistorico">
+          <Key>
+            <PropertyRef Name="idWorkzoneFuncActivityHistorico" />
+          </Key>
+          <Property Name="idWorkzoneFuncActivityHistorico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMatrizWorkzoneHistorico" Type="int" Nullable="false" />
+          <Property Name="idFuncionario" Type="int" Nullable="false" />
+          <Property Name="nomeFuncionario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="REFuncionario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BUFuncionario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idAtividade" Type="int" Nullable="false" />
+          <Property Name="nomeAtividade" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="siglaAtividade" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="idItemPerfil" Type="int" Nullable="false" />
+          <Property Name="siglaItemPerfil" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMatrizFuncTreinHistorico">
+          <Key>
+            <PropertyRef Name="idMatrizFuncTreinHistorico" />
+          </Key>
+          <Property Name="idMatrizFuncTreinHistorico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMatrizWorkzoneHistorico" Type="int" Nullable="false" />
+          <Property Name="idFuncionario" Type="int" Nullable="false" />
+          <Property Name="nomeFuncionario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="REFuncionario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BUFuncionario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idTreinamento" Type="int" Nullable="false" />
+          <Property Name="nomeTreinamento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idTipoTreinamento" Type="int" Nullable="false" />
+          <Property Name="nomeTipoTreinamento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="siglaTipoTreinamento" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="idItemPerfil" Type="int" Nullable="false" />
+          <Property Name="siglaItemPerfil" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblMatrizFuncXAtividades">
           <Key>
             <PropertyRef Name="idMatrizFuncAtiv" />
@@ -75,6 +109,18 @@
           <Property Name="idFuncionario" Type="int" Nullable="false" />
           <Property Name="idAtividade" Type="int" Nullable="false" />
           <Property Name="idItemPerfil" Type="int" Nullable="false" />
+          <Property Name="alocacaoForcada" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tblMatrizFuncXAtividadesTemp">
+          <Key>
+            <PropertyRef Name="idMatrizFuncAtivTemp" />
+          </Key>
+          <Property Name="idMatrizFuncAtivTemp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMatrizWorkzoneTemp" Type="int" Nullable="false" />
+          <Property Name="idFuncionario" Type="int" Nullable="false" />
+          <Property Name="idAtividade" Type="int" Nullable="false" />
+          <Property Name="idItemPerfil" Type="int" Nullable="false" />
+          <Property Name="alocacaoForcada" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="tblMatrizFuncXTreinamento">
           <Key>
@@ -86,11 +132,43 @@
           <Property Name="idTreinamento" Type="int" Nullable="false" />
           <Property Name="idItemPerfil" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblMatrizFuncXTreinamentoTemp">
+          <Key>
+            <PropertyRef Name="idMatrizFuncTreinTemp" />
+          </Key>
+          <Property Name="idMatrizFuncTreinTemp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMatrizWorkzoneTemp" Type="int" Nullable="false" />
+          <Property Name="idFuncionario" Type="int" Nullable="false" />
+          <Property Name="idTreinamento" Type="int" Nullable="false" />
+          <Property Name="idItemPerfil" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblMatrizWorkzone">
           <Key>
             <PropertyRef Name="idMatrizWZ" />
           </Key>
           <Property Name="idMatrizWZ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idWorkzone" Type="int" Nullable="false" />
+          <Property Name="DataCriacao" Type="date" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMatrizWorkzoneHistorico">
+          <Key>
+            <PropertyRef Name="idMatrizHistorico" />
+          </Key>
+          <Property Name="idMatrizHistorico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idWorkzone" Type="int" Nullable="false" />
+          <Property Name="nomeWorkzone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BUWorkzone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CCWorkzone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LinhaWorkzone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataCriacao" Type="date" Nullable="false" />
+          <Property Name="UsuarioCriacao" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMatrizWorkzoneTemp">
+          <Key>
+            <PropertyRef Name="idMatrizWZTemp" />
+          </Key>
+          <Property Name="idMatrizWZTemp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idWorkzone" Type="int" Nullable="false" />
           <Property Name="DataCriacao" Type="date" Nullable="false" />
           <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
@@ -242,6 +320,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblMatrizFuncActivityHistorico_tblMatrizWorkzoneHistorico">
+          <End Role="tblMatrizWorkzoneHistorico" Type="Self.tblMatrizWorkzoneHistorico" Multiplicity="1" />
+          <End Role="tblMatrizFuncActivityHistorico" Type="Self.tblMatrizFuncActivityHistorico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMatrizWorkzoneHistorico">
+              <PropertyRef Name="idMatrizHistorico" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncActivityHistorico">
+              <PropertyRef Name="idMatrizWorkzoneHistorico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncTreinHistorico_tblMatrizWorkzoneHistorico">
+          <End Role="tblMatrizWorkzoneHistorico" Type="Self.tblMatrizWorkzoneHistorico" Multiplicity="1" />
+          <End Role="tblMatrizFuncTreinHistorico" Type="Self.tblMatrizFuncTreinHistorico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMatrizWorkzoneHistorico">
+              <PropertyRef Name="idMatrizHistorico" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncTreinHistorico">
+              <PropertyRef Name="idMatrizWorkzoneHistorico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblMatrizFuncXAtividades_tblAtividades">
           <End Role="tblAtividades" Type="Self.tblAtividades" Multiplicity="1" />
           <End Role="tblMatrizFuncXAtividades" Type="Self.tblMatrizFuncXAtividades" Multiplicity="*" />
@@ -286,6 +388,54 @@
               <PropertyRef Name="IdPerfilItem" />
             </Principal>
             <Dependent Role="tblMatrizFuncXAtividades">
+              <PropertyRef Name="idItemPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXAtividadesTemp_tblAtividades">
+          <End Role="tblAtividades" Type="Self.tblAtividades" Multiplicity="1" />
+          <End Role="tblMatrizFuncXAtividadesTemp" Type="Self.tblMatrizFuncXAtividadesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAtividades">
+              <PropertyRef Name="idAtividade" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXAtividadesTemp">
+              <PropertyRef Name="idAtividade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXAtividadesTemp_tblFuncionarios">
+          <End Role="tblFuncionarios" Type="Self.tblFuncionarios" Multiplicity="1" />
+          <End Role="tblMatrizFuncXAtividadesTemp" Type="Self.tblMatrizFuncXAtividadesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionarios">
+              <PropertyRef Name="idfuncionario" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXAtividadesTemp">
+              <PropertyRef Name="idFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXAtividadesTemp_tblMatrizWorkzoneTemp">
+          <End Role="tblMatrizWorkzoneTemp" Type="Self.tblMatrizWorkzoneTemp" Multiplicity="1" />
+          <End Role="tblMatrizFuncXAtividadesTemp" Type="Self.tblMatrizFuncXAtividadesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMatrizWorkzoneTemp">
+              <PropertyRef Name="idMatrizWZTemp" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXAtividadesTemp">
+              <PropertyRef Name="idMatrizWorkzoneTemp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXAtividadesTemp_tblPerfilItens">
+          <End Role="tblPerfilItens" Type="Self.tblPerfilItens" Multiplicity="1" />
+          <End Role="tblMatrizFuncXAtividadesTemp" Type="Self.tblMatrizFuncXAtividadesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerfilItens">
+              <PropertyRef Name="IdPerfilItem" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXAtividadesTemp">
               <PropertyRef Name="idItemPerfil" />
             </Dependent>
           </ReferentialConstraint>
@@ -338,6 +488,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamentoTemp_tblFuncionarios">
+          <End Role="tblFuncionarios" Type="Self.tblFuncionarios" Multiplicity="1" />
+          <End Role="tblMatrizFuncXTreinamentoTemp" Type="Self.tblMatrizFuncXTreinamentoTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionarios">
+              <PropertyRef Name="idfuncionario" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamentoTemp">
+              <PropertyRef Name="idFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamentoTemp_tblMatrizWorkzoneTemp">
+          <End Role="tblMatrizWorkzoneTemp" Type="Self.tblMatrizWorkzoneTemp" Multiplicity="1" />
+          <End Role="tblMatrizFuncXTreinamentoTemp" Type="Self.tblMatrizFuncXTreinamentoTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMatrizWorkzoneTemp">
+              <PropertyRef Name="idMatrizWZTemp" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamentoTemp">
+              <PropertyRef Name="idMatrizWorkzoneTemp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamentoTemp_tblPerfilItens">
+          <End Role="tblPerfilItens" Type="Self.tblPerfilItens" Multiplicity="1" />
+          <End Role="tblMatrizFuncXTreinamentoTemp" Type="Self.tblMatrizFuncXTreinamentoTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerfilItens">
+              <PropertyRef Name="IdPerfilItem" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamentoTemp">
+              <PropertyRef Name="idItemPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamentoTemp_tblTreinamento">
+          <End Role="tblTreinamento" Type="Self.tblTreinamento" Multiplicity="1" />
+          <End Role="tblMatrizFuncXTreinamentoTemp" Type="Self.tblMatrizFuncXTreinamentoTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTreinamento">
+              <PropertyRef Name="IdTreinamento" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamentoTemp">
+              <PropertyRef Name="idTreinamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblMatrizWorkzone_tblWorkzone">
           <End Role="tblWorkzone" Type="Self.tblWorkzone" Multiplicity="1" />
           <End Role="tblMatrizWorkzone" Type="Self.tblMatrizWorkzone" Multiplicity="*" />
@@ -346,6 +544,18 @@
               <PropertyRef Name="IdWorkzone" />
             </Principal>
             <Dependent Role="tblMatrizWorkzone">
+              <PropertyRef Name="idWorkzone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizWorkzoneTemp_tblWorkzone">
+          <End Role="tblWorkzone" Type="Self.tblWorkzone" Multiplicity="1" />
+          <End Role="tblMatrizWorkzoneTemp" Type="Self.tblMatrizWorkzoneTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWorkzone">
+              <PropertyRef Name="IdWorkzone" />
+            </Principal>
+            <Dependent Role="tblMatrizWorkzoneTemp">
               <PropertyRef Name="idWorkzone" />
             </Dependent>
           </ReferentialConstraint>
@@ -477,9 +687,15 @@
           <EntitySet Name="tblFuncionarios" EntityType="Self.tblFuncionarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGrupoAtividades" EntityType="Self.tblGrupoAtividades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGrupoTreinamentos" EntityType="Self.tblGrupoTreinamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMatrizFuncActivityHistorico" EntityType="Self.tblMatrizFuncActivityHistorico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMatrizFuncTreinHistorico" EntityType="Self.tblMatrizFuncTreinHistorico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblMatrizFuncXAtividades" EntityType="Self.tblMatrizFuncXAtividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMatrizFuncXAtividadesTemp" EntityType="Self.tblMatrizFuncXAtividadesTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblMatrizFuncXTreinamento" EntityType="Self.tblMatrizFuncXTreinamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMatrizFuncXTreinamentoTemp" EntityType="Self.tblMatrizFuncXTreinamentoTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblMatrizWorkzone" EntityType="Self.tblMatrizWorkzone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMatrizWorkzoneHistorico" EntityType="Self.tblMatrizWorkzoneHistorico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMatrizWorkzoneTemp" EntityType="Self.tblMatrizWorkzoneTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPerfilAtividadeXPerfilAtItem" EntityType="Self.tblPerfilAtividadeXPerfilAtItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPerfilItens" EntityType="Self.tblPerfilItens" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPerfilTreinamentoxPerfilItem" EntityType="Self.tblPerfilTreinamentoxPerfilItem" Schema="dbo" store:Type="Tables" />
@@ -502,6 +718,14 @@
             <End Role="tblTreinamento" EntitySet="tblTreinamento" />
             <End Role="tblAtividadeXTreinamentos" EntitySet="tblAtividadeXTreinamentos" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncActivityHistorico_tblMatrizWorkzoneHistorico" Association="Self.FK_tblMatrizFuncActivityHistorico_tblMatrizWorkzoneHistorico">
+            <End Role="tblMatrizWorkzoneHistorico" EntitySet="tblMatrizWorkzoneHistorico" />
+            <End Role="tblMatrizFuncActivityHistorico" EntitySet="tblMatrizFuncActivityHistorico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncTreinHistorico_tblMatrizWorkzoneHistorico" Association="Self.FK_tblMatrizFuncTreinHistorico_tblMatrizWorkzoneHistorico">
+            <End Role="tblMatrizWorkzoneHistorico" EntitySet="tblMatrizWorkzoneHistorico" />
+            <End Role="tblMatrizFuncTreinHistorico" EntitySet="tblMatrizFuncTreinHistorico" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblMatrizFuncXAtividades_tblAtividades" Association="Self.FK_tblMatrizFuncXAtividades_tblAtividades">
             <End Role="tblAtividades" EntitySet="tblAtividades" />
             <End Role="tblMatrizFuncXAtividades" EntitySet="tblMatrizFuncXAtividades" />
@@ -517,6 +741,22 @@
           <AssociationSet Name="FK_tblMatrizFuncXAtividades_tblPerfilItens" Association="Self.FK_tblMatrizFuncXAtividades_tblPerfilItens">
             <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
             <End Role="tblMatrizFuncXAtividades" EntitySet="tblMatrizFuncXAtividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXAtividadesTemp_tblAtividades" Association="Self.FK_tblMatrizFuncXAtividadesTemp_tblAtividades">
+            <End Role="tblAtividades" EntitySet="tblAtividades" />
+            <End Role="tblMatrizFuncXAtividadesTemp" EntitySet="tblMatrizFuncXAtividadesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXAtividadesTemp_tblFuncionarios" Association="Self.FK_tblMatrizFuncXAtividadesTemp_tblFuncionarios">
+            <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
+            <End Role="tblMatrizFuncXAtividadesTemp" EntitySet="tblMatrizFuncXAtividadesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXAtividadesTemp_tblMatrizWorkzoneTemp" Association="Self.FK_tblMatrizFuncXAtividadesTemp_tblMatrizWorkzoneTemp">
+            <End Role="tblMatrizWorkzoneTemp" EntitySet="tblMatrizWorkzoneTemp" />
+            <End Role="tblMatrizFuncXAtividadesTemp" EntitySet="tblMatrizFuncXAtividadesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXAtividadesTemp_tblPerfilItens" Association="Self.FK_tblMatrizFuncXAtividadesTemp_tblPerfilItens">
+            <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
+            <End Role="tblMatrizFuncXAtividadesTemp" EntitySet="tblMatrizFuncXAtividadesTemp" />
           </AssociationSet>
           <AssociationSet Name="FK_tblMatrizFuncXTreinamento_tblFuncionarios" Association="Self.FK_tblMatrizFuncXTreinamento_tblFuncionarios">
             <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
@@ -534,9 +774,29 @@
             <End Role="tblTreinamento" EntitySet="tblTreinamento" />
             <End Role="tblMatrizFuncXTreinamento" EntitySet="tblMatrizFuncXTreinamento" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamentoTemp_tblFuncionarios" Association="Self.FK_tblMatrizFuncXTreinamentoTemp_tblFuncionarios">
+            <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
+            <End Role="tblMatrizFuncXTreinamentoTemp" EntitySet="tblMatrizFuncXTreinamentoTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamentoTemp_tblMatrizWorkzoneTemp" Association="Self.FK_tblMatrizFuncXTreinamentoTemp_tblMatrizWorkzoneTemp">
+            <End Role="tblMatrizWorkzoneTemp" EntitySet="tblMatrizWorkzoneTemp" />
+            <End Role="tblMatrizFuncXTreinamentoTemp" EntitySet="tblMatrizFuncXTreinamentoTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamentoTemp_tblPerfilItens" Association="Self.FK_tblMatrizFuncXTreinamentoTemp_tblPerfilItens">
+            <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
+            <End Role="tblMatrizFuncXTreinamentoTemp" EntitySet="tblMatrizFuncXTreinamentoTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamentoTemp_tblTreinamento" Association="Self.FK_tblMatrizFuncXTreinamentoTemp_tblTreinamento">
+            <End Role="tblTreinamento" EntitySet="tblTreinamento" />
+            <End Role="tblMatrizFuncXTreinamentoTemp" EntitySet="tblMatrizFuncXTreinamentoTemp" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblMatrizWorkzone_tblWorkzone" Association="Self.FK_tblMatrizWorkzone_tblWorkzone">
             <End Role="tblWorkzone" EntitySet="tblWorkzone" />
             <End Role="tblMatrizWorkzone" EntitySet="tblMatrizWorkzone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizWorkzoneTemp_tblWorkzone" Association="Self.FK_tblMatrizWorkzoneTemp_tblWorkzone">
+            <End Role="tblWorkzone" EntitySet="tblWorkzone" />
+            <End Role="tblMatrizWorkzoneTemp" EntitySet="tblMatrizWorkzoneTemp" />
           </AssociationSet>
           <AssociationSet Name="FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtivItem" Association="Self.FK_tblPerfilAtividadeXPerfilItem_tblPerfilAtivItem">
             <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
@@ -610,6 +870,7 @@
           <NavigationProperty Name="tblAtividadeXTreinamentos" Relationship="Self.FK_tblAtividadeXTreinamentos_tblAtividade" FromRole="tblAtividades" ToRole="tblAtividadeXTreinamentos" />
           <NavigationProperty Name="tblMatrizFuncXAtividades" Relationship="Self.FK_tblMatrizFuncXAtividades_tblAtividades" FromRole="tblAtividades" ToRole="tblMatrizFuncXAtividades" />
           <NavigationProperty Name="tblWorkzoneXAtividades" Relationship="Self.FK_tblWorkoneXAtividades_tblAtividades" FromRole="tblAtividades" ToRole="tblWorkzoneXAtividades" />
+          <NavigationProperty Name="tblMatrizFuncXAtividadesTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblAtividades" FromRole="tblAtividades" ToRole="tblMatrizFuncXAtividadesTemp" />
         </EntityType>
         <EntityType Name="tblAtividadeXTreinamentos">
           <Key>
@@ -636,6 +897,8 @@
           <NavigationProperty Name="tblMatrizFuncXAtividades" Relationship="Self.FK_tblMatrizFuncXAtividades_tblFuncionarios" FromRole="tblFuncionarios" ToRole="tblMatrizFuncXAtividades" />
           <NavigationProperty Name="tblMatrizFuncXTreinamento" Relationship="Self.FK_tblMatrizFuncXTreinamento_tblFuncionarios" FromRole="tblFuncionarios" ToRole="tblMatrizFuncXTreinamento" />
           <NavigationProperty Name="tblWorkzoneXFuncionario" Relationship="Self.FK_tblWorkzonesXFuncionarios_tblFuncionarios" FromRole="tblFuncionarios" ToRole="tblWorkzoneXFuncionario" />
+          <NavigationProperty Name="tblMatrizFuncXAtividadesTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblFuncionarios" FromRole="tblFuncionarios" ToRole="tblMatrizFuncXAtividadesTemp" />
+          <NavigationProperty Name="tblMatrizFuncXTreinamentoTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblFuncionarios" FromRole="tblFuncionarios" ToRole="tblMatrizFuncXTreinamentoTemp" />
         </EntityType>
         <EntityType Name="tblGrupoAtividades">
           <Key>
@@ -666,6 +929,7 @@
           <NavigationProperty Name="tblFuncionarios" Relationship="Self.FK_tblMatrizFuncXAtividades_tblFuncionarios" FromRole="tblMatrizFuncXAtividades" ToRole="tblFuncionarios" />
           <NavigationProperty Name="tblMatrizWorkzone" Relationship="Self.FK_tblMatrizFuncXAtividades_tblMatrizWorkzone" FromRole="tblMatrizFuncXAtividades" ToRole="tblMatrizWorkzone" />
           <NavigationProperty Name="tblPerfilItens" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividades_tblPerfilItens" FromRole="tblMatrizFuncXAtividades" ToRole="tblPerfilItens" />
+          <Property Name="alocacaoForcada" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblMatrizFuncXTreinamento">
           <Key>
@@ -716,6 +980,8 @@
           <NavigationProperty Name="tblPerfilTreinamentoxPerfilItem" Relationship="Self.FK_tblPerfilTreinamentoxPerfilItem_tblPerfilAtivItem" FromRole="tblPerfilItens" ToRole="tblPerfilTreinamentoxPerfilItem" />
           <NavigationProperty Name="tblMatrizFuncXAtividades" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividades_tblPerfilItens" FromRole="tblPerfilItens" ToRole="tblMatrizFuncXAtividades" />
           <NavigationProperty Name="tblMatrizFuncXTreinamento" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamento_tblPerfilItens" FromRole="tblPerfilItens" ToRole="tblMatrizFuncXTreinamento" />
+          <NavigationProperty Name="tblMatrizFuncXAtividadesTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblPerfilItens" FromRole="tblPerfilItens" ToRole="tblMatrizFuncXAtividadesTemp" />
+          <NavigationProperty Name="tblMatrizFuncXTreinamentoTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblPerfilItens" FromRole="tblPerfilItens" ToRole="tblMatrizFuncXTreinamentoTemp" />
         </EntityType>
         <EntityType Name="tblPerfilTreinamentoxPerfilItem">
           <Key>
@@ -774,6 +1040,7 @@
           <NavigationProperty Name="tblMatrizFuncXTreinamento" Relationship="Self.FK_tblMatrizFuncXTreinamento_tblTreinamento" FromRole="tblTreinamento" ToRole="tblMatrizFuncXTreinamento" />
           <NavigationProperty Name="tblPerfis" Relationship="Self.FK_tblTreinamento_tblPerfis" FromRole="tblTreinamento" ToRole="tblPerfis" />
           <NavigationProperty Name="tblTipoTreinamento" Relationship="Self.FK_tblTreinamento_tblTipoTreinamento" FromRole="tblTreinamento" ToRole="tblTipoTreinamento" />
+          <NavigationProperty Name="tblMatrizFuncXTreinamentoTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblTreinamento" FromRole="tblTreinamento" ToRole="tblMatrizFuncXTreinamentoTemp" />
         </EntityType>
         <EntityType Name="tblTreinamentoStatus">
           <Key>
@@ -806,6 +1073,7 @@
           <NavigationProperty Name="tblMatrizWorkzone" Relationship="Self.FK_tblMatrizWorkzone_tblWorkzone" FromRole="tblWorkzone" ToRole="tblMatrizWorkzone" />
           <NavigationProperty Name="tblWorkzoneXAtividades" Relationship="Self.FK_tblWorkoneXAtividades_tblWorkzone" FromRole="tblWorkzone" ToRole="tblWorkzoneXAtividades" />
           <NavigationProperty Name="tblWorkzoneXFuncionario" Relationship="Self.FK_tblWorkzonesXFuncionarios_tblWorkzone" FromRole="tblWorkzone" ToRole="tblWorkzoneXFuncionario" />
+          <NavigationProperty Name="tblMatrizWorkzoneTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizWorkzoneTemp_tblWorkzone" FromRole="tblWorkzone" ToRole="tblMatrizWorkzoneTemp" />
         </EntityType>
         <EntityType Name="tblWorkzoneXAtividades">
           <Key>
@@ -1068,7 +1336,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DbConnection" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tblAtividades" EntityType="Self.tblAtividades" />
           <EntitySet Name="tblAtividadeXTreinamentos" EntityType="Self.tblAtividadeXTreinamentos" />
@@ -1176,7 +1444,57 @@
             <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
             <End Role="tblMatrizFuncXTreinamento" EntitySet="tblMatrizFuncXTreinamento" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="tblMatrizFuncXAtividadesTemp" EntityType="Mercedes_Matriz_V2Model.tblMatrizFuncXAtividadesTemp" />
+          <EntitySet Name="tblMatrizFuncXTreinamentoTemp" EntityType="Mercedes_Matriz_V2Model.tblMatrizFuncXTreinamentoTemp" />
+          <EntitySet Name="tblMatrizWorkzoneTemp" EntityType="Mercedes_Matriz_V2Model.tblMatrizWorkzoneTemp" />
+          <AssociationSet Name="FK_tblMatrizFuncXAtividadesTemp_tblAtividades" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblAtividades">
+            <End Role="tblAtividades" EntitySet="tblAtividades" />
+            <End Role="tblMatrizFuncXAtividadesTemp" EntitySet="tblMatrizFuncXAtividadesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXAtividadesTemp_tblFuncionarios" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblFuncionarios">
+            <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
+            <End Role="tblMatrizFuncXAtividadesTemp" EntitySet="tblMatrizFuncXAtividadesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamentoTemp_tblFuncionarios" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblFuncionarios">
+            <End Role="tblFuncionarios" EntitySet="tblFuncionarios" />
+            <End Role="tblMatrizFuncXTreinamentoTemp" EntitySet="tblMatrizFuncXTreinamentoTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXAtividadesTemp_tblMatrizWorkzoneTemp" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblMatrizWorkzoneTemp">
+            <End Role="tblMatrizWorkzoneTemp" EntitySet="tblMatrizWorkzoneTemp" />
+            <End Role="tblMatrizFuncXAtividadesTemp" EntitySet="tblMatrizFuncXAtividadesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXAtividadesTemp_tblPerfilItens" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblPerfilItens">
+            <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
+            <End Role="tblMatrizFuncXAtividadesTemp" EntitySet="tblMatrizFuncXAtividadesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamentoTemp_tblMatrizWorkzoneTemp" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblMatrizWorkzoneTemp">
+            <End Role="tblMatrizWorkzoneTemp" EntitySet="tblMatrizWorkzoneTemp" />
+            <End Role="tblMatrizFuncXTreinamentoTemp" EntitySet="tblMatrizFuncXTreinamentoTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamentoTemp_tblPerfilItens" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblPerfilItens">
+            <End Role="tblPerfilItens" EntitySet="tblPerfilItens" />
+            <End Role="tblMatrizFuncXTreinamentoTemp" EntitySet="tblMatrizFuncXTreinamentoTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncXTreinamentoTemp_tblTreinamento" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblTreinamento">
+            <End Role="tblTreinamento" EntitySet="tblTreinamento" />
+            <End Role="tblMatrizFuncXTreinamentoTemp" EntitySet="tblMatrizFuncXTreinamentoTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizWorkzoneTemp_tblWorkzone" Association="Mercedes_Matriz_V2Model.FK_tblMatrizWorkzoneTemp_tblWorkzone">
+            <End Role="tblWorkzone" EntitySet="tblWorkzone" />
+            <End Role="tblMatrizWorkzoneTemp" EntitySet="tblMatrizWorkzoneTemp" />
+          </AssociationSet>
+          <EntitySet Name="tblMatrizFuncActivityHistorico" EntityType="Mercedes_Matriz_V2Model.tblMatrizFuncActivityHistorico" />
+          <EntitySet Name="tblMatrizFuncTreinHistorico" EntityType="Mercedes_Matriz_V2Model.tblMatrizFuncTreinHistorico" />
+          <EntitySet Name="tblMatrizWorkzoneHistorico" EntityType="Mercedes_Matriz_V2Model.tblMatrizWorkzoneHistorico" />
+          <AssociationSet Name="FK_tblMatrizFuncActivityHistorico_tblMatrizWorkzoneHistorico" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncActivityHistorico_tblMatrizWorkzoneHistorico">
+            <End Role="tblMatrizWorkzoneHistorico" EntitySet="tblMatrizWorkzoneHistorico" />
+            <End Role="tblMatrizFuncActivityHistorico" EntitySet="tblMatrizFuncActivityHistorico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMatrizFuncTreinHistorico_tblMatrizWorkzoneHistorico" Association="Mercedes_Matriz_V2Model.FK_tblMatrizFuncTreinHistorico_tblMatrizWorkzoneHistorico">
+            <End Role="tblMatrizWorkzoneHistorico" EntitySet="tblMatrizWorkzoneHistorico" />
+            <End Role="tblMatrizFuncTreinHistorico" EntitySet="tblMatrizFuncTreinHistorico" />
+          </AssociationSet>
+          </EntityContainer>
         <Association Name="FK_tblMatrizFuncXAtividades_tblPerfilItens">
           <End Type="Mercedes_Matriz_V2Model.tblPerfilItens" Role="tblPerfilItens" Multiplicity="1" />
           <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXAtividades" Role="tblMatrizFuncXAtividades" Multiplicity="*" />
@@ -1201,12 +1519,236 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="tblMatrizFuncXAtividadesTemp">
+          <Key>
+            <PropertyRef Name="idMatrizFuncAtivTemp" />
+          </Key>
+          <Property Name="idMatrizFuncAtivTemp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMatrizWorkzoneTemp" Type="Int32" Nullable="false" />
+          <Property Name="idFuncionario" Type="Int32" Nullable="false" />
+          <Property Name="idAtividade" Type="Int32" Nullable="false" />
+          <Property Name="idItemPerfil" Type="Int32" Nullable="false" />
+          <Property Name="alocacaoForcada" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAtividades" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblAtividades" FromRole="tblMatrizFuncXAtividadesTemp" ToRole="tblAtividades" />
+          <NavigationProperty Name="tblFuncionarios" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblFuncionarios" FromRole="tblMatrizFuncXAtividadesTemp" ToRole="tblFuncionarios" />
+          <NavigationProperty Name="tblMatrizWorkzoneTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblMatrizWorkzoneTemp" FromRole="tblMatrizFuncXAtividadesTemp" ToRole="tblMatrizWorkzoneTemp" />
+          <NavigationProperty Name="tblPerfilItens" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblPerfilItens" FromRole="tblMatrizFuncXAtividadesTemp" ToRole="tblPerfilItens" />
+        </EntityType>
+        <EntityType Name="tblMatrizFuncXTreinamentoTemp">
+          <Key>
+            <PropertyRef Name="idMatrizFuncTreinTemp" />
+          </Key>
+          <Property Name="idMatrizFuncTreinTemp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMatrizWorkzoneTemp" Type="Int32" Nullable="false" />
+          <Property Name="idFuncionario" Type="Int32" Nullable="false" />
+          <Property Name="idTreinamento" Type="Int32" Nullable="false" />
+          <Property Name="idItemPerfil" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblFuncionarios" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblFuncionarios" FromRole="tblMatrizFuncXTreinamentoTemp" ToRole="tblFuncionarios" />
+          <NavigationProperty Name="tblMatrizWorkzoneTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblMatrizWorkzoneTemp" FromRole="tblMatrizFuncXTreinamentoTemp" ToRole="tblMatrizWorkzoneTemp" />
+          <NavigationProperty Name="tblPerfilItens" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblPerfilItens" FromRole="tblMatrizFuncXTreinamentoTemp" ToRole="tblPerfilItens" />
+          <NavigationProperty Name="tblTreinamento" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblTreinamento" FromRole="tblMatrizFuncXTreinamentoTemp" ToRole="tblTreinamento" />
+        </EntityType>
+        <EntityType Name="tblMatrizWorkzoneTemp">
+          <Key>
+            <PropertyRef Name="idMatrizWZTemp" />
+          </Key>
+          <Property Name="idMatrizWZTemp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idWorkzone" Type="Int32" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblMatrizFuncXAtividadesTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXAtividadesTemp_tblMatrizWorkzoneTemp" FromRole="tblMatrizWorkzoneTemp" ToRole="tblMatrizFuncXAtividadesTemp" />
+          <NavigationProperty Name="tblMatrizFuncXTreinamentoTemp" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncXTreinamentoTemp_tblMatrizWorkzoneTemp" FromRole="tblMatrizWorkzoneTemp" ToRole="tblMatrizFuncXTreinamentoTemp" />
+          <NavigationProperty Name="tblWorkzone" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizWorkzoneTemp_tblWorkzone" FromRole="tblMatrizWorkzoneTemp" ToRole="tblWorkzone" />
+        </EntityType>
+        <Association Name="FK_tblMatrizFuncXAtividadesTemp_tblAtividades">
+          <End Type="Mercedes_Matriz_V2Model.tblAtividades" Role="tblAtividades" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXAtividadesTemp" Role="tblMatrizFuncXAtividadesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAtividades">
+              <PropertyRef Name="idAtividade" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXAtividadesTemp">
+              <PropertyRef Name="idAtividade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXAtividadesTemp_tblFuncionarios">
+          <End Type="Mercedes_Matriz_V2Model.tblFuncionarios" Role="tblFuncionarios" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXAtividadesTemp" Role="tblMatrizFuncXAtividadesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionarios">
+              <PropertyRef Name="idfuncionario" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXAtividadesTemp">
+              <PropertyRef Name="idFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamentoTemp_tblFuncionarios">
+          <End Type="Mercedes_Matriz_V2Model.tblFuncionarios" Role="tblFuncionarios" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXTreinamentoTemp" Role="tblMatrizFuncXTreinamentoTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionarios">
+              <PropertyRef Name="idfuncionario" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamentoTemp">
+              <PropertyRef Name="idFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXAtividadesTemp_tblMatrizWorkzoneTemp">
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizWorkzoneTemp" Role="tblMatrizWorkzoneTemp" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXAtividadesTemp" Role="tblMatrizFuncXAtividadesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMatrizWorkzoneTemp">
+              <PropertyRef Name="idMatrizWZTemp" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXAtividadesTemp">
+              <PropertyRef Name="idMatrizWorkzoneTemp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXAtividadesTemp_tblPerfilItens">
+          <End Type="Mercedes_Matriz_V2Model.tblPerfilItens" Role="tblPerfilItens" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXAtividadesTemp" Role="tblMatrizFuncXAtividadesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerfilItens">
+              <PropertyRef Name="IdPerfilItem" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXAtividadesTemp">
+              <PropertyRef Name="idItemPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamentoTemp_tblMatrizWorkzoneTemp">
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizWorkzoneTemp" Role="tblMatrizWorkzoneTemp" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXTreinamentoTemp" Role="tblMatrizFuncXTreinamentoTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMatrizWorkzoneTemp">
+              <PropertyRef Name="idMatrizWZTemp" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamentoTemp">
+              <PropertyRef Name="idMatrizWorkzoneTemp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamentoTemp_tblPerfilItens">
+          <End Type="Mercedes_Matriz_V2Model.tblPerfilItens" Role="tblPerfilItens" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXTreinamentoTemp" Role="tblMatrizFuncXTreinamentoTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerfilItens">
+              <PropertyRef Name="IdPerfilItem" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamentoTemp">
+              <PropertyRef Name="idItemPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncXTreinamentoTemp_tblTreinamento">
+          <End Type="Mercedes_Matriz_V2Model.tblTreinamento" Role="tblTreinamento" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncXTreinamentoTemp" Role="tblMatrizFuncXTreinamentoTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTreinamento">
+              <PropertyRef Name="IdTreinamento" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncXTreinamentoTemp">
+              <PropertyRef Name="idTreinamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizWorkzoneTemp_tblWorkzone">
+          <End Type="Mercedes_Matriz_V2Model.tblWorkzone" Role="tblWorkzone" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizWorkzoneTemp" Role="tblMatrizWorkzoneTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWorkzone">
+              <PropertyRef Name="IdWorkzone" />
+            </Principal>
+            <Dependent Role="tblMatrizWorkzoneTemp">
+              <PropertyRef Name="idWorkzone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblMatrizFuncActivityHistorico">
+          <Key>
+            <PropertyRef Name="idWorkzoneFuncActivityHistorico" />
+          </Key>
+          <Property Name="idWorkzoneFuncActivityHistorico" Type="Int32" Nullable="false" />
+          <Property Name="idMatrizWorkzoneHistorico" Type="Int32" Nullable="false" />
+          <Property Name="idFuncionario" Type="Int32" Nullable="false" />
+          <Property Name="nomeFuncionario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REFuncionario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BUFuncionario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idAtividade" Type="Int32" Nullable="false" />
+          <Property Name="nomeAtividade" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="siglaAtividade" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="idItemPerfil" Type="Int32" Nullable="false" />
+          <Property Name="siglaItemPerfil" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tblMatrizWorkzoneHistorico" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncActivityHistorico_tblMatrizWorkzoneHistorico" FromRole="tblMatrizFuncActivityHistorico" ToRole="tblMatrizWorkzoneHistorico" />
+        </EntityType>
+        <EntityType Name="tblMatrizFuncTreinHistorico">
+          <Key>
+            <PropertyRef Name="idMatrizFuncTreinHistorico" />
+          </Key>
+          <Property Name="idMatrizFuncTreinHistorico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMatrizWorkzoneHistorico" Type="Int32" Nullable="false" />
+          <Property Name="idFuncionario" Type="Int32" Nullable="false" />
+          <Property Name="nomeFuncionario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="REFuncionario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BUFuncionario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idTreinamento" Type="Int32" Nullable="false" />
+          <Property Name="nomeTreinamento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoTreinamento" Type="Int32" Nullable="false" />
+          <Property Name="nomeTipoTreinamento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="siglaTipoTreinamento" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="idItemPerfil" Type="Int32" Nullable="false" />
+          <Property Name="siglaItemPerfil" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tblMatrizWorkzoneHistorico" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncTreinHistorico_tblMatrizWorkzoneHistorico" FromRole="tblMatrizFuncTreinHistorico" ToRole="tblMatrizWorkzoneHistorico" />
+        </EntityType>
+        <EntityType Name="tblMatrizWorkzoneHistorico">
+          <Key>
+            <PropertyRef Name="idMatrizHistorico" />
+          </Key>
+          <Property Name="idMatrizHistorico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idWorkzone" Type="Int32" Nullable="false" />
+          <Property Name="nomeWorkzone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BUWorkzone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CCWorkzone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LinhaWorkzone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UsuarioCriacao" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblMatrizFuncActivityHistorico" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncActivityHistorico_tblMatrizWorkzoneHistorico" FromRole="tblMatrizWorkzoneHistorico" ToRole="tblMatrizFuncActivityHistorico" />
+          <NavigationProperty Name="tblMatrizFuncTreinHistorico" Relationship="Mercedes_Matriz_V2Model.FK_tblMatrizFuncTreinHistorico_tblMatrizWorkzoneHistorico" FromRole="tblMatrizWorkzoneHistorico" ToRole="tblMatrizFuncTreinHistorico" />
+        </EntityType>
+        <Association Name="FK_tblMatrizFuncActivityHistorico_tblMatrizWorkzoneHistorico">
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizWorkzoneHistorico" Role="tblMatrizWorkzoneHistorico" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncActivityHistorico" Role="tblMatrizFuncActivityHistorico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMatrizWorkzoneHistorico">
+              <PropertyRef Name="idMatrizHistorico" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncActivityHistorico">
+              <PropertyRef Name="idMatrizWorkzoneHistorico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMatrizFuncTreinHistorico_tblMatrizWorkzoneHistorico">
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizWorkzoneHistorico" Role="tblMatrizWorkzoneHistorico" Multiplicity="1" />
+          <End Type="Mercedes_Matriz_V2Model.tblMatrizFuncTreinHistorico" Role="tblMatrizFuncTreinHistorico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMatrizWorkzoneHistorico">
+              <PropertyRef Name="idMatrizHistorico" />
+            </Principal>
+            <Dependent Role="tblMatrizFuncTreinHistorico">
+              <PropertyRef Name="idMatrizWorkzoneHistorico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Mercedes_Matriz_V2ModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Mercedes_Matriz_V2ModelStoreContainer" CdmEntityContainer="DbConnection">
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="Mercedes_Matriz_V2Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1275,6 +1817,7 @@
           <EntitySetMapping Name="tblMatrizFuncXAtividades">
             <EntityTypeMapping TypeName="Mercedes_Matriz_V2Model.tblMatrizFuncXAtividades">
               <MappingFragment StoreEntitySet="tblMatrizFuncXAtividades">
+                <ScalarProperty Name="alocacaoForcada" ColumnName="alocacaoForcada" />
                 <ScalarProperty Name="idMatrizFuncAtiv" ColumnName="idMatrizFuncAtiv" />
                 <ScalarProperty Name="idMatrizWorkzone" ColumnName="idMatrizWorkzone" />
                 <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
@@ -1420,6 +1963,89 @@
                 <ScalarProperty Name="idWorkzoneFuncionario" ColumnName="idWorkzoneFuncionario" />
                 <ScalarProperty Name="idWorkzone" ColumnName="idWorkzone" />
                 <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMatrizFuncXAtividadesTemp">
+            <EntityTypeMapping TypeName="Mercedes_Matriz_V2Model.tblMatrizFuncXAtividadesTemp">
+              <MappingFragment StoreEntitySet="tblMatrizFuncXAtividadesTemp">
+                <ScalarProperty Name="alocacaoForcada" ColumnName="alocacaoForcada" />
+                <ScalarProperty Name="idItemPerfil" ColumnName="idItemPerfil" />
+                <ScalarProperty Name="idAtividade" ColumnName="idAtividade" />
+                <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
+                <ScalarProperty Name="idMatrizWorkzoneTemp" ColumnName="idMatrizWorkzoneTemp" />
+                <ScalarProperty Name="idMatrizFuncAtivTemp" ColumnName="idMatrizFuncAtivTemp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMatrizFuncXTreinamentoTemp">
+            <EntityTypeMapping TypeName="Mercedes_Matriz_V2Model.tblMatrizFuncXTreinamentoTemp">
+              <MappingFragment StoreEntitySet="tblMatrizFuncXTreinamentoTemp">
+                <ScalarProperty Name="idItemPerfil" ColumnName="idItemPerfil" />
+                <ScalarProperty Name="idTreinamento" ColumnName="idTreinamento" />
+                <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
+                <ScalarProperty Name="idMatrizWorkzoneTemp" ColumnName="idMatrizWorkzoneTemp" />
+                <ScalarProperty Name="idMatrizFuncTreinTemp" ColumnName="idMatrizFuncTreinTemp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMatrizWorkzoneTemp">
+            <EntityTypeMapping TypeName="Mercedes_Matriz_V2Model.tblMatrizWorkzoneTemp">
+              <MappingFragment StoreEntitySet="tblMatrizWorkzoneTemp">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="idWorkzone" ColumnName="idWorkzone" />
+                <ScalarProperty Name="idMatrizWZTemp" ColumnName="idMatrizWZTemp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMatrizFuncActivityHistorico">
+            <EntityTypeMapping TypeName="Mercedes_Matriz_V2Model.tblMatrizFuncActivityHistorico">
+              <MappingFragment StoreEntitySet="tblMatrizFuncActivityHistorico">
+                <ScalarProperty Name="siglaItemPerfil" ColumnName="siglaItemPerfil" />
+                <ScalarProperty Name="idItemPerfil" ColumnName="idItemPerfil" />
+                <ScalarProperty Name="siglaAtividade" ColumnName="siglaAtividade" />
+                <ScalarProperty Name="nomeAtividade" ColumnName="nomeAtividade" />
+                <ScalarProperty Name="idAtividade" ColumnName="idAtividade" />
+                <ScalarProperty Name="BUFuncionario" ColumnName="BUFuncionario" />
+                <ScalarProperty Name="REFuncionario" ColumnName="REFuncionario" />
+                <ScalarProperty Name="nomeFuncionario" ColumnName="nomeFuncionario" />
+                <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
+                <ScalarProperty Name="idMatrizWorkzoneHistorico" ColumnName="idMatrizWorkzoneHistorico" />
+                <ScalarProperty Name="idWorkzoneFuncActivityHistorico" ColumnName="idWorkzoneFuncActivityHistorico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMatrizFuncTreinHistorico">
+            <EntityTypeMapping TypeName="Mercedes_Matriz_V2Model.tblMatrizFuncTreinHistorico">
+              <MappingFragment StoreEntitySet="tblMatrizFuncTreinHistorico">
+                <ScalarProperty Name="siglaItemPerfil" ColumnName="siglaItemPerfil" />
+                <ScalarProperty Name="idItemPerfil" ColumnName="idItemPerfil" />
+                <ScalarProperty Name="siglaTipoTreinamento" ColumnName="siglaTipoTreinamento" />
+                <ScalarProperty Name="nomeTipoTreinamento" ColumnName="nomeTipoTreinamento" />
+                <ScalarProperty Name="idTipoTreinamento" ColumnName="idTipoTreinamento" />
+                <ScalarProperty Name="nomeTreinamento" ColumnName="nomeTreinamento" />
+                <ScalarProperty Name="idTreinamento" ColumnName="idTreinamento" />
+                <ScalarProperty Name="BUFuncionario" ColumnName="BUFuncionario" />
+                <ScalarProperty Name="REFuncionario" ColumnName="REFuncionario" />
+                <ScalarProperty Name="nomeFuncionario" ColumnName="nomeFuncionario" />
+                <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
+                <ScalarProperty Name="idMatrizWorkzoneHistorico" ColumnName="idMatrizWorkzoneHistorico" />
+                <ScalarProperty Name="idMatrizFuncTreinHistorico" ColumnName="idMatrizFuncTreinHistorico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMatrizWorkzoneHistorico">
+            <EntityTypeMapping TypeName="Mercedes_Matriz_V2Model.tblMatrizWorkzoneHistorico">
+              <MappingFragment StoreEntitySet="tblMatrizWorkzoneHistorico">
+                <ScalarProperty Name="UsuarioCriacao" ColumnName="UsuarioCriacao" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="LinhaWorkzone" ColumnName="LinhaWorkzone" />
+                <ScalarProperty Name="CCWorkzone" ColumnName="CCWorkzone" />
+                <ScalarProperty Name="BUWorkzone" ColumnName="BUWorkzone" />
+                <ScalarProperty Name="nomeWorkzone" ColumnName="nomeWorkzone" />
+                <ScalarProperty Name="idWorkzone" ColumnName="idWorkzone" />
+                <ScalarProperty Name="idMatrizHistorico" ColumnName="idMatrizHistorico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

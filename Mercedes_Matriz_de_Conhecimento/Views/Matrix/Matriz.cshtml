@@ -109,8 +109,15 @@
             });
         }
 
-        function teste() {
-            console.log('teste');
+        function salvarMatriz(idWorkzone) {
+            $.ajax({
+                url: '@Url.Action("SalvarHistorico", "Matrix")',
+                data: {
+                    idWorkzone: idWorkzone
+                }
+            }).done(function (response) {
+                location.reload();
+            });
         }
     </script>
 }
@@ -124,15 +131,14 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th colspan="2" class="no-border"></th>
+            <th colspan="3" class="no-border"></th>
             <th colspan="@ViewBag.tListCount" class="table-title">Perfil</th>
             <th colspan="@ViewBag.activiesCount" class="table-title">Tarefas</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <th></th>
-            <th></th>
+            <th colspan="3" class="white-border"></th>
             @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
             {
                 <th colspan="@tt.tblTreinamento.Count" class="text-style">@tt.Nome</th>
@@ -148,6 +154,7 @@
         <tr>
             <th>Registro</th>
             <th>Nome</th>
+            <th>BU</th>
             @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
             {
                 <th class="rotate">
@@ -179,10 +186,11 @@
             <tr>
                 <td class="text-style">@wzXFunc.tblFuncionarios.RE</td>
                 <td class="text-style">@wzXFunc.tblFuncionarios.Nome</td>
+                <td class="text-style">@wzXFunc.tblFuncionarios.idBu_Origem</td>
                 @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)//x3
                 {
                     var idTrainAdded = 0;
-                    foreach (var t in trein.tblMatrizFuncXTreinamento)
+                    foreach (var t in trein.tblMatrizFuncXTreinamentoTemp)
                     {
                         if (t.idTreinamento == trein.IdTreinamento
                             && wzXFunc.idFuncionario == t.tblFuncionarios.idfuncionario)
@@ -210,7 +218,7 @@
                 @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
                 {
                     var idActivAdded = 0;
-                    foreach (var a2 in a.tblMatrizFuncXAtividades)
+                    foreach (var a2 in a.tblMatrizFuncXAtividadesTemp)
                     {
 
                         var trainamentosQtd = 0;
@@ -219,9 +227,9 @@
                         foreach (var treinInsideAtiv in a2.tblAtividades.tblAtividadeXTreinamentos)
                         {
                             trainamentosQtd = a2.tblAtividades.tblAtividadeXTreinamentos.Count;
-                            //treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento
+                            //treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamentoTemp
                             //    .Where(w => w.idFuncionario == wzXFunc.idFuncionario && treinInsideAtiv.tblTreinamento.IdTreinamento);
-                            foreach (var aval in treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento)
+                            foreach (var aval in treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamentoTemp)
                             {
                                 if (treinInsideAtiv.idTreinamento == aval.idTreinamento && wzXFunc.idFuncionario == aval.idFuncionario)
                                 {
@@ -267,7 +275,7 @@
                     var avaliacao = 0;
                     foreach (var t in a.tblAtividadeXTreinamentos)
                     {
-                        avaliacao+= t.tblTreinamento.tblMatrizFuncXTreinamento.Where(f => f.idFuncionario == wzXFunc.idFuncionario).Count();
+                        avaliacao+= t.tblTreinamento.tblMatrizFuncXTreinamentoTemp.Where(f => f.idFuncionario == wzXFunc.idFuncionario).Count();
                     }
 
                     if (a.idAtividade != idActivAdded)
@@ -290,6 +298,10 @@
         }
     </tbody>
 </table>
+
+<div class="row">
+    <button class="btn btn-modified-save pull-right" onclick="salvarMatriz(@Model.IdWorkzone)">Salvar</button>
+</div>
 
 <div id="listTraining">
     @{Html.RenderAction("BuscarITem", "Matrix", new { idTrain = 0, idFuncionario = 0 });}

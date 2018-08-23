@@ -30,6 +30,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Matriz;
         }
 
+        public IEnumerable<tblMatrizFuncXAtividades> GetMatrizByMWZId(int idMWZ)
+        {
+            IEnumerable<tblMatrizFuncXAtividades> Matriz;
+
+            var query = from f in _db.tblMatrizFuncXAtividades
+                        where f.idMatrizWorkzone == idMWZ
+                        orderby f.tblMatrizWorkzone.tblWorkzone.Nome
+                        select f;
+
+            Matriz = query;
+
+            return Matriz;
+        }
+
         public tblMatrizFuncXAtividades GetMatrizByFuncXAtiv(int idActivity, int idFunc)
         {
             tblMatrizFuncXAtividades Matriz;

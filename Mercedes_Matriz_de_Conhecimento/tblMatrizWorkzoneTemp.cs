@@ -12,33 +12,24 @@ namespace Mercedes_Matriz_de_Conhecimento
     using System;
     using System.Collections.Generic;
     
-    public partial class tblTreinamento
+    public partial class tblMatrizWorkzoneTemp
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblTreinamento()
+        public tblMatrizWorkzoneTemp()
         {
-            this.tblAtividadeXTreinamentos = new HashSet<tblAtividadeXTreinamentos>();
-            this.tblMatrizFuncXTreinamento = new HashSet<tblMatrizFuncXTreinamento>();
+            this.tblMatrizFuncXAtividadesTemp = new HashSet<tblMatrizFuncXAtividadesTemp>();
             this.tblMatrizFuncXTreinamentoTemp = new HashSet<tblMatrizFuncXTreinamentoTemp>();
         }
     
-        public int IdTreinamento { get; set; }
-        public string Nome { get; set; }
-        public string Sigla { get; set; }
-        public string Descricao { get; set; }
-        public string UsuarioCriacao { get; set; }
+        public int idMatrizWZTemp { get; set; }
+        public int idWorkzone { get; set; }
         public System.DateTime DataCriacao { get; set; }
-        public bool IndicaGrupoDeTreinamentos { get; set; }
-        public Nullable<int> idTipoTreinamento { get; set; }
-        public int idPerfilTreinamento { get; set; }
+        public string Usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblAtividadeXTreinamentos> tblAtividadeXTreinamentos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblMatrizFuncXTreinamento> tblMatrizFuncXTreinamento { get; set; }
-        public virtual tblPerfis tblPerfis { get; set; }
-        public virtual tblTipoTreinamento tblTipoTreinamento { get; set; }
+        public virtual ICollection<tblMatrizFuncXAtividadesTemp> tblMatrizFuncXAtividadesTemp { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMatrizFuncXTreinamentoTemp> tblMatrizFuncXTreinamentoTemp { get; set; }
+        public virtual tblWorkzone tblWorkzone { get; set; }
     }
 }

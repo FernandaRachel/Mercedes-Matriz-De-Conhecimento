@@ -12,18 +12,20 @@ namespace Mercedes_Matriz_de_Conhecimento
     using System;
     using System.Collections.Generic;
     
-    public partial class tblMatrizFuncXAtividades
+    public partial class tblMatrizFuncActivityHistorico
     {
-        public int idMatrizFuncAtiv { get; set; }
-        public int idMatrizWorkzone { get; set; }
+        public int idWorkzoneFuncActivityHistorico { get; set; }
+        public int idMatrizWorkzoneHistorico { get; set; }
         public int idFuncionario { get; set; }
+        public string nomeFuncionario { get; set; }
+        public string REFuncionario { get; set; }
+        public string BUFuncionario { get; set; }
         public int idAtividade { get; set; }
+        public string nomeAtividade { get; set; }
+        public string siglaAtividade { get; set; }
         public int idItemPerfil { get; set; }
-        public string alocacaoForcada { get; set; }
+        public string siglaItemPerfil { get; set; }
     
-        public virtual tblAtividades tblAtividades { get; set; }
-        public virtual tblFuncionarios tblFuncionarios { get; set; }
-        public virtual tblMatrizWorkzone tblMatrizWorkzone { get; set; }
-        public virtual tblPerfilItens tblPerfilItens { get; set; }
+        public virtual tblMatrizWorkzoneHistorico tblMatrizWorkzoneHistorico { get; set; }
     }
 }
