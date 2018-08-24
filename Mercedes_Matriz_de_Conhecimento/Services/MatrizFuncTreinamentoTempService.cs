@@ -102,6 +102,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return MatrizTemp;
         }
 
+        public void DeleteMatrizTempAll(int idMWz)
+        {
+            var query = from f in _db.tblMatrizFuncXTreinamentoTemp
+                        where f.idMatrizWorkzoneTemp == idMWz
+                        select f;
+
+
+            _db.tblMatrizFuncXTreinamentoTemp.RemoveRange(query);
+            _db.SaveChanges();
+        }
+
 
         public tblMatrizFuncXTreinamentoTemp UpdateMatriz(tblMatrizFuncXTreinamentoTemp MatrizTemp)
         {
