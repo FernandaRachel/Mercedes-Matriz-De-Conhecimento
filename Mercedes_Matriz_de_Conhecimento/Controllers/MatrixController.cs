@@ -76,14 +76,24 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             matrizWz.idMatrizWZ = 0;
             matrizWzTemp.idMatrizWZTemp = 0;
 
+            //VERIFICA SE A MATRIZ TEMPORÁRIA ESTÁ LIMPA
+            var matrizTemp = _matrizTempService.GetMatrizTempByWZId(WorkzoneID);
+            if (matrizTemp != null)
+            {
+                _matrizFuncActivityTempService.DeleteMatrizTempAll(matrizTemp.idMatrizWZTemp);
+                _matrizFuncTrainingTempService.DeleteMatrizTempAll(matrizTemp.idMatrizWZTemp);
+                _matrizTempService.DeleteMatrizTemp(matrizTemp.idMatrizWZTemp);
+
+            }
+
             if (exits == null)
             {
-                // CRIA MATRIZ OFICIAL SE ELA N EXISTIR
-                tblMatrizWorkzone matrizXworzoneTemp = new tblMatrizWorkzone();
-                matrizXworzoneTemp.Usuario = "Teste s/ Seg";
-                matrizXworzoneTemp.DataCriacao = DateTime.Now;
-                matrizXworzoneTemp.idWorkzone = WorkzoneID;
-                matrizWz = _matrizService.CreateMatriz(matrizXworzoneTemp);
+                //// CRIA MATRIZ OFICIAL SE ELA N EXISTIR
+                //tblMatrizWorkzone matrizXworzoneTemp = new tblMatrizWorkzone();
+                //matrizXworzoneTemp.Usuario = "Teste s/ Seg";
+                //matrizXworzoneTemp.DataCriacao = DateTime.Now;
+                //matrizXworzoneTemp.idWorkzone = WorkzoneID;
+                //matrizWz = _matrizService.CreateMatriz(matrizXworzoneTemp);
 
                 // CRIA MATRIZ TEMPORÁRIA ONDE A EDIÇÃO SERÁ FEITA
                 tblMatrizWorkzoneTemp matrizXworzoneTempTemp = new tblMatrizWorkzoneTemp();
@@ -96,56 +106,55 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             else
             {
                 matrizWz = exits;
+            }
+            var exitsMTemp = _matrizTempService.GetMatrizTempByWZId(WorkzoneID);
 
-                var exitsMTemp = _matrizTempService.GetMatrizTempByWZId(WorkzoneID);
+            if (exitsMTemp == null)
+            {
 
-                if (exitsMTemp == null)
+
+                // CRIA MATRIZ TEMPORÁRIA ONDE A EDIÇÃO SERÁ FEITA
+                tblMatrizWorkzoneTemp matrizXworzoneTempTemp = new tblMatrizWorkzoneTemp();
+                matrizXworzoneTempTemp.Usuario = "Teste s/ Seg";
+                matrizXworzoneTempTemp.DataCriacao = DateTime.Now;
+                matrizXworzoneTempTemp.idWorkzone = WorkzoneID;
+                matrizWzTemp = _matrizTempService.CreateMatrizTemp(matrizXworzoneTempTemp);
+                exitsMTemp = _matrizTempService.GetMatrizTempByWZId(WorkzoneID);
+            }
+            // VERIFICA SE A MATRIZ POSSUI AVALIAÇÕES EM ATIVIDADE
+            var avalAtiv = _matrizFuncActivityService.GetMatrizByMWZId(matrizWz.idMatrizWZ);
+
+            if (avalAtiv.Count() > 0)
+            {
+                tblMatrizFuncXAtividadesTemp newAvalObj = new tblMatrizFuncXAtividadesTemp();
+
+                foreach (var aval in avalAtiv)
                 {
+                    newAvalObj.idAtividade = aval.idAtividade;
+                    newAvalObj.idFuncionario = aval.idFuncionario;
+                    newAvalObj.idItemPerfil = aval.idItemPerfil;
+                    newAvalObj.idMatrizWorkzoneTemp = matrizWzTemp.idMatrizWZTemp;
+
+                    _matrizFuncActivityTempService.CreateMatrizTemp(newAvalObj);
+                }
+            }
 
 
-                    // CRIA MATRIZ TEMPORÁRIA ONDE A EDIÇÃO SERÁ FEITA
-                    tblMatrizWorkzoneTemp matrizXworzoneTempTemp = new tblMatrizWorkzoneTemp();
-                    matrizXworzoneTempTemp.Usuario = "Teste s/ Seg";
-                    matrizXworzoneTempTemp.DataCriacao = DateTime.Now;
-                    matrizXworzoneTempTemp.idWorkzone = WorkzoneID;
-                    matrizWzTemp = _matrizTempService.CreateMatrizTemp(matrizXworzoneTempTemp);
+            // VERIFICA SE A MATRIZ POSSUI AVALIAÇÕES EM TREINAMENTOS
+            var avalTrein = _matrizFuncTrainingService.GetMatrizByIdMWZ(matrizWz.idMatrizWZ);
 
-                    // VERIFICA SE A MATRIZ POSSUI AVALIAÇÕES EM ATIVIDADE
-                    var avalAtiv = _matrizFuncActivityService.GetMatrizByMWZId(matrizWz.idMatrizWZ);
+            if (avalTrein.Count() > 0)
+            {
+                tblMatrizFuncXTreinamentoTemp newTreinObj = new tblMatrizFuncXTreinamentoTemp();
 
-                    if (avalAtiv.Count() > 0)
-                    {
-                        tblMatrizFuncXAtividadesTemp newAvalObj = new tblMatrizFuncXAtividadesTemp();
+                foreach (var aval in avalTrein)
+                {
+                    newTreinObj.idTreinamento = aval.idTreinamento;
+                    newTreinObj.idFuncionario = aval.idFuncionario;
+                    newTreinObj.idItemPerfil = aval.idItemPerfil;
+                    newTreinObj.idMatrizWorkzoneTemp = matrizWzTemp.idMatrizWZTemp;
 
-                        foreach (var aval in avalAtiv)
-                        {
-                            newAvalObj.idAtividade = aval.idAtividade;
-                            newAvalObj.idFuncionario = aval.idFuncionario;
-                            newAvalObj.idItemPerfil = aval.idItemPerfil;
-                            newAvalObj.idMatrizWorkzoneTemp = matrizWzTemp.idMatrizWZTemp;
-
-                            _matrizFuncActivityTempService.CreateMatrizTemp(newAvalObj);
-                        }
-                    }
-
-
-                    // VERIFICA SE A MATRIZ POSSUI AVALIAÇÕES EM TREINAMENTOS
-                    var avalTrein = _matrizFuncTrainingService.GetMatrizByIdMWZ(matrizWz.idMatrizWZ);
-
-                    if (avalTrein.Count() > 0)
-                    {
-                        tblMatrizFuncXTreinamentoTemp newTreinObj = new tblMatrizFuncXTreinamentoTemp();
-
-                        foreach (var aval in avalTrein)
-                        {
-                            newTreinObj.idTreinamento = aval.idTreinamento;
-                            newTreinObj.idFuncionario = aval.idFuncionario;
-                            newTreinObj.idItemPerfil = aval.idItemPerfil;
-                            newTreinObj.idMatrizWorkzoneTemp = matrizWzTemp.idMatrizWZTemp;
-
-                            _matrizFuncTrainingTempService.CreateMatrizTemp(newTreinObj);
-                        }
-                    }
+                    _matrizFuncTrainingTempService.CreateMatrizTemp(newTreinObj);
                 }
             }
 
@@ -353,6 +362,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult SalvarHistorico(int idWorkzone)
         {
             tblMatrizWorkzoneHistorico matrizHistorico = new tblMatrizWorkzoneHistorico();
+            List<tblTreinamento> trainingList = new List<tblTreinamento>();
 
             // OBJETOS PARA ADICIONAR TREINAMENTOS E ATIVIDADES NAS LISTAS
             tblMatrizFuncTreinHistorico newTrainingHistoricoObj = new tblMatrizFuncTreinHistorico();
@@ -361,6 +371,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             //OBTÉM O ID DA MATRIZ PARA CRIAR O HISTÓRICO E AS INFOS DA WORKZONE(Nome,BU,CC,Linha,Id)
             var TempMatriz = _matrizTempService.GetMatrizTempByWZId(idWorkzone);
             var workzone = _workzone.GetWorkzoneById(TempMatriz.idWorkzone);
+            var activiesList = _workzoneXActivity.SetUpActivitiesList(idWorkzone);
 
             //  ----------- CRIA A TABELA PRINCIPAL DO HISTÓRICO - 'MATRIZ HISTÓRICO'
             matrizHistorico.idWorkzone = TempMatriz.idWorkzone;
@@ -377,58 +388,188 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var avalAtiv = _matrizFuncActivityTempService.GetMatrizTempByIdMWZ(TempMatriz.idMatrizWZTemp);
 
 
-            // POPULA A TABELA DE HISTÓRICO DE ATIVIDADES AVALIADAS NA MATRIZ
-            if (avalAtiv.Count() > 0)
+            foreach (var a in activiesList)
             {
-                newActivityHistoricoObj = new tblMatrizFuncActivityHistorico();
-
-                foreach (var aval in avalAtiv)
+                foreach (var wz in workzone.tblWorkzoneXFuncionario)
                 {
-                    newActivityHistoricoObj.idAtividade = aval.idAtividade;
-                    newActivityHistoricoObj.nomeAtividade = aval.tblAtividades.Nome;
-                    newActivityHistoricoObj.siglaAtividade = aval.tblAtividades.Sigla;
-                    newActivityHistoricoObj.idFuncionario = aval.idFuncionario;
-                    newActivityHistoricoObj.nomeFuncionario = aval.tblFuncionarios.Nome;
-                    newActivityHistoricoObj.REFuncionario = aval.tblFuncionarios.RE;
-                    newActivityHistoricoObj.BUFuncionario = aval.tblFuncionarios.idBu_Origem.ToString();
-                    newActivityHistoricoObj.idItemPerfil = aval.idItemPerfil;
-                    newActivityHistoricoObj.siglaItemPerfil = aval.tblPerfilItens.Sigla;
-                    newActivityHistoricoObj.idMatrizWorkzoneHistorico = matrizHistoricoCreated.idMatrizHistorico;
+                    //Verifica se algum usuário possui avaliação na Atividade[n] 
+                    var existAvalInActivity = avalAtiv
+                        .Where(aa => aa.idAtividade == a.idAtividade
+                    && aa.idFuncionario == wz.idFuncionario);
 
-                    _matrizHistoricoService.SalvarActivityHistorico(newActivityHistoricoObj);
+                    var objAtivAval = existAvalInActivity.FirstOrDefault();
+
+                    //Se a Atividade[n] possui avaliação para aquele usuário
+                    // Ele adiciona no histórico
+                    if (existAvalInActivity.Count() > 0)
+                    {
+                        newActivityHistoricoObj = new tblMatrizFuncActivityHistorico();
+
+                        newActivityHistoricoObj.idAtividade = objAtivAval.idAtividade;
+                        newActivityHistoricoObj.nomeAtividade = objAtivAval.tblAtividades.Nome;
+                        newActivityHistoricoObj.siglaAtividade = objAtivAval.tblAtividades.Sigla;
+                        newActivityHistoricoObj.idFuncionario = objAtivAval.idFuncionario;
+                        newActivityHistoricoObj.nomeFuncionario = objAtivAval.tblFuncionarios.Nome;
+                        newActivityHistoricoObj.REFuncionario = objAtivAval.tblFuncionarios.RE;
+                        newActivityHistoricoObj.BUFuncionario = objAtivAval.tblFuncionarios.idBu_Origem.ToString();
+                        newActivityHistoricoObj.idItemPerfil = objAtivAval.idItemPerfil;
+                        newActivityHistoricoObj.siglaItemPerfil = objAtivAval.tblPerfilItens.Sigla;
+                        newActivityHistoricoObj.idMatrizWorkzoneHistorico = matrizHistoricoCreated.idMatrizHistorico;
+
+                        _matrizHistoricoService.SalvarActivityHistorico(newActivityHistoricoObj);
+                    }
+                    else
+                    // Senão ele adiciona aquela atividade[n] sem avaliação
+                    {
+                        newActivityHistoricoObj = new tblMatrizFuncActivityHistorico();
+
+                        newActivityHistoricoObj.idAtividade = a.idAtividade;
+                        newActivityHistoricoObj.nomeAtividade = a.Nome;
+                        newActivityHistoricoObj.siglaAtividade = a.Sigla;
+                        newActivityHistoricoObj.idFuncionario = wz.idFuncionario;
+                        newActivityHistoricoObj.nomeFuncionario = wz.tblFuncionarios.Nome;
+                        newActivityHistoricoObj.REFuncionario = wz.tblFuncionarios.RE;
+                        newActivityHistoricoObj.BUFuncionario = wz.tblFuncionarios.idBu_Origem.ToString();
+                        newActivityHistoricoObj.idItemPerfil = 0;
+                        newActivityHistoricoObj.siglaItemPerfil = "";
+                        newActivityHistoricoObj.idMatrizWorkzoneHistorico = matrizHistoricoCreated.idMatrizHistorico;
+
+                        _matrizHistoricoService.SalvarActivityHistorico(newActivityHistoricoObj);
+                    }
+                }
+            }
+
+            // MONTA A LISTA DE TREINAMENTOS
+            foreach (var aList in activiesList)
+            {
+                //Pega todos IDs de atividades associados a treinamentos DA ZONA
+                foreach (var aXt in aList.tblAtividadeXTreinamentos)
+                {
+                    var aux = _training.GetTrainingById(aXt.idTreinamento);
+
+                    //Verifica se o treinamento já existe na Lista
+                    if (trainingList.Exists(t => t.IdTreinamento == aux.IdTreinamento) == false)
+                        trainingList.Add(aux);
                 }
             }
 
 
-            // VERIFICA SE A MATRIZ POSSUI AVALIAÇÕES EM TREINAMENTOS
-            var avalTrein = _matrizFuncTrainingTempService.GetMatrizTempByIdMWZ(TempMatriz.idMatrizWZTemp);
+            var avalTraining = _matrizFuncTrainingTempService.GetMatrizTempByIdMWZ(TempMatriz.idMatrizWZTemp);
 
-            if (avalTrein.Count() > 0)
+            foreach (var t in trainingList)
             {
-                newTrainingHistoricoObj = new tblMatrizFuncTreinHistorico();
-
-                foreach (var aval in avalTrein)
+                foreach (var wz in workzone.tblWorkzoneXFuncionario)
                 {
-                    newTrainingHistoricoObj.idTreinamento = aval.idTreinamento;
-                    newTrainingHistoricoObj.nomeTreinamento = aval.tblTreinamento.Nome;
-                    newTrainingHistoricoObj.idTipoTreinamento = (int)aval.tblTreinamento.idTipoTreinamento;
-                    newTrainingHistoricoObj.nomeTipoTreinamento = aval.tblTreinamento.tblTipoTreinamento.Nome;
-                    newTrainingHistoricoObj.siglaTipoTreinamento = aval.tblTreinamento.tblTipoTreinamento.Sigla;
-                    newTrainingHistoricoObj.idFuncionario = aval.idFuncionario;
-                    newTrainingHistoricoObj.nomeFuncionario = aval.tblFuncionarios.Nome;
-                    newTrainingHistoricoObj.REFuncionario = aval.tblFuncionarios.RE;
-                    newTrainingHistoricoObj.BUFuncionario = aval.tblFuncionarios.idBu_Origem.ToString();
-                    newTrainingHistoricoObj.idItemPerfil = aval.idItemPerfil;
-                    newTrainingHistoricoObj.siglaItemPerfil = aval.tblPerfilItens.Sigla;
-                    newTrainingHistoricoObj.idMatrizWorkzoneHistorico = matrizHistoricoCreated.idMatrizHistorico;
+                    //Verifica se algum usuário possui avaliação na Atividade[n] 
+                    var existAvalInTraining = avalTraining
+                        .Where(tt => tt.idTreinamento == t.IdTreinamento
+                    && tt.idFuncionario == wz.idFuncionario);
 
-                    _matrizHistoricoService.SalvarTreinHistorico(newTrainingHistoricoObj);
+                    var objTrainAval = existAvalInTraining.FirstOrDefault();
+
+                    //Se o Treinamento[n] possui avaliação para aquele usuário
+                    // Ele adiciona no histórico
+                    if (existAvalInTraining.Count() > 0)
+                    {
+
+                        newTrainingHistoricoObj = new tblMatrizFuncTreinHistorico();
+
+                        newTrainingHistoricoObj.idTreinamento = objTrainAval.idTreinamento;
+                        newTrainingHistoricoObj.nomeTreinamento = objTrainAval.tblTreinamento.Nome;
+                        newTrainingHistoricoObj.idTipoTreinamento = (int)objTrainAval.tblTreinamento.idTipoTreinamento;
+                        newTrainingHistoricoObj.nomeTipoTreinamento = objTrainAval.tblTreinamento.tblTipoTreinamento.Nome;
+                        newTrainingHistoricoObj.siglaTipoTreinamento = objTrainAval.tblTreinamento.tblTipoTreinamento.Sigla;
+                        newTrainingHistoricoObj.idFuncionario = objTrainAval.idFuncionario;
+                        newTrainingHistoricoObj.nomeFuncionario = objTrainAval.tblFuncionarios.Nome;
+                        newTrainingHistoricoObj.REFuncionario = objTrainAval.tblFuncionarios.RE;
+                        newTrainingHistoricoObj.BUFuncionario = objTrainAval.tblFuncionarios.idBu_Origem.ToString();
+                        newTrainingHistoricoObj.idItemPerfil = objTrainAval.idItemPerfil;
+                        newTrainingHistoricoObj.siglaItemPerfil = objTrainAval.tblPerfilItens.Sigla;
+                        newTrainingHistoricoObj.idMatrizWorkzoneHistorico = matrizHistoricoCreated.idMatrizHistorico;
+
+                        _matrizHistoricoService.SalvarTreinHistorico(newTrainingHistoricoObj);
+
+                    }
+                    else
+                    // Senão ele adiciona aquele treinaemnto[n] sem avaliação
+                    {
+                        newTrainingHistoricoObj = new tblMatrizFuncTreinHistorico();
+
+                        newTrainingHistoricoObj.idTreinamento = t.IdTreinamento;
+                        newTrainingHistoricoObj.nomeTreinamento = t.Nome;
+                        newTrainingHistoricoObj.idTipoTreinamento = (int)t.tblTipoTreinamento.IdTipoTreinamento;
+                        newTrainingHistoricoObj.nomeTipoTreinamento = t.tblTipoTreinamento.Nome;
+                        newTrainingHistoricoObj.siglaTipoTreinamento = t.tblTipoTreinamento.Sigla;
+                        newTrainingHistoricoObj.idFuncionario = wz.idFuncionario;
+                        newTrainingHistoricoObj.nomeFuncionario = wz.tblFuncionarios.Nome;
+                        newTrainingHistoricoObj.REFuncionario = wz.tblFuncionarios.RE;
+                        newTrainingHistoricoObj.BUFuncionario = wz.tblFuncionarios.idBu_Origem.ToString();
+                        newTrainingHistoricoObj.idItemPerfil = 0;
+                        newTrainingHistoricoObj.siglaItemPerfil = "";
+                        newTrainingHistoricoObj.idMatrizWorkzoneHistorico = matrizHistoricoCreated.idMatrizHistorico;
+
+                        _matrizHistoricoService.SalvarTreinHistorico(newTrainingHistoricoObj);
+                    }
+
                 }
 
             }
+
+            TransferirValoresMatrizTempToOficial(idWorkzone);
 
             return RedirectToAction("Index");
         }
 
+        public void TransferirValoresMatrizTempToOficial(int WorkzoneID)
+        {
+            var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
+            var matrizWz = new tblMatrizWorkzone();
+            var exitsMTemp = _matrizTempService.GetMatrizTempByWZId(WorkzoneID);
+
+            // VERIFICA SE A MATRIZ TEMPORARIA POSSUI AVALIAÇÕES EM ATIVIDADE
+            var avalAtiv = _matrizFuncActivityTempService.GetMatrizTempByIdMWZ(WorkzoneID);
+
+            tblMatrizFuncXAtividades newAvalObj = new tblMatrizFuncXAtividades();
+
+            foreach (var aval in avalAtiv)
+            {
+                var matrizOficialAtiv = _matrizFuncActivityService.GetMatrizByFuncXAtiv(aval.idAtividade, aval.idFuncionario);
+                if (matrizOficialAtiv != null)
+                {
+                    newAvalObj = new tblMatrizFuncXAtividades();
+
+                    newAvalObj.idAtividade = aval.idAtividade;
+                    newAvalObj.idFuncionario = aval.idFuncionario;
+                    newAvalObj.idItemPerfil = aval.idItemPerfil;
+                    newAvalObj.idMatrizFuncAtiv = matrizOficialAtiv.idMatrizFuncAtiv;
+
+                    _matrizFuncActivityService.UpdateMatriz(newAvalObj);
+                }else
+                {
+
+                }
+            }
+        }
+
+
+        // VERIFICA SE A MATRIZ POSSUI AVALIAÇÕES EM TREINAMENTOS
+        var avalTrein = _matrizFuncTrainingService.GetMatrizByIdMWZ(WorkzoneID);
+
+            if (avalTrein.Count() > 0)
+            {
+                tblMatrizFuncXTreinamentoTemp newTreinObj = new tblMatrizFuncXTreinamentoTemp();
+
+                foreach (var aval in avalTrein)
+                {
+                    newTreinObj.idTreinamento = aval.idTreinamento;
+                    newTreinObj.idFuncionario = aval.idFuncionario;
+                    newTreinObj.idItemPerfil = aval.idItemPerfil;
+                    newTreinObj.idMatrizWorkzoneTemp = matrizWzTemp.idMatrizWZTemp;
+
+                    _matrizFuncTrainingTempService.CreateMatrizTemp(newTreinObj);
+                }
+}
+
+        }
     }
 }

@@ -259,6 +259,8 @@
       <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AvaliacaoAtividadesModel.cs" />
+    <Compile Include="Models\AvaliacaoTreinamentoModel.cs" />
     <Compile Include="Models\ProfileItemListModel.cs" />
     <Compile Include="Models\TrainingsListModel.cs" />
     <Compile Include="Models\ActivityMetadata.cs" />
@@ -630,8 +632,8 @@
     <Content Include="Views\PerfilTrainingItemXPerfilItem\Index.cshtml" />
     <Content Include="Views\Matrix\_ModalActivity.cshtml" />
     <Content Include="Views\Matrix\Index.cshtml" />
-    <Content Include="Views\MatrizHistorico\Index.cshtml" />
-    <Content Include="Views\MatrizHistorico\MatrizHistorico.cshtml" />
+    <Content Include="Views\HistoricoMatriz\Index.cshtml" />
+    <Content Include="Views\HistoricoMatriz\MatrizHistorico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

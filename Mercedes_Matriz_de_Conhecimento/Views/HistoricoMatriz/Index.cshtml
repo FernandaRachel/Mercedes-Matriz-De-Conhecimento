@@ -13,7 +13,7 @@
         function redirectToMatriz() {
             var WorkzoneID = document.getElementById("workzone");
 
-            location.href = '@Url.Action("Matriz", "Matrix")?WorkzoneID=' + WorkzoneID.value;
+            location.href = '@Url.Action("MatrizHistorico", "HistoricoMatriz")?idMatrizHistorico=' + WorkzoneID.value;
 
 
             @*$.ajax({
@@ -33,17 +33,18 @@
 
 <div class="row">
     <div>
-        <div class="col-md-8">
-            @Html.DropDownListFor(m => m.DataCriacao, new SelectList((IEnumerable)ViewBag.ListaHistorico, "IdPerfis", "Nome"), "Escolha uma versão",
+        <div class="col-md-4">
+            @Html.DropDownListFor(m => m.DataCriacao, new SelectList((IEnumerable)ViewBag.ListaHistorico, "idMatrizHistorico", "DataCriacao"), "Escolha uma versão",
             new
             {
                 @class = "form-control col-md-9 selectpicker",
                 data_show_subtext = "true",
-                data_live_search = "true"
+                data_live_search = "true",
+                id= "workzone"
             })
         </div>
     </div>
-    <div class="col-md-3">
-        <button class="btn btn-modified-save">Abrir Histórico</button>
+    <div class="col-md-2">
+        <button class="btn btn-modified-save" onclick="redirectToMatriz()">Abrir Histórico</button>
     </div>
 </div>

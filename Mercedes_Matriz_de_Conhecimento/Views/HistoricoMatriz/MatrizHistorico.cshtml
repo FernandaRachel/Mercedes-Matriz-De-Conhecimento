@@ -1,0 +1,117 @@
+﻿@model Mercedes_Matriz_de_Conhecimento.tblMatrizWorkzoneHistorico
+
+@using System.Collections
+@using Mercedes_Matriz_de_Conhecimento.Models
+
+@{
+    ViewBag.title = "Histórico da Matriz";
+}
+
+
+
+
+
+<h2 class="text-center">@Model.nomeWorkzone</h2>
+@Html.HiddenFor(w => w.idWorkzone, new { id = "idWorkzone" })
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="3" class="no-border"></th>
+            <th colspan="@ViewBag.tListCount" class="table-title">Perfil</th>
+            <th colspan="@ViewBag.activiesCount" class="table-title">Tarefas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th colspan="3" class="white-border"></th>
+            @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
+            {
+                <p>tt: @tt.tblTreinamento.Count</p>
+                <th colspan="@tt.tblTreinamento.Count" class="text-style">@tt.Nome</th>
+            }
+
+            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+            {
+                <th class="text-style">@a.Sigla</th>
+            }
+
+
+        </tr>
+        <tr>
+            <th>Registro</th>
+            <th>Nome</th>
+            <th>BU</th>
+            @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
+            {
+                <th class="rotate">
+                    <div>
+                        <div class="rotation-wrapper-outer">
+                            <div class="rotation-wrapper-inner">
+                                <span>@t.Nome</span>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            }
+
+            @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+            {
+                <th class="rotate">
+                    <div>
+                        <div class="rotation-wrapper-outer">
+                            <div class="rotation-wrapper-inner">
+                                <span>@a.Nome</span>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            }
+        </tr>
+        @foreach (var func in (IEnumerable<tblFuncionarios>)ViewBag.funcionarios)
+            {
+            <tr>
+                <td class="text-style">@func.RE</td>
+                <td class="text-style">@func.Nome</td>
+                <td class="text-style">@func.idBu_Origem</td>
+                @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)//x3
+                {
+
+                    foreach (var at in (IEnumerable<AvaliacaoTreinamentoModel>)ViewBag.avalTreinList)
+                    {
+                        if (at.idTreinamento == trein.IdTreinamento && at.idFuncionario == func.idfuncionario)
+                        {
+                            <td onclick="openModalTrain(@at.idTreinamento,@at.idFuncionario)" class="text-center">
+                                @if (@at.sigla.Count() > 0)
+                            {
+                                    @at.sigla
+                                }
+                            </td>
+                        }
+
+                    }
+
+                }
+
+                
+
+                @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+                {
+                    foreach (var aa in (IEnumerable<AvaliacaoAtividadesModel>)ViewBag.avalAtivList)
+                    {
+                        if (aa.idAtividade == a.idAtividade && aa.idFuncionario == func.idfuncionario)
+                        {
+                            <td onclick="openModalTrain(@aa.idAtividade,@aa.idFuncionario)" class="text-center">
+                                @if (@aa.sigla.Count() > 0)
+                            {
+                                    @aa.sigla
+                                }
+                            </td>
+                        }
+
+                    }
+
+                }
+            </tr>
+        }
+    </tbody>
+</table>
