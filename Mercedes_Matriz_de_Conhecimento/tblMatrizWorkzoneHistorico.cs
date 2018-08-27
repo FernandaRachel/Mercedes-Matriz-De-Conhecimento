@@ -29,6 +29,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         public string LinhaWorkzone { get; set; }
         public System.DateTime DataCriacao { get; set; }
         public string UsuarioCriacao { get; set; }
+        public string cor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMatrizFuncActivityHistorico> tblMatrizFuncActivityHistorico { get; set; }

@@ -18,10 +18,10 @@ namespace Mercedes_Matriz_de_Conhecimento
         public tblFuncionarios()
         {
             this.tblMatrizFuncXAtividades = new HashSet<tblMatrizFuncXAtividades>();
-            this.tblMatrizFuncXTreinamento = new HashSet<tblMatrizFuncXTreinamento>();
-            this.tblWorkzoneXFuncionario = new HashSet<tblWorkzoneXFuncionario>();
             this.tblMatrizFuncXAtividadesTemp = new HashSet<tblMatrizFuncXAtividadesTemp>();
+            this.tblMatrizFuncXTreinamento = new HashSet<tblMatrizFuncXTreinamento>();
             this.tblMatrizFuncXTreinamentoTemp = new HashSet<tblMatrizFuncXTreinamentoTemp>();
+            this.tblWorkzoneXFuncionario = new HashSet<tblWorkzoneXFuncionario>();
         }
     
         public int idfuncionario { get; set; }
@@ -29,19 +29,19 @@ namespace Mercedes_Matriz_de_Conhecimento
         public string Nome { get; set; }
         public bool Ativo { get; set; }
         public string JustificativaNaoAtivo { get; set; }
-        public int idBu_Origem { get; set; }
+        public string idBu_Origem { get; set; }
         public string IdentificadorAuxiliar { get; set; }
         public int idAmericas { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMatrizFuncXAtividades> tblMatrizFuncXAtividades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblMatrizFuncXTreinamento> tblMatrizFuncXTreinamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblWorkzoneXFuncionario> tblWorkzoneXFuncionario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMatrizFuncXAtividadesTemp> tblMatrizFuncXAtividadesTemp { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMatrizFuncXTreinamento> tblMatrizFuncXTreinamento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMatrizFuncXTreinamentoTemp> tblMatrizFuncXTreinamentoTemp { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblWorkzoneXFuncionario> tblWorkzoneXFuncionario { get; set; }
     }
 }

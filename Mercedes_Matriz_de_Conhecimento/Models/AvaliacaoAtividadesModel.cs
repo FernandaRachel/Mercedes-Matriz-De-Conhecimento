@@ -19,5 +19,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         public int idFuncionario { get; set; }
 
         public string sigla { get; set; }
+
+        public string cor { get; set; }
     }
 }

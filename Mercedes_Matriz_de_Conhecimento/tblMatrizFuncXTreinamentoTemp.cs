@@ -19,6 +19,8 @@ namespace Mercedes_Matriz_de_Conhecimento
         public int idFuncionario { get; set; }
         public int idTreinamento { get; set; }
         public int idItemPerfil { get; set; }
+        public string cor { get; set; }
+        public string alocacaoForcada { get; set; }
     
         public virtual tblFuncionarios tblFuncionarios { get; set; }
         public virtual tblMatrizWorkzoneTemp tblMatrizWorkzoneTemp { get; set; }

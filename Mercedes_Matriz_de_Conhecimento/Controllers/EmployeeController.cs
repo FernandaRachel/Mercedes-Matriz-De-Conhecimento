@@ -41,10 +41,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Create()
         {
             IEnumerable<tblWorkzone> workzone;
-
             workzone = _workzone.GetWorkzones();
-
             ViewData["Workzone"] = workzone;
+
+            var innerX = new List<SelectListItem>();
+            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
+            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
+            innerX.Insert(0, innerXItem);
+            innerX.Insert(0, innerXItem2);
+            SelectList BU = new SelectList(innerX, "Value", "Text");
+
+            ViewData["BU"] = BU;
 
             return View("Create");
         }
@@ -60,6 +67,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             ViewData["Workzone"] = workzone;
 
+            var innerX = new List<SelectListItem>();
+            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
+            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
+            innerX.Insert(0, innerXItem);
+            innerX.Insert(0, innerXItem2);
+            SelectList BU = new SelectList(innerX, "Value", "Text");
+
+            ViewData["BU"] = BU;
 
             if (employee == null)
                 return HttpNotFound("O Funcionário desejado não existe");

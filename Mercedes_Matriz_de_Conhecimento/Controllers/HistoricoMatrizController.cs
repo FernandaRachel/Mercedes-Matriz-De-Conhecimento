@@ -58,17 +58,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     funcObj.Nome = t.nomeFuncionario;
                     funcObj.idfuncionario = t.idFuncionario;
                     funcObj.RE = t.REFuncionario;
-                    funcObj.idBu_Origem = Convert.ToInt32(t.BUFuncionario);
+                    funcObj.idBu_Origem = t.BUFuncionario;
                     funcList.Add(funcObj);
                 }
                 var tObj = new tblTreinamento();
                 //Verifica se o treinamento já existe na Lista
                 if (trainingList.Exists(t2 => t2.IdTreinamento == t.idTreinamento) == false)
                 {
-                    
+                    var objTipo = new tblTipoTreinamento();
+                    objTipo.Nome = t.nomeTipoTreinamento;
+                    objTipo.IdTipoTreinamento = t.idTipoTreinamento;
+
                     tObj.Nome = t.nomeTreinamento;
                     tObj.IdTreinamento = t.idTreinamento;
                     tObj.idTipoTreinamento = t.idTipoTreinamento;
+                    tObj.tblTipoTreinamento = objTipo;
                     trainingList.Add(tObj);
                 }
 
@@ -78,7 +82,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     ttObj.Nome = t.nomeTipoTreinamento;
                     ttObj.IdTipoTreinamento = t.idTipoTreinamento;
                     ttObj.Sigla = t.siglaTipoTreinamento;
-                    ttObj.tblTreinamento = trainingList.Where(t2 => t2.idTipoTreinamento == t.idTipoTreinamento).ToList();
+                    //ttObj.tblTreinamento = trainingList.Where(t2 => t2.idTipoTreinamento == t.idTipoTreinamento).ToList();
                     ttList.Add(ttObj);
                 }
             }
