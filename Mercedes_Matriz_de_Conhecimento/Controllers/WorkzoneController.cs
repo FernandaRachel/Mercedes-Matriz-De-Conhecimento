@@ -52,8 +52,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
             var innerX = new List<SelectListItem>();
-            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "BU_TESTE", Value = "1" };
-            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "BU_TESTE2", Value = "2" };
+            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
+            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
             innerX.Insert(0, innerXItem);
             innerX.Insert(0, innerXItem2);
             SelectList BU = new SelectList(innerX, "Value", "Text");
@@ -119,8 +119,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             UpdateModel(ViewData);
             /*  MONTANDO SELECT LIST BU, CC E LINHA*/
             var innerX = new List<SelectListItem>();
-            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "BU_TESTE", Value = "1" };
-            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "BU_TESTE2", Value = "2" };
+            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
+            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
             innerX.Insert(0, innerXItem);
             innerX.Insert(0, innerXItem2);
             SelectList BU = new SelectList(innerX, "Value", "Text");

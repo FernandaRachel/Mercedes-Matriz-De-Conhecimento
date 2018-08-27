@@ -20,6 +20,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         public int idAtividade { get; set; }
         public int idItemPerfil { get; set; }
         public string alocacaoForcada { get; set; }
+        public string cor { get; set; }
     
         public virtual tblAtividades tblAtividades { get; set; }
         public virtual tblFuncionarios tblFuncionarios { get; set; }

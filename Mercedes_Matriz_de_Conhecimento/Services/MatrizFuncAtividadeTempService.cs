@@ -44,12 +44,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return MatrizTemp;
         }
 
-        public tblMatrizFuncXAtividadesTemp GetMatrizTempByFuncXAtiv(int idActivity, int idFunc)
+        public tblMatrizFuncXAtividadesTemp GetMatrizTempByFuncXAtiv(int idMWZ,int idActivity, int idFunc)
         {
             tblMatrizFuncXAtividadesTemp MatrizTemp;
 
             var query = from f in _db.tblMatrizFuncXAtividadesTemp
-                        where f.idAtividade == idActivity && f.idFuncionario == idFunc
+                        where f.idMatrizWorkzoneTemp == idMWZ &&
+                        f.idAtividade == idActivity 
+                        && f.idFuncionario == idFunc
                         orderby f.tblMatrizWorkzoneTemp.tblWorkzone.Nome
                         select f;
 
@@ -118,6 +120,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             matrizTempToUpdate.idFuncionario = MatrizTemp.idFuncionario;
             matrizTempToUpdate.idItemPerfil = MatrizTemp.idItemPerfil;
             matrizTempToUpdate.idAtividade = MatrizTemp.idAtividade;
+            matrizTempToUpdate.cor = MatrizTemp.cor;
+            matrizTempToUpdate.alocacaoForcada = MatrizTemp.alocacaoForcada;
             matrizTempToUpdate.idMatrizWorkzoneTemp = MatrizTemp.idMatrizWorkzoneTemp;
 
             _db.Entry(matrizTempToUpdate).State = EntityState.Modified;

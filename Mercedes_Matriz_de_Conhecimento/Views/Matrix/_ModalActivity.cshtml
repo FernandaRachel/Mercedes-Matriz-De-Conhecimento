@@ -10,8 +10,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="col-md-8" id="dropdown-training">
-                    @Html.DropDownListFor(m => m.idItemPerfil, new SelectList((IEnumerable<tblPerfilItens>)ViewBag.PerfilITem, "idPerfilItem", "Descricao"), "Escolha uma avaliação",
+                <div class="row">
+                    <div class="col-md-8" id="dropdown-training">
+                        @Html.DropDownListFor(m => m.idItemPerfil, new SelectList((IEnumerable<tblPerfilItens>)ViewBag.PerfilITem, "idPerfilItem", "Descricao"), "Escolha uma avaliação",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
@@ -20,11 +21,19 @@
                             id = "itemAtivID"
                         })
 
+                    </div>
+                </div>
+                <div id="alocacao" style="display:none">
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.TextAreaFor(m => m.alocacaoForcada, new { @class = "form-control", id = "alocacaoForcada", placeholder = "Justifique a alocação forçada" })
+                        </div>
+                    </div>
                 </div>
             </div>
             <br />
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="SaveMatrizActivity(@Model.idFuncionario,@Model.idAtividade)">Salvar Avaliação</button>
+                <button type="button" class="btn btn-primary" onclick="SaveMatrizActivity(@Model.idFuncionario,@Model.idAtividade, @Model.alocacaoForcada)">Salvar Avaliação</button>
                 <button type="button" class="btn btn-danger" onclick="DeleteMatrizActivity(@Model.idFuncionario,@Model.idAtividade)">Deletar Avaliação</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>

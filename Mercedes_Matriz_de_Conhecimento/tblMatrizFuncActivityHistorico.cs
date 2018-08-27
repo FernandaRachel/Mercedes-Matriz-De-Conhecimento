@@ -25,6 +25,8 @@ namespace Mercedes_Matriz_de_Conhecimento
         public string siglaAtividade { get; set; }
         public int idItemPerfil { get; set; }
         public string siglaItemPerfil { get; set; }
+        public string cor { get; set; }
+        public string alocacaoForcada { get; set; }
     
         public virtual tblMatrizWorkzoneHistorico tblMatrizWorkzoneHistorico { get; set; }
     }
