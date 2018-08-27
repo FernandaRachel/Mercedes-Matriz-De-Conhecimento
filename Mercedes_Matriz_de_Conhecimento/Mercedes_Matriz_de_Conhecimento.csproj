@@ -634,6 +634,7 @@
     <Content Include="Views\Matrix\Index.cshtml" />
     <Content Include="Views\HistoricoMatriz\Index.cshtml" />
     <Content Include="Views\HistoricoMatriz\MatrizHistorico.cshtml" />
+    <Content Include="Views\Matrix\MatrizTemp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
