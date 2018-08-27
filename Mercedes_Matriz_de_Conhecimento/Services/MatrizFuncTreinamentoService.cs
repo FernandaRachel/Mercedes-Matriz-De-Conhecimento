@@ -84,6 +84,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Matriz;
         }
 
+        public List<tblMatrizFuncXTreinamento> CreateAllMatriz(List<tblMatrizFuncXTreinamento> Matriz)
+        {
+            if (Matriz.Count > 0)
+            {
+                _db.tblMatrizFuncXTreinamento.AddRange(Matriz);
+
+                _db.SaveChanges();
+            }
+
+            return Matriz;
+        }
+
         public tblMatrizFuncXTreinamento DeleteMatriz(int idMWz, int idFunc, int idTrain)
         {
             tblMatrizFuncXTreinamento Matriz;
@@ -103,6 +115,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Matriz;
         }
 
+        public void DeleteMatrizAll(int idMWz)
+        {
+            var query = from f in _db.tblMatrizFuncXTreinamento
+                        where f.idMatrizWorkzone == idMWz
+                        select f;
+
+            if (query.Count() > 0)
+            {
+                _db.tblMatrizFuncXTreinamento.RemoveRange(query);
+                _db.SaveChanges();
+            }
+
+        }
 
         public tblMatrizFuncXTreinamento UpdateMatriz(tblMatrizFuncXTreinamento Matriz)
         {

@@ -1,9 +1,8 @@
 ﻿@model Mercedes_Matriz_de_Conhecimento.tblWorkzone
 
-@{
-    ViewBag.Title = "Matriz";
-    ViewBag.Cols = 0;
-}
+
+
+
 
 @section Scripts{
 
@@ -153,12 +152,9 @@
     </script>
 }
 
+<div id="matriz-temp">
 
-@* no temp *@
-
-<div id="matriz">
-
-    <h2> v2 no temp</h2>
+    <h2> v2 temp</h2>
 
     <h2 class="text-center">@Model.Nome</h2>
     @Html.HiddenFor(w => w.IdWorkzone, new { id = "idWorkzone" })
@@ -224,7 +220,7 @@
                     @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)//x3
                 {
                     var idTrainAdded = 0;
-                    foreach (var t in trein.tblMatrizFuncXTreinamento)
+                    foreach (var t in trein.tblMatrizFuncXTreinamentoTemp)
                     {
                         if (t.idTreinamento == trein.IdTreinamento
                             && wzXFunc.idFuncionario == t.tblFuncionarios.idfuncionario)
@@ -252,7 +248,7 @@
                     @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
                 {
                     var idActivAdded = 0;
-                    foreach (var a2 in a.tblMatrizFuncXAtividades)
+                    foreach (var a2 in a.tblMatrizFuncXAtividadesTemp)
                     {
 
                         var trainamentosQtd = 0;
@@ -261,9 +257,9 @@
                         foreach (var treinInsideAtiv in a2.tblAtividades.tblAtividadeXTreinamentos)
                         {
                             trainamentosQtd = a2.tblAtividades.tblAtividadeXTreinamentos.Count;
-                            //treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento
+                            //treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamentoTemp
                             //    .Where(w => w.idFuncionario == wzXFunc.idFuncionario && treinInsideAtiv.tblTreinamento.IdTreinamento);
-                            foreach (var aval in treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento)
+                            foreach (var aval in treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamentoTemp)
                             {
                                 if (treinInsideAtiv.idTreinamento == aval.idTreinamento && wzXFunc.idFuncionario == aval.idFuncionario)
                                 {
@@ -309,7 +305,7 @@
                         var avaliacao = 0;
                         foreach (var t in a.tblAtividadeXTreinamentos)
                         {
-                            avaliacao += t.tblTreinamento.tblMatrizFuncXTreinamento.Where(f => f.idFuncionario == wzXFunc.idFuncionario).Count();
+                            avaliacao += t.tblTreinamento.tblMatrizFuncXTreinamentoTemp.Where(f => f.idFuncionario == wzXFunc.idFuncionario).Count();
                         }
 
                         if (a.idAtividade != idActivAdded)
