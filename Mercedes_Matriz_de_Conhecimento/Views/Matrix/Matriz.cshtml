@@ -91,6 +91,12 @@
             location.href = '@Url.Action("CreateMatrizActivity", "Matrix")?idItem='
                 + itemID.value + "&idFuncionario=" + idFuncionario + "&idActivity=" + idActivity
             + "&idWorkzone=" + idWorkzone.value + "&cor=" + corValue + "&alocacaoForcada=" + alocacaoForcada.value;
+
+
+            @*location.href = '@Url.Action("SetColor", "Matrix")?idFuncionario=' + idFuncionario
+                + "&idActivity=" + idActivity + "&idWorkzone=" + idWorkzone.value
+                + "&cor=" + corValue;*@
+
         }
 
         function DeleteMatrizActivity(idFuncionario, idActivity) {
@@ -178,7 +184,6 @@
                 <tr>
                     <td class="text-style">@wzXFunc.tblFuncionarios.RE</td>
                     <td class="text-style">@wzXFunc.tblFuncionarios.Nome</td>
-                    <p>@Model.idBU != wzXFunc.tblFuncionarios.idBu_Origem.Trim()</p>
                     @if (@Model.idBU.Trim() != wzXFunc.tblFuncionarios.idBu_Origem)
                     {
                         <td class="text-style bg-red">@wzXFunc.tblFuncionarios.idBu_Origem</td>

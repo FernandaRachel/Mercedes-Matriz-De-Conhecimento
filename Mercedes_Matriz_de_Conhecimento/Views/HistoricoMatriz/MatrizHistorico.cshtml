@@ -100,12 +100,24 @@
                     {
                         if (aa.idAtividade == a.idAtividade && aa.idFuncionario == func.idfuncionario)
                         {
+                            if (@aa.cor == null)
+                            {
+                                <td onclick="openModalTrain(@aa.idAtividade,@aa.idFuncionario)" bgColor="gray" class="text-center">
+                                    @if (@aa.sigla.Count() > 0)
+                                    {
+                                        @aa.sigla
+                                    }
+                                </td>
+                            }
+                            else
+                            {
                             <td onclick="openModalTrain(@aa.idAtividade,@aa.idFuncionario)" bgColor="@aa.cor" class="text-center">
                                 @if (@aa.sigla.Count() > 0)
                             {
                                     @aa.sigla
                                 }
                             </td>
+                            }
                         }
 
                     }

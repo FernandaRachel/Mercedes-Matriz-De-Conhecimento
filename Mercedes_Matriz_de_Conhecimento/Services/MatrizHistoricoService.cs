@@ -44,6 +44,26 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return query.FirstOrDefault();
         }
 
+        public tblMatrizFuncActivityHistorico getMatrizHistoricoActivityByWZIdFuncAtiv(int idMWZ, int idFunc, int idActv)
+        {
+            var query = _db.tblMatrizFuncActivityHistorico
+                .Where(wh => wh.idMatrizWorkzoneHistorico == idMWZ &&
+                wh.idAtividade == idActv
+                && wh.idFuncionario == idFunc);
+
+            return query.FirstOrDefault();
+        }
+
+        public tblMatrizFuncTreinHistorico getMatrizHistoricoTrainingByWZIdFuncAtiv(int idMWZ, int idFunc, int idTrein)
+        {
+            var query = _db.tblMatrizFuncTreinHistorico
+                .Where(wh => wh.idMatrizWorkzoneHistorico == idMWZ &&
+                wh.idTreinamento == idTrein
+                && wh.idFuncionario == idFunc);
+
+            return query.FirstOrDefault();
+        }
+
         public tblMatrizWorkzoneHistorico SalvarHistoricoMatrizWorkzone(tblMatrizWorkzoneHistorico matrizHistorico)
         {
 

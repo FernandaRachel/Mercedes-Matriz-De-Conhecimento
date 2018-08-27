@@ -113,6 +113,7 @@
           <Property Name="idAtividade" Type="int" Nullable="false" />
           <Property Name="idItemPerfil" Type="int" Nullable="false" />
           <Property Name="alocacaoForcada" Type="varchar" MaxLength="250" />
+          <Property Name="cor" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="tblMatrizFuncXAtividadesTemp">
           <Key>
@@ -976,6 +977,7 @@
           <NavigationProperty Name="tblFuncionarios" Relationship="Self.FK_tblMatrizFuncXAtividades_tblFuncionarios" FromRole="tblMatrizFuncXAtividades" ToRole="tblFuncionarios" />
           <NavigationProperty Name="tblMatrizWorkzone" Relationship="Self.FK_tblMatrizFuncXAtividades_tblMatrizWorkzone" FromRole="tblMatrizFuncXAtividades" ToRole="tblMatrizWorkzone" />
           <NavigationProperty Name="tblPerfilItens" Relationship="Self.FK_tblMatrizFuncXAtividades_tblPerfilItens" FromRole="tblMatrizFuncXAtividades" ToRole="tblPerfilItens" />
+          <Property Name="cor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblMatrizFuncXAtividadesTemp">
           <Key>
@@ -1870,6 +1872,7 @@
           <EntitySetMapping Name="tblMatrizFuncXAtividades">
             <EntityTypeMapping TypeName="Mercedes_Matriz_V2Model.tblMatrizFuncXAtividades">
               <MappingFragment StoreEntitySet="tblMatrizFuncXAtividades">
+                <ScalarProperty Name="cor" ColumnName="cor" />
                 <ScalarProperty Name="idMatrizFuncAtiv" ColumnName="idMatrizFuncAtiv" />
                 <ScalarProperty Name="idMatrizWorkzone" ColumnName="idMatrizWorkzone" />
                 <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />

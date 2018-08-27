@@ -93,6 +93,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 avalAtiv.idFuncionario = a.idFuncionario;
                 avalAtiv.idAtividade = a.idAtividade;
                 avalAtiv.sigla = a.siglaItemPerfil;
+                avalAtiv.cor = a.cor;
                 avalAtivList.Add(avalAtiv);
 
 
