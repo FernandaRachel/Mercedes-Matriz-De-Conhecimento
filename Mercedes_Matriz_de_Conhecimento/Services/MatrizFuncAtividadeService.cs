@@ -44,12 +44,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Matriz;
         }
 
-        public tblMatrizFuncXAtividades GetMatrizByFuncXAtiv(int idActivity, int idFunc)
+        public tblMatrizFuncXAtividades GetMatrizByFuncXAtiv(int idMWZ,int idActivity, int idFunc)
         {
             tblMatrizFuncXAtividades Matriz;
 
             var query = from f in _db.tblMatrizFuncXAtividades
-                        where f.idAtividade == idActivity && f.idFuncionario == idFunc
+                        where f.idMatrizWorkzone == idMWZ &&
+                        f.idAtividade == idActivity && 
+                        f.idFuncionario == idFunc
                         orderby f.tblMatrizWorkzone.tblWorkzone.Nome
                         select f;
 

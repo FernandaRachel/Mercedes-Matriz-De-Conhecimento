@@ -35,6 +35,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         }
 
 
+
         public tblMatrizWorkzoneHistorico getMatrizHistoricoByWZId(int idWZ)
         {
             var query = _db.tblMatrizWorkzoneHistorico
@@ -84,9 +85,25 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             _db.SaveChanges();
         }
 
+        public void SalvarTreinAllHistorico(List<tblMatrizFuncTreinHistorico> trainingHistorico)
+        {
+
+            _db.tblMatrizFuncTreinHistorico.AddRange(trainingHistorico);
+
+            _db.SaveChanges();
+        }
+
+
         public void SalvarActivityHistorico(tblMatrizFuncActivityHistorico actvityHistorico)
         {
             _db.tblMatrizFuncActivityHistorico.Add(actvityHistorico);
+
+            _db.SaveChanges();
+        }
+
+        public void SalvarActivityAllHistorico(List<tblMatrizFuncActivityHistorico> actvityHistorico)
+        {
+            _db.tblMatrizFuncActivityHistorico.AddRange(actvityHistorico);
 
             _db.SaveChanges();
         }

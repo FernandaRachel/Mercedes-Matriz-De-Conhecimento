@@ -196,7 +196,7 @@
                     @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)//x3
                 {
                     var idTrainAdded = 0;
-                    foreach (var t in trein.tblMatrizFuncXTreinamento)
+                    foreach (var t in trein.tblMatrizFuncXTreinamento.Where(m => m.tblMatrizWorkzone.idMatrizWZ == ViewBag.MWZID))
                     {
                         if (t.idTreinamento == trein.IdTreinamento
                             && wzXFunc.idFuncionario == t.tblFuncionarios.idfuncionario)
@@ -213,7 +213,7 @@
                             }
 
                         }
-                        if (trein.IdTreinamento != idTrainAdded)
+                        if (trein.IdTreinamento != idTrainAdded )
                         {
                             <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
                                 @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
