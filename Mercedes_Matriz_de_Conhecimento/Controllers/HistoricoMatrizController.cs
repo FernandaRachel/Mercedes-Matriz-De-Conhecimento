@@ -72,19 +72,25 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     tObj.Nome = t.nomeTreinamento;
                     tObj.IdTreinamento = t.idTreinamento;
                     tObj.idTipoTreinamento = t.idTipoTreinamento;
-                    tObj.tblTipoTreinamento = objTipo;
+                    //tObj.tblTipoTreinamento = objTipo;
+                    //tObj.tblTipoTreinamento.tblTreinamento.Add(tObj);
                     trainingList.Add(tObj);
                 }
+                var ttObj = new tblTipoTreinamento();
 
                 if (ttList.Exists(t2 => t2.IdTipoTreinamento == t.idTipoTreinamento) == false)
                 {
-                    var ttObj = new tblTipoTreinamento();
                     ttObj.Nome = t.nomeTipoTreinamento;
                     ttObj.IdTipoTreinamento = t.idTipoTreinamento;
                     ttObj.Sigla = t.siglaTipoTreinamento;
-                    //ttObj.tblTreinamento = trainingList.Where(t2 => t2.idTipoTreinamento == t.idTipoTreinamento).ToList();
+                    ttObj.tblTreinamento = trainingList.Where(t2 => t2.idTipoTreinamento == t.idTipoTreinamento).ToList();
                     ttList.Add(ttObj);
                 }
+                //else
+                //{
+                //    ttObj.tblTreinamento = trainingList.Where(t2 => t2.idTipoTreinamento == t.idTipoTreinamento).ToList();
+                //    ttList.Add(ttObj);
+                //}
             }
 
             foreach (var a in VersaoMatriz.tblMatrizFuncActivityHistorico)

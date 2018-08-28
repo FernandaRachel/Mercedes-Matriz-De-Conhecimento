@@ -86,12 +86,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
         public List<tblMatrizFuncXTreinamento> CreateAllMatriz(List<tblMatrizFuncXTreinamento> Matriz)
         {
-            if (Matriz.Count > 0)
-            {
+            
                 _db.tblMatrizFuncXTreinamento.AddRange(Matriz);
 
                 _db.SaveChanges();
-            }
 
             return Matriz;
         }

@@ -95,7 +95,7 @@
             var itemID = document.getElementById("itemAtivID");
             var idWorkzone = document.getElementById("idWorkzone");
             var cor = document.getElementById('' + idFuncionario + ","+ idActivity);
-            var corValue = cor['bgColor'];
+            var corValue = "";
 
             location.href = '@Url.Action("CreateMatrizActivity", "Matrix")?idItem='
                 + itemID.value + "&idFuncionario=" + idFuncionario + "&idActivity=" + idActivity
@@ -318,7 +318,7 @@
                         var avaliacao = 0;
                         foreach (var t in a.tblAtividadeXTreinamentos)
                         {
-                            avaliacao += t.tblTreinamento.tblMatrizFuncXTreinamento.Where(f => f.idFuncionario == wzXFunc.idFuncionario).Count();
+                            avaliacao += t.tblTreinamento.tblMatrizFuncXTreinamentoTemp.Where(f => f.idFuncionario == wzXFunc.idFuncionario).Count();
                         }
 
                         if (a.idAtividade != idActivAdded)
