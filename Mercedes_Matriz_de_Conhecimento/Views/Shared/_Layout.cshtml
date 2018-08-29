@@ -29,7 +29,7 @@
             <ul class="nav navbar-right navbar-collapse collapse" id="navLogin">
                 <li class="dropdown">
                     <a tabindex="-1" class="dropdown-toggle accessibility_skipCancelNode" id="assistbar-dropdown" role="button" href="#" data-toggle="dropdown">
-                        SPI <b class="caret"></b>
+                        @ViewBag.User <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="assistbar-dropdown">
                         <li><a length="0" href="#Account/Logoff">Sair</a></li>
@@ -45,7 +45,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visualização/Cadastro <span class="caret"></span></a>
                     <ul class="dropdown-menu" id="teste">
                         <li>@Html.ActionLink("Funcionário", "Index", "Employee")</li>
-                        <li>@Html.ActionLink("Workzone", "Index", "Workzone")</li>
+                        @*@if (@ViewBag.Posto == true)
+                            {*@
+                        <li>@Html.ActionLink("Posto de Trabalho", "Index", "Workzone")</li>
+                        @*}*@
                         <li>@Html.ActionLink("Treinamento", "Index", "Training")</li>
                         <li>@Html.ActionLink("Tipo de Treinamento", "Index", "TrainingType")</li>
                         <li>@Html.ActionLink("Perfil de Treinamento", "Index", "TrainingProfile")</li>

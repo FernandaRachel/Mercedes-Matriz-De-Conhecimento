@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
 using System.Configuration;
+using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -24,12 +25,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActivityXWorkzoneController()
         {
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
+
             _activityXWorkzone = new WorzoneXActivityService();
             _activity = new ActivityService();
             _workzone = new WorkzoneService();
         }
 
         // GET: activityXWorkzone
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PostodeTrabalhoXAtividade, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -70,6 +76,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return PartialView("_Lista", Actv);
         }
 
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PostodeTrabalhoXAtividade, Feature = FeaturesHelper.Editar)]
         public ActionResult Create(int idWorkzone = 0)
         {
             IEnumerable<tblWorkzone> workzones;
@@ -90,6 +97,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PostodeTrabalhoXAtividade, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int idWorkzone = 0)
         {
             tblWorkzoneXAtividades workzoneXAtividade = new tblWorkzoneXAtividades();

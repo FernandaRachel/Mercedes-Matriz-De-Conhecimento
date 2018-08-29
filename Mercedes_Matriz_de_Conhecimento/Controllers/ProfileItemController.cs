@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
 using System.Configuration;
+using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -22,11 +23,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ProfileItemController()
         {
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
+
             _ProfileItem = new ProfileItemService();
 
         }
 
         // GET: profileItem
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -38,6 +44,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
 
@@ -45,6 +52,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
 
@@ -105,6 +113,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: profileItem/Delete/5
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Deletar)]
         public ActionResult Delete(int id)
         {
 

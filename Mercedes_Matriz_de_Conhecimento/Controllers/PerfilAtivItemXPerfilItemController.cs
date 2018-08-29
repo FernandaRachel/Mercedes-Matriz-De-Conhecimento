@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
 using System.Configuration;
+using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -25,6 +26,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public PerfilAtivItemXPerfilItemController()
         {
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
+
             _perfilAtivItemXPerfilItem = new PerfilAtivItemXPerfilItemService();
             _activityProfileItem = new ActivityProfileItemService();
             _profileActivity = new ActivityProfileService();
@@ -32,6 +37,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: perfilAtivItemXPerfilItem
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilAtividadeItemXPerfilItem, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -43,6 +49,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilAtividadeItemXPerfilItem, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblPerfis> activityProfile;
@@ -75,6 +82,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilAtividadeItemXPerfilItem, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int idProfile)
         {
             // Declaração de variaveis

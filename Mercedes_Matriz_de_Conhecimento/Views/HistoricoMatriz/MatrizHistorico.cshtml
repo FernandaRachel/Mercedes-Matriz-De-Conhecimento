@@ -26,7 +26,6 @@
             <th colspan="3" class="white-border"></th>
             @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
             {
-                <p>tt: @tt.tblTreinamento.Count</p>
                 <th colspan="@tt.tblTreinamento.Count" class="text-style">@tt.Nome</th>
             }
 

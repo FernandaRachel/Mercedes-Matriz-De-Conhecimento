@@ -1,4 +1,5 @@
-﻿using Mercedes_Matriz_de_Conhecimento.Models;
+﻿using Mercedes_Matriz_de_Conhecimento.Helpers;
+using Mercedes_Matriz_de_Conhecimento.Models;
 using Mercedes_Matriz_de_Conhecimento.Services;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: HistoricoMatriz
+        [AccessHelper(Menu = MenuHelper.HistoricodaMatriz,Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index()
         {
             ViewBag.ListaHistorico = _matrizHistoricoService.GetMatrizHistorico();

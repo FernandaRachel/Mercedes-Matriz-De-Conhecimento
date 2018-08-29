@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
 using System.Configuration;
+using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -25,6 +26,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public TrainingController()
         {
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
+
             _training = new TrainingService();
             _trainingType = new TrainingTypeService();
             _trainingProfile = new TrainingProfileService();
@@ -33,6 +38,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: training
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -44,6 +50,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblTipoTreinamento> trainingType;
@@ -59,6 +66,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: training/Details/5
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
             // Declaração de variaveis
@@ -167,6 +175,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: training/Delete/5
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Deletar)]
         public ActionResult Delete(int id)
         {
 
