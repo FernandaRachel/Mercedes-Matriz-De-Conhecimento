@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Configuration;
 using DCX.ITLC.AutSis.Services.Integracao;
+using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -22,9 +23,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             _activity = new ActivityService();
             _activityProfile = new ActivityProfileService();
             _activityGroup = new ActivityGroupService();
+
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
         }
 
         // GET: activity
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             //var Teste = new IntegracaoAutSis().ObterPermissoes("StepNet", "SILALIS", 0);
@@ -37,6 +43,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblPerfis> activityProfile;
@@ -49,6 +56,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
 
@@ -147,6 +155,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: activity/Delete/5
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Deletar)]
         public ActionResult Delete(int id)
         {
 

@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
 using System.Configuration;
+using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -22,11 +23,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public EmployeeController()
         {
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
+
             _employee = new EmployeeService();
             _workzone = new WorkzoneService();
         }
 
         // GET: Employee
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -38,6 +44,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblWorkzone> workzone;
@@ -57,6 +64,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: Employee/Details/5
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
             IEnumerable<tblWorkzone> workzone;
@@ -141,13 +149,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: Employee/Delete/5
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Deletar)]
         public ActionResult Delete(int id)
         {
 
             _employee.DeleteEmployee(id);
 
             return RedirectToAction("Index");
-
         }
 
 

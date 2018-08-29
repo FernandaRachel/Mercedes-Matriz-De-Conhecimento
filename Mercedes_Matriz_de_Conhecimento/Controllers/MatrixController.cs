@@ -1,4 +1,5 @@
-﻿using Mercedes_Matriz_de_Conhecimento.Services;
+﻿using Mercedes_Matriz_de_Conhecimento.Helpers;
+using Mercedes_Matriz_de_Conhecimento.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             _profileItemActivity = new ActivityProfileItemService();
             _profileItemTraining = new ProfileItemService();
 
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
         }
 
         public ActionResult Index()
@@ -68,6 +72,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: Matrix
+        
+        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Matriz(int WorkzoneID, bool catchValueFromOficial = true)
         {
             var teste1 = DateTime.Now;
@@ -206,6 +212,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
 
+        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Consultar)]
         public ActionResult MatrizTemp(int WorkzoneID)
         {
             var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
@@ -306,6 +313,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return PartialView("_ModalTrein", matrizFuncXTrainTemp);
         }
 
+        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Editar)]
         public ActionResult CreateMatrizTraining(int idFuncionario, int idTraining, int idWorkzone, int idItem = 0)
         {
             if (idItem == 0)
@@ -391,6 +399,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
+        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Editar)]
         public ActionResult CreateMatrizActivity(int idFuncionario, int idActivity, int idWorkzone, string cor, string alocacaoForcada, int idItem = 0)
         {
             if (idItem == 0)
@@ -442,6 +451,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
 
+        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Deletar)]
         public ActionResult DeleteMatrizTraining(int idFuncionario, int idTraining, int idWorkzone)
         {
 
@@ -452,6 +462,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return RedirectToAction("MatrizTemp", new { WorkzoneID = idWorkzone });
         }
 
+        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Deletar)]
         public ActionResult DeleteMatrizActivity(int idFuncionario, int idActivity, int idWorkzone)
         {
             var mWz = _matrizTempService.GetMatrizTempByWZId(idWorkzone);
@@ -512,6 +523,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
 
+        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Editar)]
         public ActionResult SalvarHistorico(int idWorkzone)
         {
 

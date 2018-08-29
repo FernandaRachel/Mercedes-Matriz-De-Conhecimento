@@ -2,12 +2,12 @@
 @model PagedList.IPagedList<Mercedes_Matriz_de_Conhecimento.tblWorkzone>
 
 @{
-    ViewBag.Title = "WORKZONE";
+    ViewBag.Title = "POSTO DE TRABALHO";
 }
 
 <div class="container button-place">
     <a type="button" class="btn btn-modified-create btn-group-sm pull-left" href="@Url.Action("Create", "Workzone")">
-        <i class="fas fa-plus"></i> Cadastrar Workzone
+        <i class="fas fa-plus"></i> Cadastrar Posto de TTrabalho
     </a>
 </div>
 <div class="container table-place">
@@ -20,6 +20,9 @@
                         <th class="text-center">Nome</th>
                         <th class="text-center">Descrição</th>
                         <th class="text-center">Pessoas Necessárias</th>
+                        <th class="text-center">BU</th>
+                        <th class="text-center">CC</th>
+                        <th class="text-center">Linha</th>
                         <th class="text-center">Ativo</th>
                         <th class="text-center"></th>
                     </tr>
@@ -32,6 +35,9 @@
                             <td>@workzone.Nome @workzone.idBU @workzone.idCC @workzone.idLinha</td>
                             <td>@workzone.Descricao</td>
                             <td>@workzone.PessoasNecessarias</td>
+                            <td>@workzone.idBU</td>
+                            <td>@workzone.idCC</td>
+                            <td>@workzone.idLinha</td>
                             @if (@workzone.FlagAtivo)
                             {
                                 <td>Ativada</td>

@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Data.Entity;
 using System.Net;
 using System.Configuration;
+using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -24,12 +25,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActivityXTrainingController()
         {
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
+
             _activityXTraining = new ActivityXTrainingService();
             _activity = new ActivityService();
             _training = new TrainingService();
         }
 
         // GET: activityXTraining
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.TreinamentoXAtividade, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -66,6 +72,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return PartialView("_Lista", Training);
         }
 
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.TreinamentoXAtividade, Feature = FeaturesHelper.Editar)]
         public ActionResult Create(int idActivity = 0)
         {
 
@@ -81,6 +88,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.TreinamentoXAtividade, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int idActivity = 0)
         {
             IEnumerable<tblTreinamento> trainings;

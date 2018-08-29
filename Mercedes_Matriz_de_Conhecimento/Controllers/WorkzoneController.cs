@@ -12,6 +12,7 @@ using System.Net;
 using PagedList;
 using System.Configuration;
 using DCX.ITLC.AutSis.Services.Integracao;
+using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -25,6 +26,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public WorkzoneController()
         {
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
+
             _workzone = new WorkzoneService();
             _employee = new EmployeeService();
             _workzoneXemployee = new WorzoneXEmployeeService();
@@ -33,6 +38,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: workzone
         [HttpGet]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -44,6 +50,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblWorkzone> workzone;
@@ -51,32 +58,79 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData["Workzone"] = workzone;
 
 
-            var innerX = new List<SelectListItem>();
-            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
-            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
-            innerX.Insert(0, innerXItem);
-            innerX.Insert(0, innerXItem2);
-            SelectList BU = new SelectList(innerX, "Value", "Text");
+            //var innerX = new List<SelectListItem>();
+            //SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
+            //SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
+            //innerX.Insert(0, innerXItem);
+            //innerX.Insert(0, innerXItem2);
+            //SelectList BU = new SelectList(innerX, "Value", "Text");
 
+            //var listaCC = new List<SelectListItem>();
+            //SelectListItem itemCC = new SelectListItem { Selected = false, Text = "CC_TESTE", Value = "1" };
+            //SelectListItem itemCC2 = new SelectListItem { Selected = false, Text = "CC_TESTE2", Value = "2" };
+            //listaCC.Insert(0, itemCC);
+            //listaCC.Insert(0, itemCC2);
+            //SelectList CC = new SelectList(listaCC, "Value", "Text");
+
+            //var listaLinha = new List<SelectListItem>();
+            //SelectListItem itemLinha = new SelectListItem { Selected = false, Text = "LINHA_TESTE", Value = "1" };
+            //listaLinha.Insert(0, itemLinha);
+            //SelectList Linha = new SelectList(listaLinha, "Value", "Text");
+
+            //ViewData["BU"] = BU;
+            //ViewData["CC"] = CC;
+            //ViewData["LINHA"] = Linha;
+            setBUCCLINHA();
+
+            return View("Create");
+        }
+
+
+        // Cria as listas de BU, CC e Linha
+        public void setBUCCLINHA()
+        {
+            var listaBU = new List<SelectListItem>();
             var listaCC = new List<SelectListItem>();
-            SelectListItem itemCC = new SelectListItem { Selected = false, Text = "CC_TESTE", Value = "1" };
-            SelectListItem itemCC2 = new SelectListItem { Selected = false, Text = "CC_TESTE2", Value = "2" };
-            listaCC.Insert(0, itemCC);
-            listaCC.Insert(0, itemCC2);
-            SelectList CC = new SelectList(listaCC, "Value", "Text");
-
             var listaLinha = new List<SelectListItem>();
-            SelectListItem itemLinha = new SelectListItem { Selected = false, Text = "LINHA_TESTE", Value = "1" };
-            listaLinha.Insert(0, itemLinha);
+
+            var indexBU = 0;
+            var indexCC = 0;
+            var indexLinha = 0;
+
+            var permissions = AuthorizationHelper.GetSystem();
+            var grupo = permissions.GruposDeSistema.Find(g => g.Nome == "Grupo_CentroCusto_Linha");
+
+            foreach (var bu in grupo.Funcionalidades.Filhos)
+            {
+                var itemBU = new SelectListItem { Selected = false, Text = bu.Nome, Value = bu.Nome };
+                listaBU.Insert(indexBU, itemBU);
+                indexBU++;
+
+                foreach (var f2 in bu.Filhos)
+                {
+                    var itemCC = new SelectListItem { Selected = false, Text = f2.Nome, Value = bu.Nome };
+                    listaCC.Insert(indexCC, itemCC);
+                    indexCC++;
+
+                    foreach(var f3 in f2.Filhos)
+                    {
+                        var itemLinha = new SelectListItem { Selected = false, Text = f3.Nome, Value = f3.Nome };
+                        listaLinha.Insert(indexLinha, itemLinha);
+                        indexLinha++;
+                    }
+                }
+            }
+
+            SelectList BU = new SelectList(listaBU, "Value", "Text");
+            SelectList CC = new SelectList(listaCC, "Value", "Text");
             SelectList Linha = new SelectList(listaLinha, "Value", "Text");
 
             ViewData["BU"] = BU;
             ViewData["CC"] = CC;
             ViewData["LINHA"] = Linha;
 
-
-            return View("Create");
         }
+
 
         [OutputCache(Duration = 1)]
         public ActionResult SearchUser(int idWorkzone, string nome = "")
@@ -108,39 +162,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: workzone/Details/5
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id, string nome = "")
         {
             FuncListModel Func = new FuncListModel();
             Func.idWorkzone = id;
             var x = ViewBag.Name;
-            
+
             ModelState.Clear();
             ViewData.Clear();
             UpdateModel(ViewData);
             /*  MONTANDO SELECT LIST BU, CC E LINHA*/
-            var innerX = new List<SelectListItem>();
-            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
-            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
-            innerX.Insert(0, innerXItem);
-            innerX.Insert(0, innerXItem2);
-            SelectList BU = new SelectList(innerX, "Value", "Text");
-
-            var listaCC = new List<SelectListItem>();
-            SelectListItem itemCC = new SelectListItem { Selected = false, Text = "CC_TESTE", Value = "1" };
-            SelectListItem itemCC2 = new SelectListItem { Selected = false, Text = "CC_TESTE2", Value = "2" };
-            listaCC.Insert(0, itemCC);
-            listaCC.Insert(0, itemCC2);
-            SelectList CC = new SelectList(listaCC, "Value", "Text");
-
-            var listaLinha = new List<SelectListItem>();
-            SelectListItem itemLinha = new SelectListItem { Selected = false, Text = "LINHA_TESTE", Value = "1" };
-            listaLinha.Insert(0, itemLinha);
-            SelectList Linha = new SelectList(listaLinha, "Value", "Text");
-
-            ViewData["BU"] = BU;
-            ViewData["CC"] = CC;
-            ViewData["LINHA"] = Linha;
-
+            setBUCCLINHA();
             /*FINALIZANDO SELECT LISTA BU, CC E LINHA*/
 
             tblWorkzone workzone;
@@ -153,7 +186,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 employee = _employee.GetEmployees();
             Func.funcionarios = employee;
             ViewData["Funcionarios"] = employee;
-            
+
             /* SELECIONA FUNCIONÁRIOS ADICIONADOS NESSA WZ*/
             IEnumerable<tblFuncionarios> employeeAdded;
             employeeAdded = _workzone.setUpEmployees(id);
@@ -250,6 +283,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: workzone/Delete/5
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Deletar)]
         public ActionResult Delete(int id)
         {
 
