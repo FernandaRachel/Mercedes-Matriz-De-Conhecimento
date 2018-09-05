@@ -3,20 +3,18 @@
 
 @* MODAL CONFIRM DELETE *@
 
-<div class="modal fade" tabindex="-1" role="dialog" id="delete-employee">
+<div class="modal fade" tabindex="-1" role="dialog" id="delete-trein-profile">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
             </div>
             <div class="modal-body">
-                <p>Certeza que deseja excluir esse funcionário ?</p>
+                <p>Certeza que deseja excluir esse tipo de treinamento ?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" onclick="deleteFunc()" id="id-func">Confirmar</button>
-                @*<a class="btn btn-default btn-group-sm" href="@Url.Action("Delete","Employee",  new { id = Model.idfuncionario})"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></a>*@
+                <button type="button" class="btn btn-danger" onclick="deleteTrainingType()" id="id-treinType">Confirmar</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -14,7 +14,7 @@ using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class EmployeeController : Controller
+    public class EmployeeController : BaseController
     {
 
         private EmployeeService _employee;
@@ -51,18 +51,33 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             workzone = _workzone.GetWorkzones();
             ViewData["Workzone"] = workzone;
 
-            var innerX = new List<SelectListItem>();
-            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
-            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
-            innerX.Insert(0, innerXItem);
-            innerX.Insert(0, innerXItem2);
-            SelectList BU = new SelectList(innerX, "Value", "Text");
-
-            ViewData["BU"] = BU;
+            setBUCCLINHA();
 
             return View("Create");
         }
 
+
+        public void setBUCCLINHA()
+        {
+            var listaBU = new List<SelectListItem>();
+            var indexBU = 0;
+
+            var permissions = AuthorizationHelper.GetSystem();
+            var grupo = permissions.GruposDeSistema.Find(g => g.Nome == "Grupo_CentroCusto_Linha");
+
+            foreach (var bu in grupo.Funcionalidades.Filhos)
+            {
+                var itemBU = new SelectListItem { Selected = false, Text = bu.Nome, Value = bu.Nome };
+                listaBU.Insert(indexBU, itemBU);
+                indexBU++;
+               
+            }
+
+            SelectList BU = new SelectList(listaBU, "Value", "Text");
+
+            ViewData["BU"] = BU;
+
+        }
         // GET: Employee/Details/5
         [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
@@ -75,14 +90,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             ViewData["Workzone"] = workzone;
 
-            var innerX = new List<SelectListItem>();
-            SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
-            SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
-            innerX.Insert(0, innerXItem);
-            innerX.Insert(0, innerXItem2);
-            SelectList BU = new SelectList(innerX, "Value", "Text");
-
-            ViewData["BU"] = BU;
+            setBUCCLINHA();
 
             if (employee == null)
                 return HttpNotFound("O Funcionário desejado não existe");

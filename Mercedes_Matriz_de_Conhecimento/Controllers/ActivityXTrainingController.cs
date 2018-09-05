@@ -14,7 +14,7 @@ using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class ActivityXTrainingController : Controller
+    public class ActivityXTrainingController : BaseController
     {
 
 

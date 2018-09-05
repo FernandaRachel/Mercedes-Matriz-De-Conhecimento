@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class TrainingStatusController : Controller
+    public class TrainingStatusController : BaseController
     {
 
 

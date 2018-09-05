@@ -14,7 +14,7 @@ using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class ActivityProfileController : Controller
+    public class ActivityProfileController : BaseController
     {
 
 
@@ -119,7 +119,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Deletar)]
         public ActionResult Delete(int id)
         {
-
             _activityProfile.DeleteActivityProfile(id);
 
             return RedirectToAction("Index");

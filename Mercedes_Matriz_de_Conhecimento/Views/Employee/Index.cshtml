@@ -6,9 +6,19 @@
 @section scripts{
     <script type="text/javascript">
 
-        $(".delete").click(function () {
-            $("#myModal").modal('show');
-        });
+        function openModalFunc(value) {
+            $("#delete-employee").modal('show');
+            console.log(value);
+
+            document.getElementById("id-func").value = value;
+        };
+
+        function deleteFunc() {
+            var idFunc = document.getElementById("id-func").value;
+
+            location.href = '@Url.Action("Delete","Employee")?id=' + idFunc;
+
+        }
     </script>
 }
 
@@ -47,8 +57,9 @@
                             <td>@employee.IdentificadorAuxiliar</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <button class="btn" onclick="location.href='@Url.Action("Details","Employee",  new { id = @employee.idfuncionario})'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
-                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","Employee",  new { id = @employee.idfuncionario})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    <button class="btn" onclick="location.href='@Url.Action("Details", "Employee", new { id = @employee.idfuncionario })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
+                                    <button class="btn btn-danger" onclick="openModalFunc(@employee.idfuncionario)"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    @*<button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","Employee",  new { id = @employee.idfuncionario})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>*@
                                 </div>
                             </td>
                         </tr>
@@ -62,4 +73,7 @@
         </div>
     </div>
 </div>
+
+@{Html.RenderPartial("ConfirmDelete");
+}
 
