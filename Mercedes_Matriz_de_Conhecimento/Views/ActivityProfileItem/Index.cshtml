@@ -6,6 +6,28 @@
 }
 
 
+@section scripts{
+    <script type="text/javascript">
+
+        function openModalActivityProfileItem(value) {
+            $("#delete-actv-profile-item").modal('show');
+            console.log(value);
+
+            document.getElementById("id-actvProfileItem").value = value;
+        };
+
+        function deleteActivityProfileItem() {
+            var id = document.getElementById("id-actvProfileItem").value;
+
+            location.href = '@Url.Action("Delete", "ActivityProfileItem")?id=' + id;
+
+        }
+    </script>
+}
+
+
+
+
 
 <div class="container button-place">
     <a type="button" class="btn btn-modified-create btn-group-sm pull-left" href="@Url.Action("Create", "ActivityProfileItem")">
@@ -34,7 +56,8 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <button class="btn" onclick="location.href='@Url.Action("Details","ActivityProfileItem",new { id = @activityProfileItem.IdPerfilItem })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
-                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","ActivityProfileItem",  new { id = @activityProfileItem.IdPerfilItem})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    <button class="btn btn-danger" onclick="openModalActivityProfileItem(@activityProfileItem.IdPerfilItem)"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    @*<button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","ActivityProfileItem",  new { id = @activityProfileItem.IdPerfilItem})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>*@
                                 </div>
                             </td>
                         </tr>
@@ -48,3 +71,5 @@
         </div>
     </div>
 </div>
+@{Html.RenderPartial("ConfirmDelete");
+}

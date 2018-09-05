@@ -81,46 +81,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
         /// <param name="nome">Nome do Usuário</param>
         /// <param name="diretoriaId">Id da Diretoria do Usuário</param>
         /// <param name="centroCustoId">Id do Centro de Custo do Usuário</param>
-        public static void RegisterGSAUserData(string usuarioId, string nivelAcesso, string chave, string nome, string diretoriaId, string centroCustoId)
+        public static void RegisterGSAUserData(string chave, string nome)
         {
-            CookieHelper.Set(MatrizCookieName, $"{usuarioId}|{nivelAcesso}|{chave}|{ImageUrlExists(chave)}|{nome}|{diretoriaId}|{centroCustoId}");
+            CookieHelper.Set(MatrizCookieName, $"|{chave}|{ImageUrlExists(chave)}|{nome}");
         }
 
-        public static int ObterUsuarioId()
-        {
-            int usuarioId = 0;
-
-            if (_context.User.Identity.IsAuthenticated)
-            {
-                var cookieValue = CookieHelper.Get(MatrizCookieName);
-                string[] dadosUsuario = cookieValue.Split('|');
-                int result = 0;
-                if (dadosUsuario.Length > 0 && int.TryParse(dadosUsuario[0], out result))
-                {
-                    usuarioId = result;
-                }
-            }
-
-            return usuarioId;
-        }
-
-        public static int ObterUsuarioNivelAcesso()
-        {
-            int usuarioId = 0;
-
-            if (_context.User.Identity.IsAuthenticated)
-            {
-                var cookieValue = CookieHelper.Get(MatrizCookieName);
-                string[] dadosUsuario = cookieValue.Split('|');
-                int result = 0;
-                if (dadosUsuario.Length > 1 && int.TryParse(dadosUsuario[1], out result))
-                {
-                    usuarioId = result;
-                }
-            }
-
-            return usuarioId;
-        }
 
         /// <summary>
         /// Retorna a chave americas do usuário logado no sistema.
@@ -143,89 +108,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
             return chave;
         }
 
-        public static string ObterUsuarioNome()
-        {
-            string nome = string.Empty;
-
-            if (_context.User.Identity.IsAuthenticated)
-            {
-                var cookieValue = CookieHelper.Get(MatrizCookieName);
-                string[] dadosUsuario = cookieValue.Split('|');
-                if (dadosUsuario.Length > 4)
-                {
-                    nome = dadosUsuario[4];
-                }
-            }
-
-            return nome;
-        }
-
-        public static int ObterUsuarioDiretoriaId()
-        {
-            int diretoria = 0;
-
-            if (_context.User.Identity.IsAuthenticated)
-            {
-                var cookieValue = CookieHelper.Get(MatrizCookieName);
-                string[] dadosUsuario = cookieValue.Split('|');
-                int result = 0;
-                if (dadosUsuario.Length > 5 && int.TryParse(dadosUsuario[5], out result))
-                {
-                    diretoria = result;
-                }
-            }
-
-            return diretoria;
-        }
-
-        public static int ObterUsuarioCentroCustoId()
-        {
-            int centroCusto = 0;
-
-            if (_context.User.Identity.IsAuthenticated)
-            {
-                var cookieValue = CookieHelper.Get(MatrizCookieName);
-                string[] dadosUsuario = cookieValue.Split('|');
-                int result = 0;
-                if (dadosUsuario.Length > 6 && int.TryParse(dadosUsuario[6], out result))
-                {
-                    centroCusto = result;
-                }
-            }
-
-            return centroCusto;
-        }
-
-        //public static Application.ViewModel.UsuarioViewModel ObterUsuarioAtual()
-        //{
-        //    if (_context.User.Identity.IsAuthenticated)
-        //    {
-        //        var cookieValue = CookieHelper.Get(GSADataCookieName);
-        //        string[] dadosUsuario = cookieValue.Split('|');
-
-        //        int usuarioId = 0;
-        //        int nivelAcesso = 0;
-        //        string chave = string.Empty;
-        //        string nome = string.Empty;
-        //        int diretoriaId = 0;
-        //        int centroCustoId = 0;
-
-        //        if (dadosUsuario.Length > 6)
-        //        {
-        //            int.TryParse(dadosUsuario[0], out usuarioId);
-        //            int.TryParse(dadosUsuario[1], out nivelAcesso);
-        //            int.TryParse(dadosUsuario[5], out diretoriaId);
-        //            int.TryParse(dadosUsuario[6], out centroCustoId);
-
-        //            chave = dadosUsuario[2].ToLower();
-        //            nome = dadosUsuario[4];
-        //        }
-
-        //        return new Application.ViewModel.UsuarioViewModel { UsuarioId = usuarioId, NivelAcessoId = nivelAcesso, Chave = chave, Nome = nome, DiretoriaId = diretoriaId, CentroCustoId = centroCustoId };
-        //    }
-
-        //    return null;
-        //}
 
         /// <summary>
         /// Retorna a url/path da imagem do usuário logado

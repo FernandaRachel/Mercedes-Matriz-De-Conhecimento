@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class MatrixController : Controller
+    public class MatrixController : BaseController
     {
 
         private MatrizHistoricoService _matrizHistoricoService;
@@ -71,14 +71,37 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return View();
         }
 
+        public bool AllowCC(string CC)
+        {
+            var grupo = AuthorizationHelper.GetSystem()
+                .GruposDeSistema.Find(g => g.Nome == "Grupo_CentroCusto_Linha");
+
+            var allowed = false;
+
+            foreach (var bu in grupo.Funcionalidades.Filhos)
+            {
+                foreach (var cc in bu.Filhos)
+                {
+
+                    if (CC.Replace(" ", "").Equals(CC.Replace(" ", "")))
+                        allowed = true;
+                }
+            }
+
+            return allowed;
+        }
+
         // GET: Matrix
-        
+
         [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Matriz(int WorkzoneID, bool catchValueFromOficial = true)
         {
-            var teste1 = DateTime.Now;
-            var teste2 = DateTime.Today;
-            //var teste3 = DateTime.da
+            var workzone = _workzone.GetWorkzoneById(WorkzoneID);
+
+            //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
+            if (AllowCC(workzone.idCC))
+                return RedirectToAction("Index");
+
 
             var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
             var matrizWz = new tblMatrizWorkzone();
@@ -105,13 +128,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 matrizXworzoneTemp.DataCriacao = DateTime.Now;
                 matrizXworzoneTemp.idWorkzone = WorkzoneID;
                 matrizWz = _matrizService.CreateMatriz(matrizXworzoneTemp);
-
-                // CRIA MATRIZ TEMPORÁRIA ONDE A EDIÇÃO SERÁ FEITA
-                //tblMatrizWorkzoneTemp matrizXworzoneTempTemp = new tblMatrizWorkzoneTemp();
-                //matrizXworzoneTempTemp.Usuario = "Teste s/ Seg";
-                //matrizXworzoneTempTemp.DataCriacao = DateTime.Now;
-                //matrizXworzoneTempTemp.idWorkzone = WorkzoneID;
-                //matrizWzTemp = _matrizTempService.CreateMatrizTemp(matrizXworzoneTempTemp);
 
             }
             else
@@ -174,7 +190,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             }
 
-            var workzone = _workzone.GetWorkzoneById(WorkzoneID);
             var activiesList = _workzoneXActivity.SetUpActivitiesList(WorkzoneID);
             List<tblTreinamento> trainingList = new List<tblTreinamento>();
             List<tblTipoTreinamento> ttList = new List<tblTipoTreinamento>();
@@ -215,9 +230,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Consultar)]
         public ActionResult MatrizTemp(int WorkzoneID)
         {
-            var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
-
             var workzone = _workzone.GetWorkzoneById(WorkzoneID);
+
+            //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
+            if (AllowCC(workzone.idCC))
+                return RedirectToAction("Index");
+
+            var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
             var activiesList = _workzoneXActivity.SetUpActivitiesList(WorkzoneID);
             List<tblTreinamento> trainingList = new List<tblTreinamento>();
             List<tblTipoTreinamento> ttList = new List<tblTipoTreinamento>();
@@ -573,8 +592,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
                     if (existAvalInActivity.Count() > 0)
                     {
-                       // var existeAtiv =
-                       //_matrizHistoricoService.getMatrizHistoricoActivityByWZIdFuncAtiv(matrizHistoricoCreated.idMatrizHistorico, objAtivAval.idFuncionario, objAtivAval.idAtividade);
+                        // var existeAtiv =
+                        //_matrizHistoricoService.getMatrizHistoricoActivityByWZIdFuncAtiv(matrizHistoricoCreated.idMatrizHistorico, objAtivAval.idFuncionario, objAtivAval.idAtividade);
 
                         var existeAtiv =
                            atividadeHist.Exists(m => m.idFuncionario == objAtivAval.idFuncionario
@@ -612,8 +631,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                           && m.idMatrizWorkzoneHistorico == matrizHistoricoCreated.idMatrizHistorico
                           && m.idAtividade == a.idAtividade);
 
-                       // var existeAtiv =
-                       //_matrizHistoricoService.getMatrizHistoricoActivityByWZIdFuncAtiv(matrizHistoricoCreated.idMatrizHistorico, wz.idFuncionario, a.idAtividade);
+                        // var existeAtiv =
+                        //_matrizHistoricoService.getMatrizHistoricoActivityByWZIdFuncAtiv(matrizHistoricoCreated.idMatrizHistorico, wz.idFuncionario, a.idAtividade);
                         if (!existeAtiv)
                         {
                             newActivityHistoricoObj = new tblMatrizFuncActivityHistorico();
@@ -673,7 +692,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     if (existAvalInTraining.Count() > 0)
                     {
                         var existeTrein =
-                            trainingHist.Exists(m => m.idFuncionario == objTrainAval.idFuncionario 
+                            trainingHist.Exists(m => m.idFuncionario == objTrainAval.idFuncionario
                             && m.idMatrizWorkzoneHistorico == matrizHistoricoCreated.idMatrizHistorico
                             && m.idTreinamento == objTrainAval.idTreinamento);
                         //_matrizHistoricoService.getMatrizHistoricoTrainingByWZIdFuncAtiv(matrizHistoricoCreated.idMatrizHistorico, objTrainAval.idFuncionario, objTrainAval.idTreinamento);

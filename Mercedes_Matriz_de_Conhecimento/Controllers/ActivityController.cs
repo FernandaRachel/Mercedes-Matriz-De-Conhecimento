@@ -9,7 +9,7 @@ using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class ActivityController : Controller
+    public class ActivityController : BaseController
     {
 
 

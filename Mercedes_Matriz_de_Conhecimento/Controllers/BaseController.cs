@@ -7,15 +7,21 @@ using System.Web.Mvc;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
 using System.Web.Security;
 using Mercedes_Matriz_de_Conhecimento.Models;
+using Mercedes_Matriz_de_Conhecimento.Services;
+using static System.Net.Mime.MediaTypeNames;
+using System.Threading.Tasks;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    [Authorize]
+    [LoginAuthorize]
     public class BaseController : Controller
     {
 
+        private AutSisWebApiService _autsisService;
+
         public BaseController()
         {
+            _autsisService = new AutSisWebApiService();
         }
 
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
@@ -26,20 +32,23 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var resultadoAutorizacao = CheckUserAuthorization();
+            var resultadoAutorizacao =  CheckUserAuthorization();
             switch (resultadoAutorizacao)
             {
                 case TipoResultadoAutorizacao.AUTORIZADO:
+                    break;
                 case TipoResultadoAutorizacao.NAO_AUTENTICADO:
+                    string url = $"{FormsAuthentication.LoginUrl}?returnUrl=/{filterContext.RouteData.Values["controller"]}/{filterContext.RouteData.Values["action"]}";
+                    filterContext.Result = new RedirectResult(url);
                     break;
                 case TipoResultadoAutorizacao.USUARIO_INATIVO:
                     TempData["_AuthenticationError"] = "Usuário Inativo";
-                    filterContext.Result = new RedirectResult("/Account/UnauthorizedAccess");
+                    filterContext.Result = new RedirectResult("/Login/UnauthorizedAccess");
                     AuthenticationHelper.LimparRegistroAutenticacao();
                     break;
                 case TipoResultadoAutorizacao.USUARIO_NAO_CADASTRADO:
                     TempData["_AuthenticationError"] = "Usuário não cadastrado";
-                    filterContext.Result = new RedirectResult("/Account/UnauthorizedAccess");
+                    filterContext.Result = new RedirectResult("/Login/UnauthorizedAccess");
                     AuthenticationHelper.LimparRegistroAutenticacao();
 
                     break;
@@ -60,53 +69,74 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
 
-        private TipoResultadoAutorizacao CheckUserAuthorization()
+        private  TipoResultadoAutorizacao CheckUserAuthorization()
         {
+            SistemaApi usuarioPermissions = null;
 
-            Account usuario = null;
 
-            bool local = FormsAuthentication.LoginUrl == "/Login/Login" ? true : false;
+            bool local = FormsAuthentication.LoginUrl == "/Account/Login" ? true : false;
 
+
+            // Verifica se o usuário do SGP esta autenticado OU se você está rodando o sistema local
             if (User.Identity.IsAuthenticated || local)
             {
-                var user = AuthenticationHelper.GetCurrentUser();
+                string user = null;
+                try
+                {
+                    user = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
+                }
+                catch
+                {
+                    user = null;
+                }
 
-                if (user == null || (!User.Identity.Name.ToUpper().Equals(user.Username.ToUpper()) && !local))
+                // Verifica se o usuário logado no sgp não é o mesmo que esta na sessão
+                if (user == null || (!User.Identity.Name.ToUpper().Equals(user.ToUpper()) && !local) )
                 {
 
+                    // Verifica se existe usário do SGP logado
                     if (!String.IsNullOrEmpty(User.Identity.Name))
                     {
-                        usuario = _accountAppService.GetAutsisUser(User.Identity.Name);
+                        string username = User.Identity.Name.ToString();
+                        usuarioPermissions = Task.Run(async () => await _autsisService.getPermissions(username)).Result;
                     }
+
                     else if (user != null)
                     {
-                        if (!String.IsNullOrEmpty(user.Username))
-                            usuario = _accountAppService.GetAutsisUser(user.Username);
+                        if (!String.IsNullOrEmpty(user))
+                            usuarioPermissions = Task.Run(async () => await _autsisService.getPermissions(user)).Result;
                     }
+
                     else if (user == null && local)
                     {
+
                         return TipoResultadoAutorizacao.NAO_AUTENTICADO;
                     }
+
                     else if (user != null && local)
                     {
+
                         return TipoResultadoAutorizacao.AUTORIZADO;
                     }
 
-                    if (usuario != null) //Verifica se o usuário existe
+
+                    if (usuarioPermissions != null) //Verifica se o usuário existe
                     {
-
-                        AuthenticationHelper.Authenticated(usuario, 360, true);
-
+                        AuthorizationHelper.SavePermissionSession(usuarioPermissions);
 
                         return TipoResultadoAutorizacao.AUTORIZADO;
-
                     }
+
                     return TipoResultadoAutorizacao.USUARIO_NAO_CADASTRADO;
+
                 }
+
                 return TipoResultadoAutorizacao.AUTORIZADO;
             }
+
             return TipoResultadoAutorizacao.NAO_AUTENTICADO;
         }
+
 
 
         public void SetMessageSuccess(string message)

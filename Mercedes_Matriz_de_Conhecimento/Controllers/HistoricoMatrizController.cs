@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class HistoricoMatrizController : Controller
+    public class HistoricoMatrizController : BaseController
     {
 
         private MatrizHistoricoService _matrizHistoricoService;
@@ -17,10 +17,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public HistoricoMatrizController()
         {
             _matrizHistoricoService = new MatrizHistoricoService();
+
+            //Pega o nome do usuário para exibir na barra de navegação
+            var username = AuthorizationHelper.GetSystem();
+            ViewBag.User = username.Usuario.ChaveAmericas;
         }
 
         // GET: HistoricoMatriz
-        [AccessHelper(Menu = MenuHelper.HistoricodaMatriz,Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index()
         {
             ViewBag.ListaHistorico = _matrizHistoricoService.GetMatrizHistorico();
@@ -29,6 +33,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
 
+        [AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
         public ActionResult MatrizHistorico(int idMatrizHistorico)
         {
             var VersaoMatriz = _matrizHistoricoService.GetMatrizHistoricoById(idMatrizHistorico);
@@ -51,7 +56,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 avalTrein.sigla = t.siglaItemPerfil;
                 avalTreinList.Add(avalTrein);
 
-               
+
 
                 if (funcList.Where(f => f.idfuncionario == t.idFuncionario).Count() == 0)
                 {
@@ -74,18 +79,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     tObj.Nome = t.nomeTreinamento;
                     tObj.IdTreinamento = t.idTreinamento;
                     tObj.idTipoTreinamento = t.idTipoTreinamento;
-                    //tObj.tblTipoTreinamento = objTipo;
-                    //tObj.tblTipoTreinamento.tblTreinamento.Add(tObj);
+                    tObj.tblTipoTreinamento = objTipo;
+                    tObj.tblTipoTreinamento.tblTreinamento.Add(tObj);
                     trainingList.Add(tObj);
                 }
+            }
+            foreach (var t1 in VersaoMatriz.tblMatrizFuncTreinHistorico)
+            {
                 var ttObj = new tblTipoTreinamento();
 
-                if (ttList.Exists(t2 => t2.IdTipoTreinamento == t.idTipoTreinamento) == false)
+                if (ttList.Exists(t2 => t2.IdTipoTreinamento == t1.idTipoTreinamento) == false)
                 {
-                    ttObj.Nome = t.nomeTipoTreinamento;
-                    ttObj.IdTipoTreinamento = t.idTipoTreinamento;
-                    ttObj.Sigla = t.siglaTipoTreinamento;
-                    ttObj.tblTreinamento = trainingList.Where(t2 => t2.idTipoTreinamento == t.idTipoTreinamento).ToList();
+                    ttObj.Nome = t1.nomeTipoTreinamento;
+                    ttObj.IdTipoTreinamento = t1.idTipoTreinamento;
+                    ttObj.Sigla = t1.siglaTipoTreinamento;
+                    ttObj.tblTreinamento = trainingList.Where(t2 => t2.idTipoTreinamento == t1.idTipoTreinamento).ToList();
                     ttList.Add(ttObj);
                 }
                 //else
@@ -94,7 +102,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 //    ttList.Add(ttObj);
                 //}
             }
-
             foreach (var a in VersaoMatriz.tblMatrizFuncActivityHistorico)
             {
                 avalAtiv = new AvaliacaoAtividadesModel();

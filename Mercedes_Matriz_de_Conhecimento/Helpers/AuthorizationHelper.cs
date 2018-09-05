@@ -28,16 +28,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
 
         public static SistemaApi GetSystem()
         {
-            AuthorizationContext aContext = new AuthorizationContext();
+            SistemaApi sistema = new SistemaApi();
+
+            //AuthorizationContext aContext = new AuthorizationContext();
             if (GetSession() == null)
-                aContext.Result = new RedirectResult("/");
+                return sistema;
 
             return JsonConvert.DeserializeObject<SistemaApi>(GetSession());
         }
 
-        public static void GetPermissions(string user, SistemaApi permissoes)
+        public static void SavePermissionSession(SistemaApi permissoes)
         {
-
 
             var jsonSystem = JsonConvert.SerializeObject(permissoes, Formatting.None,
                     new JsonSerializerSettings()
@@ -48,29 +49,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
                     });
 
             _context.Session["nomeSession"] = jsonSystem;
-            _context.Session.Timeout = 1;
+            _context.Session.Timeout = 3600;
 
 
         }
 
-        public static void SetMenu()
+        public static void DeletePermissionSession()
         {
-        }
-
-        public static PerfilSistemaApi GetProfile()
-        {
-            return GetSystem().Perfil;
-        }
-
-
-        public static GrupoDeAcessoApi GetAccessGroup()
-        {
-            return GetSystem().GrupoDeAcesso;
-        }
-
-        public static List<FuncionalidadeAssociacaoApi> GetAvailableSystems()
-        {
-            return GetSystem().FuncionalidadeAssociacaoApi;
+            _context.Session["nomeSession"] = null;
         }
 
         public static bool CheckPermission(MenuHelper menu, ScreensHelper screen, FeaturesHelper feature)
@@ -80,10 +66,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
 
         private static string GetSession()
         {
-            AuthorizationContext aContext = new AuthorizationContext();
+            //AuthorizationContext aContext = new AuthorizationContext();
 
             if (_context.Session.Count == 0)
-                aContext.Result = new RedirectResult("/");
+                return null; 
 
             var strValorSession = _context.Session["nomeSession"].ToString();
 

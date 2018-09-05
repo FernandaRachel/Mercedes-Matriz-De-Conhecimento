@@ -16,7 +16,7 @@ using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class WorkzoneController : Controller
+    public class WorkzoneController : BaseController
     {
 
 
@@ -58,28 +58,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData["Workzone"] = workzone;
 
 
-            //var innerX = new List<SelectListItem>();
-            //SelectListItem innerXItem = new SelectListItem { Selected = false, Text = "1", Value = "1" };
-            //SelectListItem innerXItem2 = new SelectListItem { Selected = false, Text = "2", Value = "2" };
-            //innerX.Insert(0, innerXItem);
-            //innerX.Insert(0, innerXItem2);
-            //SelectList BU = new SelectList(innerX, "Value", "Text");
-
-            //var listaCC = new List<SelectListItem>();
-            //SelectListItem itemCC = new SelectListItem { Selected = false, Text = "CC_TESTE", Value = "1" };
-            //SelectListItem itemCC2 = new SelectListItem { Selected = false, Text = "CC_TESTE2", Value = "2" };
-            //listaCC.Insert(0, itemCC);
-            //listaCC.Insert(0, itemCC2);
-            //SelectList CC = new SelectList(listaCC, "Value", "Text");
-
-            //var listaLinha = new List<SelectListItem>();
-            //SelectListItem itemLinha = new SelectListItem { Selected = false, Text = "LINHA_TESTE", Value = "1" };
-            //listaLinha.Insert(0, itemLinha);
-            //SelectList Linha = new SelectList(listaLinha, "Value", "Text");
-
-            //ViewData["BU"] = BU;
-            //ViewData["CC"] = CC;
-            //ViewData["LINHA"] = Linha;
             setBUCCLINHA();
 
             return View("Create");

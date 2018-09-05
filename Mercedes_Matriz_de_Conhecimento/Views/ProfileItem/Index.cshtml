@@ -6,6 +6,30 @@
 }
 
 
+
+@section scripts{
+    <script type="text/javascript">
+
+        function openModalTrainingProfileItem(value) {
+            $("#delete-trein-profile-item").modal('show');
+            console.log(value);
+
+            document.getElementById("id-treinProfileItem").value = value;
+        };
+
+        function deleteTrainingProfileItem() {
+            var id = document.getElementById("id-treinProfileItem").value;
+
+            location.href = '@Url.Action("Delete", "ProfileItem")?id=' + id;
+
+        }
+    </script>
+}
+
+
+
+
+
 <div class="container button-place">
     <a type="button" class="btn btn-modified-create btn-group-sm pull-left" href="@Url.Action("Create", "ProfileItem")">
         <i class="fas fa-plus"></i> Cadastrar Perfil Item
@@ -33,7 +57,8 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <button class="btn" onclick="location.href='@Url.Action("Details","ProfileItem",new { id = @ProfileItem.IdPerfilItem})'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
-                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","ProfileItem",  new { id = @ProfileItem.IdPerfilItem})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    <button class="btn btn-danger" onclick="openModalTrainingProfileItem(@ProfileItem.IdPerfilItem)"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    @*<button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","ProfileItem",  new { id = @ProfileItem.IdPerfilItem})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>*@
                                 </div>
                             </td>
                         </tr>
@@ -47,3 +72,5 @@
         </div>
     </div>
 </div>
+@{Html.RenderPartial("ConfirmDelete");
+}

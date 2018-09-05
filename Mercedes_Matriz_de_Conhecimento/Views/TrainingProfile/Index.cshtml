@@ -7,6 +7,26 @@
     ViewBag.Title = "PERFIL DE TREINAMENTO";
 }
 
+@section scripts{
+    <script type="text/javascript">
+
+        function openModalTrainingProfile(value) {
+            $("#delete-trein-profile").modal('show');
+            console.log(value);
+
+            document.getElementById("id-treinProfile").value = value;
+        };
+
+        function deleteTrainingProfile() {
+            var id = document.getElementById("id-treinProfile").value;
+
+            location.href = '@Url.Action("Delete", "TrainingProfile")?id=' + id;
+
+        }
+    </script>
+}
+
+
 
 
 <div class="container button-place">
@@ -36,7 +56,8 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <button class="btn" onclick="location.href='@Url.Action("Details","TrainingProfile",new { id = @trainingProfile.IdPerfis })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
-                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","TrainingProfile",  new { id = @trainingProfile.IdPerfis})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    <button class="btn btn-danger" onclick="openModalTrainingProfile(@trainingProfile.IdPerfis)"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    @*<button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","TrainingProfile",  new { id = @trainingProfile.IdPerfis})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>*@
                                 </div>
                             </td>
                         </tr>
@@ -50,3 +71,5 @@
         </div>
     </div>
 </div>
+@{Html.RenderPartial("ConfirmDelete");
+}

@@ -257,13 +257,14 @@
                                 {
                                     // Verifica se funcionário pertence aquela BU
                                     // Se não classifica como alocação forçada
-                                    if (Model.idBU != @wzXFunc.tblFuncionarios.idBu_Origem)
+                                    if (@Model.idBU.Replace(" ","") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ", ""))
                                     {
                                         <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
                                             @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
                                             @if (@a2.tblPerfilItens != null)
                                             {
-                                                @a2.tblPerfilItens.Sigla
+                                                
+                                                 @a2.tblPerfilItens.Sigla
                                             }
                                         </td>
                                     }
@@ -283,7 +284,7 @@
                                 {
                                     // Verifica se funcionário pertence aquela BU
                                     // Se não classifica como alocação forçada
-                                    if (@Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
+                                    if (@Model.idBU.Replace(" ","") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ",""))
                                     {
                                         <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
                                             @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@

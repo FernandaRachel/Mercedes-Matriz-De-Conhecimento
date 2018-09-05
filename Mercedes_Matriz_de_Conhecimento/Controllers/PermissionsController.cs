@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class PermissionsController : Controller
+    public class PermissionsController : BaseController
     {
         // GET: Permissions
         public ActionResult Index()

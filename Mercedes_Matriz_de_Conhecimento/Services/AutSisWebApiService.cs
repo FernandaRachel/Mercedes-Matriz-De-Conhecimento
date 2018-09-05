@@ -47,17 +47,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
             var result = await client.GetAsync(urlAll);
 
-            if (result.StatusCode == HttpStatusCode.OK)
+            if (result.StatusCode == HttpStatusCode.OK && result.Content != null)
             {
                 var returnAPI = await client.GetStringAsync(urlAll);
                 sistemaApi = JsonConvert.DeserializeObject<SistemaApi>(returnAPI, settings);
+
+                // cria a sessão
+                //AuthorizationHelper.SavePermissionSession(sistemaApi);
             }
             else
             {
                 Console.WriteLine("chora");
             }
 
-            AuthorizationHelper.GetPermissions(usuario, sistemaApi);
+           
             return sistemaApi;
 
 

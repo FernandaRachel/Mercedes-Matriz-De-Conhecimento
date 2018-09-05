@@ -6,6 +6,27 @@
     ViewBag.Title = "ATIVIDADES";
 }
 
+@section scripts{
+    <script type="text/javascript">
+
+        function openModalActivity(value) {
+            $("#delete-activity").modal('show');
+            console.log(value);
+
+            document.getElementById("id-actv").value = value;
+        };
+
+        function deleteActivity() {
+            var idActv = document.getElementById("id-actv").value;
+
+            location.href = '@Url.Action("Delete", "Activity")?id=' + idActv;
+
+        }
+    </script>
+}
+
+
+
 
 <div class="container button-place">
     <a type="button" class="btn btn-modified-create btn-group-sm pull-left" href="@Url.Action("Create", "Activity")">
@@ -40,7 +61,7 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <button class="btn" onclick="location.href='@Url.Action("Details", "Activity", new { id = @activity.idAtividade })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
-                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","Activity",  new { id = @activity.idAtividade})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    <button class="btn btn-danger" onclick="openModalActivity(@activity.idAtividade)"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
                                 </div>
                             </td>
                         </tr>
@@ -54,3 +75,5 @@
         </div>
     </div>
 </div>
+@{Html.RenderPartial("ConfirmDelete");
+}

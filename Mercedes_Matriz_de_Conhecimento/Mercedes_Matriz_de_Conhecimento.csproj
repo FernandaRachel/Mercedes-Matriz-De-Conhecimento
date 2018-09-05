@@ -218,6 +218,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HistoricoMatrizController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PerfilTrainingItemXPerfilItemController.cs" />
@@ -238,12 +239,14 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Filters\UserAutorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AccessHelper.cs" />
+    <Compile Include="Helpers\AuthenticationHelper.cs" />
     <Compile Include="Helpers\AuthorizationHelper.cs" />
+    <Compile Include="Helpers\CookieHelper.cs" />
+    <Compile Include="Helpers\LoginAuthorizeAttribute.cs" />
     <Compile Include="Helpers\ScreenHelper.cs" />
     <Compile Include="Mercedes_Matriz.Context.cs">
       <AutoGen>True</AutoGen>
@@ -260,6 +263,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AutSisModel.cs" />
     <Compile Include="Models\AvaliacaoAtividadesModel.cs" />
@@ -534,6 +538,7 @@
     <Content Include="Mercedes_Matriz.edmx.diagram">
       <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Debug.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -639,6 +644,15 @@
     <Content Include="Views\HistoricoMatriz\Index.cshtml" />
     <Content Include="Views\HistoricoMatriz\MatrizHistorico.cshtml" />
     <Content Include="Views\Matrix\MatrizTemp.cshtml" />
+    <Content Include="Views\Login\UnauthorizedAccess.cshtml" />
+    <Content Include="Views\Activity\ConfirmDelete.cshtml" />
+    <Content Include="Views\ActivityProfile\ConfirmDelete.cshtml" />
+    <Content Include="Views\ActivityProfileItem\ConfirmDelete.cshtml" />
+    <Content Include="Views\ProfileItem\ConfirmDelete.cshtml" />
+    <Content Include="Views\Training\ConfirmDelete.cshtml" />
+    <Content Include="Views\TrainingProfile\ConfirmDelete.cshtml" />
+    <Content Include="Views\TrainingType\ConfirmDelete.cshtml" />
+    <Content Include="Views\Workzone\ConfirmDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -673,7 +687,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62022</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62022/</IISUrl>
+          <IISUrl>http://localhost:6060/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

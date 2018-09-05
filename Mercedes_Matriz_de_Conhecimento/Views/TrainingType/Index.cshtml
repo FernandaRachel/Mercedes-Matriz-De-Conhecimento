@@ -7,6 +7,26 @@
     ViewBag.Title = "TIPO DE TREINAMENTO";
 }
 
+@section scripts{
+    <script type="text/javascript">
+
+        function openModalTrainingType(value) {
+            $("#delete-trein-profile").modal('show');
+            console.log(value);
+
+            document.getElementById("id-treinType").value = value;
+        };
+
+        function deleteTrainingType() {
+            var id = document.getElementById("id-treinType").value;
+
+            location.href = '@Url.Action("Delete", "TrainingType")?id=' + id;
+
+        }
+    </script>
+}
+
+
 
 <div class="container button-place">
     <a type="button" class="btn btn-modified-create btn-group-sm pull-left" href="@Url.Action("Create", "TrainingType")">
@@ -37,7 +57,8 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <button class="btn" onclick="location.href='@Url.Action("Details","TrainingType",new { id = @trainingType.IdTipoTreinamento })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
-                                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","TrainingType",  new { id = @trainingType.IdTipoTreinamento})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    <button class="btn btn-danger" onclick="openModalTrainingType(@trainingType.IdTipoTreinamento)"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>
+                                    @*<button class="btn btn-danger" onclick="location.href='@Url.Action("Delete","TrainingType",  new { id = @trainingType.IdTipoTreinamento})'"><i class="glyphicon glyphicon-trash icon-delete-modified"></i></button>*@
                                 </div>
                             </td>
                         </tr>
@@ -51,3 +72,5 @@
         </div>
     </div>
 </div>
+@{Html.RenderPartial("ConfirmDelete");
+}
