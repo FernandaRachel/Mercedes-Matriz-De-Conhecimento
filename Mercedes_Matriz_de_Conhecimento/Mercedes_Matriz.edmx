@@ -273,7 +273,7 @@
           <Property Name="FlagAtivo" Type="bit" Nullable="false" />
           <Property Name="idBU" Type="varchar" MaxLength="15" />
           <Property Name="idCC" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="idLinha" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="idLinha" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="tblWorkzoneXAtividades">
           <Key>
@@ -1177,7 +1177,7 @@
           <Property Name="FlagAtivo" Type="Boolean" Nullable="false" />
           <Property Name="idBU" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="idCC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idLinha" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idLinha" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblMatrizWorkzone" Relationship="Self.FK_tblMatrizWorkzone_tblWorkzone" FromRole="tblWorkzone" ToRole="tblMatrizWorkzone" />
           <NavigationProperty Name="tblMatrizWorkzoneTemp" Relationship="Self.FK_tblMatrizWorkzoneTemp_tblWorkzone" FromRole="tblWorkzone" ToRole="tblMatrizWorkzoneTemp" />
           <NavigationProperty Name="tblWorkzoneXAtividades" Relationship="Self.FK_tblWorkoneXAtividades_tblWorkzone" FromRole="tblWorkzone" ToRole="tblWorkzoneXAtividades" />

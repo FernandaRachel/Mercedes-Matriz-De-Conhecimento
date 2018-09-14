@@ -1,4 +1,5 @@
 ﻿using Mercedes_Matriz_de_Conhecimento.Helpers;
+using Mercedes_Matriz_de_Conhecimento.Models;
 using Mercedes_Matriz_de_Conhecimento.Services;
 using System;
 using System.Collections.Generic;
@@ -58,10 +59,36 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             _profileItemTraining = new ProfileItemService();
 
             //Pega o nome do usuário para exibir na barra de navegação
-            var username = AuthorizationHelper.GetSystem();
-            ViewBag.User = username.Usuario.ChaveAmericas;
+            SistemaApi username = new SistemaApi();
+
+            SetImage();
         }
 
+
+        public void SetImage()
+        {
+            //Pega o nome do usuário para exibir na barra de navegação
+            SistemaApi username = new SistemaApi();
+
+            try
+            {
+
+                username = AuthorizationHelper.GetSystem();
+                ViewBag.User = username.Usuario.ChaveAmericas;
+                if (username != null)
+                {
+                    var imgUser = AuthorizationHelper.GetUserImage(username.Usuario.ChaveAmericas);
+                    ViewBag.UserPhoto = imgUser;
+                }
+            }
+            catch
+            {
+                var imgUser = AuthorizationHelper.GetUserImage("");
+
+                ViewBag.User = "";
+                ViewBag.UserPhoto = imgUser;
+            }
+        }
         public ActionResult Index()
         {
             IEnumerable<tblWorkzone> workzones;
@@ -73,19 +100,27 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public bool AllowCC(string CC)
         {
-            var grupo = AuthorizationHelper.GetSystem()
-                .GruposDeSistema.Find(g => g.Nome == "Grupo_CentroCusto_Linha");
-
             var allowed = false;
 
-            foreach (var bu in grupo.Funcionalidades.Filhos)
+            try
             {
-                foreach (var cc in bu.Filhos)
-                {
+                var grupo = AuthorizationHelper.GetSystem()
+                    .GruposDeSistema.Find(g => g.Nome == "Grupo_CentroCusto_Linha");
 
-                    if (CC.Replace(" ", "").Equals(CC.Replace(" ", "")))
-                        allowed = true;
+
+                foreach (var bu in grupo.Funcionalidades.Filhos)
+                {
+                    foreach (var cc in bu.Filhos)
+                    {
+
+                        if (CC.Replace(" ", "").Equals(CC.Replace(" ", "")))
+                            allowed = true;
+                    }
                 }
+            }
+            catch
+            {
+                allowed = false;
             }
 
             return allowed;
@@ -99,9 +134,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var workzone = _workzone.GetWorkzoneById(WorkzoneID);
 
             //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
-            if (AllowCC(workzone.idCC))
+            if (!AllowCC(workzone.idCC))
                 return RedirectToAction("Index");
 
+            SetImage();
 
             var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
             var matrizWz = new tblMatrizWorkzone();
@@ -233,7 +269,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var workzone = _workzone.GetWorkzoneById(WorkzoneID);
 
             //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
-            if (AllowCC(workzone.idCC))
+            if (!AllowCC(workzone.idCC))
                 return RedirectToAction("Index");
 
             var exits = _matrizService.GetMatrizByWZId(WorkzoneID);

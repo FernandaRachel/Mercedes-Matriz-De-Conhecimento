@@ -24,19 +24,36 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         {
 
             //Pega o nome do usuário para exibir na barra de navegação
-            var username = AuthorizationHelper.GetSystem();
-            ViewBag.User = username.Usuario.ChaveAmericas;
+
+            try
+            {
+
+                var username = AuthorizationHelper.GetSystem();
+                ViewBag.User = username.Usuario.ChaveAmericas;
+                if (username != null)
+                {
+                    var imgUser = AuthorizationHelper.GetUserImage(username.Usuario.ChaveAmericas);
+                    ViewBag.UserPhoto = imgUser;
+                }
+            }
+            catch
+            {
+                var imgUser = AuthorizationHelper.GetUserImage("");
+
+                ViewBag.User = "";
+                ViewBag.UserPhoto = imgUser;
+            }
 
             return View();
         }
 
         public void SetMenu(SistemaApi permissions)
         {
-            
+
         }
 
 
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Consultar)]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
