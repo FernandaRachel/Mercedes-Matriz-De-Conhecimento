@@ -26,14 +26,38 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public WorkzoneController()
         {
-            //Pega o nome do usuário para exibir na barra de navegação
-            var username = AuthorizationHelper.GetSystem();
-            ViewBag.User = username.Usuario.ChaveAmericas;
+
+            SetImage();
 
             _workzone = new WorkzoneService();
             _employee = new EmployeeService();
             _workzoneXemployee = new WorzoneXEmployeeService();
 
+        }
+
+        public void SetImage()
+        {
+            //Pega o nome do usuário para exibir na barra de navegação
+            SistemaApi username = new SistemaApi();
+
+            try
+            {
+
+                username = AuthorizationHelper.GetSystem();
+                ViewBag.User = username.Usuario.ChaveAmericas;
+                if (username != null)
+                {
+                    var imgUser = AuthorizationHelper.GetUserImage(username.Usuario.ChaveAmericas);
+                    ViewBag.UserPhoto = imgUser;
+                }
+            }
+            catch
+            {
+                var imgUser = AuthorizationHelper.GetUserImage("");
+
+                ViewBag.User = "";
+                ViewBag.UserPhoto = imgUser;
+            }
         }
 
         // GET: workzone
@@ -65,8 +89,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // Cria as listas de BU, CC e Linha
-        public void setBUCCLINHA()
+        public void setBUCCLINHA(int idWorkzone = 0)
         {
+
+
             var listaBU = new List<SelectListItem>();
             var listaCC = new List<SelectListItem>();
             var listaLinha = new List<SelectListItem>();
@@ -75,28 +101,55 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var indexCC = 0;
             var indexLinha = 0;
 
-            var permissions = AuthorizationHelper.GetSystem();
-            var grupo = permissions.GruposDeSistema.Find(g => g.Nome == "Grupo_CentroCusto_Linha");
-
-            foreach (var bu in grupo.Funcionalidades.Filhos)
+            try
             {
-                var itemBU = new SelectListItem { Selected = false, Text = bu.Nome, Value = bu.Nome };
-                listaBU.Insert(indexBU, itemBU);
-                indexBU++;
+                var permissions = AuthorizationHelper.GetSystem();
+                var grupo = permissions.GruposDeSistema.Find(g => g.Nome == "Grupo_CentroCusto_Linha");
 
-                foreach (var f2 in bu.Filhos)
+                foreach (var bu in grupo.Funcionalidades.Filhos)
                 {
-                    var itemCC = new SelectListItem { Selected = false, Text = f2.Nome, Value = bu.Nome };
-                    listaCC.Insert(indexCC, itemCC);
-                    indexCC++;
+                    var itemBU = new SelectListItem { Selected = false, Text = bu.Nome, Value = bu.Nome };
+                    listaBU.Insert(indexBU, itemBU);
+                    indexBU++;
 
-                    foreach(var f3 in f2.Filhos)
+                    foreach (var f2 in bu.Filhos)
                     {
-                        var itemLinha = new SelectListItem { Selected = false, Text = f3.Nome, Value = f3.Nome };
-                        listaLinha.Insert(indexLinha, itemLinha);
-                        indexLinha++;
+                        var itemCC = new SelectListItem { Selected = false, Text = f2.Nome, Value = bu.Nome };
+                        listaCC.Insert(indexCC, itemCC);
+                        indexCC++;
+
+                        foreach (var f3 in f2.Filhos)
+                        {
+                            var itemLinha = new SelectListItem { Selected = false, Text = f3.Nome, Value = f3.Nome };
+                            listaLinha.Insert(indexLinha, itemLinha);
+                            indexLinha++;
+                        }
                     }
                 }
+            }
+            catch
+            {
+                if (idWorkzone != 0)
+                {
+                    var workzone = _workzone.GetWorkzoneById(idWorkzone);
+
+                    var itemBU = new SelectListItem { Selected = false, Text = workzone.idBU, Value = workzone.idBU };
+                    listaBU.Insert(indexBU, itemBU);
+                    var itemCC = new SelectListItem { Selected = false, Text = workzone.idCC, Value = workzone.idCC };
+                    listaCC.Insert(indexCC, itemCC);
+                    var itemLinha = new SelectListItem { Selected = false, Text = workzone.idLinha, Value = workzone.idLinha };
+                    listaLinha.Insert(indexLinha, itemLinha);
+                }
+                else
+                {
+                    var itemBU = new SelectListItem { Selected = false, Text = "", Value = "" };
+                    listaBU.Insert(indexBU, itemBU);
+                    var itemCC = new SelectListItem { Selected = false, Text = "", Value = "" };
+                    listaCC.Insert(indexCC, itemCC);
+                    var itemLinha = new SelectListItem { Selected = false, Text = "", Value = "" };
+                    listaLinha.Insert(indexLinha, itemLinha);
+                }
+
             }
 
             SelectList BU = new SelectList(listaBU, "Value", "Text");
@@ -143,6 +196,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id, string nome = "")
         {
+
             FuncListModel Func = new FuncListModel();
             Func.idWorkzone = id;
             var x = ViewBag.Name;
@@ -151,8 +205,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData.Clear();
             UpdateModel(ViewData);
             /*  MONTANDO SELECT LIST BU, CC E LINHA*/
-            setBUCCLINHA();
+            setBUCCLINHA(id);
             /*FINALIZANDO SELECT LISTA BU, CC E LINHA*/
+
+            SetImage();
 
             tblWorkzone workzone;
             workzone = _workzone.GetWorkzoneById(id);

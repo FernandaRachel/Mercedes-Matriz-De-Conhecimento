@@ -24,8 +24,26 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActivityProfileController()
         {
             //Pega o nome do usuário para exibir na barra de navegação
-            var username = AuthorizationHelper.GetSystem();
-            ViewBag.User = username.Usuario.ChaveAmericas;
+            SistemaApi username = new SistemaApi();
+
+            try
+            {
+
+                username = AuthorizationHelper.GetSystem();
+                ViewBag.User = username.Usuario.ChaveAmericas;
+                if (username != null)
+                {
+                    var imgUser = AuthorizationHelper.GetUserImage(username.Usuario.ChaveAmericas);
+                    ViewBag.UserPhoto = imgUser;
+                }
+            }
+            catch
+            {
+                var imgUser = AuthorizationHelper.GetUserImage("");
+
+                ViewBag.User = "";
+                ViewBag.UserPhoto = imgUser;
+            }
 
             _activityProfile = new ActivityProfileService();
 

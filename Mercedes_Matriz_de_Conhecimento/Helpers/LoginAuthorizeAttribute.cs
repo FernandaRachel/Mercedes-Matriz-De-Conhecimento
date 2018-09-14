@@ -19,6 +19,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
         private bool _authenticated;
         private bool _authorized;
         private bool _Json;
+        private static HttpContext _context { get { return HttpContext.Current; } }
 
 
         private AutSisWebApiService _autsisService;

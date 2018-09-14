@@ -22,15 +22,38 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         private ApplicationUserManager _userManager;
         private static AutSisWebApiService _autsisService;
 
+        //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         public AccountController()
         {
+            //UserManager = userManager;
+            //SignInManager = signInManager;
             _autsisService = new AutSisWebApiService();
+            SetImage();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public void SetImage()
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            //Pega o nome do usuário para exibir na barra de navegação
+            SistemaApi username = new SistemaApi();
+
+            try
+            {
+
+                username = AuthorizationHelper.GetSystem();
+                ViewBag.User = username.Usuario.ChaveAmericas;
+                if (username != null)
+                {
+                    var imgUser = AuthorizationHelper.GetUserImage(username.Usuario.ChaveAmericas);
+                    ViewBag.UserPhoto = imgUser;
+                }
+            }
+            catch
+            {
+                var imgUser = AuthorizationHelper.GetUserImage("");
+
+                ViewBag.User = "";
+                ViewBag.UserPhoto = imgUser;
+            }
         }
 
         public ApplicationSignInManager SignInManager
@@ -107,14 +130,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult LogOff()
         {
-            AuthorizationHelper.DeletePermissionSession();
-            return RedirectToRoute("http://sgph.br154.corpintra.net");
+            AuthorizationHelper.LimparRegistroAutenticacao();
+
+            return RedirectToAction("Index", "Home");
         }
 
         //

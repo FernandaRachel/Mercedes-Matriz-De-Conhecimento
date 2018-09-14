@@ -13,26 +13,30 @@
     <script>
 
         function searchFunc() {
-            var name = document.getElementById("nome");
-            var workzone = document.getElementById("workzone");
 
-            if (name.value.length > 3) {
-                $.ajax({
-                    url: '@Url.Action("SearchUser", "Workzone")',
-                    data: {
-                        idWorkzone: workzone.value,
-                        nome: name.value
-                    }
-                }).done(function (response) {
-                    var url = '/Workzone/SearchUser'
-                    var x = document.getElementById('listaFunc');
-                    x.innerHTML = response;
-                    $('#listaFunc').innerHTML = response;
+            setTimeout(function () {
+                var name = document.getElementById("nome");
+                var workzone = document.getElementById("workzone");
 
-                    console.log('response');
-                    console.log(response);
-                });
-            }
+                if (name.value.length > 3 || name.value.length == 0) {
+                    $.ajax({
+                        url: '@Url.Action("SearchUser", "Workzone")',
+                        data: {
+                            idWorkzone: workzone.value,
+                            nome: name.value
+                        }
+                    }).done(function (response) {
+                        var url = '/Workzone/SearchUser'
+                        var x = document.getElementById('listaFunc');
+                        x.innerHTML = response;
+                        $('#listaFunc').innerHTML = response;
+
+                        console.log('response');
+                        console.log(response);
+                    });
+                }
+            }, 1000)
+
 
         }
     </script>

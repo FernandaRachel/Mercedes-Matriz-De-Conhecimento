@@ -24,15 +24,33 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public EmployeeController()
         {
             //Pega o nome do usuário para exibir na barra de navegação
-            var username = AuthorizationHelper.GetSystem();
-            ViewBag.User = username.Usuario.ChaveAmericas;
+            SistemaApi username = new SistemaApi();
+
+            try
+            {
+
+                username = AuthorizationHelper.GetSystem();
+                ViewBag.User = username.Usuario.ChaveAmericas;
+                if (username != null)
+                {
+                    var imgUser = AuthorizationHelper.GetUserImage(username.Usuario.ChaveAmericas);
+                    ViewBag.UserPhoto = imgUser;
+                }
+            }
+            catch
+            {
+                var imgUser = AuthorizationHelper.GetUserImage("");
+
+                ViewBag.User = "";
+                ViewBag.UserPhoto = imgUser;
+            }
 
             _employee = new EmployeeService();
             _workzone = new WorkzoneService();
         }
 
         // GET: Employee
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -44,7 +62,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblWorkzone> workzone;
@@ -57,29 +75,46 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
 
-        public void setBUCCLINHA()
+        public void setBUCCLINHA(int idEmployee = 0)
         {
             var listaBU = new List<SelectListItem>();
             var indexBU = 0;
 
-            var permissions = AuthorizationHelper.GetSystem();
-            var grupo = permissions.GruposDeSistema.Find(g => g.Nome == "Grupo_CentroCusto_Linha");
-
-            foreach (var bu in grupo.Funcionalidades.Filhos)
+            try
             {
-                var itemBU = new SelectListItem { Selected = false, Text = bu.Nome, Value = bu.Nome };
-                listaBU.Insert(indexBU, itemBU);
-                indexBU++;
-               
-            }
 
+                var permissions = AuthorizationHelper.GetSystem();
+                var grupo = permissions.GruposDeSistema.Find(g => g.Nome == "Grupo_CentroCusto_Linha");
+
+                foreach (var bu in grupo.Funcionalidades.Filhos)
+                {
+                    var itemBU = new SelectListItem { Selected = false, Text = bu.Nome, Value = bu.Nome };
+                    listaBU.Insert(indexBU, itemBU);
+                    indexBU++;
+
+                }
+            }
+            catch
+            {
+                if (idEmployee != 0)
+                {
+                    var employee = _employee.GetEmployeeById(idEmployee);
+                    var itemBU = new SelectListItem { Selected = false, Text = employee.idBu_Origem, Value = employee.idBu_Origem };
+                    listaBU.Insert(indexBU, itemBU);
+                }
+                else
+                {
+                    var itemBU = new SelectListItem { Selected = false, Text = "", Value = "" };
+                    listaBU.Insert(indexBU, itemBU);
+                }
+            }
             SelectList BU = new SelectList(listaBU, "Value", "Text");
 
             ViewData["BU"] = BU;
 
         }
         // GET: Employee/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
             IEnumerable<tblWorkzone> workzone;
@@ -90,7 +125,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             ViewData["Workzone"] = workzone;
 
-            setBUCCLINHA();
+            setBUCCLINHA(id);
 
             if (employee == null)
                 return HttpNotFound("O Funcionário desejado não existe");
@@ -157,7 +192,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: Employee/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Deletar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Deletar)]
         public ActionResult Delete(int id)
         {
 

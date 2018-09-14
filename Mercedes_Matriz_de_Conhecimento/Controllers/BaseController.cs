@@ -44,12 +44,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 case TipoResultadoAutorizacao.USUARIO_INATIVO:
                     TempData["_AuthenticationError"] = "Usuário Inativo";
                     filterContext.Result = new RedirectResult("/Login/UnauthorizedAccess");
-                    AuthenticationHelper.LimparRegistroAutenticacao();
+                    AuthorizationHelper.LimparRegistroAutenticacao();
                     break;
                 case TipoResultadoAutorizacao.USUARIO_NAO_CADASTRADO:
                     TempData["_AuthenticationError"] = "Usuário não cadastrado";
                     filterContext.Result = new RedirectResult("/Login/UnauthorizedAccess");
-                    AuthenticationHelper.LimparRegistroAutenticacao();
+                    AuthorizationHelper.LimparRegistroAutenticacao();
 
                     break;
                 default:
