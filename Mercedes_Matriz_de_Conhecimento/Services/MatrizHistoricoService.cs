@@ -11,15 +11,33 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         public DbConnection _db = new DbConnection();
 
 
-        public IEnumerable<tblMatrizWorkzoneHistorico> GetMatrizHistorico()
+        public IEnumerable<tblMatrizWorkzoneHistorico> GetMatrizHistoricoByDate(DateTime dateIni, DateTime dateEnd, string wzName)
         {
 
+            dateEnd = dateEnd.AddHours(23).AddMinutes(59);
             IEnumerable<tblMatrizWorkzoneHistorico> matrizHistorico;
-            var query = _db.tblMatrizWorkzoneHistorico;
 
-            matrizHistorico = query;
+            if (wzName.Length == 0)
+            {
+                matrizHistorico = _db.tblMatrizWorkzoneHistorico
+                    .Where(m => m.DataCriacao >= dateIni && m.DataCriacao <= dateEnd);
 
-            return matrizHistorico;
+                return matrizHistorico;
+            }
+            else
+            {
+                matrizHistorico = _db.tblMatrizWorkzoneHistorico
+                    .Where(m => m.DataCriacao >= dateIni && m.DataCriacao <= dateEnd && m.nomeWorkzone == wzName);
+                return matrizHistorico;
+            }
+        }
+
+        public List<string> GetWorkzoneName()
+        {
+            var query = _db.tblMatrizWorkzoneHistorico
+                 .Select(m => m.nomeWorkzone).Distinct().ToList();
+
+            return query;
         }
 
         public tblMatrizWorkzoneHistorico GetMatrizHistoricoById(int idMWZ)
