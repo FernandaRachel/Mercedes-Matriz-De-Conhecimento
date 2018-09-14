@@ -13,19 +13,31 @@
         function redirectToMatriz() {
             var WorkzoneID = document.getElementById("workzone");
 
-            location.href = '@Url.Action("MatrizHistorico", "HistoricoMatriz")?idMatrizHistorico=' + WorkzoneID.value;
+            if (WorkzoneID.value != null) {
+                location.href = '@Url.Action("MatrizHistorico", "HistoricoMatriz")?idMatrizHistorico=' + WorkzoneID.value;
+            }
 
-
-            @*$.ajax({
-                url: '@Url.Action("Matriz", "Matrix")',
-                data: {
-                    WorkzoneID: WorkzoneID.value
-                }
-            }).done(function (response) {
-
-
-            });*@
         }
+
+        function SearchDate() {
+            var dateIni = document.getElementById("date-ini");
+            var dateEnd = document.getElementById("date-end");
+            var wzName = document.getElementById("wzName");
+
+            if (dateEnd.value.length == 0 || dateIni.value.length == 0) {
+                alert("Escolha um período")
+            } else {
+
+                location.href = '@Url.Action("Index", "HistoricoMatriz")?dateIni=' + dateIni.value
+                    + "&dateEnd=" + dateEnd.value + "&wzName=" + wzName.value;
+            }
+
+        }
+        $(function () {
+            // This will make every element with the class "date-picker" into a DatePicker element
+            $('.date-picker1').datepicker({ dateFormat: 'dd-mm-yy' }).val();;
+            $('.date-picker2').datepicker({ dateFormat: 'dd-mm-yy' }).val();;
+        })
     </script>
 }
 
@@ -33,18 +45,43 @@
 
 <div class="row">
     <div>
-        <div class="col-md-4">
+        <div class="col-md-2">
+            <label>Postos de Treinamento:</label>
+            @Html.DropDownList("workzone", new SelectList((IEnumerable)ViewBag.WorkzoneNameList), "Escolha um posto de treinamento",
+            new
+            {
+                @class = "form-control col-md-2 selectpicker",
+                data_show_subtext = "true",
+                data_live_search = "true",
+                id = "wzName"
+            })
+        </div>
+        <div class="col-md-2">
+            <label>Data inicial:</label>
+            <input class="date-picker1 form-control" id="date-ini" />
+        </div>
+        <div class="col-md-2">
+            <label>Data final:</label>
+            <input class="date-picker2 form-control" id="date-end" />
+        </div>
+        <div class="col-md-1">
+            <br />
+            <button class="btn btn-default" onclick="SearchDate()"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="col-md-3">
+            <label>Versões:</label>
             @Html.DropDownListFor(m => m.DataCriacao, new SelectList((IEnumerable)ViewBag.ListaHistorico, "idMatrizHistorico", "DataCriacao"), "Escolha uma versão",
             new
             {
-                @class = "form-control col-md-9 selectpicker",
+                @class = "form-control col-md-4 selectpicker",
                 data_show_subtext = "true",
                 data_live_search = "true",
-                id= "workzone"
+                id = "workzone"
             })
         </div>
     </div>
     <div class="col-md-2">
+        <br />
         <button class="btn btn-modified-save" onclick="redirectToMatriz()">Abrir Histórico</button>
     </div>
 </div>
