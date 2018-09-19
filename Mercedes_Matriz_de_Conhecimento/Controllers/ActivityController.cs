@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Configuration;
-using DCX.ITLC.AutSis.Services.Integracao;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
+using log4net;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -16,10 +16,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         private ActivityService _activity;
         private ActivityProfileService _activityProfile;
         private ActivityGroupService _activityGroup;
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
         public ActivityController()
         {
+            log.Debug("Activity Controller called");
+
             _activity = new ActivityService();
             _activityProfile = new ActivityProfileService();
             _activityGroup = new ActivityGroupService();
@@ -38,8 +41,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     ViewBag.UserPhoto = imgUser;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                log.Debug(ex.Message.ToString());
+
                 var imgUser = AuthorizationHelper.GetUserImage("");
 
                 ViewBag.User = "";

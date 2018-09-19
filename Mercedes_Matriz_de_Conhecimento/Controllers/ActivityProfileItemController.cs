@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Configuration;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
+using log4net;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -19,10 +20,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         private ActivityProfileItemService _activityProfileItem;
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
         public ActivityProfileItemController()
         {
+            log.Debug("ActivityProfileItem Controller called");
+
             //Pega o nome do usuário para exibir na barra de navegação
             SistemaApi username = new SistemaApi();
 
@@ -49,13 +53,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: activityProfile
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
-            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+            IEnumerable<tblPerfilItens> activityProfile = new List<tblPerfilItens>();
 
-            IEnumerable<tblPerfilItens> activityProfile;
-            activityProfile = _activityProfileItem.GetActivityProfileItemsWithPagination(page,pages_quantity);
+            try
+            {
+                var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
+                activityProfile = _activityProfileItem.GetActivityProfileItemsWithPagination(page, pages_quantity);
+            }
+            catch (Exception ex)
+            {
+                log.Debug(ex.Message.ToString());
+            }
 
             return View(activityProfile);
         }
@@ -67,7 +79,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
 
@@ -82,7 +94,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         [HttpPost]
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Editar)]
         public ActionResult Create(tblPerfilItens activityProfile)
         {
             var exits = _activityProfileItem.checkIfActivityProfileItemAlreadyExits(activityProfile);
@@ -128,7 +140,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: activityProfile/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Deletar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Deletar)]
         public ActionResult Delete(int id)
         {
 

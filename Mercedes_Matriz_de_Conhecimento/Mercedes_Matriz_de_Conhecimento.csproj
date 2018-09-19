@@ -44,10 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DCX.ITLC.AutSis.Services.Integracao, Version=1.2.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Autisis exemplo\Autisis exemplo\packages\DCX.ITLC.AutSis.Services.Integracao.1.2.1.2\lib\net45\DCX.ITLC.AutSis.Services.Integracao.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -300,14 +296,12 @@
     <Compile Include="Services\MatrizWorkzoneTempService.cs" />
     <Compile Include="Services\MatrizWorkzoneService.cs" />
     <Compile Include="Services\Interface\IMatrizService.cs" />
-    <Compile Include="Services\Interface\IPermissionsService.cs" />
     <Compile Include="Services\Interface\ITrainingStatusService.cs" />
     <Compile Include="Services\Interface\IWorzoneXEmployeeService.cs" />
     <Compile Include="Services\PerfilTrainingItemXPerfilItemService.cs" />
     <Compile Include="Services\PerfilAtivItemXPerfilItemService.cs" />
     <Compile Include="Services\Interface\IPerfilAtivItemXPerfilItemService.cs" />
     <Compile Include="Services\Interface\IActivityXTrainingService.cs" />
-    <Compile Include="Services\PermissionsService.cs" />
     <Compile Include="Services\TrainingStatusService.cs" />
     <Compile Include="Services\WorzoneXEmployeeService.cs" />
     <Compile Include="Services\WorzoneXActivityService.cs" />
