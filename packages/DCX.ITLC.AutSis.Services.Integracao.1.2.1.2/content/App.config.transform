@@ -1,9 +1,0 @@
-﻿<configuration>
-  <appSettings>
-    <add key="EnderecoWebApi" value="aHR0cDovL2MxNTR2c2l0bGQwMS5icjE1NC5jb3JwaW50cmEubmV0L05vdm9BdXRTaXMvYXBp"/>
-    <!--<add key="EnderecoWebApiHomologacao" value="aHR0cDovL2JybmV0aC5icjE1NC5jb3JwaW50cmEubmV0L05vdm9BdXRTaXMvYXBp"/>-->
-    <!--<add key="EnderecoWebApiProducao" value="aHR0cDovL2JybmV0LmludHJhLmNvcnBpbnRyYS5uZXQvTm92b0F1dFNpcy9hcGk="/>-->
-    <add key="LocalArquivoDeConfiguracaoDoUsuario" value="QzpcUHJvZ3JhbURhdGFcTUJCcmFzXEF1dFNpc1xVc3Vhcmlvc1w="/>
-    <add key="LocalArquivoDeConfiguracaoDoSistema" value="QzpcUHJvZ3JhbURhdGFcTUJCcmFzXEF1dFNpc1xTaXN0ZW1hc1w="/>
-  </appSettings>
-</configuration>

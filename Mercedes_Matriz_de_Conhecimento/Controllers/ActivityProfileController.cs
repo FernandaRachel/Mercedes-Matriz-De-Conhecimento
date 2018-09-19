@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Configuration;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
+using log4net;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -19,10 +20,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         private ActivityProfileService _activityProfile;
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
         public ActivityProfileController()
         {
+            log.Debug("ActivityProfile Controller called");
+
             //Pega o nome do usuário para exibir na barra de navegação
             SistemaApi username = new SistemaApi();
 
@@ -37,8 +41,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     ViewBag.UserPhoto = imgUser;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                log.Debug(ex.Message.ToString());
+
                 var imgUser = AuthorizationHelper.GetUserImage("");
 
                 ViewBag.User = "";
@@ -50,19 +56,28 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: activityProfile
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
-            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+            IEnumerable<tblPerfis> activityProfile = new List<tblPerfis>();
 
-            IEnumerable<tblPerfis> activityProfile;
-            activityProfile = _activityProfile.GetActivityProfilesWithPagination(page, pages_quantity);
+            try
+            {
+                var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
+                activityProfile = _activityProfile.GetActivityProfilesWithPagination(page, pages_quantity);
+            }
+            catch (Exception ex)
+            {
+                log.Debug(ex.Message.ToString());
+
+            }
 
             return View(activityProfile);
 
         }
 
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
 
@@ -70,7 +85,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
 
@@ -112,7 +127,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: Activity/Edit/5
         [HttpPost]
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Editar)]
         public ActionResult Edit(tblPerfis activityProfile, int id)
         {
             activityProfile.IdPerfis = id;
@@ -134,7 +149,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: activityProfile/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Deletar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PerfildeAtividades, Feature = FeaturesHelper.Deletar)]
         public ActionResult Delete(int id)
         {
             _activityProfile.DeleteActivityProfile(id);

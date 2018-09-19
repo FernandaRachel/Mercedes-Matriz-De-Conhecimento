@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using log4net;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -15,9 +16,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
     {
 
         private AutSisWebApiService _autSisService;
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public HomeController()
         {
+            log.Debug("Home Controller called");
+
             _autSisService = new AutSisWebApiService();
         }
 
@@ -37,8 +41,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     ViewBag.UserPhoto = imgUser;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                log.Debug(ex.Message.ToString());
+
                 var imgUser = AuthorizationHelper.GetUserImage("");
 
                 ViewBag.User = "";

@@ -121,22 +121,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
         {
 
 
-            //// clear authentication cookie
-            //HttpCookie cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "");
-            //cookie1.Expires = DateTime.Now.AddYears(-1);
-            //_context.Response.Cookies.Add(cookie1);
-
-            //// clear session cookie (not necessary for your current problem but i would recommend you do it anyway)
             SessionStateSection sessionStateSection = (SessionStateSection)WebConfigurationManager.GetSection("system.web/sessionState");
-            //HttpCookie cookie2 = new HttpCookie(sessionStateSection.CookieName, "");
-            //cookie2.Expires = DateTime.Now.AddYears(-1);
-            //_context.Response.Cookies.Add(cookie2);
-
-
-            //// clear GSA cookie
-            //HttpCookie cookie3 = new HttpCookie(MatrizCookieName, "");
-            //cookie3.Expires = DateTime.Now.AddYears(-1);
-            //_context.Response.Cookies.Add(cookie3);
 
             var cookieName = sessionStateSection.CookieName;
 

@@ -11,7 +11,6 @@ using System.Data.Entity;
 using System.Net;
 using PagedList;
 using System.Configuration;
-using DCX.ITLC.AutSis.Services.Integracao;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
