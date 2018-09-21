@@ -10,6 +10,7 @@ using Mercedes_Matriz_de_Conhecimento.Models;
 using Mercedes_Matriz_de_Conhecimento.Services;
 using static System.Net.Mime.MediaTypeNames;
 using System.Threading.Tasks;
+using log4net;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -18,9 +19,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
     {
 
         private AutSisWebApiService _autsisService;
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public BaseController()
         {
+            log.Debug("Base Controller called");
+
             _autsisService = new AutSisWebApiService();
         }
 
@@ -32,7 +36,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var resultadoAutorizacao =  CheckUserAuthorization();
+            log.Debug("OnActionExecuting called");
+
+            var resultadoAutorizacao = CheckUserAuthorization();
+
+            log.Debug("resultadoAutorizacao: " + resultadoAutorizacao);
+
             switch (resultadoAutorizacao)
             {
                 case TipoResultadoAutorizacao.AUTORIZADO:
@@ -69,8 +78,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
 
-        private  TipoResultadoAutorizacao CheckUserAuthorization()
+        private TipoResultadoAutorizacao CheckUserAuthorization()
         {
+            log.Debug("CheckUserAuthorization called");
+
+
             SistemaApi usuarioPermissions = null;
 
 
@@ -78,12 +90,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
             // Verifica se o usuário do SGP esta autenticado OU se você está rodando o sistema local
+            log.Debug("User.Identity.IsAuthenticated: " + User.Identity.IsAuthenticated.ToString());
+
             if (User.Identity.IsAuthenticated || local)
             {
                 string user = null;
                 try
                 {
                     user = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
+
+                    log.Debug("User chave americas: " + user.ToString());
+
                 }
                 catch
                 {
@@ -91,12 +108,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
                 // Verifica se o usuário logado no sgp não é o mesmo que esta na sessão
-                if (user == null || (!User.Identity.Name.ToUpper().Equals(user.ToUpper()) && !local) )
+                if (user == null || (!User.Identity.Name.ToUpper().Equals(user.ToUpper()) && !local))
                 {
+                    log.Debug("User chave americas é igual ao da sessão ou é nulo");
 
-                    // Verifica se existe usário do SGP logado
+
+                    // Verifica se existe usuário do SGP logado
                     if (!String.IsNullOrEmpty(User.Identity.Name))
                     {
+                        log.Debug("Usuário do SGP está logado");
+
                         string username = User.Identity.Name.ToString();
                         usuarioPermissions = Task.Run(async () => await _autsisService.getPermissions(username)).Result;
                     }

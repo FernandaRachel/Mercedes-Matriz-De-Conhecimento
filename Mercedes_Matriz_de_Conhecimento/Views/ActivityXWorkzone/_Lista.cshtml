@@ -23,7 +23,7 @@
             <div class="list-group">
                 @foreach (var funcAdd in (IEnumerable<tblAtividades>)Model.activiesAdded)
                 {
-                    <a type="button" class="list-group-item" href="@Url.Action("Pop", "ActivityXWorkzone", new { idActivity = @funcAdd.idAtividade, idWorkzone = Model.idWorkzone})">@funcAdd.Nome</a>
+                    <a type="button" class="list-group-item" href="@Url.Action("Pop", "ActivityXWorkzone", new { idActivity = @funcAdd.idAtividade, idWorkzone = Model.idWorkzone})">@funcAdd.Nome - @funcAdd.tblWorkzoneXAtividades.Where(w => w.idAtividade == funcAdd.idAtividade && w.idWorkzone == Model.idWorkzone).FirstOrDefault().Ordem °</a>
 
                 }
             </div>

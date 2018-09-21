@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,7 @@ namespace Mercedes_Matriz_de_Conhecimento
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             log4net.Config.XmlConfigurator.Configure();
+            var logger = LogManager.GetLogger("Default");
         }
     }
 }

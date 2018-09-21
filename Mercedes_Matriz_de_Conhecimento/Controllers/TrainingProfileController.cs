@@ -136,7 +136,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: TrainingProfile/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Deletar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
             _trainingProfile.DeleteTrainingProfile(id);

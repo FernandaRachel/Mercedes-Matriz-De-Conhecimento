@@ -1,4 +1,5 @@
-﻿using Mercedes_Matriz_de_Conhecimento.Models;
+﻿using log4net;
+using Mercedes_Matriz_de_Conhecimento.Models;
 using Mercedes_Matriz_de_Conhecimento.Services;
 using System;
 using System.Collections.Specialized;
@@ -20,6 +21,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
         private bool _authorized;
         private bool _Json;
         private static HttpContext _context { get { return HttpContext.Current; } }
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
         private AutSisWebApiService _autsisService;
@@ -31,6 +33,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
+
+            log.Debug("Sem autorização");
+
             base.HandleUnauthorizedRequest(filterContext);
 
             _Json = filterContext.HttpContext.Request.IsAjaxRequest();

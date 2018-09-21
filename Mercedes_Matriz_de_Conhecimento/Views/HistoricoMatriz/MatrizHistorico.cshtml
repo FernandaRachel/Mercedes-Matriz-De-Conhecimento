@@ -11,7 +11,7 @@
 
 <p><b>Histórico salvo por:</b> @Model.UsuarioCriacao</p>
 
-<h2 class="text-center">@Model.nomeWorkzone - @Model.DataCriacao</h2>
+<h2 class="text-center">@Model.nomeWorkzone - <b>BU: </b>@Model.BUWorkzone - <b>CC: </b>@Model.CCWorkzone -  @Model.DataCriacao</h2>
 @Html.HiddenFor(w => w.idWorkzone, new { id = "idWorkzone" })
 <table class="table table-bordered">
     <thead>

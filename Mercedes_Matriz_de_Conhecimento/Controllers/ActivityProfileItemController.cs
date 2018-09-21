@@ -140,7 +140,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: activityProfile/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Deletar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeAtividade, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
 

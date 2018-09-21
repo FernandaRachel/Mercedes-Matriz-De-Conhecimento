@@ -32,6 +32,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         private ActivityProfileService _profileActivity;
         private ActivityProfileItemService _profileItemActivity;
         private ProfileItemService _profileItemTraining;
+        private ActivityGroupService _activityGroup;
+        private TrainingGroupService _trainingGroup;
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public MatrixController()
@@ -61,6 +63,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             _profileActivity = new ActivityProfileService();
             _profileItemActivity = new ActivityProfileItemService();
             _profileItemTraining = new ProfileItemService();
+            _activityGroup = new ActivityGroupService();
+            _trainingGroup = new TrainingGroupService();
 
             //Pega o nome do usuário para exibir na barra de navegação
             SistemaApi username = new SistemaApi();
@@ -522,7 +526,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
 
-        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Deletar)]
+        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Excluir)]
         public ActionResult DeleteMatrizTraining(int idFuncionario, int idTraining, int idWorkzone)
         {
 
@@ -533,7 +537,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return RedirectToAction("MatrizTemp", new { WorkzoneID = idWorkzone });
         }
 
-        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Deletar)]
+        [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Excluir)]
         public ActionResult DeleteMatrizActivity(int idFuncionario, int idActivity, int idWorkzone)
         {
             var mWz = _matrizTempService.GetMatrizTempByWZId(idWorkzone);
