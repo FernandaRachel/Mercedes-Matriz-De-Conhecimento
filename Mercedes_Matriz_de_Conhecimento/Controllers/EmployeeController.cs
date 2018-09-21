@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Configuration;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
+using log4net;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -18,8 +19,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
     {
 
         private EmployeeService _employee;
-
         private WorkzoneService _workzone;
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public EmployeeController()
         {
@@ -145,9 +146,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 if (!exits)
                 {
+                    try
+                    {
+                        _employee.CreateEmployee(employee);
 
-                    _employee.CreateEmployee(employee);
-                    return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Debug(ex.Message.ToString());
+
+                        return RedirectToAction("Index");
+                    }
                 }
             }
 
@@ -192,7 +202,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: Employee/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Deletar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
 

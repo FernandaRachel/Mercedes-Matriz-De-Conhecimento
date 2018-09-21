@@ -23,7 +23,7 @@
             <div class="list-group">
                 @foreach (var itensAdd in (IEnumerable<tblPerfilItens>)Model.ProfileItemAdded)
                 {
-                    <a type="button" class="list-group-item" href="@Url.Action("Pop", "PerfilAtivItemXPerfilItem", new { idItem = @itensAdd.IdPerfilItem, idProfile = Model.idProfile})">@itensAdd.Sigla</a>
+                    <a type="button" class="list-group-item" href="@Url.Action("Pop", "PerfilTrainingItemXPerfilItem", new { idItem = @itensAdd.IdPerfilItem, idProfile = Model.idProfile})">@itensAdd.Sigla - @itensAdd.tblPerfilTreinamentoxPerfilItem.Where(i => i.IdPerfilItem == itensAdd.IdPerfilItem && i.IdPerfilTreinamento == Model.idProfile).FirstOrDefault().Ordem °</a>
 
                 }
             </div>

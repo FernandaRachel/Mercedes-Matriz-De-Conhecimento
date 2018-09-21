@@ -24,6 +24,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [Display(Name = "Justificadtiva")]
         public string JustificativaNaoAtivo { get; set; }
 
+        [Required]
         [Display(Name = "BU Atual")]
         public Nullable<int> idBu_Origem { get; set; }
 
@@ -31,6 +32,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [Display(Name = "Identificador Auxiliar")]
         public string IdentificadorAuxiliar { get; set; }
 
+        [Required]
         [Display(Name = "ID Americas")]
         public int idAmericas { get; set; }
 

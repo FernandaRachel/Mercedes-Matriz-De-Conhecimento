@@ -22,10 +22,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2018 15:01:39</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/12/2018 15:21:02</publishTime>
+      <publishTime>09/21/2018 14:07:05</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/12/2018 15:21:01</publishTime>
+      <publishTime>09/21/2018 14:07:05</publishTime>
     </File>
     <File Include="bin/DCX.ITLC.AutSis.Services.Integracao.dll">
       <publishTime>08/09/2018 15:38:41</publishTime>
@@ -37,13 +37,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2015 09:32:26</publishTime>
     </File>
     <File Include="bin/log4net.dll">
-      <publishTime>08/09/2018 15:38:42</publishTime>
+      <publishTime>03/08/2017 19:26:22</publishTime>
     </File>
     <File Include="bin/Mercedes_Matriz_de_Conhecimento.dll">
-      <publishTime>09/12/2018 15:20:27</publishTime>
+      <publishTime>09/21/2018 14:02:31</publishTime>
     </File>
     <File Include="bin/Mercedes_Matriz_de_Conhecimento.pdb">
-      <publishTime>09/12/2018 15:20:26</publishTime>
+      <publishTime>09/20/2018 16:13:32</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>11/30/2016 16:07:42</publishTime>
@@ -189,6 +189,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/WebGrease.dll">
       <publishTime>09/10/2013 17:28:38</publishTime>
     </File>
+    <File Include="Content/bootstrap-datepicker.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/bootstrap-responsive.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/bootstrap-responsive.min.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
     <File Include="Content/bootstrap-select.css">
       <publishTime>07/31/2018 15:14:01</publishTime>
     </File>
@@ -210,6 +219,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/font-awesome.min.css">
       <publishTime>07/31/2018 15:14:01</publishTime>
     </File>
+    <File Include="Content/images/glyphicons-halflings-white.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/images/glyphicons-halflings.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
     <File Include="Content/mbbras.css">
       <publishTime>08/01/2018 19:05:36</publishTime>
     </File>
@@ -224,6 +239,129 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/Site.css">
       <publishTime>08/01/2018 19:05:36</publishTime>
+    </File>
+    <File Include="Content/themes/base/accordion.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/all.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/autocomplete.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/base.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/button.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/core.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/datepicker.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/dialog.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/draggable.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_444444_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_555555_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_777620_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_777777_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cc0000_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_ffffff_256x240.png">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery-ui.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery-ui.min.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/menu.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/progressbar.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/resizable.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectable.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectmenu.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/slider.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/sortable.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/spinner.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/tabs.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/theme.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Content/themes/base/tooltip.css">
+      <publishTime>09/14/2018 17:13:31</publishTime>
     </File>
     <File Include="DCX.ITLC.AutSis.Services.Integracao.dll">
       <publishTime>08/09/2018 15:38:41</publishTime>
@@ -274,10 +412,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/12/2018 14:20:02</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>08/09/2018 15:38:41</publishTime>
+      <publishTime>09/19/2018 13:43:56</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/12/2018 15:20:40</publishTime>
+      <publishTime>09/21/2018 14:06:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-datepicker-globalize.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-datepicker.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
     </File>
     <File Include="Scripts/bootstrap-select.js">
       <publishTime>07/12/2018 16:56:30</publishTime>
@@ -519,6 +663,1083 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery-1.10.2.min.map">
       <publishTime>06/21/2018 15:00:52</publishTime>
     </File>
+    <File Include="Scripts/jquery-1.12.4.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.12.4.min.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.12.4.min.map">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.12.1.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.12.1.min.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.af-ZA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.af.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.am-ET.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.am.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-AE.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-BH.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-DZ.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-EG.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-IQ.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-JO.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-KW.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-LB.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-LY.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-MA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-OM.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-QA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-SA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-SY.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-TN.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar-YE.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ar.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.arn-CL.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.arn.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.as-IN.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.as.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.az-Cyrl-AZ.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.az-Cyrl.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.az-Latn-AZ.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.az-Latn.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.az.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ba-RU.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ba.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.be-BY.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.be.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bg-BG.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bg.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bn-BD.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bn-IN.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bn.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bo-CN.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bo.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.br-FR.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.br.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bs-Cyrl-BA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bs-Cyrl.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bs-Latn-BA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bs-Latn.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.bs.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ca-ES.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ca.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.co-FR.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.co.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.cs-CZ.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.cs.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.cy-GB.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.cy.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.da-DK.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.da.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.de-AT.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.de-CH.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.de-DE.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.de-LI.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.de-LU.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.de.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.dsb-DE.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.dsb.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.dv-MV.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.dv.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.el-GR.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.el.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-029.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-AU.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-BZ.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-CA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-GB.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-IE.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-IN.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-JM.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-MY.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-NZ.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-PH.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-SG.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-TT.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-US.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-ZA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.en-ZW.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-AR.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-BO.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-CL.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-CO.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-CR.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-DO.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-EC.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-ES.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-GT.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-HN.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-MX.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-NI.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-PA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-PE.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-PR.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-PY.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-SV.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-US.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-UY.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es-VE.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.es.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.et-EE.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.et.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.eu-ES.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.eu.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fa-IR.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fa.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fi-FI.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fi.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fil-PH.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fil.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fo-FO.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fo.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fr-BE.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fr-CA.js">
+      <publishTime>09/14/2018 17:13:31</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fr-CH.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fr-FR.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fr-LU.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fr-MC.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fr.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fy-NL.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.fy.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ga-IE.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ga.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.gd-GB.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.gd.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.gl-ES.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.gl.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.gsw-FR.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.gsw.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.gu-IN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.gu.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ha-Latn-NG.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ha-Latn.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ha.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.he-IL.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.he.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hi-IN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hi.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hr-BA.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hr-HR.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hr.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hsb-DE.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hsb.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hu-HU.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hu.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hy-AM.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.hy.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.id-ID.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.id.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ig-NG.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ig.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ii-CN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ii.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.is-IS.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.is.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.it-CH.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.it-IT.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.it.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.iu-Cans-CA.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.iu-Cans.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.iu-Latn-CA.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.iu-Latn.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.iu.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ja-JP.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ja.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ka-GE.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ka.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.kk-KZ.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.kk.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.kl-GL.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.kl.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.km-KH.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.km.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.kn-IN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.kn.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ko-KR.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ko.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.kok-IN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.kok.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ky-KG.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ky.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.lb-LU.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.lb.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.lo-LA.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.lo.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.lt-LT.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.lt.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.lv-LV.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.lv.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mi-NZ.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mi.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mk-MK.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mk.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ml-IN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ml.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mn-Cyrl.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mn-MN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mn-Mong-CN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mn-Mong.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mn.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.moh-CA.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.moh.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mr-IN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mr.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ms-BN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ms-MY.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ms.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mt-MT.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.mt.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.nb-NO.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.nb.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ne-NP.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ne.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.nl-BE.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.nl-NL.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.nl.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.nn-NO.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.nn.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.no.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.nso-ZA.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.nso.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.oc-FR.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.oc.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.or-IN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.or.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.pa-IN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.pa.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.pl-PL.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.pl.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.prs-AF.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.prs.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ps-AF.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ps.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.pt-BR.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.pt-PT.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.pt.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.qut-GT.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.qut.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.quz-BO.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.quz-EC.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.quz-PE.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.quz.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.rm-CH.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.rm.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ro-RO.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ro.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ru-RU.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ru.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.rw-RW.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.rw.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sa-IN.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sa.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sah-RU.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sah.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.se-FI.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.se-NO.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.se-SE.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.se.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.si-LK.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.si.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sk-SK.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sk.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sl-SI.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sl.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sma-NO.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sma-SE.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sma.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.smj-NO.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.smj-SE.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.smj.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.smn-FI.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.smn.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sms-FI.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sms.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sq-AL.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sq.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Cyrl-BA.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Cyrl-CS.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Cyrl-ME.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Cyrl-RS.js">
+      <publishTime>09/14/2018 17:13:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Cyrl.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Latn-BA.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Latn-CS.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Latn-ME.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Latn-RS.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr-Latn.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sr.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sv-FI.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sv-SE.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sv.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sw-KE.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.sw.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.syr-SY.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.syr.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ta-IN.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ta.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.te-IN.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.te.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tg-Cyrl-TJ.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tg-Cyrl.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tg.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.th-TH.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.th.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tk-TM.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tk.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tn-ZA.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tn.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tr-TR.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tr.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tt-RU.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tt.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tzm-Latn-DZ.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tzm-Latn.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.tzm.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ug-CN.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ug.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.uk-UA.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.uk.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ur-PK.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.ur.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.uz-Cyrl-UZ.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.uz-Cyrl.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.uz-Latn-UZ.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.uz-Latn.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.uz.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.vi-VN.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.vi.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.wo-SN.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.wo.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.xh-ZA.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.xh.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.yo-NG.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.yo.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh-CHS.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh-CHT.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh-CN.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh-Hans.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh-Hant.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh-HK.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh-MO.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh-SG.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh-TW.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zh.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zu-ZA.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.culture.zu.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/cultures/globalize.cultures.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.globalize/globalize.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>06/21/2018 15:01:04</publishTime>
     </File>
@@ -531,6 +1752,129 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
       <publishTime>06/21/2018 15:01:04</publishTime>
     </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.bg.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.ca.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.cs.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.da.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.de.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.el.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.es.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.et.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.fi.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.fr.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.he.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.hr.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.hu.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.id.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.is.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.it.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.ja.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.kr.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.lt.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.lv.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.mk.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.ms.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.nb.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.nl.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.pl.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.pt-BR.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.pt.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.ro.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.rs-latin.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.rs.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.ru.js">
+      <publishTime>09/14/2018 17:13:33</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.sk.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.sl.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.sq.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.sv.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.sw.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.th.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.tr.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.uk.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.zh-CN.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
+    <File Include="Scripts/locales/bootstrap-datepicker.zh-TW.js">
+      <publishTime>09/14/2018 17:13:34</publishTime>
+    </File>
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>06/21/2018 15:01:02</publishTime>
     </File>
@@ -541,7 +1885,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2018 15:01:03</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>07/12/2018 16:56:30</publishTime>
+      <publishTime>09/14/2018 17:13:31</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>06/21/2018 15:01:08</publishTime>
@@ -625,7 +1969,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/15/2018 09:08:56</publishTime>
     </File>
     <File Include="Views/ActivityXTraining/_Lista.cshtml">
-      <publishTime>08/16/2018 18:01:09</publishTime>
+      <publishTime>09/21/2018 11:23:31</publishTime>
     </File>
     <File Include="Views/ActivityXWorkzone/Create.cshtml">
       <publishTime>08/15/2018 09:08:56</publishTime>
@@ -637,7 +1981,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/15/2018 09:08:57</publishTime>
     </File>
     <File Include="Views/ActivityXWorkzone/_Lista.cshtml">
-      <publishTime>08/16/2018 18:01:09</publishTime>
+      <publishTime>09/21/2018 11:26:08</publishTime>
     </File>
     <File Include="Views/Employee/ConfirmDelete.cshtml">
       <publishTime>09/05/2018 09:53:26</publishTime>
@@ -655,10 +1999,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/16/2018 14:55:46</publishTime>
     </File>
     <File Include="Views/HistoricoMatriz/Index.cshtml">
-      <publishTime>08/24/2018 17:05:06</publishTime>
+      <publishTime>09/14/2018 17:13:34</publishTime>
     </File>
     <File Include="Views/HistoricoMatriz/MatrizHistorico.cshtml">
-      <publishTime>08/29/2018 17:00:13</publishTime>
+      <publishTime>09/21/2018 13:28:06</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>06/21/2018 15:00:37</publishTime>
@@ -718,7 +2062,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 17:53:03</publishTime>
     </File>
     <File Include="Views/PerfilAtivItemXPerfilItem/_Lista.cshtml">
-      <publishTime>08/17/2018 17:53:03</publishTime>
+      <publishTime>09/21/2018 13:03:32</publishTime>
     </File>
     <File Include="Views/PerfilTrainingItemXPerfilItem/Create.cshtml">
       <publishTime>08/17/2018 17:53:03</publishTime>
@@ -730,7 +2074,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 17:53:03</publishTime>
     </File>
     <File Include="Views/PerfilTrainingItemXPerfilItem/_Lista.cshtml">
-      <publishTime>08/17/2018 17:53:03</publishTime>
+      <publishTime>09/21/2018 14:04:49</publishTime>
     </File>
     <File Include="Views/Permissions/Index.cshtml">
       <publishTime>08/09/2018 15:38:41</publishTime>
@@ -760,7 +2104,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2018 15:01:08</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/12/2018 15:19:38</publishTime>
+      <publishTime>09/14/2018 17:13:34</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>06/29/2018 10:55:26</publishTime>
@@ -814,7 +2158,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/29/2018 17:00:13</publishTime>
     </File>
     <File Include="Views/Workzone/Edit.cshtml">
-      <publishTime>09/12/2018 15:10:07</publishTime>
+      <publishTime>09/14/2018 09:36:15</publishTime>
     </File>
     <File Include="Views/Workzone/Index.cshtml">
       <publishTime>09/12/2018 10:33:04</publishTime>
@@ -826,7 +2170,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2018 15:00:37</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/12/2018 14:28:56</publishTime>
+      <publishTime>09/21/2018 09:33:37</publishTime>
     </File>
     <File Include="[Content_Types].xml">
       <publishTime>05/30/2018 16:40:42</publishTime>

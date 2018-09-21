@@ -37,6 +37,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
     {
         Consultar,
         Editar,
-        Deletar
+        Excluir
     }
 }
