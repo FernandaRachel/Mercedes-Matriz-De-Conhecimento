@@ -122,8 +122,6 @@
 
 <div id="matriz">
 
-    <h2> v2 no temp</h2>
-
     <h2 class="text-center">@Model.Nome - BU : @Model.idBU.Trim()</h2>
     @Html.HiddenFor(w => w.IdWorkzone, new { id = "idWorkzone" })
     <table class="table table-bordered">
@@ -138,8 +136,10 @@
             <tr>
                 <th colspan="3" class="white-border"></th>
                 @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
-            {
-                    <th colspan="@tt.tblTreinamento.Count" class="text-style">@tt.Nome</th>
+                {
+                    var x = (IEnumerable<tblTreinamento>)ViewBag.trainingList;
+                    var xlength = x.Where(t => t.idTipoTreinamento == tt.IdTipoTreinamento).Count();
+                    <th colspan="@xlength" class="text-style">@tt.Nome</th>
                 }
 
                 @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)

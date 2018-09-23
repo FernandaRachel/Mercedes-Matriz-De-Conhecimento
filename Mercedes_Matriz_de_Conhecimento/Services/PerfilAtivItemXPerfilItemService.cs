@@ -114,6 +114,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblPerfilAtividadeXPerfilAtItem
                         where f.Ordem == PerfilAtivItemXPerfilItem.Ordem
+                        && f.idPerfilAtividade == PerfilAtivItemXPerfilItem.idPerfilAtividade
                         select f;
             if (query.Count() == 1)
                 return true;

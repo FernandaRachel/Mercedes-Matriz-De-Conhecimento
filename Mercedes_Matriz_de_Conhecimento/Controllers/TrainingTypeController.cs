@@ -102,8 +102,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [HttpPost]
         public ActionResult Create(tblTipoTreinamento training)
         {
+            var username = "";
+            try
+            {
+                username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
+            }
+            catch (Exception ex)
+            {
+                username = "";
+            }
+
             var exits = _trainingType.checkIfTrainingTypeAlreadyExits(training);
-            training.UsuarioCriacao = "Teste Sem Seg";
+            training.UsuarioCriacao = username;
             training.DataCriacao = DateTime.Now;
 
             if (ModelState.IsValid)

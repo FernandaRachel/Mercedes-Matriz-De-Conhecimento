@@ -45,7 +45,7 @@
                         <th class="text-center">Descrição</th>
                         <th class="text-center">Tipo Equipamento GSA</th>
                         <th class="text-center">Perfil Atividade</th>
-                        <th class="text-center"></th>
+                        <th class="text-center">É um Grupo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,6 +58,15 @@
                             <td>@activity.Descricao</td>
                             <td>@activity.idTipoEquipamentoGSA</td>
                             <td>@activity.tblPerfis.Nome</td>
+                            @if (@activity.IndicaGrupoDeAtividades)
+                            {
+                                <td>Sim</td>
+                            }
+                            else
+                            {
+                                <td>Não</td>
+                            }
+
                             <td>
                                 <div class="btn-group" role="group">
                                     <button class="btn" onclick="location.href='@Url.Action("Details", "Activity", new { id = @activity.idAtividade })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>

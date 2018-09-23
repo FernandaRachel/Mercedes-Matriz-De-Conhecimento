@@ -30,6 +30,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return ActivityGroup;
         }
 
+        public tblGrupoAtividades GetSonActivityGroupById(int id)
+        {
+            tblGrupoAtividades ActivityGroup;
+
+            var query = from f in _db.tblGrupoAtividades
+                        where f.idAtividadeFilho == id
+                        select f;
+
+            ActivityGroup = query.FirstOrDefault();
+
+            return ActivityGroup;
+        }
+
         public IEnumerable<tblGrupoAtividades> GetActivityGroups()
         {
             IEnumerable<tblGrupoAtividades> ActivityGroup;
@@ -71,6 +84,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return ActivityGroup;
         }
 
+        public void DeleteActivityGroupByDaddy(int idDaddy)
+        {
+
+            var query = from f in _db.tblGrupoAtividades
+                        where f.idAtividadePai == idDaddy
+                        orderby f.idAtividadePai ascending
+                        select f;
+
+            if (query.Count() > 0)
+            {
+                _db.tblGrupoAtividades.RemoveRange(query);
+                _db.SaveChanges();
+            }
+        }
 
         public tblGrupoAtividades UpdateActivityGroup(tblGrupoAtividades ActivityGroup)
         {

@@ -11,7 +11,7 @@ using log4net;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
 
         private AutSisWebApiService _autSisService;

@@ -31,6 +31,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return ActivityXTraining;
         }
 
+        public IEnumerable<tblAtividadeXTreinamentos> GetActivityXTrainingListByIdActv(int id)
+        {
+            IEnumerable<tblAtividadeXTreinamentos> ActivityXTraining;
+
+            var query = from f in _db.tblAtividadeXTreinamentos
+                        where f.idAtivTreinamento == id
+                        orderby f.idAtivTreinamento ascending
+                        select f;
+
+            ActivityXTraining = query.ToList();
+
+            return ActivityXTraining;
+        }
+
         public IEnumerable<tblAtividadeXTreinamentos> GetActivityXTraining()
         {
             IEnumerable<tblAtividadeXTreinamentos> ActivityXTraining;

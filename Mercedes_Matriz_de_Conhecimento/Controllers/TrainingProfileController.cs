@@ -90,8 +90,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [HttpPost]
         public ActionResult Create(tblPerfis trainingProfile)
         {
+            var username = "";
+            try
+            {
+                username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
+            }
+            catch (Exception ex)
+            {
+                username = "";
+            }
+
             var exits = _trainingProfile.checkIfTrainingProfileAlreadyExits(trainingProfile);
-            trainingProfile.UsuarioCriacao = "Teste Sem Seg";
+            trainingProfile.UsuarioCriacao = username;
             trainingProfile.DataCriacao = DateTime.Now;
             trainingProfile.Tipo = "T";
 

@@ -41,7 +41,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     ViewBag.UserPhoto = imgUser;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.Debug(ex.Message.ToString());
 
@@ -93,7 +93,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             activity = _activity.GetActivityById(id);
             activityProfile = _activityProfile.GetActivityProfilesByType();
             activitiesGroup = _activityGroup.setUpActivitys(id);
-            allActivies = _activity.GetActivities();
+            allActivies = _activity.GetActivitiesDifferentFromFatherAndNotAGroup(id);
 
             ViewData["PerfildeAtividade"] = activityProfile;
             ViewData["TodasAtividades"] = allActivies;
@@ -107,6 +107,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActionResult Push(int idDaddy, int idSon)
         {
+            var activity = _activity.GetActivityById(idDaddy);
+
+            // Subentende que é um grupo de atividades e habilita a flag grupo 
+            // caso ela esteja desabilitada
+            if (!activity.IndicaGrupoDeAtividades)
+            {
+                activity.IndicaGrupoDeAtividades = true;
+                _activity.UpdateActivity(activity);
+            }
 
             tblGrupoAtividades training = new tblGrupoAtividades();
             training.idAtividadePai = idDaddy;
@@ -129,8 +138,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [HttpPost]
         public ActionResult Create(tblAtividades activity)
         {
+            var username = "";
+            try
+            {
+                username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
+            }
+            catch (Exception ex)
+            {
+                username = "";
+            }
+
             var exits = _activity.checkIfActivityAlreadyExits(activity);
-            activity.UsuarioCriacao = "Teste Sem Seg";
+            activity.UsuarioCriacao = username;
             activity.DataCriacao = DateTime.Now;
 
             if (ModelState.IsValid)

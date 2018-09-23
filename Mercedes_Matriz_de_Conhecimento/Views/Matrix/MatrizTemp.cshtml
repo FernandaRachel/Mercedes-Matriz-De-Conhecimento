@@ -27,7 +27,7 @@
 
             });
         }
-        function hide(){
+        function hide() {
             $('#alocacao').show();
 
         }
@@ -94,13 +94,13 @@
             }
             var itemID = document.getElementById("itemAtivID");
             var idWorkzone = document.getElementById("idWorkzone");
-            var cor = document.getElementById('' + idFuncionario + ","+ idActivity);
+            var cor = document.getElementById('' + idFuncionario + "," + idActivity);
             var corValue = "";
 
             location.href = '@Url.Action("CreateMatrizActivity", "Matrix")?idItem='
                 + itemID.value + "&idFuncionario=" + idFuncionario + "&idActivity=" + idActivity
             + "&idWorkzone=" + idWorkzone.value + "&cor=" + corValue + "&alocacaoForcada=" + alocacaoForcada.value;
-       }
+        }
 
 
         function DeleteMatrizActivity(idFuncionario, idActivity) {
@@ -141,8 +141,10 @@
             <tr>
                 <th colspan="3" class="white-border"></th>
                 @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
-            {
-                    <th colspan="@tt.tblTreinamento.Count" class="text-style">@tt.Nome</th>
+                {
+                    var x = (IEnumerable<tblTreinamento>)ViewBag.trainingList;
+                    var xlength = x.Where(t => t.idTipoTreinamento == tt.IdTipoTreinamento).Count();
+                    <th colspan="@xlength" class="text-style">@tt.Nome</th>
                 }
 
                 @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
@@ -156,6 +158,7 @@
                 <th>Registro</th>
                 <th>Nome</th>
                 <th>BU</th>
+                @* COMEÇA A PREENCHER AS COLUNAS EQUIVALENTES AOS NOMES DOS TREINAMENTOS *@
                 @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
             {
                     <th class="rotate">
@@ -168,7 +171,9 @@
                         </div>
                     </th>
                 }
+                @* ----------------------------------------------------------- *@
 
+                @* COMEÇA A PREENCHER AS COLUNAS EQUIVALENTES AOS NOMES DAS ATIVIDADES*@
                 @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
             {
                     <th class="rotate">
@@ -181,10 +186,14 @@
                         </div>
                     </th>
                 }
+                @* ----------------------------------------------------------- *@
             </tr>
+
+            @* COMEÇA A CRIAR OS CRUZAMENTOS DE FUNC X ATIVIDADES X TREINAMENTOS *@
             @foreach (var wzXFunc in Model.tblWorkzoneXFuncionario)
             {
                 <tr>
+                    @* Preenche infos básicas RE, NOME, BU *@
                     <td class="text-style">@wzXFunc.tblFuncionarios.RE</td>
                     <td class="text-style">@wzXFunc.tblFuncionarios.Nome</td>
                     @if (@Model.idBU.Trim() != wzXFunc.tblFuncionarios.idBu_Origem)
@@ -196,87 +205,103 @@
                         <td class="text-style">@wzXFunc.tblFuncionarios.idBu_Origem</td>
 
                     }
+
+                    @* ----------------------------------------------------------- *@
+
+                    @* COMEÇA A VERIFICAR SE OS TREINAMENTOS POSSUEM AVALIAÇÃO OU NÃO
+                        E CRIAM O QUADRADO COM OU SEM AVALIAÇÃO *@
                     @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)//x3
-                {
-                    var idTrainAdded = 0;
-                    foreach (var t in trein.tblMatrizFuncXTreinamentoTemp)
                     {
-                        if (t.idTreinamento == trein.IdTreinamento
-                            && wzXFunc.idFuncionario == t.tblFuncionarios.idfuncionario)
+                        var idTrainAdded = 0;
+                        foreach (var t in trein.tblMatrizFuncXTreinamentoTemp)
                         {
-                            idTrainAdded = @t.idTreinamento;
 
-                                <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
-                                    @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    @if (@t.tblPerfilItens != null)
-                                    {
-                                        @t.tblPerfilItens.Sigla
-                                    }
-                                </td>
+                            @*VERIFICA SE O TREINAMENTO[N] POSSUI AVALIAÇÃO*@
+                    if (t.idTreinamento == trein.IdTreinamento
+                                    && wzXFunc.idFuncionario == t.tblFuncionarios.idfuncionario)
+                    {
+                        idTrainAdded = @t.idTreinamento;
+
+                        <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
+                            @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                            @if (@t.tblPerfilItens != null)
+                            {
+                                @t.tblPerfilItens.Sigla
                             }
-
+                        </td>
                         }
-                        if (trein.IdTreinamento != idTrainAdded)
-                        {
-                            <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
-                                @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                            </td>
+
+                    }
+                    if (trein.IdTreinamento != idTrainAdded)
+                    {
+                        <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
+                            @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                        </td>
                         }
                     }
 
+                    @* COMEÇA A VERIFICAR SE AS ATIVIDADES POSSUEM AVALIAÇÃO OU NÃO
+                        E CRIAM O QUADRADO COM OU SEM AVALIAÇÃO - DETERMINAM QUAL VAI SER
+                        A COR DO QUADRADO COM BASE NOS TREINAMENTOS NECESSÁRIOS PARA CADA ATIVIDADE*@
                     @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-                    {
-                        var idActivAdded = 0;
-                        foreach (var a2 in a.tblMatrizFuncXAtividadesTemp)
                         {
+                            var idActivAdded = 0;
 
-                            var trainamentosQtd = 0;
-                            var avaliacoes = 0;
-
-                            foreach (var treinInsideAtiv in a2.tblAtividades.tblAtividadeXTreinamentos)
+                            // PEGA AS AVALIAÇÕES DA ATIVIDADE[N]
+                            foreach (var a2 in a.tblMatrizFuncXAtividadesTemp)
                             {
-                                trainamentosQtd = a2.tblAtividades.tblAtividadeXTreinamentos.Count;
-                                //treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento
-                                //    .Where(w => w.idFuncionario == wzXFunc.idFuncionario && treinInsideAtiv.tblTreinamento.IdTreinamento);
-                                foreach (var aval in treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamentoTemp)
-                                {
-                                    if (treinInsideAtiv.idTreinamento == aval.idTreinamento && wzXFunc.idFuncionario == aval.idFuncionario)
-                                    {
 
-                                        avaliacoes++;
+                                var trainamentosQtd = 0;
+                                var avaliacoes = 0;
+                               
+
+                            //PEGA OS TREINAMENTOS NECESSÁRIOS PARA A ATIVIDADE[N]
+                                foreach (var treinInsideAtiv in a2.tblAtividades.tblAtividadeXTreinamentos)
+                                {
+                                    //PEGA A QUANTIDADE DE TREINAMENTOS NA ATIVIDADE[N]
+                                    trainamentosQtd = a2.tblAtividades.tblAtividadeXTreinamentos.Count;
+
+                                    //treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento
+                                    //    .Where(w => w.idFuncionario == wzXFunc.idFuncionario && treinInsideAtiv.tblTreinamento.IdTreinamento);
+                                    foreach (var aval in treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamentoTemp)
+                                    {
+                                        if (treinInsideAtiv.idTreinamento == aval.idTreinamento && wzXFunc.idFuncionario == aval.idFuncionario)
+                                        {
+
+                                            avaliacoes++;
+                                        }
                                     }
+
+
                                 }
 
-
-                            }
-
-                            if (a2.idAtividade == a.idAtividade
-                                && wzXFunc.idFuncionario == a2.tblFuncionarios.idfuncionario)
-                            {
-
-                                // Verifica se a qtd de trein necessários na ativ[n] é a igual a de avaliações
-                                // Se sim ele está apto pra fazer a ativ
-                                if (trainamentosQtd == avaliacoes)
+                                if (a2.idAtividade == a.idAtividade
+                                    && wzXFunc.idFuncionario == a2.tblFuncionarios.idfuncionario)
                                 {
-                                    // Verifica se funcionário pertence aquela BU
-                                    // Se não classifica como alocação forçada
-                                    if (Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
+
+                                    // Verifica se a qtd de trein necessários na ativ[n] é a igual a de avaliações
+                                    // Se sim ele está apto pra fazer a ativ
+                                    if (trainamentosQtd == avaliacoes)
                                     {
-                                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
-                                            @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                            @if (@a2.tblPerfilItens != null)
-                                            {
-                                                @a2.tblPerfilItens.Sigla
+                                        // Verifica se funcionário pertence aquela BU
+                                        // Se não classifica como alocação forçada
+                                        if (Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
+                                        {
+                                        <td onclick = "openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id = "@a.idAtividade,@wzXFunc.idFuncionario" bgColor = "#3fd44a" class="text-center bg-green">
+                    @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                            @if(@a2.tblPerfilItens != null)
+        {
+            @a2.tblPerfilItens.Sigla
                                             }
                                         </td>
                                     }
                                     else
                                     {
-                                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
-                                            @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                            @if (@a2.tblPerfilItens != null)
-                                            {
-                                                @a2.tblPerfilItens.Sigla
+                                        <td onclick = "openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
+    @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                            @if(@a2.tblPerfilItens != null)
+        {
+            @a2.tblPerfilItens.Sigla
                                             }
                                         </td>
                                     }
@@ -288,21 +313,21 @@
                                     // Se não classifica como alocação forçada
                                     if (Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
                                     {
-                                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
-                                            @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                            @if (@a2.tblPerfilItens != null)
-                                            {
-                                                @a2.tblPerfilItens.Sigla
+                                        <td onclick = "openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
+    @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                            @if(@a2.tblPerfilItens != null)
+    {
+        @a2.tblPerfilItens.Sigla
                                             }
                                         </td>
                                     }
                                     else
                                     {
-                                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
-                                            @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                            @if (@a2.tblPerfilItens != null)
-                                            {
-                                                @a2.tblPerfilItens.Sigla
+                                        <td onclick = "openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
+    @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                            @if(@a2.tblPerfilItens != null)
+    {
+        @a2.tblPerfilItens.Sigla
                                             }
                                         </td>
                                     }
@@ -329,15 +354,15 @@
                                 // Se não classifica como alocação forçada
                                 if (Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
                                 {
-                                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
-                                        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    </td>
+        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
+            @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+        </td>
                                 }
                                 else
                                 {
-                                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
-                                        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    </td>
+    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
+        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+    </td>
                                 }
 
                             }
@@ -347,15 +372,15 @@
                                 // Se não classifica como alocação forçada
                                 if (Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
                                 {
-                                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="gray" class="text-center bg-gray">
-                                        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    </td>
+    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="gray" class="text-center bg-gray">
+        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+    </td>
                                 }
                                 else
                                 {
-                                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="gray" class="text-center bg-gray">
-                                        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    </td>
+    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="gray" class="text-center bg-gray">
+        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+    </td>
                                 }
 
                             }
@@ -396,15 +421,15 @@
             {
 
 
-            <tr>
-                @if(w2.alocacaoForcada != null)
-                {
+                <tr>
+                    @if (w2.alocacaoForcada != null)
+                    {
                 <td class="text-center">@w.Usuario</td>
-                <td class="text-center">@w2.alocacaoForcada</td>
-                <td class="text-center">@w2.tblFuncionarios.Nome</td>
-                <td class="text-center">@w2.tblAtividades.Nome</td>
-                }
-        </tr>
+                        <td class="text-center">@w2.alocacaoForcada</td>
+                        <td class="text-center">@w2.tblFuncionarios.Nome</td>
+                        <td class="text-center">@w2.tblAtividades.Nome</td>
+                    }
+                </tr>
             }
         }
     </tbody>
