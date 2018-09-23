@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class HistoricoMatrizController : BaseController
+    public class HistoricoMatrizController : Controller
     {
 
         private MatrizHistoricoService _matrizHistoricoService;
@@ -42,7 +42,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: HistoricoMatriz
-        [AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
+        //[AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(string dateIni, string dateEnd, string wzName)
         {
             var date1 = DateTime.Parse(dateIni);
@@ -56,7 +56,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
 
-        [AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
+        //[AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
         public ActionResult MatrizHistorico(int idMatrizHistorico)
         {
             var VersaoMatriz = _matrizHistoricoService.GetMatrizHistoricoById(idMatrizHistorico);
@@ -119,11 +119,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     ttObj.tblTreinamento = trainingList.Where(t2 => t2.idTipoTreinamento == t1.idTipoTreinamento).ToList();
                     ttList.Add(ttObj);
                 }
-                //else
-                //{
-                //    ttObj.tblTreinamento = trainingList.Where(t2 => t2.idTipoTreinamento == t.idTipoTreinamento).ToList();
-                //    ttList.Add(ttObj);
-                //}
+               
             }
             foreach (var a in VersaoMatriz.tblMatrizFuncActivityHistorico)
             {
@@ -150,10 +146,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             ViewBag.avalTreinList = avalTreinList;
             ViewBag.avalAtivList = avalAtivList;
-            ViewBag.trainingList = trainingList;
+            ViewBag.trainingList = trainingList.OrderBy(t => t.idTipoTreinamento);
             ViewBag.activiesList = activiesList;
             ViewBag.funcionarios = funcList;
-            ViewBag.ttList = ttList;
+            ViewBag.ttList = ttList.OrderBy(t => t.IdTipoTreinamento);
             ViewBag.tListCount = trainingList.Count();
             ViewBag.activiesCount = activiesList.Count();
             ViewBag.ttListCount = ttList.Count();

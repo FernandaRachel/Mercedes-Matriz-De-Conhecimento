@@ -266,8 +266,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [HttpPost]
         public ActionResult Create(tblWorkzone workzone)
         {
+            var username = "";
+            try
+            {
+                username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
+            }
+            catch (Exception ex)
+            {
+                username = "";
+            }
+
             var exits = _workzone.checkIfWorkzoneAlreadyExits(workzone);
-            workzone.UsuarioCriacao = "Teste Sem Seg";
+            workzone.UsuarioCriacao = username;
             workzone.DataCriacao = DateTime.Now;
 
             if (ModelState.IsValid)
@@ -297,8 +307,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         {
             workzone.IdWorkzone = id;
             var exits = _workzone.checkIfWorkzoneAlreadyExits(workzone);
-
-            workzone.UsuarioAlteracao = "Usuário Teste Edit";
+            var username = "";
+            try
+            {
+                username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
+            }
+            catch (Exception ex)
+            {
+                username = "";
+            }
+            workzone.UsuarioAlteracao = username;
             workzone.DataAlteracao = DateTime.Now;
 
             if (ModelState.IsValid)

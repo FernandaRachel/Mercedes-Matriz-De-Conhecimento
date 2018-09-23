@@ -96,7 +96,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             //chamadas dos métodos(no service) e assignment
             trainingType = _trainingType.GetTrainingTypes();
             trainingGroup = _trainingGroup.setUpTrainings(id);
-            allTrainings = _training.GetTrainings();
+            allTrainings = _training.GetTrainingDifferentFromFatherAndNotAGroup(id);
             training = _training.GetTrainingById(id);
 
             ViewData["TipoTreinamento"] = trainingType;
@@ -121,6 +121,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Push(int idDaddy, int idSon)
         {
 
+            var trainingDaddy = _training.GetTrainingById(idDaddy);
+
+            // Subentende que é um grupo de treinamentos e habilita a flag grupo 
+            // caso ela esteja desabilitada
+            if (!trainingDaddy.IndicaGrupoDeTreinamentos)
+            {
+                trainingDaddy.IndicaGrupoDeTreinamentos = true;
+                _training.UpdateTraining(trainingDaddy);
+            }
+
             tblGrupoTreinamentos training = new tblGrupoTreinamentos();
             training.IdTreinamentoPai = idDaddy;
             training.IdTreinamentoFilho = idSon;
@@ -144,8 +154,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [HttpPost]
         public ActionResult Create(tblTreinamento training)
         {
+            var username = "";
+            try
+            {
+                username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
+            }
+            catch (Exception ex)
+            {
+                username = "";
+            }
+
             var exits = _training.checkIfTrainingAlreadyExits(training);
-            training.UsuarioCriacao = "Teste Sem Seg";
+            training.UsuarioCriacao = username;
             training.DataCriacao = DateTime.Now;
 
             if (ModelState.IsValid)

@@ -13,7 +13,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
     {
 
         public DbConnection _db = new DbConnection();
-
+        public ActivityGroupService _activityGroup = new ActivityGroupService();
 
 
         public tblWorkzoneXAtividades GetWorzoneXActivityById(int idWz)
@@ -26,6 +26,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                         select f;
 
             WorzoneXActivity = query.FirstOrDefault();
+
+            return WorzoneXActivity;
+        }
+
+        public IEnumerable<tblWorkzoneXAtividades> GetWorzoneXActivityListByIdWz(int idWz)
+        {
+            IEnumerable<tblWorkzoneXAtividades> WorzoneXActivity;
+
+            var query = from f in _db.tblWorkzoneXAtividades
+                        where f.idWorkzone == idWz
+                        orderby f.idWorkzoneAtividade ascending
+                        select f;
+
+            WorzoneXActivity = query.ToList();
 
             return WorzoneXActivity;
         }
@@ -101,7 +115,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         public bool checkIfOrderAlreadyExits(tblWorkzoneXAtividades WorzoneXActivity)
         {
             var query = from f in _db.tblWorkzoneXAtividades
-                        where f.Ordem == WorzoneXActivity.Ordem
+                        where f.Ordem == WorzoneXActivity.Ordem 
+                        && f.idWorkzone == WorzoneXActivity.idWorkzone
                         select f;
             if (query.Count() == 1)
                 return true;
@@ -146,6 +161,32 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                              where f.idAtividade == activies.idAtividade
                              select f;
                 allActivies.Add(query2.FirstOrDefault());
+            }
+
+            return allActivies;
+        }
+
+        public IEnumerable<tblAtividades> SetUpActivitiesListToMatrix(int idWorkzone)
+        {
+            List<tblAtividades> allActivies = new List<tblAtividades>();
+
+            var query = from f in _db.tblWorkzoneXAtividades
+                        where f.idWorkzone == idWorkzone
+                        select f;
+
+            foreach (var activies in query)
+            {
+                // Verifica se essa atividade é filha de outra
+                var returned = _activityGroup.GetSonActivityGroupById((int)activies.idAtividade);
+
+                //Se essa atividade n for filha de outra ele adiciona na lista para Matriz
+                if (returned == null)
+                {
+                    var query2 = from f in _db.tblAtividades
+                                 where f.idAtividade == activies.idAtividade
+                                 select f;
+                    allActivies.Add(query2.FirstOrDefault());
+                }
             }
 
             return allActivies;

@@ -30,6 +30,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return TrainingGroup;
         }
 
+        public tblGrupoTreinamentos GetSonTrainingGroupById(int id)
+        {
+            tblGrupoTreinamentos TrainingGroup;
+
+            var query = from f in _db.tblGrupoTreinamentos
+                        where f.IdTreinamentoFilho == id
+                        select f;
+
+            TrainingGroup = query.FirstOrDefault();
+
+            return TrainingGroup;
+        }
+
         public IEnumerable<tblGrupoTreinamentos> GetTrainingGroups()
         {
             IEnumerable<tblGrupoTreinamentos> TrainingGroup;
@@ -71,6 +84,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return TrainingGroup;
         }
 
+        public void DeleteTrainingGroupByDaddy(int idDaddy)
+        {
+            var query = from f in _db.tblGrupoTreinamentos
+                        where f.IdTreinamentoPai == idDaddy
+                        orderby f.IdTreinamentoPai ascending
+                        select f;
+
+            if (query.Count() > 0)
+            {
+                _db.tblGrupoTreinamentos.RemoveRange(query);
+                _db.SaveChanges();
+            }
+        }
 
         public tblGrupoTreinamentos UpdateTrainingGroup(tblGrupoTreinamentos TrainingGroup)
         {
@@ -89,7 +115,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
         public List<tblTreinamento> setUpTrainings(int idDaddy)
         {
-            List<tblTreinamento> allSons =  new List<tblTreinamento>();
+            List<tblTreinamento> allSons = new List<tblTreinamento>();
 
             var query = from f in _db.tblGrupoTreinamentos
                         where f.IdTreinamentoPai == idDaddy
@@ -98,8 +124,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             foreach (var son in query)
             {
                 var query2 = from f in _db.tblTreinamento
-                            where f.IdTreinamento == son.IdTreinamentoFilho 
-                            select f;
+                             where f.IdTreinamento == son.IdTreinamentoFilho
+                             select f;
                 allSons.Add(query2.FirstOrDefault());
             }
 

@@ -13,6 +13,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
     {
 
         public DbConnection _db = new DbConnection();
+        public ActivityGroupService _activityGroup = new ActivityGroupService();
 
 
 
@@ -63,6 +64,20 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return activity.AsEnumerable();
         }
 
+        public IEnumerable<tblAtividades> GetActivitiesDifferentFromFatherAndNotAGroup(int id)
+        {
+            IEnumerable<tblAtividades> activity;
+
+            var query = from f in _db.tblAtividades
+                        where f.idAtividade != id && f.IndicaGrupoDeAtividades == false
+                        orderby f.Nome ascending
+                        select f;
+
+            activity = query.AsEnumerable();
+
+            return activity.AsEnumerable();
+        }
+
 
         public tblAtividades CreateActivity(tblAtividades Activity)
         {
@@ -102,7 +117,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             trainingToUpdate.idTipoEquipamentoGSA = Activity.idTipoEquipamentoGSA;
             trainingToUpdate.IndicaGrupoDeAtividades = Activity.IndicaGrupoDeAtividades;
 
-
+            if (!Activity.IndicaGrupoDeAtividades)
+            {
+                _activityGroup.DeleteActivityGroupByDaddy(Activity.idAtividade);
+            }
             _db.Entry(trainingToUpdate).State = EntityState.Modified;
             _db.SaveChanges();
 

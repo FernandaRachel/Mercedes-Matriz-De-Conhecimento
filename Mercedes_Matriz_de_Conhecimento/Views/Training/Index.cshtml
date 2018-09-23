@@ -45,6 +45,7 @@
                         <th class="text-center">Descrição</th>
                         <th class="text-center">Tipo de Treinamento</th>
                         <th class="text-center">Perfil de Treinamento</th>
+                        <th class="text-center">É um Grupo</th>
                         <th class="text-center"></th>
                     </tr>
                 </thead>
@@ -58,6 +59,14 @@
                             <td>@training.Descricao</td>
                             <td>@training.tblTipoTreinamento.Nome</td>
                             <td>@training.tblPerfis.Nome</td>
+                            @if (@training.IndicaGrupoDeTreinamentos)
+                            {
+                                <td>Sim</td>
+                            }
+                            else
+                            {
+                                <td>Não</td>
+                            }
                             <td>
                                 <div class="btn-group" role="group">
                                     <button class="btn" onclick="location.href='@Url.Action("Details","Training",new { id = @training.IdTreinamento })'"><i class="glyphicon glyphicon-pencil  icon-edit-modified"></i></button>
