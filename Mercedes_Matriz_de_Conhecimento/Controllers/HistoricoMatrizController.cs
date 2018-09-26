@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class HistoricoMatrizController : Controller
+    public class HistoricoMatrizController : BaseController
     {
 
         private MatrizHistoricoService _matrizHistoricoService;
@@ -42,7 +42,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: HistoricoMatriz
-        //[AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(string dateIni, string dateEnd, string wzName)
         {
             var date1 = DateTime.Parse(dateIni);
@@ -56,7 +56,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
 
-        //[AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
         public ActionResult MatrizHistorico(int idMatrizHistorico)
         {
             var VersaoMatriz = _matrizHistoricoService.GetMatrizHistoricoById(idMatrizHistorico);

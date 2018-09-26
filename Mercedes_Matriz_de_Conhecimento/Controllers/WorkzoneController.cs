@@ -59,32 +59,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             }
         }
 
-        // GET: workzone
-        [HttpGet]
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Consultar)]
-        public ActionResult Index(int page = 1)
-        {
-            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
 
-            IPagedList<tblWorkzone> workzone;
-            workzone = _workzone.GetWorkzonesWithPagination(page, pages_quantity);
-
-            return View(workzone);
-
-        }
-
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Editar)]
-        public ActionResult Create()
-        {
-            IEnumerable<tblWorkzone> workzone;
-            workzone = _workzone.GetWorkzones();
-            ViewData["Workzone"] = workzone;
-
-
-            setBUCCLINHA();
-
-            return View("Create");
-        }
 
 
         // Cria as listas de BU, CC e Linha
@@ -159,6 +134,34 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData["CC"] = CC;
             ViewData["LINHA"] = Linha;
 
+        }
+
+
+        // GET: workzone
+        [HttpGet]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Consultar)]
+        public ActionResult Index(int page = 1)
+        {
+            var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
+
+            IPagedList<tblWorkzone> workzone;
+            workzone = _workzone.GetWorkzonesWithPagination(page, pages_quantity);
+
+            return View(workzone);
+
+        }
+
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Editar)]
+        public ActionResult Create()
+        {
+            IEnumerable<tblWorkzone> workzone;
+            workzone = _workzone.GetWorkzones();
+            ViewData["Workzone"] = workzone;
+
+
+            setBUCCLINHA();
+
+            return View("Create");
         }
 
 
