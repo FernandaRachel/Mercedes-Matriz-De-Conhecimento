@@ -22,10 +22,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2018 15:01:39</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/21/2018 14:07:05</publishTime>
+      <publishTime>09/24/2018 15:19:18</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/21/2018 14:07:05</publishTime>
+      <publishTime>09/24/2018 15:19:17</publishTime>
     </File>
     <File Include="bin/DCX.ITLC.AutSis.Services.Integracao.dll">
       <publishTime>08/09/2018 15:38:41</publishTime>
@@ -40,7 +40,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/08/2017 19:26:22</publishTime>
     </File>
     <File Include="bin/Mercedes_Matriz_de_Conhecimento.dll">
-      <publishTime>09/21/2018 14:02:31</publishTime>
+      <publishTime>09/24/2018 15:16:57</publishTime>
     </File>
     <File Include="bin/Mercedes_Matriz_de_Conhecimento.pdb">
       <publishTime>09/20/2018 16:13:32</publishTime>
@@ -226,7 +226,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2018 17:13:31</publishTime>
     </File>
     <File Include="Content/mbbras.css">
-      <publishTime>08/01/2018 19:05:36</publishTime>
+      <publishTime>09/24/2018 10:37:45</publishTime>
     </File>
     <File Include="Content/mbbras.min.css">
       <publishTime>08/01/2018 19:05:36</publishTime>
@@ -415,7 +415,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/19/2018 13:43:56</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/21/2018 14:06:56</publishTime>
+      <publishTime>09/24/2018 15:17:48</publishTime>
     </File>
     <File Include="Scripts/bootstrap-datepicker-globalize.js">
       <publishTime>09/14/2018 17:13:31</publishTime>
@@ -1930,10 +1930,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/09/2018 15:38:41</publishTime>
     </File>
     <File Include="Views/Activity/Edit.cshtml">
-      <publishTime>08/15/2018 09:08:56</publishTime>
+      <publishTime>09/23/2018 12:05:40</publishTime>
     </File>
     <File Include="Views/Activity/Index.cshtml">
-      <publishTime>09/05/2018 09:53:26</publishTime>
+      <publishTime>09/23/2018 12:05:40</publishTime>
     </File>
     <File Include="Views/ActivityProfile/ConfirmDelete.cshtml">
       <publishTime>09/05/2018 09:53:26</publishTime>
@@ -1981,7 +1981,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/15/2018 09:08:57</publishTime>
     </File>
     <File Include="Views/ActivityXWorkzone/_Lista.cshtml">
-      <publishTime>09/21/2018 11:26:08</publishTime>
+      <publishTime>09/21/2018 14:39:21</publishTime>
     </File>
     <File Include="Views/Employee/ConfirmDelete.cshtml">
       <publishTime>09/05/2018 09:53:26</publishTime>
@@ -2002,7 +2002,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2018 17:13:34</publishTime>
     </File>
     <File Include="Views/HistoricoMatriz/MatrizHistorico.cshtml">
-      <publishTime>09/21/2018 13:28:06</publishTime>
+      <publishTime>09/23/2018 12:05:40</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>06/21/2018 15:00:37</publishTime>
@@ -2041,10 +2041,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/22/2018 18:20:00</publishTime>
     </File>
     <File Include="Views/Matrix/Matriz.cshtml">
-      <publishTime>09/05/2018 09:53:26</publishTime>
+      <publishTime>09/23/2018 12:05:40</publishTime>
     </File>
     <File Include="Views/Matrix/MatrizTemp.cshtml">
-      <publishTime>08/29/2018 17:00:13</publishTime>
+      <publishTime>09/24/2018 14:28:34</publishTime>
     </File>
     <File Include="Views/Matrix/_ModalActivity.cshtml">
       <publishTime>08/27/2018 17:40:45</publishTime>
@@ -2062,7 +2062,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 17:53:03</publishTime>
     </File>
     <File Include="Views/PerfilAtivItemXPerfilItem/_Lista.cshtml">
-      <publishTime>09/21/2018 13:03:32</publishTime>
+      <publishTime>09/21/2018 14:39:21</publishTime>
     </File>
     <File Include="Views/PerfilTrainingItemXPerfilItem/Create.cshtml">
       <publishTime>08/17/2018 17:53:03</publishTime>
@@ -2074,7 +2074,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 17:53:03</publishTime>
     </File>
     <File Include="Views/PerfilTrainingItemXPerfilItem/_Lista.cshtml">
-      <publishTime>09/21/2018 14:04:49</publishTime>
+      <publishTime>09/21/2018 14:39:21</publishTime>
     </File>
     <File Include="Views/Permissions/Index.cshtml">
       <publishTime>08/09/2018 15:38:41</publishTime>
@@ -2119,7 +2119,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/09/2018 15:38:41</publishTime>
     </File>
     <File Include="Views/Training/Index.cshtml">
-      <publishTime>09/05/2018 09:53:26</publishTime>
+      <publishTime>09/23/2018 12:05:40</publishTime>
     </File>
     <File Include="Views/Training/_TrainingGroup.cshtml">
       <publishTime>07/16/2018 14:55:46</publishTime>
@@ -2170,7 +2170,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2018 15:00:37</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/21/2018 09:33:37</publishTime>
+      <publishTime>09/24/2018 08:58:59</publishTime>
     </File>
     <File Include="[Content_Types].xml">
       <publishTime>05/30/2018 16:40:42</publishTime>

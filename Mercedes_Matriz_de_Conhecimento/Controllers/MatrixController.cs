@@ -150,9 +150,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
 
                 //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
-                if (!AllowCC(workzone.idCC))
-                    return RedirectToAction("Index");
+                //if (!AllowCC(workzone.idCC))
+                //    return RedirectToAction("Index");
 
+                // DESCOMENTA ESSA LINHA DE CIMAAAAAAAAAAAAA DEPOIS
                 SetImage();
 
                 var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
@@ -258,7 +259,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                         foreach (var aval in avalTrein)
                         {
                             var training = _training.GetTrainingById(aval.idTreinamento);
-                            var existTrainingInAssociation = false;
+                            var existTrainingInAssociation = true;
 
                             //VERIFICA SE AQUELE TREINAMENTO[N] QUE POSSUI AVALIAÇÃO EXISTE AINDA NA ASSOCIAÇÃO
                             // OU SE FOI DESASSOCIADO
@@ -270,6 +271,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                                     existTrainingInAssociation = true;
                                 }
                             }
+
+                            if (idsActv.Count == 0)
+                                existTrainingInAssociation = true;
 
                             if (existTrainingInAssociation)
                             {
@@ -340,8 +344,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var workzone = _workzone.GetWorkzoneById(WorkzoneID);
 
             //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
-            if (!AllowCC(workzone.idCC))
-                return RedirectToAction("Index");
+            //if (!AllowCC(workzone.idCC))
+            //    return RedirectToAction("Index");
+
+            // DESCOMENTA ESSA LINHA DE CIMAAAAAAAAAAAAA DEPOIS
 
             var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
             var activiesList = _workzoneXActivity.SetUpActivitiesList(WorkzoneID);

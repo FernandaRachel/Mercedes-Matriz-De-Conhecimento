@@ -288,9 +288,9 @@ li.open>a.dropdown-toggle:hover {
 .navbar-login>img {
     margin-right: 5px;
     float: left;
-    border-radius: 5px;
-    height: 40px;
-    width: 40px
+    /*border-radius: 5px;*/
+    height: 42px;
+    width: 35px
 }
 
 .navbar-login a {
