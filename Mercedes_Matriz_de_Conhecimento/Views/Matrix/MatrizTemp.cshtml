@@ -390,9 +390,18 @@
         </tbody>
     </table>
 
-    <div class="row">
-        <button class="btn btn-modified-save pull-right" onclick="salvarMatriz(@Model.IdWorkzone)">Salvar</button>
-    </div>
+    @if (@ViewBag.show)
+    {
+
+        <div class="row">
+            <button class="btn btn-modified-save pull-right" onclick="salvarMatriz(@Model.IdWorkzone)">Salvar</button>
+        </div>
+    }
+    else
+    {
+        <h3><b>Favor associar atividades, treinamentos e funcionarios à matriz para começar a avaliação</b></h3>
+    }
+    
 
     <div id="listTraining">
         @{Html.RenderAction("BuscarITem", "Matrix", new { idTrain = 0, idFuncionario = 0 });}

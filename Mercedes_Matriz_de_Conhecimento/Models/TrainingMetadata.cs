@@ -15,8 +15,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [MaxLength(100)]
         public string Nome { get; set; }
 
-        [Required]
-        [MaxLength(4)]
+        [Required(ErrorMessage = "Sigla é obrigatória")]
+        [MaxLength(2, ErrorMessage = "A sigla deve conter no máximo 5 caracteres")]
         public string Sigla { get; set; }
 
         [Required]

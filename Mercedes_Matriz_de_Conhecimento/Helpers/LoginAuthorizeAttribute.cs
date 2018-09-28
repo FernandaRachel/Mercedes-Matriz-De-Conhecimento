@@ -41,57 +41,23 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
             _Json = filterContext.HttpContext.Request.IsAjaxRequest();
 
             if (!_authorized)
-                if (_authenticated)
+                if (_authenticated || filterContext.HttpContext.User.Identity.IsAuthenticated)
                 {
-                    //filterContext.Result = new RedirectResult("/Home/Index");
-                    //return FormatSimpleError("errAccess");
-                    //var teste = filterContext.HttpContext.Request.Params;
-
-                    //if (!filterContext.HttpContext.Request.IsAjaxRequest())
-
-                    if (!_Json)
-                    {
-                        //((Controllers.BaseController)filterContext.Controller).OnUserUnauthorized();
-                        filterContext.Result = new RedirectResult("Account/UnauthorizedAccess");
-                    }
-                    else
-                    {
-                        var viewResult = new JsonResult();
-                        viewResult.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-                        viewResult.Data = (new { error = "errAccess" });
-                        filterContext.Result = viewResult;
-                    }
+                    filterContext.Result = new RedirectResult("Account/HandleUnauthorizedAccess");
                 }
                 else
                 {
-                    //base.HandleUnauthorizedRequest(filterContext);
-                    //((Controllers.BaseController)filterContext.Controller).OnUserUnknown();
+                    filterContext.Result = new RedirectResult("/Account/HandleUnauthorizedAccess");
 
-                    if (!_Json)
-                    {
-                        string url = $"{FormsAuthentication.LoginUrl}?returnUrl=/{filterContext.RouteData.Values["controller"]}/{filterContext.RouteData.Values["action"]}";
-                        filterContext.Result = new RedirectResult(url);
-                        //((Controllers.BaseController)filterContext.Controller).OnUserUnauthorized();
-                        //filterContext.Result = new RedirectResult("Account/UnauthorizedAccess");
-                    }
-                    else
-                    {
-                        string url = $"{FormsAuthentication.LoginUrl}";
-
-                        var viewResult = new JsonResult();
-                        viewResult.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-                        viewResult.Data = (new { error = "errReauthRequire", redirectionUrl = url });
-                        filterContext.Result = viewResult;
-                    }
-                    //filterContext.Result = new RedirectResult($"/Account/Login?returnUrl=/{filterContext.RouteData.Values["controller"]}/{filterContext.RouteData.Values["action"]}");
+                    //string url = $"{FormsAuthentication.LoginUrl}?returnUrl=/{filterContext.RouteData.Values["controller"]}/{filterContext.RouteData.Values["action"]}";
+                    //filterContext.Result = new RedirectResult(url);
                 }
             else
             {
 
                 if (!_Json)
                 {
-                    //((Controllers.BaseController)filterContext.Controller).OnUserUnauthorized();
-                    filterContext.Result = new RedirectResult("Account/UnauthorizedAccess");
+                    filterContext.Result = new RedirectResult("Account/HandleUnauthorizedAccess");
                 }
                 else
                 {
@@ -119,10 +85,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
                     _authenticated = true;
 
                     var request = new UserRequest(httpContext);
-
-                    //var subUrl = ((HttpRequestWrapper)(((HttpContextWrapper)httpContext).Request)).RawUrl;
-
-                    //NameValueCollection parameters = httpContext.Request.QueryString.Count > 0 ? httpContext.Request.QueryString : httpContext.Request.Form;
 
 
                     _authorized = true;

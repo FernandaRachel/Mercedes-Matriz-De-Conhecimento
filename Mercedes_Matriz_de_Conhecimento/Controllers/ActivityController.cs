@@ -53,7 +53,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: activity
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             //var Teste = new IntegracaoAutSis().ObterPermissoes("StepNet", "SILALIS", 0);
@@ -66,7 +66,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblPerfis> activityProfile;
@@ -79,7 +79,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
 
@@ -143,7 +143,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
             }
-            catch (Exception ex)
+            catch
             {
                 username = "";
             }
@@ -197,14 +197,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: activity/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Excluir)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
+            try
+            {
+                _activity.DeleteActivity(id);
 
-            _activity.DeleteActivity(id);
-
-            return RedirectToAction("Index");
-
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("conflicted with the REFERENCE constraint "))
+                    ViewBag.Erro = "Você não pode executar essa ação, pois essa informação está em uso";
+                return View("Error");
+            }
         }
 
 

@@ -144,10 +144,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Delete(int id)
         {
 
-            _activityProfileItem.DeleteActivityProfileItem(id);
+            try
+            {
+                _activityProfileItem.DeleteActivityProfileItem(id);
 
-            return RedirectToAction("Index");
-
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("conflicted with the REFERENCE constraint "))
+                    ViewBag.Erro = "Você não pode executar essa ação, pois essa informação está em uso";
+                return View("Error");
+            }
         }
 
 

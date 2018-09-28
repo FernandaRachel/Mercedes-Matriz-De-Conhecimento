@@ -52,19 +52,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: training
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.TipodeTreinamento, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.TipodeTreinamento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
 
             IEnumerable<tblTipoTreinamento> training;
-            training = _trainingType.GetTrainingTypesWithPagination(page,pages_quantity);
+            training = _trainingType.GetTrainingTypesWithPagination(page, pages_quantity);
 
             return View(training);
 
         }
 
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.TipodeTreinamento, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.TipodeTreinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblPerfis> trainingProile;
@@ -78,7 +78,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: training/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.TipodeTreinamento, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.TipodeTreinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
             IEnumerable<tblPerfis> trainingProile;
@@ -97,7 +97,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
 
-    
+
         // GET: training/Create
         [HttpPost]
         public ActionResult Create(tblTipoTreinamento training)
@@ -107,7 +107,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
             }
-            catch (Exception ex)
+            catch
             {
                 username = "";
             }
@@ -161,14 +161,22 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: training/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.TipodeTreinamento, Feature = FeaturesHelper.Excluir)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.TipodeTreinamento, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
 
-            _trainingType.DeleteTrainingType(id);
+            try
+            {
+                _trainingType.DeleteTrainingType(id);
 
-            return RedirectToAction("Index");
-
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("conflicted with the REFERENCE constraint "))
+                    ViewBag.Erro = "Você não pode executar essa ação, pois essa informação está em uso";
+                return View("Error");
+            }
         }
 
 

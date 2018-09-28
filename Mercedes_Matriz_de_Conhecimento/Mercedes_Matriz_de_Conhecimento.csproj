@@ -565,6 +565,13 @@
     <Content Include="Scripts\i18n\defaults-zh_CN.min.js" />
     <Content Include="Scripts\i18n\defaults-zh_TW.js" />
     <Content Include="Scripts\i18n\defaults-zh_TW.min.js" />
+    <EntityDeploy Include="Mercedes_Matriz.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Mercedes_Matriz.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Mercedes_Matriz.edmx.diagram">
+      <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -973,13 +980,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <EntityDeploy Include="Mercedes_Matriz.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Mercedes_Matriz.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Mercedes_Matriz.edmx.diagram">
-      <DependentUpon>Mercedes_Matriz.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\Debug.pubxml" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1094,6 +1094,7 @@
     <Content Include="Views\TrainingProfile\ConfirmDelete.cshtml" />
     <Content Include="Views\TrainingType\ConfirmDelete.cshtml" />
     <Content Include="Views\Workzone\ConfirmDelete.cshtml" />
+    <Content Include="Views\Account\UnauthorizedAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

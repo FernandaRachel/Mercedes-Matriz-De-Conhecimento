@@ -31,7 +31,7 @@ namespace Mercedes_Matriz_de_Conhecimento
         public string JustificativaNaoAtivo { get; set; }
         public string idBu_Origem { get; set; }
         public string IdentificadorAuxiliar { get; set; }
-        public int idAmericas { get; set; }
+        public string idAmericas { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMatrizFuncXAtividades> tblMatrizFuncXAtividades { get; set; }

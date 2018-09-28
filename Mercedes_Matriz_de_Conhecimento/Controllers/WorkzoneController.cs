@@ -274,7 +274,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
             }
-            catch (Exception ex)
+            catch
             {
                 username = "";
             }
@@ -315,7 +315,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
             }
-            catch (Exception ex)
+            catch
             {
                 username = "";
             }
@@ -332,7 +332,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
-            return View(workzone);
+            return View("Edit",workzone);
         }
 
 
@@ -341,10 +341,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult Delete(int id)
         {
 
-            _workzone.DeleteWorkzone(id);
+            try
+            {
+                _workzone.DeleteWorkzone(id);
 
-            return RedirectToAction("Index");
-
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("conflicted with the REFERENCE constraint "))
+                    ViewBag.Erro = "Você não pode executar essa ação, pois essa informação está em uso";
+                return View("Error");
+            }
         }
 
 

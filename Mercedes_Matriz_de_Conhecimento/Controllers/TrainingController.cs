@@ -159,7 +159,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
             }
-            catch (Exception ex)
+            catch 
             {
                 username = "";
             }
@@ -216,10 +216,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
-            _training.DeleteTraining(id);
+            try
+            {
+                _training.DeleteTraining(id);
 
-            return RedirectToAction("Index");
-
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("conflicted with the REFERENCE constraint "))
+                    ViewBag.Erro = "Você não pode executar essa ação, pois essa informação está em uso";
+                return View("Error");
+            }
         }
 
 

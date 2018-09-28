@@ -56,6 +56,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             }
         }
 
+
         public ApplicationSignInManager SignInManager
         {
             get
@@ -88,6 +89,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+
+
+        public ActionResult HandleUnauthorizedAccess()
+        {
+
+            return View("UnauthorizedAccess");
+        }
+
 
         //
         // POST: /Account/Login

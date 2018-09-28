@@ -10,11 +10,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     {
         public int IdWorkzone { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Nome é obrigatório")]
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Descrição é obrigatória")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
@@ -27,17 +27,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 
         public string DataDesativacao { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pessoas Necessárias é obrigatória")]
         [Display(Name = "Pessoas Necessárias")]
         public int PessoasNecessarias { get; set; }
 
         public DateTime DataAlteracao { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(20,ErrorMessage = "Usuário Alteração deve ter no máximo 20 carácteres")]
         [Display(Name = "Usuário Alteração")]
         public string UsuarioAlteracao { get; set; }
 
-        [MaxLength(400)]
+        [MaxLength(400, ErrorMessage = "Dados Ultima Alteração deve ter no máximo 400 carácteres")]
         [Display(Name = "Dados Ultima Alteração")]
         public string DadosUltimaAlteracao { get; set; }
 

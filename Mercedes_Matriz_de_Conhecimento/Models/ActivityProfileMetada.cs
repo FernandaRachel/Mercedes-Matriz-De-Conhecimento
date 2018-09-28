@@ -10,7 +10,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     {
         public int idPerfilAtividade { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Nome é obrigatório")]
         public string nome { get; set; }
 
         public string UsuarioCriacao { get; set; }

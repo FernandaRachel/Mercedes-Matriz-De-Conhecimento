@@ -12,6 +12,7 @@ using System.Net;
 using System.Configuration;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
 using log4net;
+using System.Data.SqlClient;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -191,7 +192,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
             }
 
-            return View(employee);
+            IEnumerable<tblWorkzone> workzone;
+            workzone = _workzone.GetWorkzones();
+            ViewData["Workzone"] = workzone;
+
+            return View("Edit",employee);
         }
 
         public ActionResult ConfirmEmployeeDelete(int id)
@@ -205,10 +210,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Funcionario, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
+            try
+            {
 
-            _employee.DeleteEmployee(id);
+                _employee.DeleteEmployee(id);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("conflicted with the REFERENCE constraint "))
+                    ViewBag.Erro = "Você não pode executar essa ação, pois essa informação está em uso";
+                    return View("Error");
+            }
         }
 
 
