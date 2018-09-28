@@ -8,15 +8,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 {
     public class PerfilAtividadeXPerfilAtItemMetadata
     {
-        [Required]
+        [Required(ErrorMessage = "Perfil Atividadae é obrigatório")]
         [Display(Name = "Perfil Atividade")]
         public int idPerfilAtividade { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Perfil Atividade Item é obrigatório")]
         [Display(Name = "Perfil Atividade Item")]
         public int idPerfilAtivItem { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Ordem é obrigatória")]
         public Nullable<int> Ordem { get; set; }
     }
 }

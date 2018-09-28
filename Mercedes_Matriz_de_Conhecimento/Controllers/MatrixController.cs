@@ -150,8 +150,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
 
                 //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
-                //if (!AllowCC(workzone.idCC))
-                //    return RedirectToAction("Index");
+                if (!AllowCC(workzone.idCC))
+                    return RedirectToAction("Index");
 
                 // DESCOMENTA ESSA LINHA DE CIMAAAAAAAAAAAAA DEPOIS
                 SetImage();
@@ -180,7 +180,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     {
                         username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         username = "";
                     }
@@ -205,7 +205,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     {
                         username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         username = "";
                     }
@@ -319,7 +319,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                     }
                 }
 
-
+                if (activiesList.Count() > 0 && trainingList.Count() > 0 && workzone.tblWorkzoneXFuncionario.Count() > 0)
+                    ViewBag.show = true;
+                else
+                    ViewBag.show = false;
 
                 ViewBag.trainingList = trainingList.OrderBy(t => t.idTipoTreinamento);
                 ViewBag.activiesList = activiesList;
@@ -328,6 +331,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 ViewBag.activiesCount = activiesList.Count();
                 ViewBag.ttListCount = ttList.Count();
                 ViewBag.MWZID = matrizWz.idMatrizWZ;
+
             }
             catch (Exception ex)
             {
@@ -344,8 +348,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var workzone = _workzone.GetWorkzoneById(WorkzoneID);
 
             //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
-            //if (!AllowCC(workzone.idCC))
-            //    return RedirectToAction("Index");
+            if (!AllowCC(workzone.idCC))
+                return RedirectToAction("Index");
 
             // DESCOMENTA ESSA LINHA DE CIMAAAAAAAAAAAAA DEPOIS
 
@@ -375,6 +379,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
             }
 
+            if (activiesList.Count() > 0 && trainingList.Count() > 0 && workzone.tblWorkzoneXFuncionario.Count() > 0)
+                ViewBag.show = true;
+            else
+                ViewBag.show = false;
 
             ViewBag.trainingList = trainingList.OrderBy(t => t.idTipoTreinamento);
             ViewBag.activiesList = activiesList;
@@ -462,7 +470,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
             }
-            catch (Exception ex)
+            catch
             {
                 username = "";
             }
@@ -558,7 +566,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
             }
-            catch (Exception ex)
+            catch
             {
                 username = "";
             }
@@ -634,8 +642,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var ativ = new tblAtividades();
             var treinAvaliation = 0;
             var treinamentosQtd = 0;
-            //ativ.tblAtividadeXTreinamentos
-            //    .Where(a => a.idAtividade == idActivity).Count()
 
 
 
@@ -702,7 +708,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
             }
-            catch (Exception ex)
+            catch
             {
                 username = "";
             }

@@ -56,7 +56,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
 
             IEnumerable<tblPerfilItens> profileItem;
-            profileItem = _ProfileItem.GetProfileItensWithPagination(page,pages_quantity);
+            profileItem = _ProfileItem.GetProfileItensWithPagination(page, pages_quantity);
 
             return View(profileItem);
 
@@ -70,7 +70,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
 
@@ -131,14 +131,22 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: profileItem/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Excluir)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
 
-            _ProfileItem.DeleteProfileItem(id);
+            try
+            {
+                _ProfileItem.DeleteProfileItem(id);
 
-            return RedirectToAction("Index");
-
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("conflicted with the REFERENCE constraint "))
+                    ViewBag.Erro = "Você não pode executar essa ação, pois essa informação está em uso";
+                return View("Error");
+            }
         }
 
 

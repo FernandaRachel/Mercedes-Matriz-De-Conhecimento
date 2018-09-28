@@ -50,7 +50,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: TrainingProfile
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -62,7 +62,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
 
@@ -70,7 +70,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: TrainingProfile/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
 
@@ -95,7 +95,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 username = AuthorizationHelper.GetSystem().Usuario.ChaveAmericas;
             }
-            catch (Exception ex)
+            catch
             {
                 username = "";
             }
@@ -146,13 +146,21 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
 
         // GET: TrainingProfile/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Excluir)]
+        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
-            _trainingProfile.DeleteTrainingProfile(id);
+            try
+            {
+                _trainingProfile.DeleteTrainingProfile(id);
 
-            return RedirectToAction("Index");
-
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.InnerException.Message.Contains("conflicted with the REFERENCE constraint "))
+                    ViewBag.Erro = "Você não pode executar essa ação, pois essa informação está em uso";
+                return View("Error");
+            }
         }
 
 

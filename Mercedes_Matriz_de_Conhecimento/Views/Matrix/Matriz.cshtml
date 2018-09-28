@@ -213,7 +213,7 @@
                             }
 
                         }
-                        if (trein.IdTreinamento != idTrainAdded )
+                        if (trein.IdTreinamento != idTrainAdded)
                         {
                             <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
                                 @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
@@ -257,14 +257,14 @@
                                 {
                                     // Verifica se funcionário pertence aquela BU
                                     // Se não classifica como alocação forçada
-                                    if (@Model.idBU.Replace(" ","") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ", ""))
+                                    if (@Model.idBU.Replace(" ", "") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ", ""))
                                     {
                                         <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
                                             @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
                                             @if (@a2.tblPerfilItens != null)
                                             {
-                                                
-                                                 @a2.tblPerfilItens.Sigla
+
+                                                @a2.tblPerfilItens.Sigla
                                             }
                                         </td>
                                     }
@@ -284,7 +284,7 @@
                                 {
                                     // Verifica se funcionário pertence aquela BU
                                     // Se não classifica como alocação forçada
-                                    if (@Model.idBU.Replace(" ","") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ",""))
+                                    if (@Model.idBU.Replace(" ", "") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ", ""))
                                     {
                                         <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
                                             @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
@@ -364,9 +364,18 @@
         </tbody>
     </table>
 
-    <div class="row">
-        <button class="btn btn-modified-save pull-right" onclick="salvarMatriz(@Model.IdWorkzone)">Salvar</button>
-    </div>
+    @if (@ViewBag.show)
+    {
+
+        <div class="row">
+            <button class="btn btn-modified-save pull-right" onclick="salvarMatriz(@Model.IdWorkzone)">Salvar</button>
+        </div>
+    }
+    else
+    {
+        <h3><b>Favor associar atividades, treinamentos e funcionarios à matriz para começar a avaliação</b></h3>
+    }
+
 
     <div id="listTraining">
         @{Html.RenderAction("BuscarITem", "Matrix", new { idTrain = 0, idFuncionario = 0 });}

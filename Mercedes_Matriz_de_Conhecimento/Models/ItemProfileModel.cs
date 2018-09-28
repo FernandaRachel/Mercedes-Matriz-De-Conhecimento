@@ -11,12 +11,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         
         public int idPerfilItem { get; set; }
 
-        [Required]
-        [MaxLength(2)]
+        [Required(ErrorMessage = "Sigla é obrigatória")]
+        [MaxLength(2, ErrorMessage = "A sigla deve conter no máximo 2 carácteres")]
         public string Sigla { get; set; }
 
-        [Required]
-        [MaxLength(200)]
+        [Required(ErrorMessage = "A sigla é obrigatória")]
+        [MaxLength(200, ErrorMessage = "A descrição deve conter no máximo 200 carácteres")]
         public string Descricao{ get; set; }
 
     }

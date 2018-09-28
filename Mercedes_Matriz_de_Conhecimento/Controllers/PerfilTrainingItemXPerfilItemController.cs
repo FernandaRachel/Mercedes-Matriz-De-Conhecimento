@@ -200,7 +200,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             profileItem.ProfileItem = profileItemList;
             profileItem.ProfileItemAdded = profilesAdded;
             profileItem.ProfileName = _profileTraining.GetTrainingProfileById(idProfile).Nome;
-            UpdateModel(profileItem);
+            //UpdateModel(profileItem);
 
             /*GERANDO MENSAGENS DE VALIDAÇÃO*/
             if (exits)
@@ -208,7 +208,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             if (ordemExists)
                 ModelState.AddModelError("Ordem", "Ordem já existente");
             if (ordem == 0)
-                ModelState.AddModelError("Ordem", "Ordem deve ser preenchida");
+                ModelState.AddModelError("Ordem", "Ordem deve ser preenchida(apenas números)");
             return View("Edit", profileXprofileItem);
         }
 

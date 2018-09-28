@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = Resource.AcessoNaoAutorizado;
+    Layout = "~/Views/Shared/_LayoutSemMenu.cshtml";
+}
+
+<div class="container body-content">
+    <h2>
+        @Resource.AutenticacaoUsuarios
+    </h2>
+
+    <div class="alert alert-danger fade in">
+
+        @if (TempData["_AuthenticationError"] != null)
+        {
+            <h4 class="text-info">@TempData["_AuthenticationError"]</h4>
+        }
+        else
+        {
+            <h4 class="text-info">@Resource.AcessoNaoAutorizado</h4>
+        }
+
+    </div>
+
+</div>
+
+
+
