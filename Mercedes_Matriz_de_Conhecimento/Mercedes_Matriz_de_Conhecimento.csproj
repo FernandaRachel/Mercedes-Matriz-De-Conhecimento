@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -266,6 +267,8 @@
     <Compile Include="Models\AutSisModel.cs" />
     <Compile Include="Models\AvaliacaoAtividadesModel.cs" />
     <Compile Include="Models\AvaliacaoTreinamentoModel.cs" />
+    <Compile Include="Models\PerfilTreinamentoxPerfilItemMetadata.cs" />
+    <Compile Include="Models\WorkzoneXAtividadesMetadata.cs" />
     <Compile Include="Models\ProfileItemListModel.cs" />
     <Compile Include="Models\TrainingsListModel.cs" />
     <Compile Include="Models\ActivityMetadata.cs" />

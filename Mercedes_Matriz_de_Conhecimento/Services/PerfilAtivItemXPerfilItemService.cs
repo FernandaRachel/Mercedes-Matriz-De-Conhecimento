@@ -16,7 +16,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
 
-        public tblPerfilAtividadeXPerfilAtItem GetPerfilAtivItemXPerfilItemById(int idPAI, int idPA )
+        public tblPerfilAtividadeXPerfilAtItem GetPerfilAtivItemXPerfilItemById(int idPAI, int idPA)
         {
             tblPerfilAtividadeXPerfilAtItem PerfilAtivItemXPerfilItem;
 
@@ -133,17 +133,26 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             var q2 = _db.tblPerfis;
 
             //Seleciona apenas as workzones que possuem associações na 'tblWorkzoneXAtividades'
-            foreach (var x in q)
+            try
             {
-                var retorno = q2.Where(a => a.IdPerfis == x);
-                Perfis.Add(retorno.FirstOrDefault());
+
+
+                foreach (var x in q)
+                {
+                    var retorno = q2.Where(a => a.IdPerfis == x);
+                    Perfis.Add(retorno.FirstOrDefault());
+                }
+
+                // convert de List to Enumerable
+                var returnedProfiles = Perfis.AsEnumerable();
+                returnedProfiles = returnedProfiles.ToPagedList(pageNumber, quantity);
+                return returnedProfiles;
             }
+            catch
+            {
 
-            // convert de List to Enumerable
-            var returnedProfiles = Perfis.AsEnumerable();
-            returnedProfiles = returnedProfiles.ToPagedList(pageNumber, quantity);
-
-            return returnedProfiles;
+                return Perfis.ToPagedList(pageNumber, quantity);
+            }
             //////////////////////
         }
 
@@ -154,16 +163,22 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             var query = from f in _db.tblPerfilAtividadeXPerfilAtItem
                         where f.idPerfilAtividade == idPerfil
                         select f;
-
-            foreach (var activies in query)
+            try
             {
-                var query2 = from f in _db.tblPerfilItens
-                             where f.IdPerfilItem == activies.idPerfilAtivItem
-                             select f;
-                allPerfilItens.Add(query2.FirstOrDefault());
-            }
 
-            return allPerfilItens;
+                foreach (var activies in query)
+                {
+                    var query2 = from f in _db.tblPerfilItens
+                                 where f.IdPerfilItem == activies.idPerfilAtivItem
+                                 select f;
+                    allPerfilItens.Add(query2.FirstOrDefault());
+                }
+                return allPerfilItens;
+            }
+            catch
+            {
+                return allPerfilItens;
+            }
         }
     }
 }

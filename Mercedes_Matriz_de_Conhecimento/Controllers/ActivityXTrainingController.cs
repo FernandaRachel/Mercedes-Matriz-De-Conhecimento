@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Configuration;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
+using System.Threading;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
@@ -77,7 +78,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             teste.idAtividade = idActivity;
             activies = _activity.GetActivities();
-            trainings = _training.GetTrainingByName(nome);
+            trainings = _training.GetTrainingByName(nome, idActivity);
             trainingAdded = _activityXTraining.SetUpTrainingList(idActivity);
 
             ViewData["Activies"] = activies;
@@ -118,7 +119,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ativXTrain.idAtividade = idActivity;
             ativXTrain.tblAtividades = _activity.GetActivityById(idActivity);
             trainingsAddedToActivity = _activityXTraining.SetUpTrainingList(idActivity);
-            trainings = _training.GetTrainings();
+            trainings = _training.GetTrainingsNotAddedInActivity(idActivity);
             activies = _activity.GetActivities();
 
             Training.IdAtividade = idActivity;
@@ -154,6 +155,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 if (!exits)
                 {
                     _activityXTraining.CreateActivityXTraining(actXTrain);
+                    Thread.Sleep(250);
 
                     return RedirectToAction("Details", new { idActivity = idActivity });
                 }
@@ -165,7 +167,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblTreinamento> trainingAdded;
 
             activies = _activity.GetActivities();
-            trainings = _training.GetTrainings();
+            trainings = _training.GetTrainingsNotAddedInActivity(idActivity);
 
             trainingAdded = _activityXTraining.SetUpTrainingList(idActivity);
             tblAtividadeXTreinamentos teste = new tblAtividadeXTreinamentos();
@@ -174,10 +176,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             ViewData["Activies"] = activies;
             ViewData["Trainings"] = trainings;
             ViewData["TrainingsAdded"] = trainingAdded;
+            actXTrain.tblAtividades = _activity.GetActivityById(idActivity);
 
             /*GERANDO MENSAGENS DE VALIDAÇÃO*/
             if (exits)
-                ModelState.AddModelError("idAtividade", "Atividade já associada a esse treinamento");
+                ModelState.AddModelError("idAtividade", "Atividade já esta associada a esse treinamento");
 
             return View("Edit", actXTrain);
         }
@@ -186,12 +189,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         {
             _activityXTraining.DeleteActivityXTraining(idActivity, idTraining);
 
+            Thread.Sleep(250);
             IEnumerable<tblAtividades> activies;
             IEnumerable<tblTreinamento> trainings;
             IEnumerable<tblTreinamento> trainingAdded;
 
             activies = _activity.GetActivities();
-            trainings = _training.GetTrainings();
+            trainings = _training.GetTrainingsNotAddedInActivity(idActivity);
 
             trainingAdded = _activityXTraining.SetUpTrainingList(idActivity);
             tblAtividadeXTreinamentos teste = new tblAtividadeXTreinamentos();

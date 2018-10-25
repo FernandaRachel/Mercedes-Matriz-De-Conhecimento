@@ -66,27 +66,36 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
         public IEnumerable<tblAtividades> GetActivitiesDifferentFromFatherAndNotAGroup(int id)
         {
-            IEnumerable<tblAtividades> activity;
+            List<tblAtividades> atv = new List<tblAtividades>();
 
             var query = from f in _db.tblAtividades
-                        where f.idAtividade != id && f.IndicaGrupoDeAtividades == false
+                        where f.IndicaGrupoDeAtividades == false
+                        && f.idAtividade != id
                         orderby f.Nome ascending
                         select f;
 
-            activity = query.AsEnumerable();
+            foreach (var q in query)
+            {
+                var query2 = _db.tblGrupoAtividades
+                    .Where(t => t.idAtividadePai == id && t.idAtividadeFilho == q.idAtividade);
 
-            return activity.AsEnumerable();
+                if (query2.Count() == 0)
+                    atv.Add(q);
+            }
+
+          
+            return atv;
         }
 
 
         public tblAtividades CreateActivity(tblAtividades Activity)
         {
             _db.tblAtividades.Add(Activity);
-
             _db.SaveChanges();
 
+            var actv = _db.tblAtividades.OrderByDescending(a => a.DataCriacao).FirstOrDefault();
 
-            return Activity;
+            return actv;
         }
 
         public tblAtividades DeleteActivity(int id)

@@ -11,11 +11,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
 
         public int IdPerfis { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [Required(ErrorMessage = "Nome deve ser preenchido")]
+        [StringLength(50, ErrorMessage = "Nome deve conter no máximo 50 caracteres")]
         public string Nome { get; set; }
 
-        [MaxLength(20)]
+        [StringLength(20, ErrorMessage = "Nome deve conter no máximo 50 caracteres")]
         public string UsuarioCriacao { get; set; }
 
         public DateTime DataCriacao { get; set; }

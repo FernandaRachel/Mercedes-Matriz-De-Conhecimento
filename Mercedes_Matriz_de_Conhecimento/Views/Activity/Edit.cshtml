@@ -70,7 +70,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.idTipoEquipamentoGSA, new { @class = "col-md-3 control-label" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.idTipoEquipamentoGSA, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.idTipoEquipamentoGSA, new { @class = "form-control", @type = "number" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -104,7 +104,7 @@
         <div id="container-list">
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Treinamentos Existentes</div>
+                    <div class="panel-heading">Atividades Existentes</div>
                     <div class="panel-body pre-scrollable">
                         <div class="list-group">
                             @foreach (var allActivities in (IEnumerable<tblAtividades>)ViewData["TodasAtividades"])
@@ -117,7 +117,7 @@
             </div>
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Treinamentos Adicionados</div>
+                    <div class="panel-heading">Atividades Adicionados</div>
                     <div class="panel-body pre-scrollable">
                         <div class="list-group">
                             @foreach (var activitiesSon in (List<tblAtividades>)ViewData["AtividadesFilhos"])

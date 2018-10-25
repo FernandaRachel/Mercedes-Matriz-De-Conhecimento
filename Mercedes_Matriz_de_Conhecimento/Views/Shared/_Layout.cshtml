@@ -83,7 +83,7 @@
                     </ul>
                 </li>
                 <li>@Html.ActionLink("Matriz de Conhecimento", "Index", "Matrix")</li>
-                <li>@Html.ActionLink("Histórico da Matriz", "Index", "HistoricoMatriz", new { dateIni = DateTime.Now.ToString("dd/MM/yyyy"), dateEnd = DateTime.Now.AddHours(23).AddMinutes(59).ToString("dd/MM/yyyy"), wzName = " " },null)</li>
+                <li>@Html.ActionLink("Histórico da Matriz", "Index", "HistoricoMatriz", new { dateIni = DateTime.Now.ToString("yyy/MM/dd"), dateEnd = DateTime.Now.AddHours(23).AddMinutes(59).ToString("yyyy/MM/dd"), wzName = " " },null)</li>
             </ul>
         </div>
     </div>

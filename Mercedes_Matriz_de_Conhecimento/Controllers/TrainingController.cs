@@ -172,8 +172,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 if (!exits)
                 {
-                    _training.CreateTraining(training);
-                    return RedirectToAction("Index");
+                    var returned = _training.CreateTraining(training);
+                    return RedirectToAction("Details", new { id  = returned.IdTreinamento});
 
                 }
 

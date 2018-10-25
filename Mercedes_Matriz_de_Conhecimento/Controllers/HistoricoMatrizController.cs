@@ -45,7 +45,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.HistoricodaMatriz, Screen = ScreensHelper.HistoricodaMatriz, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(string dateIni, string dateEnd, string wzName)
         {
+            var teste = Convert.ToDateTime(dateEnd);
             var date1 = DateTime.Parse(dateIni);
+
             var date2 = DateTime.Parse(dateEnd);
 
             ViewBag.WorkzoneNameList = _matrizHistoricoService.GetWorkzoneName();

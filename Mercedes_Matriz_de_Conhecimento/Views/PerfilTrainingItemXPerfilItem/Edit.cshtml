@@ -58,7 +58,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Ordem, new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
-                    @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control", id = "ordem" })
+                    @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control", id = "ordem", @type = "number", maxlength = "4" })
                 </div>
             </div>
             <div class="form-group">

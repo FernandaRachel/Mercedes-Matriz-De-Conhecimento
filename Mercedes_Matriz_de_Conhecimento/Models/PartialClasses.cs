@@ -23,11 +23,6 @@ namespace Mercedes_Matriz_de_Conhecimento
     {
     }
 
-    [MetadataType(typeof(ProfilesMetadata))]
-    public partial class tblPerfis
-    {
-    }
-
     [MetadataType(typeof(TrainingTypeMetada))]
     public partial class tblTipoTreinamento
     {
@@ -43,23 +38,26 @@ namespace Mercedes_Matriz_de_Conhecimento
     {
     }
 
-    [MetadataType(typeof(ActivityProfileMetada))]
-    public partial class tblPerfilAtividade
+    [MetadataType(typeof(PerfilTreinamentoxPerfilItemMetadata))]
+    public partial class tblPerfilTreinamentoxPerfilItem
     {
     }
 
-    [MetadataType(typeof(ActivityProfileItemMetadata))]
-    public partial class tblPerfilAtivItem
+    [MetadataType(typeof(ProfilesMetadata))]
+    public partial class tblPerfis
     {
     }
-    [MetadataType(typeof(ActivityItemMetadata))]
-    public partial class tblPerfilItem
-    {
-    }
-
 
     [MetadataType(typeof(ActivityItemMetadata))]
     public partial class tblPerfilItens
     {
     }
+
+    [MetadataType(typeof(WorkzoneXAtividadesMetadata))]
+    public partial class tblWorkzoneXAtividades
+    {
+    }
+
+
+
 }
