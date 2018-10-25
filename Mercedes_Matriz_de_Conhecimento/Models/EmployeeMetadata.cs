@@ -32,6 +32,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [Display(Name = "Identificador Auxiliar")]
         public string IdentificadorAuxiliar { get; set; }
 
+        [StringLength(50, ErrorMessage = "ID Americas deve ter no máximo 50 caracteres")]
         [Required(ErrorMessage = "ID Americas deve ser preenchido")]
         [Display(Name = "ID Americas")]
         public string idAmericas { get; set; }
