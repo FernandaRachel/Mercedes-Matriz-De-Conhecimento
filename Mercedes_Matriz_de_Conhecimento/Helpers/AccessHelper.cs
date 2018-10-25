@@ -47,6 +47,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
 
             if (authenticated && !authorized)
             {
+                filterContext.HttpContext.Response.Write("<script>alert('Você não possui acesso a esta tela ou função');</script>");
                 filterContext.Result = new RedirectResult("/");
             }
         }

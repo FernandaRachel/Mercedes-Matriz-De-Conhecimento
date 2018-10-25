@@ -176,7 +176,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             var exits = _perfilTrainingItemXPerfilItem.checkIfPerfilTrainingItemXPerfilItemAlreadyExits(profileXprofileItem);
             var ordemExists = _perfilTrainingItemXPerfilItem.checkIfOrderAlreadyExits(profileXprofileItem);
 
-            if (ModelState.IsValid && ordem != 0)
+            if (ModelState.IsValid && ordem != 0 && ordem.ToString().Length <= 4)
             {
                 if (!exits && !ordemExists)
                 {
@@ -209,6 +209,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 ModelState.AddModelError("Ordem", "Ordem já existente");
             if (ordem == 0)
                 ModelState.AddModelError("Ordem", "Ordem deve ser preenchida(apenas números)");
+            if (ordem.ToString().Length > 4)
+                ModelState.AddModelError("Ordem", "Ordem deve ter no máximo 4 digitos");
+            
             return View("Edit", profileXprofileItem);
         }
 

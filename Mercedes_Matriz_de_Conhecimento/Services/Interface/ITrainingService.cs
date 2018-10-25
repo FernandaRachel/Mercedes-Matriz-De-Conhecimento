@@ -24,6 +24,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         IPagedList<tblTreinamento> GetTrainingsWithPagination(int pageNumber, int quantity);
 
-        IEnumerable<tblTreinamento> GetTrainingByName(string Nome);
+        IEnumerable<tblTreinamento> GetTrainingByName(string Nome, int idActivity);
     }
 }

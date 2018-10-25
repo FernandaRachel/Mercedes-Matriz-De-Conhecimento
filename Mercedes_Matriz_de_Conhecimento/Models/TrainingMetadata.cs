@@ -12,19 +12,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         public int IdTreinamento { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [StringLength(100, ErrorMessage = "Nome deve ter no máximo 100 caracteres")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Sigla é obrigatória")]
-        [MaxLength(2, ErrorMessage = "A sigla deve conter no máximo 5 caracteres")]
+        [Required(ErrorMessage = "Sigla deve ser preenchida")]
+        [StringLength(2, ErrorMessage = "A sigla deve conter no máximo 5 caracteres")]
         public string Sigla { get; set; }
 
         [Required]
-        [MaxLength(300)]
+        [StringLength(300, ErrorMessage = "Descrição deve ter no máximo 300 caracteres")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
-        [MaxLength(20)]
+        [StringLength(20, ErrorMessage = "Usuario Criacao deve ter no máximo 20 caracteres")]
         [Display(Name = "Usuário Criação")]
         public string UsuarioCriacao { get; set; }
 
@@ -33,7 +33,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [Display(Name = "Grupo de Treinamento")]
         public bool IndicaGrupoDeTreinamentos { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Tipo de Treinamento deve ser preenchido")]
         [Display(Name = "Tipo de Treinamento")]
         public int idTipoTreinamento { get; set; }
     }

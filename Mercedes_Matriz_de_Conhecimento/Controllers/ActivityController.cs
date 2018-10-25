@@ -56,7 +56,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.Atividades, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
-            //var Teste = new IntegracaoAutSis().ObterPermissoes("StepNet", "SILALIS", 0);
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
 
             IEnumerable<tblAtividades> activity;
@@ -156,8 +155,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             {
                 if (!exits)
                 {
-                    _activity.CreateActivity(activity);
-                    return RedirectToAction("Index");
+                   var returned = _activity.CreateActivity(activity);
+                   return RedirectToAction("Details", new { id = returned.idAtividade});
 
                 }
 

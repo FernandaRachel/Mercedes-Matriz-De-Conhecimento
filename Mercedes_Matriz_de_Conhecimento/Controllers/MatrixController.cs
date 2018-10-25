@@ -5,6 +5,7 @@ using Mercedes_Matriz_de_Conhecimento.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -132,11 +133,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Consultar)]
-        public ActionResult Index()
+        public ActionResult Index(bool error = false)
         {
             IEnumerable<tblWorkzone> workzones;
             workzones = _workzone.GetWorkzones();
             ViewData["Workzones"] = workzones;
+            if(error)
+                ModelState.AddModelError("idWorkzone", "Você não possui aesso a esta matriz. Verificar CC cadastrado no Autsis");
 
             return View();
         }
@@ -144,6 +147,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Matriz(int WorkzoneID, bool catchValueFromOficial = true)
         {
+
             var workzone = _workzone.GetWorkzoneById(WorkzoneID);
 
             try
@@ -151,7 +155,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
                 //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
                 if (!AllowCC(workzone.idCC))
-                    return RedirectToAction("Index");
+                {
+                    //Response.Write("<script>alert('Sem acesso a esta tela. Verificar CC cadastrado no AutSis');</script>");
+                    //Thread.Sleep(3000);
+                    return RedirectToAction("Index", new { error = true });
+                }
 
                 // DESCOMENTA ESSA LINHA DE CIMAAAAAAAAAAAAA DEPOIS
                 SetImage();
@@ -349,7 +357,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
             if (!AllowCC(workzone.idCC))
-                return RedirectToAction("Index");
+            {
+                return RedirectToAction("Index", new { error = true });
+            }
 
             // DESCOMENTA ESSA LINHA DE CIMAAAAAAAAAAAAA DEPOIS
 

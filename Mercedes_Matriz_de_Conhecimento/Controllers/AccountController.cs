@@ -90,7 +90,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             return View();
         }
 
-
+        [AllowAnonymous]
         public ActionResult HandleUnauthorizedAccess()
         {
 

@@ -80,11 +80,18 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                         select f;
 
             ActivityXTraining = query.FirstOrDefault();
+            try
+            {
 
-            _db.tblAtividadeXTreinamentos.Remove(ActivityXTraining);
-            _db.SaveChanges();
+                _db.tblAtividadeXTreinamentos.Remove(ActivityXTraining);
+                _db.SaveChanges();
+                return ActivityXTraining;
+            }
+            catch
+            {
+                return ActivityXTraining;
+            }
 
-            return ActivityXTraining;
         }
 
 

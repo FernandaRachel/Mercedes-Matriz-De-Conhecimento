@@ -39,10 +39,10 @@
 
         function push(valueActivity) {
             var idWorkzone = document.getElementById("workzone");
-            var ordem = document.getElementById("ordem");
+            var Ordem = document.getElementById("Ordem");
             console.log(idWorkzone.value);
             console.log(valueActivity);
-            location.href = '@Url.Action("Push", "ActivityXWorkzone")?idWorkzone=' + idWorkzone.value + '&idActivity=' + valueActivity + '&ordem=' + ordem.value;
+            location.href = '@Url.Action("Push", "ActivityXWorkzone")?idWorkzone=' + idWorkzone.value + '&idActivity=' + valueActivity + '&Ordem=' + Ordem.value;
         }
 
         function pop(valueActivity) {
@@ -69,7 +69,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Ordem, new { @class = "col-md-3 control-label" })
                 <div class="col-md-9">
-                    @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control", id = "ordem" })
+                    @Html.TextBoxFor(m => m.Ordem, new { @class = "form-control", id = "Ordem" , @type = "number" })
                 </div>
             </div>
             <div class="form-group">

@@ -10,9 +10,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     {
         public int idPerfilAtivItem { get; set; }
 
-        [Required(ErrorMessage = "A sigla é obrigatória"), StringLength(2, ErrorMessage = "A sigla deve conter no máximo 2 caracteres")]
+        [Required(ErrorMessage = "A sigla deve ser preenchida"), StringLength(2, ErrorMessage = "Sigla deve conter no máximo 2 caracteres")]
         public string Sigla { get; set; }
 
+        [StringLength(200, ErrorMessage = "Descrição deve conter no máximo 200 caracteres")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
        

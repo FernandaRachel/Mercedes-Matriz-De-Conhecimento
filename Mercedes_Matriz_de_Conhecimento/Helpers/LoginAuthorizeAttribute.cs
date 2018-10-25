@@ -47,10 +47,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Helpers
                 }
                 else
                 {
-                    filterContext.Result = new RedirectResult("/Account/HandleUnauthorizedAccess");
-
-                    //string url = $"{FormsAuthentication.LoginUrl}?returnUrl=/{filterContext.RouteData.Values["controller"]}/{filterContext.RouteData.Values["action"]}";
-                    //filterContext.Result = new RedirectResult(url);
+                    string url = $"{FormsAuthentication.LoginUrl}?returnUrl=/{filterContext.RouteData.Values["controller"]}/{filterContext.RouteData.Values["action"]}";
+                    filterContext.Result = new RedirectResult(url);
                 }
             else
             {

@@ -16,7 +16,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         [Display(Name = "Perfil Atividade Item")]
         public int idPerfilAtivItem { get; set; }
 
-        [Required(ErrorMessage = "Ordem é obrigatória")]
+        [MaxLength(4, ErrorMessage = "Ordem deve conter no máximo 4 digitos")]
+        [Required(ErrorMessage = "Ordem deve ser preenchida")]
         public Nullable<int> Ordem { get; set; }
     }
 }

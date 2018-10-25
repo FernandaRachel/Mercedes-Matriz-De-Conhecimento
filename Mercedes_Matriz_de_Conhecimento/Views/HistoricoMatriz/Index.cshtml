@@ -13,8 +13,10 @@
         function redirectToMatriz() {
             var WorkzoneID = document.getElementById("workzone");
 
-            if (WorkzoneID.value != null) {
+            if (WorkzoneID.value.length > 0) {
                 location.href = '@Url.Action("MatrizHistorico", "HistoricoMatriz")?idMatrizHistorico=' + WorkzoneID.value;
+            } else {
+                alert("Selecione um histórico")
             }
 
         }
@@ -66,7 +68,7 @@
         </div>
         <div class="col-md-1">
             <br />
-            <button class="btn btn-default" onclick="SearchDate()"><i class="fa fa-search"></i></button>
+            <button class="btn btn-default" onclick="SearchDate()" style="margin-top:1%"><i class="glyphicon glyphicon-search" ></i></button>
         </div>
         <div class="col-md-3">
             <label>Versões:</label>
@@ -82,6 +84,6 @@
     </div>
     <div class="col-md-2">
         <br />
-        <button class="btn btn-modified-save" onclick="redirectToMatriz()">Abrir Histórico</button>
+        <button class="btn btn-modified-save"  style="margin-top:1%" onclick="redirectToMatriz()">Abrir Histórico</button>
     </div>
 </div>

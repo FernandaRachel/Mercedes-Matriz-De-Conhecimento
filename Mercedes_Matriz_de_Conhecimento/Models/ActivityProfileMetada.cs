@@ -10,7 +10,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     {
         public int idPerfilAtividade { get; set; }
 
-        [Required(ErrorMessage = "Nome é obrigatório")]
+        //[StringLength(ErrorMessage = "Nome deve ser preenchido")]
+        [Required(ErrorMessage = "Nome deve ser preenchido")]
         public string nome { get; set; }
 
         public string UsuarioCriacao { get; set; }

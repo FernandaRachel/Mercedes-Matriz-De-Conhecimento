@@ -10,17 +10,17 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
     {
         public int IdTipoTreinamento { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [Required(ErrorMessage = "Nome deve ser preenchido")]
+        [StringLength(50,ErrorMessage = "Nome deve conter no máximo 50 caracteres")]
         public string Nome { get; set; }
 
-        [Required]
-        [MaxLength(200)]
+        [Required(ErrorMessage = "Descrição deve ser preenchida")]
+        [StringLength(200, ErrorMessage = "Descrição deve ter no máximo 200 caracteres")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
-        [Required]
-        [MaxLength(5)]
+        [Required(ErrorMessage = "Sigla deve ser preenchida")]
+        [StringLength(2, ErrorMessage="Sigla deve conter no máximo 2 caracteres")]
         public string Sigla { get; set; }
 
         public string UsuarioCriacao { get; set; }

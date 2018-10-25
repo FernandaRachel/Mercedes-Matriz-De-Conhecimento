@@ -11,18 +11,11 @@
         function redirectToMatriz() {
             var WorkzoneID  = document.getElementById("workzone");
 
-            location.href = '@Url.Action("Matriz", "Matrix")?WorkzoneID=' + WorkzoneID.value;
-
-
-            @*$.ajax({
-                url: '@Url.Action("Matriz", "Matrix")',
-                data: {
-                    WorkzoneID: WorkzoneID.value
-                }
-            }).done(function (response) {
-
-
-            });*@
+            if (WorkzoneID.value.length > 0) {
+                location.href = '@Url.Action("Matriz", "Matrix")?WorkzoneID=' + WorkzoneID.value;
+            } else {
+                alert("Selecione um Posto de Treinamento")
+            }
         }
     </script>
 }
@@ -30,11 +23,12 @@
 
 <h3>Selecione sua Workzone</h3>
 
+<br />
+@Html.ValidationSummary("", new { @class = "text-danger" })
 
 <div class="row">
     <div class="col-md-5">
 
-        @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="form-group">
             @Html.Label("Workzone", new { @class = "col-md-3 control-label" })
             <div class="col-md-8">
@@ -49,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1" style="margin-top: 1%">
         <button class="btn btn-modified-save pull-right" onclick="redirectToMatriz()">Selecionar</button>
     </div>
 </div>
