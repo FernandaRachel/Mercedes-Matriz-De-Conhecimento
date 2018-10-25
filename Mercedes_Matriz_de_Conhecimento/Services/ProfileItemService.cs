@@ -30,23 +30,26 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return Profile;
         }
 
-        public IEnumerable<tblPerfilItens> GetProfileItemByName(string Nome)
+        public IEnumerable<tblPerfilItens> GetProfileItemByName(string Nome, int idTrainProfile)
         {
-            IEnumerable<tblPerfilItens> profileItem;
-            var query = _db.tblPerfilItens
-                .Where(i => i.Tipo == "T");
-            profileItem = query.AsEnumerable();
+            List<tblPerfilItens> profileItemTrain = new List<tblPerfilItens>();
 
             //Se o nome veio vazio traz todas Atividades
             if (Nome.Count() == 0)
-                return profileItem;
+                return GetProfileItemsNotAssociated(idTrainProfile);
 
-            var query2 = _db.tblPerfilItens
-                .Where(f => f.Sigla.Contains(Nome)).Where(i => i.Tipo == "T");
+            var query = _db.tblPerfilItens.Where(f => f.Tipo == "T" && f.Sigla.Contains(Nome));
 
-            profileItem = query2.AsEnumerable();
+            foreach (var p2 in query)
+            {
+                var query2 = _db.tblPerfilTreinamentoxPerfilItem
+                    .Where(p => p.IdPerfilTreinamento == idTrainProfile && p.IdPerfilTreinamento == p2.IdPerfilItem);
 
-            return profileItem;
+                if (query2.Count() == 0)
+                    profileItemTrain.Add(p2);
+            }
+
+            return profileItemTrain;
         }
 
 
@@ -64,6 +67,27 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             Profile = query.AsEnumerable();
 
             return Profile;
+        }
+
+        public IEnumerable<tblPerfilItens> GetProfileItemsNotAssociated(int idTrainProfile)
+        {
+            List<tblPerfilItens> traingProfileItem = new List<tblPerfilItens>();
+
+            var query = from f in _db.tblPerfilItens
+                        where f.Tipo == "T"
+                        orderby f.Sigla ascending
+                        select f;
+
+            foreach (var p2 in query)
+            {
+                var query2 = _db.tblPerfilTreinamentoxPerfilItem
+                    .Where(p => p.IdPerfilTreinamento == idTrainProfile && p.IdPerfilItem == p2.IdPerfilItem);
+
+                if (query2.Count() == 0)
+                    traingProfileItem.Add(p2);
+            }
+
+            return traingProfileItem;
         }
 
 

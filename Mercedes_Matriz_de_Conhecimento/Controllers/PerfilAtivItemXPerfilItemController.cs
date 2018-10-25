@@ -85,7 +85,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblPerfilItens> profileItemFiltered;
             IEnumerable<tblPerfilItens> profilesAdded;
 
-            profileItemFiltered = _profileItemActivity.GetProfileItemActvByName(nome);
+            profileItemFiltered = _profileItemActivity.GetProfileItemActvByName(nome, idProfile);
             profilesAdded = _perfilAtivItemXPerfilItem.SetUpPerfilItensLista(idProfile);
 
             ProfileItemListModel profileItem = new ProfileItemListModel();
@@ -112,7 +112,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblPerfilItens> profileItemList;
             IEnumerable<tblPerfilItens> profilesAdded;
 
-            profileItemList = _profileItemActivity.GetActivityProfileItems();
+            profileItemList = _profileItemActivity.GetActivityProfileItemsNotAssociated(idProfile);
             //Retorna todos os itens que fazem referencia ao Perfil chamado 'idProfile'
             profilesAdded = _perfilAtivItemXPerfilItem.SetUpPerfilItensLista(idProfile);
 

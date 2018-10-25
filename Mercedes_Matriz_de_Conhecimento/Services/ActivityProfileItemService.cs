@@ -30,20 +30,24 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return activityProfile;
         }
 
-        public IEnumerable<tblPerfilItens> GetProfileItemActvByName(string Nome)
+        public IEnumerable<tblPerfilItens> GetProfileItemActvByName(string Nome, int idActivityProfile)
         {
-            IEnumerable<tblPerfilItens> profileItemActv;
-            var query = _db.tblPerfilItens.Where(f => f.Tipo == "A");
-            profileItemActv = query.AsEnumerable();
+            List<tblPerfilItens> profileItemActv = new List<tblPerfilItens>();
 
             //Se o nome veio vazio traz todas Atividades
             if (Nome.Count() == 0)
-                return profileItemActv;
+                return GetActivityProfileItemsNotAssociated(idActivityProfile);
 
-            var query2 = _db.tblPerfilItens
-                .Where(f => f.Tipo == "A" &&  f.Sigla.Contains(Nome));
+            var query = _db.tblPerfilItens.Where(f => f.Tipo == "A" && f.Sigla.Contains(Nome));
 
-            profileItemActv = query2.AsEnumerable();
+            foreach (var p2 in query)
+            {
+                var query2 = _db.tblPerfilAtividadeXPerfilAtItem
+                    .Where(p => p.idPerfilAtividade == idActivityProfile && p.idPerfilAtivItem == p2.IdPerfilItem);
+
+                if (query2.Count() == 0)
+                    profileItemActv.Add(p2);
+            }
 
             return profileItemActv;
         }
@@ -64,6 +68,26 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return activityProfile;
         }
 
+        public IEnumerable<tblPerfilItens> GetActivityProfileItemsNotAssociated(int idActivityProfile)
+        {
+            List<tblPerfilItens> activityProfile = new List<tblPerfilItens>();
+
+            var query = from f in _db.tblPerfilItens
+                        where f.Tipo == "A"
+                        orderby f.Sigla ascending
+                        select f;
+
+            foreach (var p2 in query)
+            {
+                var query2 = _db.tblPerfilAtividadeXPerfilAtItem
+                    .Where(p => p.idPerfilAtividade == idActivityProfile && p.idPerfilAtivItem == p2.IdPerfilItem);
+
+                if (query2.Count() == 0)
+                    activityProfile.Add(p2);
+            }
+
+            return activityProfile;
+        }
 
         public tblPerfilItens CreateActivityProfileItem(tblPerfilItens ActivityProfileItem)
         {
