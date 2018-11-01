@@ -148,6 +148,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             trainingToUpdate.Nome = Training.Nome;
             trainingToUpdate.Sigla = Training.Sigla;
             trainingToUpdate.Descricao = Training.Descricao;
+            trainingToUpdate.idTipoTreinamento = Training.idTipoTreinamento;
+            trainingToUpdate.idPerfilTreinamento = Training.idPerfilTreinamento;
             trainingToUpdate.IndicaGrupoDeTreinamentos = Training.IndicaGrupoDeTreinamentos;
 
             if (!Training.IndicaGrupoDeTreinamentos)

@@ -2,13 +2,13 @@
 @model PagedList.IPagedList<Mercedes_Matriz_de_Conhecimento.tblWorkzone>
 
 @{
-    ViewBag.Title = "ASSOCIAR WORKZONE X ATIVIDADE";
+    ViewBag.Title = "ASSOCIAR POSTO DE TRABALHO X ATIVIDADE";
 }
 
 
 <div class="container button-place">
     <a type="button" class="btn btn-modified-create btn-group-sm pull-left" href="@Url.Action("Create", "ActivityXWorkzone", new { idWorkzone = 0})">
-        Associar Atividade X Workzone
+        Associar Atividade X Posto de Trabalho
     </a>
 </div>
 <div class="container table-place">
@@ -18,7 +18,7 @@
             <table class="table table-striped table-hover table-condensed table-bordered text-center">
                 <thead class="text-center">
                     <tr>
-                        <th class="text-center">Workzone</th>
+                        <th class="text-center">Posto de Trabalho</th>
                         <th class="text-center"></th>
                     </tr>
                 </thead>

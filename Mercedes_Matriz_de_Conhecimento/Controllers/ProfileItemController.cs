@@ -14,7 +14,7 @@ using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class ProfileItemController : BaseController
+    public class ProfileItemController : Controller
     {
 
 
@@ -50,7 +50,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: profileItem
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Consultar)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -62,7 +62,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
 
@@ -70,7 +70,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
 
@@ -102,7 +102,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             }
 
             if (exits)
-                ModelState.AddModelError("Nome", "Perfil de Atividade já existe");
+                ModelState.AddModelError("Nome", "Perfil de Treinamento já existe");
 
             return View("Create", profileItem);
         }
@@ -126,12 +126,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+            if (exits)
+                ModelState.AddModelError("Nome", "Perfil de Treinamento já existe");
+
             return View(profileItem);
         }
 
 
         // GET: profileItem/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Excluir)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.ItemdeTreinamento, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
 

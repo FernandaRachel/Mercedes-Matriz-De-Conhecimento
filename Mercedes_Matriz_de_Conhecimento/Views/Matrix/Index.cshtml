@@ -14,14 +14,14 @@
             if (WorkzoneID.value.length > 0) {
                 location.href = '@Url.Action("Matriz", "Matrix")?WorkzoneID=' + WorkzoneID.value;
             } else {
-                alert("Selecione um Posto de Treinamento")
+                alert("Selecione um Posto de Trabalho")
             }
         }
     </script>
 }
 
 
-<h3>Selecione sua Workzone</h3>
+<h3>Selecione seu Posto de Trabalho</h3>
 
 <br />
 @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -30,9 +30,9 @@
     <div class="col-md-5">
 
         <div class="form-group">
-            @Html.Label("Workzone", new { @class = "col-md-3 control-label" })
+            @Html.Label("Posto de Trabalho", new { @class = "col-md-3 control-label" })
             <div class="col-md-8">
-                @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzones"], "idWorkzone", "Nome"), "Escolha uma Workzone",
+                @Html.DropDownListFor(m => m.idWorkzone, new SelectList((IEnumerable)ViewData["Workzones"], "idWorkzone", "Nome"), "Escolha um Posto de Trabalho",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",

@@ -6,9 +6,16 @@ body {
     padding-bottom: 20px;
 }
 
+th.matriz {
+    white-space: pre-line !important;
+}
+
+.line-break {
+    line-break: after-white-space !important;
+}
 .scrollable > .row {
     overflow-x: auto;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 /*.scrollable > .row > .col-xs-4 {
   display: inline-block;
@@ -171,7 +178,6 @@ tr.table-dark {
 th.rotate {
     /* Something you can count on */
     height: 140px;
-    white-space: nowrap;
 }
 
     th.rotate > div {
@@ -211,7 +217,7 @@ th.rotate {
     /* Not vital, but possibly a good idea if the element you're rotating contains
      text and you want a single long vertical line of text and the pre-rotation
      width of your element is small enough that the text wraps: */
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
 .table-title {

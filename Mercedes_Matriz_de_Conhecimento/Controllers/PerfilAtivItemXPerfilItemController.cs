@@ -11,10 +11,11 @@ using System.Data.Entity;
 using System.Net;
 using System.Configuration;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
+using System.Threading;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class PerfilAtivItemXPerfilItemController : BaseController
+    public class PerfilAtivItemXPerfilItemController : Controller
     {
 
 
@@ -55,7 +56,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: perfilAtivItemXPerfilItem
-        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilAtividadeItemXPerfilItem, Feature = FeaturesHelper.Consultar)]
+        //[AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilAtividadeItemXPerfilItem, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -67,7 +68,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilAtividadeItemXPerfilItem, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilAtividadeItemXPerfilItem, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblPerfis> activityProfile;
@@ -100,7 +101,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
-        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilAtividadeItemXPerfilItem, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilAtividadeItemXPerfilItem, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int idProfile)
         {
             // Declaração de variaveis
@@ -217,7 +218,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         public ActionResult Pop(int idItem, int idProfile)
         {
-            _perfilAtivItemXPerfilItem.DeletePerfilAtivItemXPerfilItem(idProfile, idItem);
+           
 
             IEnumerable<tblPerfilItens> profileItemList;
             IEnumerable<tblPerfilItens> profilesAdded;
@@ -234,6 +235,15 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             profileItem.ProfileName = _profileActivity.GetActivityProfileById(idProfile).Nome;
             UpdateModel(profileItem);
 
+            try
+            {
+                _perfilAtivItemXPerfilItem.DeletePerfilAtivItemXPerfilItem(idProfile, idItem);
+                Thread.Sleep(250);
+            }
+            catch
+            {
+                return RedirectToAction("Details", new { idProfile = idProfile });
+            }
 
             return RedirectToAction("Details", new { idProfile = idProfile });
         }

@@ -6,7 +6,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-center">AVALIAÇÃO TREINAMENTO</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -26,8 +26,8 @@
             <br />
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="SaveMatrizTraining(@Model.idFuncionario,@Model.idTreinamento)">Salvar Avaliação</button>
-                <button type="button" class="btn btn-danger" onclick="DeleteMatrizTraining(@Model.idFuncionario,@Model.idTreinamento)">Deletar Avaliação</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" onclick="DeleteMatrizTraining(@Model.idFuncionario,@Model.idTreinamento)">Deletar Avaliação</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>

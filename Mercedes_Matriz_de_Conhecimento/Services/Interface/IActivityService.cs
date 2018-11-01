@@ -23,6 +23,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         IEnumerable<tblAtividades> GetActivitiesWithPagination(int pageNumber, int quantity);
 
-        IEnumerable<tblAtividades> GetActivityByName(string Nome);
+        IEnumerable<tblAtividades> GetActivityByName(string Nome, int idWz);
     }
 }

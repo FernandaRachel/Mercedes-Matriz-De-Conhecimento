@@ -191,6 +191,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+
+            if (exits)
+                ModelState.AddModelError("Nome", "Atividade já existe");
+
             return View(activity);
         }
 

@@ -8109,7 +8109,7 @@ $.extend( Datepicker.prototype, {
 		inst.dpDiv.removeClass( this._dialogClass ).off( ".ui-datepicker-calendar" );
 	},
 
-	/* Close date picker if clicked elsewhere. */
+	/* Cancelar date picker if clicked elsewhere. */
 	_checkExternalClick: function( event ) {
 		if ( !$.datepicker._curInst ) {
 			return;
@@ -9056,7 +9056,7 @@ $.extend( Datepicker.prototype, {
 		if ( showMonthAfterYear ) {
 			html += ( secondary || !( changeMonth && changeYear ) ? "&#xa0;" : "" ) + monthHtml;
 		}
-		html += "</div>"; // Close datepicker_header
+		html += "</div>"; // Cancelar datepicker_header
 		return html;
 	},
 
@@ -11972,7 +11972,7 @@ $.widget( "ui.dialog", {
 			"ui-dialog-titlebar": "ui-corner-all"
 		},
 		closeOnEscape: true,
-		closeText: "Close",
+		closeText: "Cancelar",
 		draggable: true,
 		hide: null,
 		height: "auto",
@@ -18320,7 +18320,7 @@ $.widget( "ui.tooltip", {
 	_disable: function() {
 		var that = this;
 
-		// Close open tooltips
+		// Cancelar open tooltips
 		$.each( this.tooltips, function( id, tooltipData ) {
 			var event = $.Event( "blur" );
 			event.target = event.currentTarget = tooltipData.element[ 0 ];
@@ -18652,7 +18652,7 @@ $.widget( "ui.tooltip", {
 	_destroy: function() {
 		var that = this;
 
-		// Close open tooltips
+		// Cancelar open tooltips
 		$.each( this.tooltips, function( id, tooltipData ) {
 
 			// Delegate to close method to handle common cleanup

@@ -15,7 +15,7 @@ using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class WorkzoneController : BaseController
+    public class WorkzoneController : Controller
     {
 
 
@@ -139,7 +139,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         // GET: workzone
         [HttpGet]
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Consultar)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -151,7 +151,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblWorkzone> workzone;
@@ -176,7 +176,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblFuncionarios> employeeAdded;
             employeeAdded = _workzone.setUpEmployees(idWorkzone);
             IEnumerable<tblFuncionarios> funcFiltrados;
-            funcFiltrados = _employee.GetEmployeeByName(nome);
+            funcFiltrados = _employee.GetEmployeeByName(nome, idWorkzone);
 
             ViewBag.Name = nome;
             ViewData["Funcionarios"] = funcFiltrados;
@@ -195,7 +195,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: workzone/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id, string nome = "")
         {
 
@@ -217,7 +217,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             /*SELECIONA FUNCIONÁRIOS EXISTENTES*/
             IEnumerable<tblFuncionarios> employee;
             if (nome.Length > 0)
-                employee = _employee.GetEmployeeByName(nome);
+                employee = _employee.GetEmployeeByName(nome, id);
             else
                 employee = _employee.GetEmployees();
             Func.funcionarios = employee;
@@ -285,7 +285,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             if (ModelState.IsValid)
             {
-                if (!exits)
+                if (!exits && workzone.PessoasNecessarias.ToString().Length <= 5)
                 {
                     workzone.FlagAtivo = true;
 
@@ -298,7 +298,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             }
 
             if (exits)
-                ModelState.AddModelError("Nome", "Workzone já existe");
+                ModelState.AddModelError("Nome", "Posto de Trabalho já existe");
+            if (workzone.PessoasNecessarias.ToString().Length > 5)
+                ModelState.AddModelError("PessoasNecessarias", "Pessoas Necessárias deve conter no máximo 5 caracteres");
 
             return View("Create");
         }
@@ -332,12 +334,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
-            return View("Edit",workzone);
+            return View("Edit", workzone);
         }
 
 
         // GET: workzone/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Excluir)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro, Screen = ScreensHelper.PostodeTrabalho, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
 

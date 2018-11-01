@@ -100,7 +100,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblPerfilTreinamentoxPerfilItem
                         where f.IdPerfilTreinamento == PerfilTrainingItemXPerfilItem.IdPerfilTreinamento
-                        && f.IdPerfilItem == PerfilTrainingItemXPerfilItem.IdPerfilItem
+                        && f.IdPerfilTreinamento == PerfilTrainingItemXPerfilItem.IdPerfilTreinamento
                         orderby f.IdPerfilTreinamento ascending
                         select f;
 
@@ -114,7 +114,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
         {
             var query = from f in _db.tblPerfilTreinamentoxPerfilItem
                         where f.Ordem == PerfilTrainingItemXPerfilItem.Ordem
-                        && f.IdPerfilTreinamento == PerfilTrainingItemXPerfilItem.IdPerfilItem
+                        && f.IdPerfilTreinamento == PerfilTrainingItemXPerfilItem.IdPerfilTreinamento
                         select f;
             if (query.Count() == 1)
                 return true;

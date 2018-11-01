@@ -91,7 +91,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                         where f.idMatrizWorkzoneTemp == idMWz &&
                         f.idFuncionario == idFunc &&
                         f.idTreinamento == idTrain
-                        orderby f.tblMatrizWorkzoneTemp.tblWorkzone.Nome
                         select f;
 
             MatrizTemp = query.FirstOrDefault();

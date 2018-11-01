@@ -34,7 +34,7 @@
             <div class="form-group">
                 @Html.Label("Perfis", new { @class = "col-md-3 control-label" })
                 <div class="col-md-8">
-                    @Html.DropDownListFor(m => m.IdPerfis, new SelectList((IEnumerable)ViewData["PerfilAtividade"], "idPerfis", "nome"), "Escolha uma Workzone",
+                    @Html.DropDownListFor(m => m.IdPerfis, new SelectList((IEnumerable)ViewData["PerfilAtividade"], "idPerfis", "nome"), "Escolha um Posto de Trabalho",
                         new
                         {
                             @class = "form-control col-md-9 selectpicker",
@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-11">
-                    <button type="button" id="selecionado" onclick="selected()" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Selecionar Perfil</button>
+                    <button type="button" id="selecionado" onclick="selected()" class="btn btn-modified-save pull-right"><i class="fas fa-save"></i> Escolha um Perfil</button>
                 </div>
             </div>
         </div>

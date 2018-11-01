@@ -23,8 +23,8 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
 
 
             var query = from f in _db.tblFuncionarios
-                         orderby f.Nome ascending
-                         select f;
+                        orderby f.Nome ascending
+                        select f;
 
             employee = query.AsEnumerable();
             return employee;
@@ -44,21 +44,37 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return employee;
         }
 
-        public IEnumerable<tblFuncionarios> GetEmployeeByName(string Nome)
+        public IEnumerable<tblFuncionarios> GetEmployeeByName(string Nome, int id)
         {
-            IEnumerable<tblFuncionarios> employee;
+            List<tblFuncionarios> employee = new List<tblFuncionarios>();
+            var wzXfunc = _db.tblWorkzoneXFuncionario.Where(w => w.idWorkzone == id);
             var query = _db.tblFuncionarios;
-            employee = query.AsEnumerable();
 
             if (Nome.Count() == 0)
-                return employee;
+            {
+                foreach (var q in query)
+                {
+                    var returned = wzXfunc.Where(wXf => wXf.idFuncionario == q.idfuncionario);
+                    if (returned.Count() == 0)
+                        employee.Add(q);
+                }
 
-            var query2 = _db.tblFuncionarios
+                return employee;
+            }
+            else
+            {
+                var queryCNome = _db.tblFuncionarios
                 .Where(f => f.Nome.Contains(Nome));
 
-            employee = query2.AsEnumerable();
+                foreach (var q in queryCNome)
+                {
+                    var returned = wzXfunc.Where(wXf => wXf.idFuncionario == q.idfuncionario);
+                    if (returned.Count() == 0)
+                        employee.Add(q);
+                }
 
-            return employee;
+                return employee;
+            }
         }
 
         public tblFuncionarios CreateEmployee(tblFuncionarios Employee)
@@ -98,6 +114,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             eup.Nome = Employee.Nome;
             eup.RE = Employee.RE;
             eup.idBu_Origem = Employee.idBu_Origem;
+            eup.idAmericas = Employee.idAmericas;
             eup.IdentificadorAuxiliar = Employee.IdentificadorAuxiliar;
             eup.Ativo = Employee.Ativo;
             eup.JustificativaNaoAtivo = Employee.JustificativaNaoAtivo;

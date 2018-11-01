@@ -11,10 +11,11 @@ using System.Data.Entity;
 using System.Net;
 using System.Configuration;
 using Mercedes_Matriz_de_Conhecimento.Helpers;
+using System.Threading;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class PerfilTrainingItemXPerfilItemController : BaseController
+    public class PerfilTrainingItemXPerfilItemController : Controller
     {
 
 
@@ -53,7 +54,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: perfilAtivItemXPerfilItem
-        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilTreinamentoItemXPerfilItem, Feature = FeaturesHelper.Consultar)]
+        //[AccessHelper(Menu = MenuHelper.Associacao, Screen = ScreensHelper.PerfilTreinamentoItemXPerfilItem, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -65,7 +66,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilTreinamentoItemXPerfilItem, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.Associacao, Screen = ScreensHelper.PerfilTreinamentoItemXPerfilItem, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblPerfis> activityProfile;
@@ -98,7 +99,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: Activity/Details/5
-        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PerfilTreinamentoItemXPerfilItem, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.Associacao, Screen = ScreensHelper.PerfilTreinamentoItemXPerfilItem, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int idProfile)
         {
             // Declaração de variaveis
@@ -211,14 +212,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 ModelState.AddModelError("Ordem", "Ordem deve ser preenchida(apenas números)");
             if (ordem.ToString().Length > 4)
                 ModelState.AddModelError("Ordem", "Ordem deve ter no máximo 4 digitos");
-            
+
             return View("Edit", profileXprofileItem);
         }
 
         public ActionResult Pop(int idItem, int idProfile)
         {
-            _perfilTrainingItemXPerfilItem.DeletePerfilTrainingItemXPerfilItem(idProfile, idItem);
-
             IEnumerable<tblPerfilItens> profileItemList;
             IEnumerable<tblPerfilItens> profilesAdded;
 
@@ -234,6 +233,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             profileItem.ProfileName = _profileTraining.GetTrainingProfileById(idProfile).Nome;
             UpdateModel(profileItem);
 
+            try
+            {
+                _perfilTrainingItemXPerfilItem.DeletePerfilTrainingItemXPerfilItem(idProfile, idItem);
+            }
+            catch
+            {
+                return RedirectToAction("Details", new { idProfile = idProfile });
+            }
 
             return RedirectToAction("Details", new { idProfile = idProfile });
         }
