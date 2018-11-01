@@ -53,7 +53,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: activityXWorkzone
-        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PostodeTrabalhoXAtividade, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper[AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PostodeTrabalhoXAtividade, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -75,7 +75,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             tblWorkzoneXAtividades wzXatv = new tblWorkzoneXAtividades();
 
             workzones = _workzone.GetWorkzones();
-            activiesFiltrated = _activity.GetActivityByName(nome);
+            activiesFiltrated = _activity.GetActivityByName(nome, idWorkzone);
             activiesAdded = _activityXWorkzone.SetUpActivitiesList(idWorkzone);
             wzXatv.idWorkzone = idWorkzone;
 
@@ -126,7 +126,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblWorkzone> workzones;
             IEnumerable<tblAtividades> activiesAdded;
 
-            activies = _activity.GetActivities();
+            activies = _activity.GetActivitiesNotAdded(idWorkzone);
             activiesAdded = _activityXWorkzone.SetUpActivitiesList(idWorkzone);
             workzones = _workzone.GetWorkzones();
 
@@ -137,7 +137,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             if (idWorkzone == 0)
             {
-                ModelState.AddModelError("idWorkzone", "Selecione uma Workzone");
+                ModelState.AddModelError("idWorkzone", "Selecione um Posto de Trabalho");
 
                 return View("Create", workzoneXAtividade);
             }
@@ -180,7 +180,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
             /*GERANDO MENSAGENS DE VALIDAÇÃO*/
             if (exits)
-                ModelState.AddModelError("idWorkzone", "Workzone já associada a essa atividade");
+                ModelState.AddModelError("idWorkzone", "Posto de Trabalho já associada a essa atividade");
             if (ordemExists)
                 ModelState.AddModelError("Ordem", "Ordem já existente");
             if (ordem == 0)

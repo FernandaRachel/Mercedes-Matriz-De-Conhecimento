@@ -14,7 +14,7 @@ using Mercedes_Matriz_de_Conhecimento.Helpers;
 
 namespace Mercedes_Matriz_de_Conhecimento.Controllers
 {
-    public class TrainingController : BaseController
+    public class TrainingController : Controller
     {
 
 
@@ -56,7 +56,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: training
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Consultar)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);
@@ -68,7 +68,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
 
         }
 
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Create()
         {
             IEnumerable<tblTipoTreinamento> trainingType;
@@ -84,7 +84,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         //GET: training/Details/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Editar)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Editar)]
         public ActionResult Details(int id)
         {
             // Declaração de variaveis
@@ -180,8 +180,13 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             }
 
             IEnumerable<tblTipoTreinamento> trainingType;
+            IEnumerable<tblPerfis> trainingProfile;
+
             trainingType = _trainingType.GetTrainingTypes();
+            trainingProfile = _trainingProfile.GetTrainingProfilesByType("T");
+
             ViewData["TipoTreinamento"] = trainingType;
+            ViewData["PerfilTreinamento"] = trainingProfile;
 
             if (exits)
                 ModelState.AddModelError("Nome", "Treinamento já existe");
@@ -208,12 +213,16 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+
+            if (exits)
+                ModelState.AddModelError("Nome", "Treinamento já existe");
+
             return View(training);
         }
 
 
         // GET: training/Delete/5
-        [AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Excluir)]
+        //[AccessHelper(Menu = MenuHelper.VisualizacaoCadastro,Screen = ScreensHelper.Treinamento, Feature = FeaturesHelper.Excluir)]
         public ActionResult Delete(int id)
         {
             try

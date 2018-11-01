@@ -27,6 +27,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Services.Interface
 
         IEnumerable<tblFuncionarios> GetEmployeesWithPagination(int pageNumber, int quantity);
 
-        IEnumerable<tblFuncionarios> GetEmployeeByName(string Nome);
+        IEnumerable<tblFuncionarios> GetEmployeeByName(string Nome, int idWz);
     }
 }

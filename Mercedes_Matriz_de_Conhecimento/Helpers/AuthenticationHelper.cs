@@ -172,10 +172,10 @@
 //        //    finally
 //        //    {
 //        //        if (mystream != null)
-//        //            mystream.Close();
+//        //            mystream.Cancelar();
 
 //        //        if (wresp != null)
-//        //            wresp.Close();
+//        //            wresp.Cancelar();
 //        //    }
 
 //        //    if (bmp.Width <= 1)

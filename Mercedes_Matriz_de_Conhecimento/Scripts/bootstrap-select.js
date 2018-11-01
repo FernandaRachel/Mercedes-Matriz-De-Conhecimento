@@ -482,7 +482,7 @@
     selectAllText: 'Select All',
     deselectAllText: 'Deselect All',
     doneButton: false,
-    doneButtonText: 'Close',
+    doneButtonText: 'Cancelar',
     multipleSeparator: ', ',
     styleBase: 'btn',
     style: 'btn-default',

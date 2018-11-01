@@ -66,23 +66,13 @@
                 + idFuncionario + "&idTraining=" + idTraining
             + "&idWorkzone=" + idWorkzone.value;
 
-            $.ajax({
-                url: '@Url.Action("DeleteMatrizTraining", "Matrix")',
-                data: {
-                    idFuncionario: idFuncionario,
-                    idTraining: idTraining,
-                    idWorkzone: idWorkzone.value
-                }
-            }).done(function (response) {
-                $('#atividade').modal();
-                console.log(response);
-                //location.reload();
-            });
         }
 
         function SaveMatrizActivity(idFuncionario, idActivity, alocacaoFrocadaValue) {
             // Pega os Valores necessários para salvar a atividade
             var alocacaoValue = document.getElementById("alocacaoForcada");
+            console.log("alocacaoForcada" + alocacaoForcada.value);
+            console.log(alocacaoForcada);
             var itemID = document.getElementById("itemAtivID");
             var idWorkzone = document.getElementById("idWorkzone");
             var cor = document.getElementById('' + idFuncionario + "," + idActivity);
@@ -91,11 +81,6 @@
             location.href = '@Url.Action("CreateMatrizActivity", "Matrix")?idItem='
                 + itemID.value + "&idFuncionario=" + idFuncionario + "&idActivity=" + idActivity
             + "&idWorkzone=" + idWorkzone.value + "&cor=" + corValue + "&alocacaoForcada=" + alocacaoForcada.value;
-
-
-            @*location.href = '@Url.Action("SetColor", "Matrix")?idFuncionario=' + idFuncionario
-                + "&idActivity=" + idActivity + "&idWorkzone=" + idWorkzone.value
-                + "&cor=" + corValue;*@
 
         }
 
@@ -128,38 +113,38 @@
         <thead>
             <tr>
                 <th colspan="3" class="no-border"></th>
-                <th colspan="@ViewBag.tListCount" class="table-title">Perfil</th>
-                <th colspan="@ViewBag.activiesCount" class="table-title">Tarefas</th>
+                <th colspan="@ViewBag.tListCount" class="table-title matriz matriz">Perfil</th>
+                <th colspan="@ViewBag.activiesCount" class="table-title matriz">Tarefas</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th colspan="3" class="white-border"></th>
+                <th colspan="3" class="white-border matriz"></th>
                 @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
                 {
                     var x = (IEnumerable<tblTreinamento>)ViewBag.trainingList;
                     var xlength = x.Where(t => t.idTipoTreinamento == tt.IdTipoTreinamento).Count();
-                    <th colspan="@xlength" class="text-style">@tt.Nome</th>
+                    <th colspan="@xlength" class="text-style matriz">@tt.Nome</th>
                 }
 
                 @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
             {
-                    <th class="text-style">@a.Sigla</th>
+                    <th class="text-style matriz">@a.Sigla</th>
                 }
 
 
             </tr>
             <tr>
-                <th>Registro</th>
-                <th>Nome</th>
-                <th>BU</th>
+                <th matriz>Registro</th>
+                <th matriz>Nome</th>
+                <th matriz>BU</th>
                 @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
             {
-                    <th class="rotate">
+                    <th class="rotate matriz">
                         <div>
                             <div class="rotation-wrapper-outer">
                                 <div class="rotation-wrapper-inner">
-                                    <span>@t.Nome</span>
+                                    <span class="line-break">@t.Nome</span>
                                 </div>
                             </div>
                         </div>
@@ -168,11 +153,11 @@
 
                 @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
             {
-                    <th class="rotate">
+                    <th class="rotate matriz">
                         <div>
                             <div class="rotation-wrapper-outer">
                                 <div class="rotation-wrapper-inner">
-                                    <span>@a.Nome</span>
+                                    <span class="line-break">@a.Nome</span>
                                 </div>
                             </div>
                         </div>

@@ -31,35 +31,72 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
             return activity;
         }
 
-        public IEnumerable<tblAtividades> GetActivityByName(string Nome)
+        public IEnumerable<tblAtividades> GetActivityByName(string Nome, int idWz)
         {
-            IEnumerable<tblAtividades> employee;
-            var query = _db.tblAtividades;
-            employee = query.AsEnumerable();
+            List<tblAtividades> activity = new List<tblAtividades>();
 
             //Se o nome veio vazio traz todas Atividades
             if (Nome.Count() == 0)
-                return employee;
+                return GetActivitiesNotAdded(idWz);
 
-            var query2 = _db.tblAtividades
-                .Where(f => f.Nome.Contains(Nome));
+            if (idWz != 0)
+            {
 
-            employee = query2.AsEnumerable();
+                var query = from f in _db.tblAtividades
+                            where f.Nome.Contains(Nome)
+                            orderby f.Nome ascending
+                            select f;
 
-            return employee;
+
+                foreach (var q in query)
+                {
+                    var returned = _db.tblWorkzoneXAtividades
+                        .Where(wXa => wXa.idAtividade == q.idAtividade && wXa.idWorkzone == idWz);
+                    if (returned.Count() == 0)
+                        activity.Add(q);
+                }
+            }
+
+            return activity;
         }
 
         public IEnumerable<tblAtividades> GetActivities()
         {
             IEnumerable<tblAtividades> activity;
 
-
-
             var query = from f in _db.tblAtividades
                         orderby f.Nome ascending
                         select f;
 
             activity = query.AsEnumerable();
+
+            return activity.AsEnumerable();
+        }
+
+        public IEnumerable<tblAtividades> GetActivitiesNotAdded(int idWz)
+        {
+            List<tblAtividades> activity = new List<tblAtividades>();
+
+            if (idWz != 0)
+            {
+
+                var query = from f in _db.tblAtividades
+                            orderby f.Nome ascending
+                            select f;
+
+
+                foreach (var q in query)
+                {
+                    var returned = _db.tblWorkzoneXAtividades
+                        .Where(wXa => wXa.idAtividade == q.idAtividade && wXa.idWorkzone == idWz);
+                    if (returned.Count() == 0)
+                        activity.Add(q);
+                }
+            }
+            else
+            {
+                activity = _db.tblAtividades.ToList();
+            }
 
             return activity.AsEnumerable();
         }
@@ -83,7 +120,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Services
                     atv.Add(q);
             }
 
-          
+
             return atv;
         }
 

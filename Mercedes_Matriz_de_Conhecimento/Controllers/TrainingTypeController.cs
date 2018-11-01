@@ -156,6 +156,10 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 }
 
             }
+
+            if (exits)
+                ModelState.AddModelError("Nome", "Tipo de Treinamento já existe");
+
             return View(training);
         }
 

@@ -11,12 +11,12 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         public int IdWorkzone { get; set; }
 
         [Required(ErrorMessage = "Nome deve ser preenchido")]
-        [StringLength(2, ErrorMessage = "Sigla deve conter no máximo 2 caracteres")]
+        [StringLength(2, ErrorMessage = "Nome deve conter no máximo 2 caracteres")]
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Descrição deve ser preenchida")]
-        [StringLength(2, ErrorMessage = "Descrição deve conter no máximo 400 caracteres")]
+        [StringLength(400, ErrorMessage = "Descrição deve conter no máximo 400 caracteres")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
@@ -30,7 +30,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         public string DataDesativacao { get; set; }
 
         [Required(ErrorMessage = "Pessoas Necessárias deve ser preenchida")]
-        [MaxLength(5, ErrorMessage = "Pessoas Necessárias deve conter no máximo 5 caracteres")]
         [Display(Name = "Pessoas Necessárias")]
         public int PessoasNecessarias { get; set; }
 

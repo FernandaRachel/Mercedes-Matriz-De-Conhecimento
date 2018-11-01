@@ -361,8 +361,6 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
                 return RedirectToAction("Index", new { error = true });
             }
 
-            // DESCOMENTA ESSA LINHA DE CIMAAAAAAAAAAAAA DEPOIS
-
             var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
             var activiesList = _workzoneXActivity.SetUpActivitiesList(WorkzoneID);
             List<tblTreinamento> trainingList = new List<tblTreinamento>();

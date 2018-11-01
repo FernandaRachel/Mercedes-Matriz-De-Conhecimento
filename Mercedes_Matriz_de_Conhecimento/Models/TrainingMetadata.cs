@@ -16,7 +16,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Sigla deve ser preenchida")]
-        [StringLength(2, ErrorMessage = "A sigla deve conter no máximo 5 caracteres")]
+        [StringLength(5, ErrorMessage = "A sigla deve conter no máximo 5 caracteres")]
         public string Sigla { get; set; }
 
         [Required]
