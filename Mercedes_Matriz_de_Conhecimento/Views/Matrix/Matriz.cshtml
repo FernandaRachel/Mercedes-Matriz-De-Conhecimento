@@ -8,6 +8,10 @@
 @section Scripts{
 
     <script>
+          $(document).ready(function () {
+            location.href = "#" + @ViewBag.userId;
+        });
+
         function openModalTrain(idTrain, idFuncionario) {
 
             $.ajax({
@@ -104,163 +108,248 @@
 
 
 @* no temp *@
-
-<div id="matriz">
-
-    <h2 class="text-center">@Model.Nome - BU : @Model.idBU.Trim()</h2>
-    @Html.HiddenFor(w => w.IdWorkzone, new { id = "idWorkzone" })
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th colspan="3" class="no-border"></th>
-                <th colspan="@ViewBag.tListCount" class="table-title matriz matriz">Perfil</th>
-                <th colspan="@ViewBag.activiesCount" class="table-title matriz">Tarefas</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th colspan="3" class="white-border matriz"></th>
-                @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
-                {
-                    var x = (IEnumerable<tblTreinamento>)ViewBag.trainingList;
-                    var xlength = x.Where(t => t.idTipoTreinamento == tt.IdTipoTreinamento).Count();
-                    <th colspan="@xlength" class="text-style matriz">@tt.Nome</th>
-                }
-
-                @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-            {
-                    <th class="text-style matriz">@a.Sigla</th>
-                }
-
-
-            </tr>
-            <tr>
-                <th matriz>Registro</th>
-                <th matriz>Nome</th>
-                <th matriz>BU</th>
-                @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
-            {
-                    <th class="rotate matriz">
-                        <div>
-                            <div class="rotation-wrapper-outer">
-                                <div class="rotation-wrapper-inner">
-                                    <span class="line-break">@t.Nome</span>
-                                </div>
+<a href="#3">teste</a>
+    <div id="matriz">
+        @* LEGENDA *@
+        <h2 class="text-center">@Model.Nome - BU : @Model.idBU.Trim()</h2>
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Legenda</div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="bg-green col-md-1 col-xs-1 col-lg-1" style="height:25px">
+                            </div>
+                            <div class="col-md-10" style="margin-top: 1%;">
+                                Apto para realizar atividade
                             </div>
                         </div>
-                    </th>
-                }
-
-                @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
-            {
-                    <th class="rotate matriz">
-                        <div>
-                            <div class="rotation-wrapper-outer">
-                                <div class="rotation-wrapper-inner">
-                                    <span class="line-break">@a.Nome</span>
-                                </div>
+                        <div class="col-md-6">
+                            <div class="bg-red col-md-1 col-xs-1 col-lg-1 config-label" style="margin-right:2px">
+                            </div>
+                            <div class="bg-gray col-md-1 col-xs-1 col-lg-1 config-label">
+                            </div>
+                            <div class="col-md-9" style="margin-top: 1%;">
+                                Não apto para realizar atividade
                             </div>
                         </div>
-                    </th>
-                }
-            </tr>
-            @foreach (var wzXFunc in Model.tblWorkzoneXFuncionario)
-            {
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Html.HiddenFor(w => w.IdWorkzone, new { id = "idWorkzone" })
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td class="text-style">@wzXFunc.tblFuncionarios.RE</td>
-                    <td class="text-style">@wzXFunc.tblFuncionarios.Nome</td>
-                    @if (@Model.idBU.Trim() != wzXFunc.tblFuncionarios.idBu_Origem)
+                    <th colspan="3" class="no-border"></th>
+                    <th colspan="@ViewBag.tListCount" class="table-title matriz matriz">Perfil</th>
+                    <th colspan="@ViewBag.activiesCount" class="table-title matriz">Tarefas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="3" class="white-border matriz"></th>
+                    @foreach (var tt in (IEnumerable<tblTipoTreinamento>)ViewBag.ttList)
                     {
-                        <td class="text-style bg-red">@wzXFunc.tblFuncionarios.idBu_Origem</td>
-                    }
-                    else
-                    {
-                        <td class="text-style">@wzXFunc.tblFuncionarios.idBu_Origem</td>
-
-                    }
-                    @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)//x3
-                {
-                    var idTrainAdded = 0;
-                    foreach (var t in trein.tblMatrizFuncXTreinamento.Where(m => m.tblMatrizWorkzone.idMatrizWZ == ViewBag.MWZID))
-                    {
-                        if (t.idTreinamento == trein.IdTreinamento
-                            && wzXFunc.idFuncionario == t.tblFuncionarios.idfuncionario)
-                        {
-                            idTrainAdded = @t.idTreinamento;
-
-                                <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
-                                    @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    @if (@t.tblPerfilItens != null)
-                                    {
-                                        @t.tblPerfilItens.Sigla
-                                    }
-                                </td>
-                            }
-
-                        }
-                        if (trein.IdTreinamento != idTrainAdded)
-                        {
-                            <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
-                                @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                            </td>
-                        }
+                        var x = (IEnumerable<tblTreinamento>)ViewBag.trainingList;
+                        var xlength = x.Where(t => t.idTipoTreinamento == tt.IdTipoTreinamento).Count();
+                        <th colspan="@xlength" class="text-style matriz">@tt.Nome</th>
                     }
 
                     @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
                     {
-                        var idActivAdded = 0;
-                        foreach (var a2 in a.tblMatrizFuncXAtividades)
+                        <th class="text-style matriz">@a.Sigla</th>
+                    }
+
+
+                </tr>
+                <tr>
+                    <th matriz>Registro</th>
+                    <th matriz>Nome</th>
+                    <th matriz>BU</th>
+                    @foreach (var t in (IEnumerable<tblTreinamento>)ViewBag.trainingList)
+                    {
+                        <th class="rotate matriz">
+                            <div>
+                                <div class="rotation-wrapper-outer">
+                                    <div class="rotation-wrapper-inner">
+                                        <span class="line-break">@t.Nome</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                    }
+
+                    @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+                    {
+                        <th class="rotate matriz">
+                            <div>
+                                <div class="rotation-wrapper-outer">
+                                    <div class="rotation-wrapper-inner">
+                                        <span class="line-break">@a.Nome</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                    }
+                </tr>
+                @foreach (var wzXFunc in Model.tblWorkzoneXFuncionario)
+                {
+                    <tr>
+                        <td class="text-style">@wzXFunc.tblFuncionarios.RE</td>
+                        <td class="text-style" id="@wzXFunc.tblFuncionarios.idfuncionario">@wzXFunc.tblFuncionarios.Nome</td>
+                        @if (@Model.idBU.Trim() != wzXFunc.tblFuncionarios.idBu_Origem)
                         {
+                            <td class="text-style bg-red">@wzXFunc.tblFuncionarios.idBu_Origem</td>
+                        }
+                        else
+                        {
+                            <td class="text-style">@wzXFunc.tblFuncionarios.idBu_Origem</td>
 
-                            var trainamentosQtd = 0;
-                            var avaliacoes = 0;
-
-                            foreach (var treinInsideAtiv in a2.tblAtividades.tblAtividadeXTreinamentos)
+                        }
+                        @foreach (var trein in (IEnumerable<tblTreinamento>)ViewBag.trainingList)//x3
+                        {
+                            var idTrainAdded = 0;
+                            foreach (var t in trein.tblMatrizFuncXTreinamento.Where(m => m.tblMatrizWorkzone.idMatrizWZ == ViewBag.MWZID))
                             {
-                                trainamentosQtd = a2.tblAtividades.tblAtividadeXTreinamentos.Count;
-                                //treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento
-                                //    .Where(w => w.idFuncionario == wzXFunc.idFuncionario && treinInsideAtiv.tblTreinamento.IdTreinamento);
-                                foreach (var aval in treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento.Where(m => m.idMatrizWorkzone == ViewBag.MWZID))
+                                if (t.idTreinamento == trein.IdTreinamento
+                                    && wzXFunc.idFuncionario == t.tblFuncionarios.idfuncionario)
                                 {
-                                    if (treinInsideAtiv.idTreinamento == aval.idTreinamento && wzXFunc.idFuncionario == aval.idFuncionario)
-                                    {
+                                    idTrainAdded = @t.idTreinamento;
 
-                                        avaliacoes++;
-                                    }
+                                    <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
+                                        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                        @if (@t.tblPerfilItens != null)
+                                        {
+                                            @t.tblPerfilItens.Sigla
+                                        }
+                                    </td>
                                 }
 
+                            }
+                            if (trein.IdTreinamento != idTrainAdded)
+                            {
+                                <td onclick="openModalTrain(@trein.IdTreinamento,@wzXFunc.idFuncionario)" class="text-center">
+                                    @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                </td>
+                            }
+                        }
+
+                        @foreach (var a in (IEnumerable<tblAtividades>)ViewBag.activiesList)
+                        {
+                            var idActivAdded = 0;
+                            foreach (var a2 in a.tblMatrizFuncXAtividades)
+                            {
+
+                                var trainamentosQtd = 0;
+                                var avaliacoes = 0;
+
+                                foreach (var treinInsideAtiv in a2.tblAtividades.tblAtividadeXTreinamentos)
+                                {
+                                    trainamentosQtd = a2.tblAtividades.tblAtividadeXTreinamentos.Count;
+                                    //treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento
+                                    //    .Where(w => w.idFuncionario == wzXFunc.idFuncionario && treinInsideAtiv.tblTreinamento.IdTreinamento);
+                                    foreach (var aval in treinInsideAtiv.tblTreinamento.tblMatrizFuncXTreinamento.Where(m => m.idMatrizWorkzone == ViewBag.MWZID))
+                                    {
+                                        if (treinInsideAtiv.idTreinamento == aval.idTreinamento && wzXFunc.idFuncionario == aval.idFuncionario)
+                                        {
+
+                                            avaliacoes++;
+                                        }
+                                    }
+
+
+                                }
+
+                                if (a2.idAtividade == a.idAtividade
+                                    && wzXFunc.idFuncionario == a2.tblFuncionarios.idfuncionario)
+                                {
+
+                                    // Verifica se a qtd de trein necessários na ativ[n] é a igual a de avaliações
+                                    // Se sim ele está apto pra fazer a ativ
+                                    if (trainamentosQtd == avaliacoes)
+                                    {
+                                        // Verifica se funcionário pertence aquela BU
+                                        // Se não classifica como alocação forçada
+                                        if (@Model.idBU.Replace(" ", "") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ", ""))
+                                        {
+                                            <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
+                                                @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                                @if (@a2.tblPerfilItens != null)
+                                                {
+
+                                                    @a2.tblPerfilItens.Sigla
+                                                }
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
+                                                @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                                @if (@a2.tblPerfilItens != null)
+                                                {
+                                                    @a2.tblPerfilItens.Sigla
+                                                }
+                                            </td>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        // Verifica se funcionário pertence aquela BU
+                                        // Se não classifica como alocação forçada
+                                        if (@Model.idBU.Replace(" ", "") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ", ""))
+                                        {
+                                            <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
+                                                @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                                @if (@a2.tblPerfilItens != null)
+                                                {
+                                                    @a2.tblPerfilItens.Sigla
+                                                }
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
+                                                @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
+                                                @if (@a2.tblPerfilItens != null)
+                                                {
+                                                    @a2.tblPerfilItens.Sigla
+                                                }
+                                            </td>
+                                        }
+
+
+                                    }
+
+                                    idActivAdded = @a2.idAtividade;
+                                }
 
                             }
 
-                            if (a2.idAtividade == a.idAtividade
-                                && wzXFunc.idFuncionario == a2.tblFuncionarios.idfuncionario)
+                            var avaliacao = 0;
+                            foreach (var t in a.tblAtividadeXTreinamentos)
                             {
+                                avaliacao += t.tblTreinamento.tblMatrizFuncXTreinamento.Where(f => f.idFuncionario == wzXFunc.idFuncionario && f.idMatrizWorkzone == ViewBag.MWZID).Count();
+                            }
 
-                                // Verifica se a qtd de trein necessários na ativ[n] é a igual a de avaliações
-                                // Se sim ele está apto pra fazer a ativ
-                                if (trainamentosQtd == avaliacoes)
+                            if (a.idAtividade != idActivAdded)
+                            {
+                                if (a.tblAtividadeXTreinamentos.Count == avaliacao)
                                 {
                                     // Verifica se funcionário pertence aquela BU
                                     // Se não classifica como alocação forçada
-                                    if (@Model.idBU.Replace(" ", "") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ", ""))
+                                    if (@Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
                                     {
                                         <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
                                             @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                            @if (@a2.tblPerfilItens != null)
-                                            {
-
-                                                @a2.tblPerfilItens.Sigla
-                                            }
                                         </td>
                                     }
                                     else
                                     {
                                         <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
                                             @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                            @if (@a2.tblPerfilItens != null)
-                                            {
-                                                @a2.tblPerfilItens.Sigla
-                                            }
                                         </td>
                                     }
 
@@ -269,107 +358,48 @@
                                 {
                                     // Verifica se funcionário pertence aquela BU
                                     // Se não classifica como alocação forçada
-                                    if (@Model.idBU.Replace(" ", "") != @wzXFunc.tblFuncionarios.idBu_Origem.Replace(" ", ""))
+                                    if (@Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
                                     {
-                                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
+                                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="gray" class="text-center bg-gray">
                                             @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                            @if (@a2.tblPerfilItens != null)
-                                            {
-                                                @a2.tblPerfilItens.Sigla
-                                            }
                                         </td>
                                     }
                                     else
                                     {
-                                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgcolor="#e46a6a" class="text-center bg-red">
+                                        <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="gray" class="text-center bg-gray">
                                             @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                            @if (@a2.tblPerfilItens != null)
-                                            {
-                                                @a2.tblPerfilItens.Sigla
-                                            }
                                         </td>
                                     }
 
-
                                 }
-
-                                idActivAdded = @a2.idAtividade;
-                            }
-
-                        }
-
-                        var avaliacao = 0;
-                        foreach (var t in a.tblAtividadeXTreinamentos)
-                        {
-                            avaliacao += t.tblTreinamento.tblMatrizFuncXTreinamento.Where(f => f.idFuncionario == wzXFunc.idFuncionario && f.idMatrizWorkzone == ViewBag.MWZID).Count();
-                        }
-
-                        if (a.idAtividade != idActivAdded)
-                        {
-                            if (a.tblAtividadeXTreinamentos.Count == avaliacao)
-                            {
-                                // Verifica se funcionário pertence aquela BU
-                                // Se não classifica como alocação forçada
-                                if (@Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
-                                {
-                                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
-                                        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="#3fd44a" class="text-center bg-green">
-                                        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    </td>
-                                }
-
-                            }
-                            else
-                            {
-                                // Verifica se funcionário pertence aquela BU
-                                // Se não classifica como alocação forçada
-                                if (@Model.idBU.Trim() != @wzXFunc.tblFuncionarios.idBu_Origem)
-                                {
-                                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, true)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="gray" class="text-center bg-gray">
-                                        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td onclick="openModalActiv(@a.idAtividade,@wzXFunc.idFuncionario, false)" id="@a.idAtividade,@wzXFunc.idFuncionario" bgColor="gray" class="text-center bg-gray">
-                                        @*@trein.IdTreinamento,@wzXFunc.idFuncionario:*@
-                                    </td>
-                                }
-
                             }
                         }
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-    @if (@ViewBag.show)
-    {
+        @if (@ViewBag.show)
+        {
 
-        <div class="row">
-            <button class="btn btn-modified-save pull-right" onclick="salvarMatriz(@Model.IdWorkzone)">Salvar</button>
+            <div class="row">
+                <button class="btn btn-modified-save pull-right" onclick="salvarMatriz(@Model.IdWorkzone)">Salvar</button>
+            </div>
+        }
+        else
+        {
+            <h3><b>Favor associar atividades, treinamentos e funcionarios à matriz para começar a avaliação</b></h3>
+        }
+
+
+        <div id="listTraining">
+            @{Html.RenderAction("BuscarITem", "Matrix", new { idTrain = 0, idFuncionario = 0 });}
         </div>
-    }
-    else
-    {
-        <h3><b>Favor associar atividades, treinamentos e funcionarios à matriz para começar a avaliação</b></h3>
-    }
 
-
-    <div id="listTraining">
-        @{Html.RenderAction("BuscarITem", "Matrix", new { idTrain = 0, idFuncionario = 0 });}
+        <div id="listActivity">
+            @{Html.RenderAction("BuscarItemAtiv", "Matrix", new { idActivity = 0, idFuncionario = 0 });}
+        </div>
     </div>
-
-    <div id="listActivity">
-        @{Html.RenderAction("BuscarItemAtiv", "Matrix", new { idActivity = 0, idFuncionario = 0 });}
-    </div>
-</div>
 
 
 

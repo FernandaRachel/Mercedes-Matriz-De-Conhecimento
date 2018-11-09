@@ -53,7 +53,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         }
 
         // GET: activityXWorkzone
-        [AccessHelper[AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PostodeTrabalhoXAtividade, Feature = FeaturesHelper.Consultar)]
+        [AccessHelper(Menu = MenuHelper.Associacao,Screen = ScreensHelper.PostodeTrabalhoXAtividade, Feature = FeaturesHelper.Consultar)]
         public ActionResult Index(int page = 1)
         {
             var pages_quantity = Convert.ToInt32(ConfigurationManager.AppSettings["pages_quantity"]);

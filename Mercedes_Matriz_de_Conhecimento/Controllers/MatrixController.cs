@@ -35,6 +35,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         private ProfileItemService _profileItemTraining;
         private ActivityGroupService _activityGroup;
         private TrainingGroupService _trainingGroup;
+        private EmployeeService _employee;
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public MatrixController()
@@ -66,10 +67,11 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             _profileItemTraining = new ProfileItemService();
             _activityGroup = new ActivityGroupService();
             _trainingGroup = new TrainingGroupService();
+            _employee = new EmployeeService();
 
             //Pega o nome do usuário para exibir na barra de navegação
             SistemaApi username = new SistemaApi();
-
+            ViewBag.userId = "matriz";
             SetImage();
         }
 
@@ -138,7 +140,7 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
             IEnumerable<tblWorkzone> workzones;
             workzones = _workzone.GetWorkzones();
             ViewData["Workzones"] = workzones;
-            if(error)
+            if (error)
                 ModelState.AddModelError("idWorkzone", "Você não possui aesso a esta matriz. Verificar CC cadastrado no Autsis");
 
             return View();
@@ -147,19 +149,19 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Consultar)]
         public ActionResult Matriz(int WorkzoneID, bool catchValueFromOficial = true)
         {
-
+            CookieHelper.Delete("userId");
             var workzone = _workzone.GetWorkzoneById(WorkzoneID);
 
             try
             {
 
                 //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
-                if (!AllowCC(workzone.idCC))
-                {
-                    //Response.Write("<script>alert('Sem acesso a esta tela. Verificar CC cadastrado no AutSis');</script>");
-                    //Thread.Sleep(3000);
-                    return RedirectToAction("Index", new { error = true });
-                }
+                //if (!AllowCC(workzone.idCC))
+                //{
+                //    //Response.Write("<script>alert('Sem acesso a esta tela. Verificar CC cadastrado no AutSis');</script>");
+                //    //Thread.Sleep(3000);
+                //    return RedirectToAction("Index", new { error = true });
+                //}
 
                 // DESCOMENTA ESSA LINHA DE CIMAAAAAAAAAAAAA DEPOIS
                 SetImage();
@@ -354,12 +356,14 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         public ActionResult MatrizTemp(int WorkzoneID)
         {
             var workzone = _workzone.GetWorkzoneById(WorkzoneID);
+            var c = CookieHelper.Get("userId");
+            ViewBag.userId = c;
 
             //Veriica se o cara possui permissão para acessar a matriz de acordo com o CC
-            if (!AllowCC(workzone.idCC))
-            {
-                return RedirectToAction("Index", new { error = true });
-            }
+            //if (!AllowCC(workzone.idCC))
+            //{
+            //    return RedirectToAction("Index", new { error = true });
+            //}
 
             var exits = _matrizService.GetMatrizByWZId(WorkzoneID);
             var activiesList = _workzoneXActivity.SetUpActivitiesList(WorkzoneID);
@@ -467,6 +471,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Editar)]
         public ActionResult CreateMatrizTraining(int idFuncionario, int idTraining, int idWorkzone, int idItem = 0)
         {
+            ViewBag.userId = idFuncionario;
+            CookieHelper.Set("userId", idFuncionario.ToString());
+
             if (idItem == 0)
             {
 
@@ -563,6 +570,9 @@ namespace Mercedes_Matriz_de_Conhecimento.Controllers
         [AccessHelper(Menu = MenuHelper.MatrizdeConhecimento, Screen = ScreensHelper.MatrizdeConhecimento, Feature = FeaturesHelper.Editar)]
         public ActionResult CreateMatrizActivity(int idFuncionario, int idActivity, int idWorkzone, string cor, string alocacaoForcada, int idItem = 0)
         {
+            ViewBag.userId = idFuncionario;
+            CookieHelper.Set("userId", idFuncionario.ToString());
+
             if (idItem == 0)
             {
 
